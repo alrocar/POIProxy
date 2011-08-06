@@ -1,0 +1,93 @@
+http://search.twitter.com/search.json?result_type=recent&geocode=39.
+473579,-0.37654,10km&callback=?
+
+http://search.twitter.com/search.json?result_type=recent&geocode=39.
+477487790753116,-0.36768218994144286,3.1065888263672115km
+
+http://query.yahooapis.com/v1/public/yql?format=json&callback=
+jsonp1298659362895&q=Select%20*%20from%20json%20where%20url%3D%22http%3A
+%2F%2Fapi.foursquare.com%2Fv1%2Fvenues.json%3Fgeolat%3D39.
+477487790753116%26geolong%3D-0.36768218994144286%26l%3D20%22
+
+https://api.foursquare.com/v2/venues/search?ll=39.477487790753116,-0.
+36768218994144286
+
+http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key
+=66385d0991aa4041b9d25db0afcd362d&bbox=-0.39446136474612103,39.
+46002858958754,-0.34090301513674603,39.494942610912275&format=json&
+extras=owner_name,geo,media&per_page=20&accuracy=11&sort=interestingness
+-desc&min_upload_date=1140980375.47&user_id=32635313@N07
+
+http://farm3.static.flickr.com/2210/2274953708_e3b0bf22e7_s.jpg
+
+http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key
+=66385d0991aa4041b9d25db0afcd362d&bbox=3.688855146213853,-44.384765625,3
+.7765593124055825,-44.29687499999999&format=json&extras=owner_name,geo,
+media&per_page=20&accuracy=11&sort=interestingness-desc&min_upload_date=
+1140980375.47&user_id=32635313@N07
+
+http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key
+=66385d0991aa4041b9d25db0afcd362d&bbox=-3.700723857879666,40.
+400044994547926,-3.694029064178494,40.40435066513111&format=json&
+jsoncallback=jsonp1299337666716&extras=owner_name,geo,media&per_page=20&
+accuracy=11&sort=interestingness-desc&min_upload_date=1141657703.701&
+user_id=32635313@N07
+
+{"from_user_id_str":"17004249",
+"location":"40.403900,-3.697500",
+"profile_image_url":"http://a1.twimg.com/profile_images/1169926084/perfilTwitter2_normal.jpg",
+"created_at":"Sat, 05 Mar 2011 12:06:02 +0000",
+"from_user":"gdelatorre",
+"id_str":"44005749331984384",
+"metadata": {"result_type":"recent"},
+"to_user_id":null,
+"text":"Beautiful from the North at the iron. \u00a1Qu\u00e9 hambre!",
+"id":44005749331984384,
+"from_user_id":17004249,
+"geo":{"type":"Point","coordinates":[40.4039,-3.6975]},
+"iso_language_code":"en",
+"to_user_id_str":null,
+"source":"&lt;ahref=&quot;http://www.tweetdeck.com&quot;rel=&quot;nofollow&quot;&gt;TweetDeck&lt;/a&gt;"
+}
+
+http://search.twitter.com/search.json?result_type=recent&callback=?&geocode=-0.1311492919921875,51.51002447008407,0.134657196955065km
+
+
+
+
+--------------
+https://www.googleapis.com/buzz/v1/activities/search?key=AIzaSyDM7V5F3X0g4_aH6YSwsR4Hbd_uBuQ3QeA&lat=37.4220&lon=-122.0843&radius=1000&alt=json
+
+http://gdata.youtube.com/feeds/api/videos?location=37.42307,-122.08427&location-radius=100km&alt=json
+
+http://www.lastfm.es/api/show?service=270
+
+http://wiki.opensocial.org/index.php?title=Main_Page#Container_Information
+
+http://wiki.developer.myspace.com/index.php?title=Search_API
+
+http://developer.lplabs.com/index.php?title=Resources
+
+http://api.myspace.com/opensearch/people?longitude=-0.1311492919921875&latitude=51.51002447008407
+
+http://api.myspace.com/1.0/statusmood/myspace.com.person.105964379/@self
+
+http://ws.audioscrobbler.com/2.0/?method=geo.getevents&location=VALENCIA&api_key=ef96c828302b8d08a829bb17813b92d2
+
+QUITAR dependencia con MapRenderer
+Crear automáticamente un DetailsActivity a partir de AttributePoint o FeatureAttribute
+Crear clase SelectedFeature con los atributos necesarios para Popup y DetailsActivity
+Hacer un Popup de 9 partes, aue admita layout horizontal o vertical con: imagen + titulo + autor
+Añadir cache en disco (Con dos settings: 'Activar cache' 'Sobreescribir cache')
+	Si es tileStrategy, al descargar guardar directamente con el tile
+	Si es bbox, al procesar la respuesta, para cada tile habría que escribir el json
+	Tener un único provider de lectura/escritura en disco, que guardará los archivos en formato geoJSON, con featurecollection, y los atributos serán pares clave/valor tomados de FeatureAttribute
+Recuperar enlaces URL en segundo plano (imágenes) ¿Guardar en disco?
+Refactorizar -> Utilizar AttributePoint o FeatureAttribute
+Refactorizar -> Utilizar FeatureOverlay en vez de PointOverlay
+Añadir soporte multiselección: Seleccionar varias features, mostrar un listado, y mostrar detalles de la seleccionada en el listado.
+Añadir LastFM y LonelyPlanet (XML)
+Pantalla de selección de overlays, con opciones para marcar varios, listar, activar/sobreescribir cache.
+Al eliminar puntos de la cache, destruirlos
+QuickAction para cada punto.
+Definir tamaño cache memoria
