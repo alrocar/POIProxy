@@ -1,0 +1,14 @@
+describeService : {
+    apiKey : "",
+    requestTypes : {
+                    "browse": {"url": "a", "params": []},
+                    "search": {"url": "b", "params": []}
+                    },
+    featureTypes : { "browse" : {
+                    	"feature" : "upload_date",
+                    	"elements" : ["photo_url", "photo_title"],
+                    	"lon": "longitude", 
+                    	"lat": "latitude"
+                    	}
+                    }
+}
