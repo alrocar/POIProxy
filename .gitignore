@@ -2,8 +2,6 @@ es.alrocar.map.vector/release.properties
 
 es.alrocar.map.vector/target/maven-archiver/pom.properties
 
-es.alrocar.map.vector/release.properties
+es.alrocar.map.vector/target/**
 
-es.alrocar.map.vector/release.properties
 
-es.alrocar.map.vector/release.properties

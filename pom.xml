@@ -35,5 +35,6 @@
     
 <modules>
 <module>es.alrocar.map.vector</module>
+<module>es.alrocar.poiproxy</module>
 </modules>
 </project>
