@@ -1,3 +1,2 @@
 # Module es_alrocar_poiproxy_gae
 # RPC service class, partial path of RPC policy file
-es.alrocar.poiproxy.gae.client.GreetingService, A9E35A9DFE1B0C318F922E837393616B.gwt.rpc
