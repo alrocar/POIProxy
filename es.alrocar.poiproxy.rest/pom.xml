@@ -3,7 +3,7 @@
 	<groupId>es.prodevelop</groupId>
 	<artifactId>es.alrocar.poiproxy.rest</artifactId>
 	<packaging>war</packaging>
-	<version>0.1</version>
+	<version>0.2-SNAPSHOT</version>
 	<name>es.alrocar.poiproxy.rest</name>
 	<url>http://poiproxy.mapps.es</url>
 	<description>A REST interface for POIProxy to be deployed into a servlet container (i.e. Tomcat)</description>
