@@ -4,9 +4,35 @@
 	<groupId>es.alrocar</groupId>
 	<artifactId>es.alrocar.poiproxy.rest</artifactId>
 	<packaging>war</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>0.1-SNAPSHOT</version>
 	<name>es.alrocar.poiproxy.rest</name>
-	<url>http://maven.apache.org</url>
+	<url>http://poiproxy.mapps.es</url>
+	<description>A REST interface for POIProxy to be deployed into a servlet container (i.e. Tomcat)</description>
+	 <parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
+	
+	<licenses>
+		<license>
+			<name>GNU General Public License, Version 2.0 or any later version</name>
+			<url>http://www.gnu.org/licenses/gpl-2.0.html</url>
+		</license>
+	</licenses>
+	
+	<scm>
+		<url>git:git@github.com:alrocar/POIProxy.git</url>
+		<connection>scm:git:git@github.com:alrocar/POIProxy.git</connection>
+		<developerConnection>scm:git:git@github.com:alrocar/POIProxy.git</developerConnection>
+	</scm>
+	<developers>
+		<developer>
+			<id>alrocar</id>
+			<name>Alberto Romeu</name>
+			<email>alberto@alrocar.es</email>
+		</developer>
+	</developers>
 
 	<repositories>
 		<repository>
@@ -20,7 +46,7 @@
 		<dependency>
 			<groupId>es.alrocar</groupId>
 			<artifactId>es.alrocar.poiproxy</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>0.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
