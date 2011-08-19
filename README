@@ -1,13 +1,13 @@
 A proxy service to retrieve POIs from several public services
 
-To run the POIProxy in a servlet container (i.e. Tomcat), clone the es.alrocar.poiproxy.rest project and run:
+To run POIProxy in a servlet container (i.e. Tomcat), clone the es.alrocar.poiproxy.rest project and run:
 
 mvn jetty:run
 
 Note: The services configuration should be located at: /var/lib/sp/services
 
-To run the POIProxy in Google AppEngine, clone the es.alrocar.poiproxy.gae and run:
+To run POIProxy in Google AppEngine, clone the es.alrocar.poiproxy.gae and run:
 
-mvn age:run
+mvn gae:run
 
 Both projects depend on es.alrocar.poiproxy.
