@@ -93,6 +93,8 @@ public class POIProxy {
 
 		if (describeService == null) {
 			StringBuffer error = new StringBuffer();
+			error.append("Services path: "
+					+ ServiceConfigurationManager.CONFIGURATION_DIR);
 			error.append("The service with id: " + id + " is not registered");
 
 			error.append("\n Available services are: ");
@@ -128,7 +130,7 @@ public class POIProxy {
 			int y, ArrayList optionalParams) {
 		ServiceParams params = new ServiceParams();
 
-		Extent e1 = TileConversor.tileOSMMercatorBounds(x, y, z);		
+		Extent e1 = TileConversor.tileOSMMercatorBounds(x, y, z);
 
 		double[] minXY = ConversionCoords.reproject(e1.getMinX(), e1.getMinY(),
 				CRSFactory.getCRS("EPSG:900913"),
@@ -141,7 +143,7 @@ public class POIProxy {
 		e1.setMinY(minXY[1]);
 		e1.setMaxX(maxXY[0]);
 		e1.setMaxY(maxXY[1]);
-		
+
 		double distanceMeters = this.getDistanceMeters(e1);
 
 		params.putParam(ServiceParams.MINX, String.valueOf(minXY[0]));
@@ -157,7 +159,8 @@ public class POIProxy {
 		params.putParam(ServiceParams.FORMAT, "json");
 
 		params.putParam(ServiceParams.DIST, String.valueOf(distanceMeters));
-		params.putParam(ServiceParams.DISTKM, String.valueOf(distanceMeters/1000));
+		params.putParam(ServiceParams.DISTKM,
+				String.valueOf(distanceMeters / 1000));
 		params.putParam(ServiceParams.KEY, describeService.getApiKey());
 
 		String url = describeService.getRequestTypes()
@@ -189,7 +192,7 @@ public class POIProxy {
 		// Escribir en cache el geoJSON
 		return geoJSON;
 	}
-	
+
 	public double getDistanceMeters(Extent boundingBox) {
 		return Calculator.latLonDist(boundingBox.getMinX(),
 				boundingBox.getMinY(), boundingBox.getMaxX(),

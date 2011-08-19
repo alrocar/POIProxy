@@ -26,7 +26,7 @@
     <servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
     <init-param>
       <param-name>org.restlet.application</param-name>
-      <param-value>es.alrocar.poiproxy.gae.POIProxyApplication</param-value>
+      <param-value>es.alrocar.poiproxy.servlet.POIProxyApplication</param-value>
     </init-param>                 
   </servlet>
 

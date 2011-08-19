@@ -6,7 +6,7 @@
 	<!-- The Basics -->
 	<groupId>es.prodevelop</groupId>
 	<artifactId>es.alrocar.poiproxy.gae</artifactId>
-	<version>0.1-SNAPSHOT</version>
+	<version>0.2-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<name>POIProxy for AppEngine</name>
@@ -50,7 +50,7 @@
 		<dependency>
 			<groupId>es.prodevelop</groupId>
 			<artifactId>es.alrocar.poiproxy</artifactId>
-			<version>0.1</version>
+			<version>0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

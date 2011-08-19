@@ -3,9 +3,13 @@
   <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
   <classpathentry kind="output" path="target/classes"/>
   <classpathentry kind="var" path="M2_REPO/commons-pool/commons-pool/1.5.4/commons-pool-1.5.4.jar"/>
-  <classpathentry kind="var" path="M2_REPO/es/alrocar/es.alrocar.poiproxy/1.0-SNAPSHOT/es.alrocar.poiproxy-1.0-SNAPSHOT.jar"/>
-  <classpathentry kind="var" path="M2_REPO/es/prodevelop/es.prodevelop.gvsig.mini.compat/0.5.0-SNAPSHOT/es.prodevelop.gvsig.mini.compat-0.5.0-SNAPSHOT.jar"/>
-  <classpathentry kind="var" path="M2_REPO/es/prodevelop/es.prodevelop.gvsig.mini.geom/1.0.0-SNAPSHOT/es.prodevelop.gvsig.mini.geom-1.0.0-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/es/prodevelop/es.alrocar.poiproxy/0.2/es.alrocar.poiproxy-0.2.jar" sourcepath="M2_REPO/es/prodevelop/es.alrocar.poiproxy/0.2/es.alrocar.poiproxy-0.2-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/Users/albertoromeu/.m2/repository/es/prodevelop/es.alrocar.poiproxy/0.2/es.alrocar.poiproxy-0.2-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/es/prodevelop/es.prodevelop.gvsig.mini.compat/0.5.3/es.prodevelop.gvsig.mini.compat-0.5.3.jar"/>
+  <classpathentry kind="var" path="M2_REPO/es/prodevelop/es.prodevelop.gvsig.mini.geom/1.0.0/es.prodevelop.gvsig.mini.geom-1.0.0.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/geronimo/specs/geronimo-servlet_2.5_spec/1.2/geronimo-servlet_2.5_spec-1.2.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/geotools/gt-api/2.7.1/gt-api-2.7.1.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/geotools/gt-main/2.7.1/gt-main-2.7.1.jar"/>
