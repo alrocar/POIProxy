@@ -33,7 +33,7 @@
  *   
  */
 
-package es.alrocar.poiproxy.gae;
+package es.alrocar.poiproxy.servlet;
 
 import java.util.HashMap;
 
