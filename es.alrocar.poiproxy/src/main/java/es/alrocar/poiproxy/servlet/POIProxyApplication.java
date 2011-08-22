@@ -45,7 +45,6 @@ import org.restlet.representation.StringRepresentation;
 import org.restlet.routing.Router;
 
 import es.alrocar.poiproxy.configuration.ServiceConfigurationManager;
-import es.alrocar.poiproxy.proxy.POIProxy;
 
 public class POIProxyApplication extends Application {
 
@@ -63,6 +62,7 @@ public class POIProxyApplication extends Application {
 
 		router.attach("/hello", HelloResource.class);
 		router.attach("/browse", BrowsePOIProxyZXY.class);
+		router.attach("/browseByExtent", BrowsePOIProxyBBox.class);
 
 		Restlet mainpage = new Restlet() {
 			@Override

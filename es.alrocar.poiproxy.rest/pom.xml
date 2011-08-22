@@ -45,7 +45,7 @@
 		<dependency>
 			<groupId>es.prodevelop</groupId>
 			<artifactId>es.alrocar.poiproxy</artifactId>
-			<version>0.2.1</version>
+			<version>0.2.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

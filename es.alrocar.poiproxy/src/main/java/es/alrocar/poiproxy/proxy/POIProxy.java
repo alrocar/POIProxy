@@ -126,6 +126,47 @@ public class POIProxy {
 		return geoJSON;
 	}
 
+	public String getPOIs(String id, double minX, double minY, double maxX,
+			double maxY, ArrayList optionalParams) throws Exception {
+		DescribeService describeService = serviceManager
+				.getServiceConfiguration(id);
+
+		if (describeService == null) {
+			StringBuffer error = new StringBuffer();
+			error.append("Services path: "
+					+ ServiceConfigurationManager.CONFIGURATION_DIR);
+			error.append("The service with id: " + id + " is not registered");
+
+			error.append("\n Available services are: ");
+
+			Set<String> keys = serviceManager.getRegisteredConfigurations()
+					.keySet();
+
+			Iterator<String> it = keys.iterator();
+
+			while (it.hasNext()) {
+				error.append(it.next()).append(" ");
+			}
+
+			return error.toString();
+		}
+
+		// Buscar en cache el geoJSON y si est‡ llamar a onResponseReceived
+
+		// si no est‡ en cache
+
+		// construir la url
+		String url = buildRequest(describeService, minX, minY, maxX, maxY,
+				optionalParams);
+
+		// hacer petici—n al servicio
+		String json = doRequest(url);
+
+		String geoJSON = this.onResponseReceived(json, describeService);
+
+		return geoJSON;
+	}
+
 	public String buildRequest(DescribeService describeService, int z, int x,
 			int y, ArrayList optionalParams) {
 		ServiceParams params = new ServiceParams();
@@ -150,6 +191,46 @@ public class POIProxy {
 		params.putParam(ServiceParams.MINY, String.valueOf(minXY[1]));
 		params.putParam(ServiceParams.MAXX, String.valueOf(maxXY[0]));
 		params.putParam(ServiceParams.MAXY, String.valueOf(maxXY[1]));
+
+		params.putParam(ServiceParams.LON,
+				String.valueOf(e1.getCenter().getX()));
+		params.putParam(ServiceParams.LAT,
+				String.valueOf(e1.getCenter().getY()));
+
+		params.putParam(ServiceParams.FORMAT, "json");
+
+		params.putParam(ServiceParams.DIST, String.valueOf(distanceMeters));
+		params.putParam(ServiceParams.DISTKM,
+				String.valueOf(distanceMeters / 1000));
+		params.putParam(ServiceParams.KEY, describeService.getApiKey());
+
+		String url = describeService.getRequestTypes()
+				.get(DescribeService.BROWSE_TYPE).getUrl();
+
+		Set<String> keys = params.getParams().keySet();
+		Iterator<String> it = keys.iterator();
+
+		String key;
+		while (it.hasNext()) {
+			key = it.next();
+			url = url.replaceAll(key, params.getValueForParam(key));
+		}
+
+		return url;
+	}
+
+	public String buildRequest(DescribeService describeService, double minX,
+			double minY, double maxX, double maxY, ArrayList optionalParams) {
+		ServiceParams params = new ServiceParams();
+
+		Extent e1 = new Extent(minX, minY, maxX, maxY);
+
+		double distanceMeters = this.getDistanceMeters(e1);
+
+		params.putParam(ServiceParams.MINX, String.valueOf(minX));
+		params.putParam(ServiceParams.MINY, String.valueOf(minY));
+		params.putParam(ServiceParams.MAXX, String.valueOf(maxX));
+		params.putParam(ServiceParams.MAXY, String.valueOf(maxY));
 
 		params.putParam(ServiceParams.LON,
 				String.valueOf(e1.getCenter().getX()));
