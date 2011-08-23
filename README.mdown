@@ -88,7 +88,7 @@ This diagram shows a typical scenario of a client application that consumes POIP
 
 This diagram shows the internal collaboration among classes in the POIProxy library and a client application
 
-[![](https://confluence.prodevelop.es/display/GVMN/Design+of+the+API)](https://confluence.prodevelop.es/display/GVMN/Design+of+the+API)
+[![](https://confluence.prodevelop.es/download/attachments/22249524/socialservicesequence.png)](https://confluence.prodevelop.es/download/attachments/22249524/socialservicesequence.png)
 
 [gsoc_idea]: https://confluence.prodevelop.es/display/GVMN/Design+and+implement+an+API+for+tiled+vectorial+support+of+geo-location+data+services
 [tiles_google]: http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/
