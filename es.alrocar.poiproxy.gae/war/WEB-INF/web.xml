@@ -4,35 +4,29 @@
     "http://java.sun.com/dtd/web-app_2_3.dtd">
 
 <web-app>
-  
-  <!-- Servlets -->
-  <!-- servlet>
-    <servlet-name>greetServlet</servlet-name>
-    <servlet-class>es.alrocar.poiproxy.gae.server.GreetingServiceImpl</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/es_alrocar_poiproxy_gae/greet</url-pattern>
-  </servlet-mapping-->
-  
-  <!-- Default page to serve -->
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-  </welcome-file-list>
-  
-  <servlet>
-    <servlet-name>Restlet</servlet-name>
-    <servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
-    <init-param>
-      <param-name>org.restlet.application</param-name>
-      <param-value>es.alrocar.poiproxy.gae.POIProxyApplication</param-value>
-    </init-param>                 
-  </servlet>
 
-  <servlet-mapping>
-    <servlet-name>Restlet</servlet-name>
-    <url-pattern>/*</url-pattern>
-  </servlet-mapping>
+	<!-- Servlets -->
+	<!-- servlet> <servlet-name>greetServlet</servlet-name> <servlet-class>es.alrocar.poiproxy.gae.server.GreetingServiceImpl</servlet-class> 
+		</servlet> <servlet-mapping> <servlet-name>greetServlet</servlet-name> <url-pattern>/es_alrocar_poiproxy_gae/greet</url-pattern> 
+		</servlet-mapping -->
+
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>Restlet</servlet-name>
+		<servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
+		<init-param>
+			<param-name>org.restlet.application</param-name>
+			<param-value>es.alrocar.poiproxy.gae.POIProxyApplication</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Restlet</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
 
 </web-app>
