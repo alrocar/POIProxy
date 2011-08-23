@@ -87,6 +87,14 @@ public class ServiceConfigurationManager {
 
 	public DescribeService getServiceConfiguration(String id) {
 		// Buscar los servicios registrados
+		String res = this.getServiceAsJSON(id);
+
+		DescribeService service = parser.parse(res);
+
+		return service;
+	}
+
+	public String getServiceAsJSON(String id) {
 		String path = this.registeredConfigurations.get(id);
 
 		if (path == null) {
@@ -123,9 +131,7 @@ public class ServiceConfigurationManager {
 			Constants.closeStream(out);
 		}
 
-		DescribeService service = parser.parse(res);
-
-		return service;
+		return res;
 	}
 
 	public DescribeService getRemoteConfiguration(String url) {
@@ -165,7 +171,7 @@ public class ServiceConfigurationManager {
 			if (file.isDirectory()) {
 				retval.addAll(getResourcesFromDirectory(file, pattern));
 			} else {
-//				retval.addAll(getResourcesFromJarFile(file, pattern));
+				// retval.addAll(getResourcesFromJarFile(file, pattern));
 			}
 			return retval;
 		}

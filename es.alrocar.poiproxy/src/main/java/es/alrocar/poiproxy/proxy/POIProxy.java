@@ -77,6 +77,27 @@ public class POIProxy {
 		geoJSONWriter = new GeoJSONWriter();
 	}
 
+	public String getAvailableServices() {
+		StringBuffer services = new StringBuffer();
+
+		Set<String> keys = serviceManager.getRegisteredConfigurations()
+				.keySet();
+
+		Iterator<String> it = keys.iterator();
+
+		String id = null;
+		while (it.hasNext()) {
+			id = it.next();
+			services.append("{").append(id).append(":\n");
+			services.append(serviceManager.getServiceAsJSON(id)).append("}");
+			if (it.hasNext()) {
+				services.append(",");
+			}
+		}
+
+		return services.toString();
+	}
+
 	// TODO Allow several strategies
 	// LAT LON
 	// BBOX
