@@ -78,6 +78,24 @@ Finally refresh the workspace
 
      Both projects depend on es.alrocar.poiproxy that is deployed at maven central and should be downloaded automatically to your local maven repository.
      
+##Deploying POIProxy
+
+* ***In a servlet container***
+
+     To deploy POIProxy in a servlet container (i.e. Tomcat), generate a war and publish it in the servlet container:
+
+     `mvn war:war`
+
+*Note: The services configuration should be located at: /var/lib/sp/services*
+
+* ***In Google App Engine***
+
+     To deploy POIProxy in Google AppEngine run:
+
+     `mvn gae:deploy`
+
+*Note: You should configure your own AppEngine instance*
+
 ##Components diagram
 
 This diagram shows a typical scenario of a client application that consumes POIProxy.
