@@ -92,10 +92,10 @@ public class BrowsePOIProxyBBox extends ServerResource {
 		if (callback == null) {
 			return new StringRepresentation(geoJSON, MediaType.APPLICATION_JSON);
 		} else if (callback.compareTo("?") == 0) {
-			return new StringRepresentation("poiproxy ( " + geoJSON + " );",
+			return new StringRepresentation("poiproxy(" + geoJSON + ");",
 					MediaType.TEXT_JAVASCRIPT);
 		} else {
-			return new StringRepresentation(callback + " ( " + geoJSON + " );",
+			return new StringRepresentation(callback + "(" + geoJSON + ");",
 					MediaType.TEXT_JAVASCRIPT);
 		}
 	}
