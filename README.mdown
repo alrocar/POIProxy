@@ -84,7 +84,7 @@ This diagram shows a typical scenario of a client application that consumes POIP
 
 [![](https://confluence.prodevelop.es/download/attachments/22249524/socialservicecomponents.png)](https://confluence.prodevelop.es/download/attachments/22249524/socialservicecomponents.png)
 
-##Sequence diagrama
+##Sequence diagram
 
 This diagram shows the internal collaboration among classes in the POIProxy library and a client application
 
