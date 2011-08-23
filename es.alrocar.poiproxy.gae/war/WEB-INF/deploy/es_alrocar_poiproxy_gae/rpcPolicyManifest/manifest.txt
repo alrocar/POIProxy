@@ -1,2 +1,0 @@
-# Module es_alrocar_poiproxy_gae
-# RPC service class, partial path of RPC policy file

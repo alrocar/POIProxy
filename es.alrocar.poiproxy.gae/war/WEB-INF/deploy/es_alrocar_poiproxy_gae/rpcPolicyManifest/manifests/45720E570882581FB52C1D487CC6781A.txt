@@ -1,2 +1,0 @@
-serviceClass: es.alrocar.poiproxy.gae.client.GreetingService
-path: A9E35A9DFE1B0C318F922E837393616B.gwt.rpc
