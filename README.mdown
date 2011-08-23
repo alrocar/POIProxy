@@ -14,6 +14,12 @@ The main purpose is to have a single service that handles requests to any public
 
 ##API
 
+* ***Get available services***
+
+     Returns the available services registered into POIProxy and its description
+
+     `http://poiproxy.mapps.es/services`
+
 * ***Browse by tile***
 
      Returns the points inside the given tile (Z/X/Y). The tile notation is the same as [Google Maps uses][tiles_google].
@@ -48,9 +54,11 @@ POIProxy is composed by 4 projects:
 
 ##Building a workspace of POIProxy
 
-Just clone this repository, import the projects into Eclipse and run from the root directory:
+Just clone this repository, import the projects into an Eclipse workspace and run from the root directory:
 
 `mvn eclipse:eclipse`
+
+Finally refresh the workspace
 
 ##Running POIProxy
 
