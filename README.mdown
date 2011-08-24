@@ -1,13 +1,74 @@
-A proxy service to retrieve POIs from several public services
+#POIProxy
 
-To run POIProxy in a servlet container (i.e. Tomcat), clone the es.alrocar.poiproxy.rest project and run:
+POIProxy is a service to retrieve Points of Interest from any public POI service such as Foursquare, Twitter, Buzz, Panoramio, Wikipedia, Flickr, etc...
 
-mvn jetty:run
+[![](http://poiproxy.mapps.es/poiproxy_logo.png)](http://poiproxy.mapps.es)
 
-Note: The services configuration should be located at: /var/lib/sp/services
+##The idea
 
-To run POIProxy in Google AppEngine, clone the es.alrocar.poiproxy.gae and run:
+The idea was taken from a [GSoC project for gvSIG Mini][gsoc_idea], but has evolved to a standalone public service available at http://poiproxy.mapps.es
 
-mvn gae:run
+The main purpose is to have a single service that handles requests to any public POI service providing a well defined REST API and serving responses in GeoJSON format.
 
-Both projects depend on es.alrocar.poiproxy.
+[![](http://poiproxy.mapps.es/poiproxy_diagram.png)](http://poiproxy.mapps.es)
+
+##API
+
+* ***Browse by tile***
+
+     Returns the points inside the given tile (Z/X/Y). The tile notation is the same as [Google Maps uses][tiles_google].
+
+     `http://poiproxy.mapps.es/browse?service=XXX&z=0&x=0&y=0&callback=whatever`
+
+* ***Browse by extent***
+
+     Returns the points inside the given bounding box. The coordinate reference system is EPSG:4326
+
+     `http://poiproxy.mapps.es/browseByExtent?service=XXX&minX=-0.376&minY=39.47&maxX=-0.37&maxY=39.48&callback=whatever`
+
+##Projects
+
+POIProxy is composed by 4 projects:
+
+* ***es.alrocar.poiproxy***
+
+     Is the main POIProxy library implementation. 
+
+* ***es.alrocar.poiproxy.rest***
+
+     A REST interface of POIProxy to be deployed into a servlet container
+
+* ***es.alrocar.poiproxy.gae***
+
+     A REST interface of POIProxy to be deployed into Google App Engine
+
+* ***es.alrocar.map.vector (Under construction)***
+
+     A Java vectorial provider, to access the POIProxy from your application.
+
+##Building a workspace of POIProxy
+
+Just clone this repository, import the projects into Eclipse and run from the root directory:
+
+`mvn eclipse:eclipse`
+
+##Running POIProxy
+
+* ***In a servlet container***
+
+     To run POIProxy in a servlet container (i.e. Tomcat), clone the es.alrocar.poiproxy.rest project and run:
+
+     `mvn jetty:run`
+
+*Note: The services configuration should be located at: /var/lib/sp/services*
+
+* ***In Google App Engine***
+
+     To run POIProxy in Google AppEngine, clone the es.alrocar.poiproxy.gae and run:
+
+     `mvn gae:run`
+
+     Both projects depend on es.alrocar.poiproxy that is deployed at maven central and should be downloaded automatically to your local maven repository.
+
+[gsoc_idea]: https://confluence.prodevelop.es/display/GVMN/Design+and+implement+an+API+for+tiled+vectorial+support+of+geo-location+data+services
+[tiles_google]: http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/
