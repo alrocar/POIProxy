@@ -6,22 +6,8 @@
     <buildCommand>
       <name>org.eclipse.jdt.core.javabuilder</name>
     </buildCommand>
-    <buildCommand>
-      <name>com.google.gdt.eclipse.core.webAppProjectValidator</name>
-    </buildCommand>
-    <buildCommand>
-      <name>com.google.gwt.eclipse.core.gwtProjectValidator</name>
-    </buildCommand>
-    <buildCommand>
-      <name>com.google.appengine.eclipse.core.projectValidator</name>
-    </buildCommand>
-    <buildCommand>
-      <name>com.google.appengine.eclipse.core.enhancerbuilder</name>
-    </buildCommand>
   </buildSpec>
   <natures>
     <nature>org.eclipse.jdt.core.javanature</nature>
-    <nature>com.google.appengine.eclipse.core.gaeNature</nature>
-    <nature>com.google.gwt.eclipse.core.gwtNature</nature>
   </natures>
 </projectDescription>

@@ -63,6 +63,7 @@ public class POIProxyApplication extends Application {
 		router.attach("/hello", HelloResource.class);
 		router.attach("/browse", BrowsePOIProxyZXY.class);
 		router.attach("/browseByExtent", BrowsePOIProxyBBox.class);
+		router.attach("/browseByLonLat", BrowsePOIProxyLonLat.class);
 		router.attach("/describeServices", DescribeServices.class);
 
 		Restlet mainpage = new Restlet() {

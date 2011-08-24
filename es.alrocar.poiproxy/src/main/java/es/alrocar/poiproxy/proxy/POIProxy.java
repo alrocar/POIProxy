@@ -44,12 +44,11 @@ import es.alrocar.jpe.writer.GeoJSONWriter;
 import es.alrocar.poiproxy.configuration.DescribeService;
 import es.alrocar.poiproxy.configuration.ServiceConfigurationManager;
 import es.alrocar.poiproxy.configuration.ServiceParams;
+import es.alrocar.poiproxy.proxy.utiles.Calculator;
 import es.prodevelop.geodetic.utils.conversion.ConversionCoords;
 import es.prodevelop.gvsig.mini.geom.Extent;
-import es.prodevelop.gvsig.mini.geom.impl.base.Point;
 import es.prodevelop.gvsig.mini.geom.impl.jts.JTSFeature;
 import es.prodevelop.gvsig.mini.projection.TileConversor;
-import es.prodevelop.gvsig.mini.utiles.Calculator;
 import es.prodevelop.gvsig.mobile.fmap.proj.CRSFactory;
 
 public class POIProxy {
@@ -138,6 +137,46 @@ public class POIProxy {
 
 		// construir la url
 		String url = buildRequest(describeService, z, x, y, optionalParams);
+
+		// hacer petici—n al servicio
+		String json = doRequest(url);
+
+		String geoJSON = this.onResponseReceived(json, describeService);
+
+		return geoJSON;
+	}
+	
+	public String getPOIs(String id, double lon, double lat, double distanceInMeters,
+			ArrayList optionalParams) throws Exception {
+		DescribeService describeService = serviceManager
+				.getServiceConfiguration(id);
+
+		if (describeService == null) {
+			StringBuffer error = new StringBuffer();
+			error.append("Services path: "
+					+ ServiceConfigurationManager.CONFIGURATION_DIR);
+			error.append("The service with id: " + id + " is not registered");
+
+			error.append("\n Available services are: ");
+
+			Set<String> keys = serviceManager.getRegisteredConfigurations()
+					.keySet();
+
+			Iterator<String> it = keys.iterator();
+
+			while (it.hasNext()) {
+				error.append(it.next()).append(" ");
+			}
+
+			return error.toString();
+		}
+
+		// Buscar en cache el geoJSON y si est‡ llamar a onResponseReceived
+
+		// si no est‡ en cache
+
+		// construir la url
+		String url = buildRequest(describeService, lon, lat, distanceInMeters, optionalParams);
 
 		// hacer petici—n al servicio
 		String json = doRequest(url);
@@ -279,6 +318,48 @@ public class POIProxy {
 
 		return url;
 	}
+	
+	public String buildRequest(DescribeService describeService, double lon,
+			double lat, double distanceInMeters, ArrayList optionalParams) {
+		ServiceParams params = new ServiceParams();
+		
+		double[] bbox = Calculator.boundingCoordinates(lon, lat, distanceInMeters);
+
+		Extent e1 = new Extent(bbox[0], bbox[1], bbox[2], bbox[3]);
+
+		double distanceMeters = distanceInMeters;
+
+		params.putParam(ServiceParams.MINX, String.valueOf(bbox[0]));
+		params.putParam(ServiceParams.MINY, String.valueOf(bbox[1]));
+		params.putParam(ServiceParams.MAXX, String.valueOf(bbox[2]));
+		params.putParam(ServiceParams.MAXY, String.valueOf(bbox[3]));
+
+		params.putParam(ServiceParams.LON,
+				String.valueOf(lon));
+		params.putParam(ServiceParams.LAT,
+				String.valueOf(lat));
+
+		params.putParam(ServiceParams.FORMAT, "json");
+
+		params.putParam(ServiceParams.DIST, String.valueOf(distanceMeters));
+		params.putParam(ServiceParams.DISTKM,
+				String.valueOf(distanceMeters / 1000));
+		params.putParam(ServiceParams.KEY, describeService.getApiKey());
+
+		String url = describeService.getRequestTypes()
+				.get(DescribeService.BROWSE_TYPE).getUrl();
+
+		Set<String> keys = params.getParams().keySet();
+		Iterator<String> it = keys.iterator();
+
+		String key;
+		while (it.hasNext()) {
+			key = it.next();
+			url = url.replaceAll(key, params.getValueForParam(key));
+		}
+
+		return url;
+	}
 
 	public String doRequest(String url) throws Exception {
 		// hacer peticion en segundo plano
@@ -295,7 +376,7 @@ public class POIProxy {
 		return geoJSON;
 	}
 
-	public double getDistanceMeters(Extent boundingBox) {
+	public double getDistanceMeters(Extent boundingBox) {		
 		return Calculator.latLonDist(boundingBox.getMinX(),
 				boundingBox.getMinY(), boundingBox.getMaxX(),
 				boundingBox.getMaxY());
