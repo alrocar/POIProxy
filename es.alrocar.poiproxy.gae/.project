@@ -1,9 +1,7 @@
 <projectDescription>
   <name>es.alrocar.poiproxy.gae</name>
   <comment>A REST interface for POIProxy to be deployed into Google App Engine. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
-  <projects>
-    <project>es.alrocar.poiproxy</project>
-  </projects>
+  <projects/>
   <buildSpec>
     <buildCommand>
       <name>org.eclipse.jdt.core.javabuilder</name>

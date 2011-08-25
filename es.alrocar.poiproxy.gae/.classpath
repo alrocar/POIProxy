@@ -14,7 +14,7 @@
   <classpathentry kind="var" path="M2_REPO/com/google/appengine/orm/datanucleus-appengine/1.0.8/datanucleus-appengine-1.0.8.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/datanucleus/datanucleus-core/1.1.5/datanucleus-core-1.1.5.jar" sourcepath="M2_REPO/org/datanucleus/datanucleus-core/1.1.5/datanucleus-core-1.1.5-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/datanucleus/datanucleus-jpa/1.1.5/datanucleus-jpa-1.1.5.jar" sourcepath="M2_REPO/org/datanucleus/datanucleus-jpa/1.1.5/datanucleus-jpa-1.1.5-sources.jar"/>
-  <classpathentry kind="src" path="/es.alrocar.poiproxy"/>
+  <classpathentry kind="var" path="M2_REPO/es/prodevelop/es.alrocar.poiproxy/0.4.0-SNAPSHOT/es.alrocar.poiproxy-0.4.0-SNAPSHOT.jar"/>
   <classpathentry kind="var" path="M2_REPO/es/prodevelop/es.prodevelop.gvsig.mini.compat/0.5.5-SNAPSHOT/es.prodevelop.gvsig.mini.compat-0.5.5-SNAPSHOT.jar" sourcepath="M2_REPO/es/prodevelop/es.prodevelop.gvsig.mini.compat/0.5.5-SNAPSHOT/es.prodevelop.gvsig.mini.compat-0.5.5-SNAPSHOT-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/es/prodevelop/es.prodevelop.gvsig.mini.geom/1.0.2-SNAPSHOT/es.prodevelop.gvsig.mini.geom-1.0.2-SNAPSHOT.jar" sourcepath="M2_REPO/es/prodevelop/es.prodevelop.gvsig.mini.geom/1.0.2-SNAPSHOT/es.prodevelop.gvsig.mini.geom-1.0.2-SNAPSHOT-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/geronimo/specs/geronimo-jpa_3.0_spec/1.1.1/geronimo-jpa_3.0_spec-1.1.1.jar" sourcepath="M2_REPO/org/apache/geronimo/specs/geronimo-jpa_3.0_spec/1.1.1/geronimo-jpa_3.0_spec-1.1.1-sources.jar"/>
