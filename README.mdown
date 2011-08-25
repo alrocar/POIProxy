@@ -38,6 +38,8 @@ The main purpose is to have a single service that handles requests to any public
 
      `http://poiproxy.mapps.es/browseByLonLat?service=XXX&lon=-0.38&lat=39.46&dist=500&callback=whatever`
 
+POIProxy supports JSONP by adding the parameter `callback`to any request. If not provided then a JSON response is returned.
+
 ##Projects
 
 POIProxy is composed by 4 projects:
