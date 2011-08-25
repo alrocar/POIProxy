@@ -1,4 +1,4 @@
-/* POIProxy
+/* POIProxy REST. A REST interface to consume POIProxy
  *
  * Copyright (C) 2011 Alberto Romeu.
  *
