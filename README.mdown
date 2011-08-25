@@ -32,6 +32,8 @@ The main purpose is to have a single service that handles requests to any public
 
      `http://poiproxy.mapps.es/browseByExtent?service=XXX&minX=-0.376&minY=39.47&maxX=-0.37&maxY=39.48&callback=whatever`
 
+* ***Browse by lon,lat and distance***
+
 ##Projects
 
 POIProxy is composed by 4 projects:
