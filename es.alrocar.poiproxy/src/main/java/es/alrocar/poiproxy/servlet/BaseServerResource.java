@@ -33,47 +33,35 @@
  *   
  */
 
-package es.alrocar.poiproxy.configuration;
+package es.alrocar.poiproxy.servlet;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ServiceParams {
+import org.restlet.resource.ServerResource;
 
-	public static final String MINX = "__MINX__";
-	public static final String MAXX = "__MAXX__";
-	public static final String MINY = "__MINY__";
-	public static final String MAXY = "__MAXY__";
+import es.alrocar.poiproxy.configuration.Param;
 
-	public static final String LON = "__LON__";
-	public static final String LAT = "__LAT__";
-	public static final String DIST = "__DIST__";
-	public static final String DISTKM = "__DISTKM__";
+public abstract class BaseServerResource extends ServerResource {	
 
-	public static final String KEY = "__KEY__";
-	public static final String FORMAT = "__FORMAT__";
+	public ArrayList<Param> extractParams(HashMap<String, String> params) {
+		final ArrayList<String> optionalParams = this.getOptionalParamsNames();
 
-	public static final String QUERY = "__QUERY__";
+		ArrayList<Param> extractedParams = new ArrayList<Param>();
 
-	private HashMap<String, String> params = new HashMap<String, String>();
-	private static HashMap<String, String> optParams = new HashMap<String, String>();
+		String p;
+		Param optParam;
+		for (String paramName : optionalParams) {
+			p = params.get(paramName);
 
-	static {
-		optParams.put(Param.QUERY, QUERY);
+			if (p != null) {
+				optParam = new Param(paramName, p);
+				extractedParams.add(optParam);
+			}
+		}
+
+		return extractedParams;
 	}
 
-	public void putParam(String param, String value) {
-		this.params.put(param, value);
-	}
-
-	public String getValueForParam(String param) {
-		return this.params.get(param);
-	}
-
-	public HashMap<String, String> getParams() {
-		return this.params;
-	}
-
-	public String getServiceParamFromURLParam(String urlParam) {
-		return optParams.get(urlParam);
-	}
+	public abstract ArrayList<String> getOptionalParamsNames();
 }

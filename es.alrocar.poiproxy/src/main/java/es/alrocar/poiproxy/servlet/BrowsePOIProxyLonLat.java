@@ -47,11 +47,11 @@ import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.representation.Variant;
 import org.restlet.resource.ResourceException;
-import org.restlet.resource.ServerResource;
 
+import es.alrocar.poiproxy.configuration.Param;
 import es.alrocar.poiproxy.proxy.POIProxy;
 
-public class BrowsePOIProxyLonLat extends ServerResource {
+public class BrowsePOIProxyLonLat extends BrowseQueryServerResource {
 
 	public BrowsePOIProxyLonLat() {
 		super();
@@ -77,16 +77,17 @@ public class BrowsePOIProxyLonLat extends ServerResource {
 
 		String geoJSON = "";
 		try {
-			geoJSON = proxy.getPOIs(params.get("service"),
-					Double.valueOf(params.get("lon")),
-					Double.valueOf(params.get("lat")),
-					Double.valueOf(params.get("dist")), null);
+			geoJSON = proxy.getPOIs(params.get(Param.SERVICE),
+					Double.valueOf(params.get(Param.LON)),
+					Double.valueOf(params.get(Param.LAT)),
+					Double.valueOf(params.get(Param.DIST)),
+					this.extractParams(params));
 		} catch (Exception e) {
 			return new StringRepresentation(
 					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the browseByLonLat service, check that your URL is of the type '/browseByLonLat?service=XXXXX&lon=-0.38&lat=39.6&distance=500&callback=whatever'");
 		}
 
-		String callback = params.get("callback");
+		String callback = params.get(Param.CALLBACK);
 
 		if (callback == null) {
 			return new StringRepresentation(geoJSON, MediaType.APPLICATION_JSON);

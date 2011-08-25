@@ -47,11 +47,11 @@ import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.representation.Variant;
 import org.restlet.resource.ResourceException;
-import org.restlet.resource.ServerResource;
 
+import es.alrocar.poiproxy.configuration.Param;
 import es.alrocar.poiproxy.proxy.POIProxy;
 
-public class BrowsePOIProxyZXY extends ServerResource {
+public class BrowsePOIProxyZXY extends BrowseQueryServerResource {
 
 	public BrowsePOIProxyZXY() {
 		super();
@@ -76,17 +76,18 @@ public class BrowsePOIProxyZXY extends ServerResource {
 
 		String geoJSON = "";
 		try {
-			geoJSON = proxy.getPOIs(params.get("service"),
-					Integer.valueOf(params.get("z")),
-					Integer.valueOf(params.get("x")),
-					Integer.valueOf(params.get("y")), null);
+			geoJSON = proxy.getPOIs(params.get(Param.SERVICE),
+					Integer.valueOf(params.get(Param.Z)),
+					Integer.valueOf(params.get(Param.X)),
+					Integer.valueOf(params.get(Param.Y)),
+					this.extractParams(params));
 			System.out.println(geoJSON);
 		} catch (Exception e) {
 			return new StringRepresentation(
 					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the browse service, check that your URL is of the type '/browse?service=panoramio&z=0&x=0&y=0&callback=whatever'");
 		}
 
-		String callback = params.get("callback");
+		String callback = params.get(Param.CALLBACK);
 
 		if (callback == null) {
 			return new StringRepresentation(geoJSON, MediaType.APPLICATION_JSON);

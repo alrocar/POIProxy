@@ -35,45 +35,44 @@
 
 package es.alrocar.poiproxy.configuration;
 
-import java.util.HashMap;
+public class Param {
 
-public class ServiceParams {
+	public static String QUERY = "query";
+	public static String SERVICE = "service";
+	public static String X = "x";
+	public static String Y = "y";
+	public static String Z = "z";
+	public static String MINX = "minX";
+	public static String MINY = "minY";
+	public static String MAXX = "maxX";
+	public static String MAXY = "maxY";
+	public static String LON = "lon";
+	public static String LAT = "lat";
+	public static String DIST = "dist";
+	public static String CALLBACK = "callback";	
 
-	public static final String MINX = "__MINX__";
-	public static final String MAXX = "__MAXX__";
-	public static final String MINY = "__MINY__";
-	public static final String MAXY = "__MAXY__";
+	private String type;
+	private String value;
 
-	public static final String LON = "__LON__";
-	public static final String LAT = "__LAT__";
-	public static final String DIST = "__DIST__";
-	public static final String DISTKM = "__DISTKM__";
-
-	public static final String KEY = "__KEY__";
-	public static final String FORMAT = "__FORMAT__";
-
-	public static final String QUERY = "__QUERY__";
-
-	private HashMap<String, String> params = new HashMap<String, String>();
-	private static HashMap<String, String> optParams = new HashMap<String, String>();
-
-	static {
-		optParams.put(Param.QUERY, QUERY);
+	public Param(String type, String value) {
+		this.type = type;
+		this.value = value;
 	}
 
-	public void putParam(String param, String value) {
-		this.params.put(param, value);
+	public String getType() {
+		return type;
 	}
 
-	public String getValueForParam(String param) {
-		return this.params.get(param);
+	public void setType(String type) {
+		this.type = type;
 	}
 
-	public HashMap<String, String> getParams() {
-		return this.params;
+	public String getValue() {
+		return value;
 	}
 
-	public String getServiceParamFromURLParam(String urlParam) {
-		return optParams.get(urlParam);
+	public void setValue(String value) {
+		this.value = value;
 	}
+
 }

@@ -35,7 +35,12 @@
 
 package es.alrocar.poiproxy.configuration;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+
+import sun.security.krb5.internal.crypto.Des;
+
+import es.alrocar.poiproxy.servlet.BaseServerResource;
 
 public class DescribeService {
 
@@ -78,5 +83,24 @@ public class DescribeService {
 
 	public void setFeatureTypes(HashMap<String, FeatureType> featureTypes) {
 		this.featureTypes = featureTypes;
+	}
+
+	public String getRequestForParam(ArrayList<Param> optionalParam) {
+		if (optionalParam == null) {
+			return getRequestTypes().get(DescribeService.BROWSE_TYPE).getUrl();
+		}
+
+		if (optionalParam.size() == 0) {
+			return getRequestTypes().get(DescribeService.BROWSE_TYPE).getUrl();
+		}
+
+		for (Param optParam : optionalParam) {
+			if (optParam.getType() == Param.QUERY) {
+				return getRequestTypes().get(DescribeService.SEARCH_TYPE)
+						.getUrl();
+			}
+		}
+
+		return getRequestTypes().get(DescribeService.BROWSE_TYPE).getUrl();
 	}
 }

@@ -62,8 +62,10 @@ public class DescribeServiceParser {
 
 	public DescribeService parse(String json) {
 		DescribeService result = new DescribeService();
+
+		JSONObject root;
 		try {
-			JSONObject root = new JSONObject(json);
+			root = new JSONObject(json);
 			JSONObject describeService = root.getJSONObject(DESCRIBE_SERVICE);
 			String apiKey = describeService.getString(API_KEY);
 
@@ -74,10 +76,15 @@ public class DescribeServiceParser {
 			if (requestType != null)
 				result.getRequestTypes().put(BROWSE, requestType);
 
-			RequestType searchRequestType = parseRequestType(SEARCH,
-					requestTypes);
-			if (searchRequestType != null)
-				result.getRequestTypes().put(SEARCH, searchRequestType);
+			RequestType searchRequestType;
+			try {
+				searchRequestType = parseRequestType(SEARCH, requestTypes);
+				if (searchRequestType != null)
+					result.getRequestTypes().put(SEARCH, searchRequestType);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			JSONObject featureTypes = describeService
 					.getJSONObject(FEATURE_TYPES);
@@ -86,16 +93,19 @@ public class DescribeServiceParser {
 			if (featureType != null)
 				result.getFeatureTypes().put(BROWSE, featureType);
 
-			FeatureType searchFeatureType = parseFeatureType(SEARCH,
-					featureTypes);
-			if (searchFeatureType != null)
-				result.getFeatureTypes().put(SEARCH, searchFeatureType);
+			FeatureType searchFeatureType;
+			try {
+				searchFeatureType = parseFeatureType(SEARCH, featureTypes);
+				if (searchFeatureType != null)
+					result.getFeatureTypes().put(SEARCH, searchFeatureType);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			result.setApiKey(apiKey);
-
-		} catch (JSONException e) {
+		} catch (JSONException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 			return null;
 		}
 
@@ -106,9 +116,11 @@ public class DescribeServiceParser {
 			throws JSONException {
 		FeatureType result = new FeatureType();
 
-		JSONObject featureType = featureTypes.getJSONObject(BROWSE);
-		if (featureType == null)
+		Object f = featureTypes.get(type);
+		if (f == null)
 			return null;
+
+		JSONObject featureType = (JSONObject) f;
 		result.setFeature(featureType.getString(FEATURE));
 		result.setLon(featureType.getString(LON));
 		result.setLat(featureType.getString(LAT));
@@ -138,14 +150,14 @@ public class DescribeServiceParser {
 			throws JSONException {
 		RequestType result = new RequestType();
 
-		JSONObject requestType = requestTypes.getJSONObject(BROWSE);
+		Object requestType = requestTypes.get(type);
 
 		if (requestType == null)
 			return null;
 
-		result.setUrl(requestType.getString(URL));
+		result.setUrl(((JSONObject) requestType).getString(URL));
 
-		JSONArray elements = requestType.getJSONArray(PARAMS);
+		JSONArray elements = ((JSONObject) requestType).getJSONArray(PARAMS);
 		final int size = elements.length();
 		for (int i = 0; i < size; i++) {
 			result.getParams().add(elements.getString(i));
