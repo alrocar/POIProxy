@@ -1,7 +1,9 @@
 <projectDescription>
   <name>es.alrocar.poiproxy.rest</name>
   <comment>A REST interface for POIProxy to be deployed into a servlet container (i.e. Tomcat). NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
-  <projects/>
+  <projects>
+    <project>es.alrocar.poiproxy</project>
+  </projects>
   <buildSpec>
     <buildCommand>
       <name>org.eclipse.jdt.core.javabuilder</name>

@@ -3,11 +3,7 @@
   <classpathentry kind="output" path="target/classes"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/commons/commons-compress/1.0/commons-compress-1.0.jar"/>
   <classpathentry kind="var" path="M2_REPO/es/prodevelop/es.prodevelop.gvsig.mini.compat/0.5.3/es.prodevelop.gvsig.mini.compat-0.5.3.jar"/>
-  <classpathentry kind="var" path="M2_REPO/es/prodevelop/es.prodevelop.tilerastercache/0.6.0/es.prodevelop.tilerastercache-0.6.0.jar" sourcepath="M2_REPO/es/prodevelop/es.prodevelop.tilerastercache/0.6.0/es.prodevelop.tilerastercache-0.6.0-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/Users/albertoromeu/.m2/repository/es/prodevelop/es.prodevelop.tilerastercache/0.6.0/es.prodevelop.tilerastercache-0.6.0-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/es/prodevelop/es.prodevelop.tilerastercache/0.6.0/es.prodevelop.tilerastercache-0.6.0.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/httpcomponents/httpcore/4.0-alpha5/httpcore-4.0-alpha5.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/json/json/20090211/json-20090211.jar"/>
   <classpathentry kind="var" path="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar"/>
