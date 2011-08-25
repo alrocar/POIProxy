@@ -60,6 +60,7 @@ public class ServiceConfigurationManager {
 	public static String CONFIGURATION_DIR = "/var/lib/services";
 
 	private HashMap<String, String> registeredConfigurations = new HashMap<String, String>();
+	private HashMap<String, DescribeService> parsedConfigurations = new HashMap<String, DescribeService>();
 	private DescribeServiceParser parser = new DescribeServiceParser();
 
 	public HashMap<String, String> getRegisteredConfigurations() {
@@ -87,9 +88,13 @@ public class ServiceConfigurationManager {
 
 	public DescribeService getServiceConfiguration(String id) {
 		// Buscar los servicios registrados
-		String res = this.getServiceAsJSON(id);
+		DescribeService service = this.parsedConfigurations.get(id);
 
-		DescribeService service = parser.parse(res);
+		if (service == null) {
+			String res = this.getServiceAsJSON(id);
+			service = parser.parse(res);
+			this.parsedConfigurations.put(id, service);
+		}
 
 		return service;
 	}
