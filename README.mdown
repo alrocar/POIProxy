@@ -36,7 +36,7 @@ The main purpose is to have a single service that handles requests to any public
 
      Returns the points inside a given radius distance of a point.
 
-     `http://poiproxy.mapps.es/browseByLonLat?service=panoramio&lon=-0.38&lat=39.46&dist=500&callback=mierda`
+     `http://poiproxy.mapps.es/browseByLonLat?service=XXX&lon=-0.38&lat=39.46&dist=500&callback=whatever`
 
 ##Projects
 
