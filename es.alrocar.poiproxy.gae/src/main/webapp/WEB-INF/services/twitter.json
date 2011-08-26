@@ -1,10 +1,18 @@
 { describeService : {
+    format: "json",
     apiKey : "",
     requestTypes : {
                     "browse": {"url": "http://search.twitter.com/search.json?result_type=recent&callback=?&geocode=__LAT__,__LON__,__DISTKM__km", "params": []},
                     "search": {"url": "b", "params": []}
                     },
     featureTypes : { "browse" : {
+                    	"feature" : "id",
+                    	"elements" : ["title", "url", "distance"],
+                    	"lon": "lng", 
+                    	"lat": "lat",
+                    	"combinedLonLat": "location",
+                    	"separator": ","
+                    	},"search" : {
                     	"feature" : "id",
                     	"elements" : ["title", "url", "distance"],
                     	"lon": "lng", 

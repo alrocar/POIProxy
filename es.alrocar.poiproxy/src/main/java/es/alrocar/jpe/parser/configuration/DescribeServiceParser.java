@@ -47,6 +47,7 @@ public class DescribeServiceParser {
 
 	public final static String DESCRIBE_SERVICE = "describeService";
 	public final static String API_KEY = "apiKey";
+	public final static String FORMAT = "format";
 	public final static String REQUEST_TYPES = "requestTypes";
 	public final static String FEATURE_TYPES = "featureTypes";
 	public final static String BROWSE = "browse";
@@ -68,6 +69,7 @@ public class DescribeServiceParser {
 			root = new JSONObject(json);
 			JSONObject describeService = root.getJSONObject(DESCRIBE_SERVICE);
 			String apiKey = describeService.getString(API_KEY);
+			String format = describeService.getString(FORMAT);
 
 			JSONObject requestTypes = describeService
 					.getJSONObject(REQUEST_TYPES);
@@ -104,6 +106,7 @@ public class DescribeServiceParser {
 			}
 
 			result.setApiKey(apiKey);
+			result.setFormat(format);
 		} catch (JSONException e1) {
 			// TODO Auto-generated catch block
 			return null;

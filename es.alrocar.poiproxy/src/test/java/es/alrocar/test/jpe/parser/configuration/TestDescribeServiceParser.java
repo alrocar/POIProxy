@@ -51,6 +51,7 @@ import junit.framework.TestCase;
 import es.alrocar.jpe.parser.GeoJSONParser;
 import es.alrocar.jpe.parser.JPEParser;
 import es.alrocar.jpe.parser.configuration.DescribeServiceParser;
+import es.alrocar.jpe.parser.json.JSONJPEParser;
 import es.alrocar.jpe.writer.GeoJSONWriter;
 import es.alrocar.poiproxy.configuration.DescribeService;
 import es.alrocar.poiproxy.configuration.ServiceConfigurationManager;
@@ -72,7 +73,7 @@ public class TestDescribeServiceParser extends TestCase {
 			DescribeServiceParser parser = new DescribeServiceParser();
 			DescribeService service = parser.parse(json);
 
-			JPEParser jpeParser = new JPEParser();
+			JPEParser jpeParser = new JSONJPEParser();
 			ArrayList results = jpeParser.parse(pano, service);
 
 			String geoJSON = jpeParser.getGeoJSON();
@@ -134,31 +135,30 @@ public class TestDescribeServiceParser extends TestCase {
 	public void testProxy() {
 		ServiceConfigurationManager.CONFIGURATION_DIR = "/var/lib/sp/services";
 		POIProxy proxy = POIProxy.getInstance();
-		
 
 		proxy.initialize();
 
 		try {
 			String geoJSON = proxy.getPOIs("panoramio", 0, 0, 0, null);
 			System.out.println(geoJSON);
-//
-//			geoJSON = proxy.getPOIs("wikipedia", 14, 8174, 6233, null);
-//			System.out.println(geoJSON);
-//			
-//			geoJSON = proxy.getPOIs("minube", 17, 65397, 49868, null);
-//			System.out.println(geoJSON);
-//			
-//			geoJSON = proxy.getPOIs("twitter", 17, 65397, 49868, null);
-//			System.out.println(geoJSON);
-			
+			//
+			// geoJSON = proxy.getPOIs("wikipedia", 14, 8174, 6233, null);
+			// System.out.println(geoJSON);
+			//
+			// geoJSON = proxy.getPOIs("minube", 17, 65397, 49868, null);
+			// System.out.println(geoJSON);
+			//
+			// geoJSON = proxy.getPOIs("twitter", 17, 65397, 49868, null);
+			// System.out.println(geoJSON);
+
 			geoJSON = proxy.getPOIs("buzz", 17, 65397, 49868, null);
 			System.out.println(geoJSON);
-//			
-//			geoJSON = proxy.getPOIs("foursquare", 17, 65397, 49868, null);
-//			System.out.println(geoJSON);
-//			
-//			geoJSON = proxy.getPOIs("flickr", 17, 65397, 49868, null);
-//			System.out.println(geoJSON);
+			//
+			// geoJSON = proxy.getPOIs("foursquare", 17, 65397, 49868, null);
+			// System.out.println(geoJSON);
+			//
+			// geoJSON = proxy.getPOIs("flickr", 17, 65397, 49868, null);
+			// System.out.println(geoJSON);
 			int i = 0;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

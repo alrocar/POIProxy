@@ -40,6 +40,10 @@ import java.util.Iterator;
 import java.util.Set;
 
 import es.alrocar.jpe.parser.JPEParser;
+import es.alrocar.jpe.parser.JPEParserManager;
+import es.alrocar.jpe.parser.exceptions.NoParserRegisteredException;
+import es.alrocar.jpe.parser.json.JSONJPEParser;
+import es.alrocar.jpe.parser.xml.XMLJPEParser;
 import es.alrocar.jpe.writer.GeoJSONWriter;
 import es.alrocar.poiproxy.configuration.DescribeService;
 import es.alrocar.poiproxy.configuration.Param;
@@ -58,7 +62,6 @@ public class POIProxy {
 
 	private static POIProxy proxy;
 	private ServiceConfigurationManager serviceManager;
-	private JPEParser jpeParser;
 	private GeoJSONWriter geoJSONWriter;
 
 	public static POIProxy getInstance() {
@@ -73,7 +76,8 @@ public class POIProxy {
 		// Registra todos los servicios disponibles
 		serviceManager = new ServiceConfigurationManager();
 
-		jpeParser = new JPEParser();
+		JPEParserManager.getInstance().registerJPEParser(new JSONJPEParser());
+		JPEParserManager.getInstance().registerJPEParser(new XMLJPEParser());
 		geoJSONWriter = new GeoJSONWriter();
 	}
 
@@ -133,9 +137,9 @@ public class POIProxy {
 				maxXY[0], maxXY[1], optionalParams, 0, 0);
 
 		// hacer petici—n al servicio
-		String json = doRequest(url);
+		String file = doRequest(url);
 
-		String geoJSON = this.onResponseReceived(json, describeService);
+		String geoJSON = this.onResponseReceived(file, describeService);
 
 		return geoJSON;
 	}
@@ -185,9 +189,9 @@ public class POIProxy {
 				bbox[3], optionalParams, lon, lat);
 
 		// hacer petici—n al servicio
-		String json = doRequest(url);
+		String file = doRequest(url);
 
-		String geoJSON = this.onResponseReceived(json, describeService);
+		String geoJSON = this.onResponseReceived(file, describeService);
 
 		return geoJSON;
 	}
@@ -209,9 +213,9 @@ public class POIProxy {
 				optionalParams, 0, 0);
 
 		// hacer petici—n al servicio
-		String json = doRequest(url);
+		String file = doRequest(url);
 
-		String geoJSON = this.onResponseReceived(json, describeService);
+		String geoJSON = this.onResponseReceived(file, describeService);
 
 		return geoJSON;
 	}
@@ -273,7 +277,10 @@ public class POIProxy {
 		return new String(d.getData());
 	}
 
-	public String onResponseReceived(String json, DescribeService service) {
+	public String onResponseReceived(String json, DescribeService service)
+			throws NoParserRegisteredException {
+		final JPEParser jpeParser = JPEParserManager.getInstance()
+				.getJPEParser(service.getFormat());
 		ArrayList<JTSFeature> features = jpeParser.parse(json, service);
 		String geoJSON = jpeParser.getGeoJSON();
 		// Escribir en cache el geoJSON

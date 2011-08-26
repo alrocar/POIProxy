@@ -35,20 +35,37 @@
 
 package es.alrocar.jpe.parser;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
-import es.alrocar.poiproxy.configuration.DescribeService;
-import es.prodevelop.gvsig.mini.geom.impl.jts.JTSFeature;
+import es.alrocar.jpe.parser.exceptions.NoParserRegisteredException;
 
-public abstract class JPEParser {
+public class JPEParserManager {
 
-	public static String FORMAT_JSON = "json";
-	public static String FORMAT_XML = "xml";
+	private static JPEParserManager instance;
+	private HashMap<String, JPEParser> registeredFormats = new HashMap<String, JPEParser>();
 
-	public abstract ArrayList<JTSFeature> parse(String contentFile,
-			DescribeService service);
+	public static JPEParserManager getInstance() {
+		if (instance == null) {
+			instance = new JPEParserManager();
+		}
 
-	public abstract String getGeoJSON();
+		return instance;
+	}
 
-	public abstract String getFormat();
+	public void registerJPEParser(JPEParser parser) {
+		this.registeredFormats.put(parser.getFormat(), parser);
+	}
+
+	public JPEParser getJPEParser(String format)
+			throws NoParserRegisteredException {
+		JPEParser parser = this.registeredFormats.get(format);
+
+		if (parser == null) {
+			throw new NoParserRegisteredException(
+					"No parser registered for format: " + format);
+		}
+
+		return parser;
+	}
+
 }

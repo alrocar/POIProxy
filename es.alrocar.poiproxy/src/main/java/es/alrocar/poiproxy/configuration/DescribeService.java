@@ -51,6 +51,8 @@ public class DescribeService {
 	private HashMap<String, RequestType> requestTypes = new HashMap<String, RequestType>();
 	private HashMap<String, FeatureType> featureTypes = new HashMap<String, FeatureType>();
 
+	private String format;
+
 	private String type = BROWSE_TYPE;
 
 	public String getApiKey() {
@@ -67,6 +69,14 @@ public class DescribeService {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getFormat() {
+		return format;
+	}
+
+	public void setFormat(String format) {
+		this.format = format;
 	}
 
 	public HashMap<String, RequestType> getRequestTypes() {

@@ -33,22 +33,20 @@
  *   
  */
 
-package es.alrocar.jpe.parser;
+package es.alrocar.jpe.parser.exceptions;
 
-import java.util.ArrayList;
+import es.prodevelop.gvsig.mini.exceptions.BaseException;
 
-import es.alrocar.poiproxy.configuration.DescribeService;
-import es.prodevelop.gvsig.mini.geom.impl.jts.JTSFeature;
+public class NoParserRegisteredException extends BaseException {
 
-public abstract class JPEParser {
+	public NoParserRegisteredException(Throwable cause) {
+		super(cause);
+		// TODO Auto-generated constructor stub
+	}
 
-	public static String FORMAT_JSON = "json";
-	public static String FORMAT_XML = "xml";
+	public NoParserRegisteredException(String message) {
+		super(message);
+		// TODO Auto-generated constructor stub
+	}
 
-	public abstract ArrayList<JTSFeature> parse(String contentFile,
-			DescribeService service);
-
-	public abstract String getGeoJSON();
-
-	public abstract String getFormat();
 }
