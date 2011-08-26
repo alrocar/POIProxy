@@ -16,7 +16,7 @@ The main purpose is to have a single service that handles requests to any public
 
 * ***Get available services***
 
-     Returns the available services registered into POIProxy and its description
+     Returns the available services registered into POIProxy and their description
 
      `http://poiproxy.mapps.es/describeServices`
 
