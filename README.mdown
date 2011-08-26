@@ -34,7 +34,7 @@ The main purpose is to have a single service that handles requests to any public
 
 * ***Browse by lon,lat and distance***
 
-     Returns the points inside a given radius distance of a point.
+     Returns the points inside a given radius distance of a point. The coordinate reference system is EPSG:4326
 
      `http://poiproxy.mapps.es/browseByLonLat?service=XXX&lon=-0.38&lat=39.46&dist=500&callback=whatever`
 
