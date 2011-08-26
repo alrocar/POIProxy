@@ -60,7 +60,7 @@ POIProxy is composed by 4 projects:
 
 ##Building a workspace of POIProxy
 
-Just clone this repository, import the projects into an Eclipse workspace and run from the root directory:
+Just clone this repository `git clone git@github.com:alrocar/POIProxy.git`, import the projects into an Eclipse workspace and run from the root directory:
 
 `mvn eclipse:eclipse`
 
