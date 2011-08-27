@@ -8,7 +8,7 @@ POIProxy is a service to retrieve Points of Interest from any public POI service
 
 The idea was taken from a [GSoC project for gvSIG Mini][gsoc_idea], but has evolved to a standalone public service available at http://poiproxy.mapps.es
 
-The main purpose is to have a single service that handles requests to any public POI service providing a well defined REST API and serving responses in GeoJSON format. With the capability to add new services by providing a configuration file.
+The main purpose is to have a single service that handles requests to any public POI service providing a well defined REST API. POIProxy is able to parse JSON and XML responses and serve standard GeoJSON format. Finally it has the capability to add new services by providing a configuration file.
 
 [![](http://poiproxy.mapps.es/poiproxy_diagram.png)](http://poiproxy.mapps.es)
 
