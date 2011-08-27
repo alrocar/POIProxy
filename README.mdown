@@ -138,3 +138,11 @@ This diagram shows the internal collaboration among classes in the POIProxy libr
 
 [gsoc_idea]: https://confluence.prodevelop.es/display/GVMN/Design+and+implement+an+API+for+tiled+vectorial+support+of+geo-location+data+services
 [tiles_google]: http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/
+
+##License and Contact
+
+POIProxy is free software and is released under GNU LGPL Version 2 (or any later version)
+
+If you have any question, want to add a new service, etc. you can contact at:
+
+mapps@mapps.es
