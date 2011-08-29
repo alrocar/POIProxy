@@ -8,14 +8,14 @@
     featureTypes : { "browse" : {
                     	"feature" : "geoname",
                     	"elements" : ["name", "countryName", "distance", ],
-                    	"lon": "lat", 
-                    	"lat": "lng"
+                    	"lon": "lng", 
+                    	"lat": "lat"
                     	},
                         "search" : {
                     	"feature" : "geoname",
                     	"elements" : ["name", "countryName", "distance", ],
                     	"lon": "lat", 
-                    	"lat": "lng"
+                    	"lat": "lat"
                     	},
                     }
 }}
