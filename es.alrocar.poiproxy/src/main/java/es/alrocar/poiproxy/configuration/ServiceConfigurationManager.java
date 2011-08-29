@@ -72,11 +72,13 @@ public class ServiceConfigurationManager {
 	}
 
 	public void loadConfiguration() {
+		System.out.println("CONFIGURATION_DIR: " + CONFIGURATION_DIR);
 		File f = new File(CONFIGURATION_DIR);
 
 		if (f.isDirectory()) {
 			String[] files = f.list();
 			for (String s : files) {
+				System.out.println("Registering: " + s.toLowerCase());
 				this.registerServiceConfiguration(s.split(".json")[0], s);
 			}
 		}

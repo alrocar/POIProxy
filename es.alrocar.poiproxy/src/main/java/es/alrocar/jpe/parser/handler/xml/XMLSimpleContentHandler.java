@@ -75,7 +75,7 @@ public class XMLSimpleContentHandler extends BaseContentHandler implements
 
 	public void endElement(String uri, String localName, String qName)
 			throws SAXException {
-//		this.endElement(localName);
+		// this.endElement(localName);
 	}
 
 	public void characters(char ch[], int start, int length)
@@ -83,7 +83,7 @@ public class XMLSimpleContentHandler extends BaseContentHandler implements
 		String arg0 = new String(ch);
 		arg0 = arg0.substring(start, start + length);
 
-		if (arg0.compareTo("\n") == 0)
+		if (arg0.startsWith("\n"))
 			return;
 
 		this.processValue(arg0);

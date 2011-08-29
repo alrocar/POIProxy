@@ -35,6 +35,8 @@
 
 package es.alrocar.poiproxy.rest;
 
+import java.net.URL;
+
 import org.restlet.Context;
 import org.restlet.Restlet;
 import org.restlet.routing.Router;
@@ -55,9 +57,15 @@ public class RestPOIProxyApplication extends POIProxyApplication {
 	public Restlet createRoot() {
 		Router router = (Router) super.createRoot();
 
-		ServiceConfigurationManager.CONFIGURATION_DIR = "/var/lib/sp/services";
+		URL servicesPath = RestPOIProxyApplication.class
+				.getResource("RestPOIProxyApplication.class");
+
+		ServiceConfigurationManager.CONFIGURATION_DIR = servicesPath.getPath()
+				.substring(
+						0,
+						servicesPath.getPath().indexOf(
+								"es/alrocar/poiproxy/rest/RestPOIProxyApplication.class"));
 
 		return router;
 	}
-
 }

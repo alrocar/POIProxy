@@ -1,0 +1,22 @@
+{ describeService : {
+    format: "xml",
+    apiKey : "",
+    requestTypes : {
+                    "browse": {"url": "http://ws.audioscrobbler.com/2.0/?method=geo.getevents&lat=__LAT__&long=__LON__&distance=__DIST__&api_key=b25b959554ed76058ac220b7b2e0a026", "params": []},
+                    "search": {"url": "b", "params": []}
+                    },
+    featureTypes : { "browse" : {
+                    	"feature" : "event",
+                    	"elements" : ["title", "artist", "name", "city", "country", "street", "postalcode", "url", "startDate", "startTime", "phonenumber", "website", "url", "description"],
+                    	"lon": "long", 
+                    	"lat": "lat"
+                    	},
+                    "search" : {
+                    	"feature" : "event",
+                    	"elements" : ["title", "artist", "name", "city", "country", "street", "postalcode", "url", "startDate", "startTime", "phonenumber", "website", "url", "description"],
+                    	"lon": "long", 
+                    	"lat": "lat"
+                    	}
+                    }
+	}
+}

@@ -27,6 +27,9 @@ public class BaseContentHandler {
 	private Object currentFeatureGeoJSON;
 	private Object currentGeometryGeoJSON;
 
+	private boolean processedLon = false;
+	private boolean processedLat = false;
+
 	public void setJPEParseContentHandler(JPEContentHandler contentHandler) {
 		this.contentHandler = contentHandler;
 	}
@@ -58,6 +61,12 @@ public class BaseContentHandler {
 		FeatureType fType = this.currentFeatureType;
 		final int size = fType.getElements().size();
 
+		// HACK for the special case when lon and lat came in an array
+		if (processedLat && processedLon) {
+			processedLat = false;
+			processedLon = false;
+		}
+
 		for (int i = 0; i < size; i++) {
 			if (fType.getElements().get(i)
 					.compareToIgnoreCase(this.currentKey.toString()) == 0) {
@@ -70,21 +79,29 @@ public class BaseContentHandler {
 			}
 		}
 
-		if (currentKey.toString().compareToIgnoreCase(fType.getLon()) == 0) {
+		if (currentKey.toString().compareToIgnoreCase(fType.getLon()) == 0
+				&& !processedLon) {
+			if (this.currentGeometryGeoJSON == null)
+				this.currentGeometryGeoJSON = writerContentHandler.startPoint();
 			if (writerContentHandler != null)
 				writerContentHandler.addXToPoint(new Double(arg0.toString()),
 						this.currentGeometryGeoJSON);
 			contentHandler.addXToPoint(new Double(arg0.toString()),
 					this.currentPoint);
+			processedLon = true;
 			return;
 		}
 
-		if (currentKey.toString().compareToIgnoreCase(fType.getLat()) == 0) {
+		if (currentKey.toString().compareToIgnoreCase(fType.getLat()) == 0
+				&& !processedLat) {
+			if (this.currentGeometryGeoJSON == null)
+				this.currentGeometryGeoJSON = writerContentHandler.startPoint();
 			if (writerContentHandler != null)
 				writerContentHandler.addYToPoint(new Double(arg0.toString()),
 						this.currentGeometryGeoJSON);
 			contentHandler.addYToPoint(new Double(arg0.toString()),
 					this.currentPoint);
+			processedLat = true;
 			return;
 		}
 

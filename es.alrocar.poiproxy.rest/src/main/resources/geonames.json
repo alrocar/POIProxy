@@ -11,6 +11,11 @@
                     	"lon": "lat", 
                     	"lat": "lng"
                     	},
-                        "search": {}
+                        "search" : {
+                    	"feature" : "geoname",
+                    	"elements" : ["name", "countryName", "distance", ],
+                    	"lon": "lat", 
+                    	"lat": "lng"
+                    	},
                     }
 }}
