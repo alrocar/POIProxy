@@ -2,12 +2,12 @@
     format: "xml",
     apiKey : "",
     requestTypes : {
-                    "browse": {"url": "http://api.geonames.org/findNearbyPlaceName?lat=__LAT__&lng=__LON__&username=poiproxy", "params": []},
+                    "browse": {"url": "http://api.geonames.org/findNearbyPOIsOSM?lat=__LAT__&lng=__LON__&username=poiproxy", "params": []},
                     "search": {"url": "b", "params": []}
                     },
     featureTypes : { "browse" : {
-                    	"feature" : "geoname",
-                    	"elements" : ["name", "countryName", "distance", ],
+                    	"feature" : "poi",
+                    	"elements" : ["typeClass", "typeName", "name", "distance"],
                     	"lon": "lng", 
                     	"lat": "lat"
                     	},

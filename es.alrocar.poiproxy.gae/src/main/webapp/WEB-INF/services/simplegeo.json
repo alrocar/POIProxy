@@ -1,0 +1,20 @@
+{ describeService : {
+    format: "json",
+    apiKey : "",
+    requestTypes : {
+                    "browse": {"url": "http://api.simplegeo.com/1.0/places/__LAT__,__LON__.json?token=ypD3EcHsa4XzuPtNKe8ySFEPEqDbwQ3A", "params": []},
+                    "search": {"url": "http://api.simplegeo.com/1.0/places/__LAT__,__LON__.json?token=ypD3EcHsa4XzuPtNKe8ySFEPEqDbwQ3A&q=__QUERY__", "params": []},
+                    },
+    featureTypes : { "browse" : {
+                    	"feature" : "geometry",
+                    	"elements" : ["distance", "name", "city", "postcode", "category", "subcategory"],
+                    	"lon": "coordinates", 
+                    	"lat": "coordinates"
+                    	},"search" : {
+                    	"feature" : "geometry",
+                    	"elements" : ["distance", "name", "city", "postcode", "category", "subcategory"],
+                    	"lon": "coordinates", 
+                    	"lat": "coordinates"
+                    	}
+                    }
+}}

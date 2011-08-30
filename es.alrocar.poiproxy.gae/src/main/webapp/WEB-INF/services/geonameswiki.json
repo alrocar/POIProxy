@@ -2,18 +2,18 @@
     format: "xml",
     apiKey : "",
     requestTypes : {
-                    "browse": {"url": "http://api.geonames.org/findNearbyPlaceName?lat=__LAT__&lng=__LON__&username=poiproxy", "params": []},
-                    "search": {"url": "b", "params": []}
+                    "browse": {"url": "", "params": []},
+                    "search": {"url": "http://api.geonames.org/wikipediaSearch?q=__QUERY__&maxRows=10&username=poiproxy", "params": []}
                     },
     featureTypes : { "browse" : {
                     	"feature" : "geoname",
-                    	"elements" : ["name", "countryName", "distance", ],
+                    	"elements" : ["name", "countryName", "distance", "toponymName" ],
                     	"lon": "lng", 
                     	"lat": "lat"
                     	},
                         "search" : {
-                    	"feature" : "geoname",
-                    	"elements" : ["name", "countryName", "distance", ],
+                    	"feature" : "entry",
+                    	"elements" : ["title", "summary", "wikipediaUrl", "thumbnailImg"],
                     	"lon": "lng", 
                     	"lat": "lat"
                     	},

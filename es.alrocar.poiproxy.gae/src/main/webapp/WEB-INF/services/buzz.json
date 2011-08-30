@@ -6,7 +6,7 @@
                     "search": {"url": "b", "params": []}
                     },
     featureTypes : { "browse" : {
-                    	"feature" : "title",
+                    	"feature" : "kind",
                     	"elements" : ["title", "published", "name", "profileUrl", "thumbnailUrl"],
                     	"lon": "lng", 
                     	"lat": "lat",
@@ -14,7 +14,7 @@
                     	"separator": " "
 
                     	},"search" : {
-                    	"feature" : "title",
+                    	"feature" : "kind",
                     	"elements" : ["title", "published", "name", "profileUrl", "thumbnailUrl"],
                     	"lon": "lng", 
                     	"lat": "lat",

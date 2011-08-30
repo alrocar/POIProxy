@@ -97,20 +97,24 @@ public class DescribeService {
 
 	public String getRequestForParam(ArrayList<Param> optionalParam) {
 		if (optionalParam == null) {
+			this.setType(DescribeService.BROWSE_TYPE);
 			return getRequestTypes().get(DescribeService.BROWSE_TYPE).getUrl();
 		}
 
 		if (optionalParam.size() == 0) {
+			this.setType(DescribeService.BROWSE_TYPE);
 			return getRequestTypes().get(DescribeService.BROWSE_TYPE).getUrl();
 		}
 
 		for (Param optParam : optionalParam) {
 			if (optParam.getType() == Param.QUERY) {
+				this.setType(DescribeService.SEARCH_TYPE);
 				return getRequestTypes().get(DescribeService.SEARCH_TYPE)
 						.getUrl();
 			}
 		}
 
+		this.setType(DescribeService.BROWSE_TYPE);
 		return getRequestTypes().get(DescribeService.BROWSE_TYPE).getUrl();
 	}
 }

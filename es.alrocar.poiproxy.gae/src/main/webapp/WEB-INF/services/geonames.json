@@ -14,7 +14,7 @@
                         "search" : {
                     	"feature" : "geoname",
                     	"elements" : ["name", "countryName", "distance", ],
-                    	"lon": "lat", 
+                    	"lon": "lng", 
                     	"lat": "lat"
                     	},
                     }
