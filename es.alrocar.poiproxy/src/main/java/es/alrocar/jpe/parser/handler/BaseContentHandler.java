@@ -56,7 +56,7 @@ public class BaseContentHandler {
 	}
 
 	public void processValue(String arg0) {
-		if (arg0 == null)
+		if (arg0 == null || this.currentFeatureGeoJSON == null)
 			return;
 		FeatureType fType = this.currentFeatureType;
 		final int size = fType.getElements().size();
@@ -69,7 +69,7 @@ public class BaseContentHandler {
 
 		for (int i = 0; i < size; i++) {
 			if (fType.getElements().get(i)
-					.compareToIgnoreCase(this.currentKey.toString()) == 0) {
+					.compareTo(this.currentKey.toString()) == 0) {
 				if (writerContentHandler != null)
 					writerContentHandler.addElementToFeature(arg0.toString(),
 							this.currentKey, this.currentFeatureGeoJSON);
@@ -79,7 +79,7 @@ public class BaseContentHandler {
 			}
 		}
 
-		if (currentKey.toString().compareToIgnoreCase(fType.getLon()) == 0
+		if (currentKey.toString().compareTo(fType.getLon()) == 0
 				&& !processedLon) {
 			if (this.currentGeometryGeoJSON == null)
 				this.currentGeometryGeoJSON = writerContentHandler.startPoint();
@@ -92,7 +92,7 @@ public class BaseContentHandler {
 			return;
 		}
 
-		if (currentKey.toString().compareToIgnoreCase(fType.getLat()) == 0
+		if (currentKey.toString().compareTo(fType.getLat()) == 0
 				&& !processedLat) {
 			if (this.currentGeometryGeoJSON == null)
 				this.currentGeometryGeoJSON = writerContentHandler.startPoint();
@@ -107,7 +107,7 @@ public class BaseContentHandler {
 
 		try {
 			if (fType.getCombinedLonLat() != null
-					&& currentKey.toString().compareToIgnoreCase(
+					&& currentKey.toString().compareTo(
 							fType.getCombinedLonLat()) == 0) {
 				String[] latLon = arg0.toString().split(
 						fType.getLonLatSeparator());
@@ -151,7 +151,7 @@ public class BaseContentHandler {
 	public void startNewElement(String localName) {
 		String arg0 = localName;
 		this.currentKey = arg0;
-		if (arg0.compareToIgnoreCase(this.currentFeatureType.getFeature()) == 0) {
+		if (arg0.compareTo(this.currentFeatureType.getFeature()) == 0) {
 			endNewElement();
 			if (writerContentHandler != null) {
 				this.currentFeatureGeoJSON = writerContentHandler

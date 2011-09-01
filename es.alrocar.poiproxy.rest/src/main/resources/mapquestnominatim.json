@@ -1,0 +1,20 @@
+{ describeService : {
+    format: "json",
+    apiKey : "",
+    requestTypes : {
+                    "browse": {"url": "http://open.mapquestapi.com/nominatim/v1/reverse?format=json&lat=__LAT__&lon=__LON__", "params": []},
+                    "search": {"url": "http://open.mapquestapi.com/nominatim/v1/search?format=json&q=__QUERY__&addressdetails=1&viewbox=__MINX__%2C__MAXY__%2C__MAXX__%2C__MINY__", "params": []}
+                    },
+    featureTypes : { "browse" : {
+                    	"feature" : "place_id",
+                    	"elements" : ["osm_id", "display_name", "city", "country", "state", "postcode"],
+                    	"lon": "lon", 
+                    	"lat": "lat"
+                    	},"search" : {
+                    	"feature" : "place_id",
+                    	"elements" : ["osm_id", "display_name", "city", "country", "state", "postcode"],
+                    	"lon": "lon", 
+                    	"lat": "lat"
+                    	}
+                    }
+}}
