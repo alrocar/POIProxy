@@ -49,8 +49,23 @@ import com.vividsolutions.jts.geom.Point;
 import es.prodevelop.gvsig.mini.geom.impl.jts.JTSFeature;
 import es.prodevelop.gvsig.mini.geom.impl.jts.JTSGeometry;
 
+/**
+ * Utility class to parse a GeoJSON Document of Points into an array of
+ * {@link JTSFeature}
+ * 
+ * @author albertoromeu
+ * 
+ */
 public class GeoJSONParser {
 
+	/**
+	 * Parses a GeoJSON document into an array of {@link JTSFeature}
+	 * 
+	 * @param geoJSON
+	 *            The GeoJSON content
+	 * @return An array of {@link JTSFeature}
+	 * @throws JSONException
+	 */
 	public ArrayList<JTSFeature> parse(String geoJSON) throws JSONException {
 
 		ArrayList<JTSFeature> features = new ArrayList<JTSFeature>();
@@ -73,6 +88,14 @@ public class GeoJSONParser {
 		return features;
 	}
 
+	/**
+	 * Parses a single feature with a Point
+	 * 
+	 * @param feature
+	 *            The feature {@link JSONObject}
+	 * @return A {@link JTSFeature}
+	 * @throws JSONException
+	 */
 	public JTSFeature parseFeature(JSONObject feature) throws JSONException {
 		JTSFeature feat = new JTSFeature(null);
 

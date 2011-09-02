@@ -43,12 +43,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.simple.JSONArray;
 
-import com.vividsolutions.jts.geom.Geometry;
-
 import es.prodevelop.gvsig.mini.exceptions.BaseException;
-import es.prodevelop.gvsig.mini.geom.api.IGeometry;
 import es.prodevelop.gvsig.mini.geom.impl.jts.JTSFeature;
 
+/**
+ * An utility class that writes into a GeoJSON document an array of
+ * {@link JTSFeature} that cotains only points as geometry type
+ * 
+ * @author albertoromeu
+ * 
+ */
 public class GeoJSONWriter {
 
 	public String write(ArrayList<JTSFeature> features) throws JSONException,

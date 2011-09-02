@@ -51,12 +51,22 @@ import es.alrocar.jpe.writer.handler.MiniJPEWriterHandler;
 import es.alrocar.poiproxy.configuration.DescribeService;
 import es.prodevelop.gvsig.mini.geom.impl.jts.JTSFeature;
 
+/**
+ * A JPEParser that parses an xml document using {@link XMLSimpleContentHandler}
+ * and converts the xml into GeoJSON through {@link MiniJPEWriterHandler}
+ * 
+ * @author albertoromeu
+ * 
+ */
 public class XMLJPEParser extends JPEParser {
 
 	private JPEContentHandler contentHandler = new MiniJPEContentHandler();
 	private MiniJPEWriterHandler writerHandler = new MiniJPEWriterHandler();
 	private XMLSimpleContentHandler simpleContentHandler = new XMLSimpleContentHandler();
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public ArrayList<JTSFeature> parse(String xml, DescribeService service) {
 		simpleContentHandler.setJPEParseContentHandler(contentHandler);
 		simpleContentHandler.setJPEWriteContentHandler(writerHandler);
@@ -82,6 +92,9 @@ public class XMLJPEParser extends JPEParser {
 		return simpleContentHandler.getResult();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getGeoJSON() {
 		if (writerHandler != null) {
 			return writerHandler.getGeoJSON();

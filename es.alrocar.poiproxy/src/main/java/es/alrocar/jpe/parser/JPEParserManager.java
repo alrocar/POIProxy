@@ -39,11 +39,23 @@ import java.util.HashMap;
 
 import es.alrocar.jpe.parser.exceptions.NoParserRegisteredException;
 
+/**
+ * A manager to register {@link JPEParser} implementations. The manager is a
+ * singleton
+ * 
+ * @author albertoromeu
+ * 
+ */
 public class JPEParserManager {
 
 	private static JPEParserManager instance;
 	private HashMap<String, JPEParser> registeredFormats = new HashMap<String, JPEParser>();
 
+	/**
+	 * A singleton
+	 * 
+	 * @return The {@link JPEParserManager} instance
+	 */
 	public static JPEParserManager getInstance() {
 		if (instance == null) {
 			instance = new JPEParserManager();
@@ -52,10 +64,28 @@ public class JPEParserManager {
 		return instance;
 	}
 
+	/**
+	 * Registers a {@link JPEParser}
+	 * 
+	 * @param parser
+	 *            The {@link JPEParser}
+	 */
 	public void registerJPEParser(JPEParser parser) {
 		this.registeredFormats.put(parser.getFormat(), parser);
 	}
 
+	/**
+	 * Gets a {@link JPEParser} which {@link JPEParser#getFormat()} is equals to
+	 * the format
+	 * 
+	 * @param format
+	 *            The format to compare with {@link JPEParser#FORMAT_JSON} or
+	 *            {@link JPEParser#FORMAT_XML}
+	 * @return The {@link JPEParser}
+	 * @throws NoParserRegisteredException
+	 *             if no {@link JPEParser} with the format specified is
+	 *             registerd into the {@link JPEParserManager}
+	 */
 	public JPEParser getJPEParser(String format)
 			throws NoParserRegisteredException {
 		JPEParser parser = this.registeredFormats.get(format);

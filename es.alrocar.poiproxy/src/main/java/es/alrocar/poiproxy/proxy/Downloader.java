@@ -49,12 +49,28 @@ import java.net.URLConnection;
 import es.prodevelop.gvsig.mini.utiles.Cancellable;
 import es.prodevelop.gvsig.mini.utiles.Constants;
 
+/**
+ * Utility class to download files throug an http connection
+ * 
+ * @author albertoromeu
+ * 
+ */
 public class Downloader {
 
 	private byte[] xmldata;
 	private DownloadListener listener;
-	
-	public void downloadFromUrl(String mapURL, Cancellable cancellable) throws Exception {
+
+	/**
+	 * Downloads a file from an http url
+	 * 
+	 * @param mapURL
+	 *            The url string
+	 * @param cancellable
+	 *            A {@link Cancellable} object to cancel the download
+	 * @throws Exception
+	 */
+	public void downloadFromUrl(String mapURL, Cancellable cancellable)
+			throws Exception {
 		xmldata = null;
 		InputStream in = null;
 		OutputStream out = null;
@@ -63,8 +79,7 @@ public class Downloader {
 			throw new Exception("Error null url");
 		try {
 
-						long startTime = System.currentTimeMillis();
-			
+			long startTime = System.currentTimeMillis();
 
 			in = new BufferedInputStream(openConnection(mapURL),
 					Constants.IO_BUFFER_SIZE);
@@ -74,14 +89,13 @@ public class Downloader {
 			int read;
 			int total = 0;
 			while ((read = in.read(b)) != -1) {
-				total += read;				
+				total += read;
 				out.write(b, 0, read);
 				if (listener != null) {
 					listener.onBytesDownloaded(read);
 				}
 				if (cancellable != null && cancellable.getCanceled()) {
-					
-					
+
 					return;
 				}
 
@@ -90,9 +104,8 @@ public class Downloader {
 			out.flush();
 			xmldata = dataStream.toByteArray();
 
-			
 		} catch (IOException e) {
-			
+
 			throw new Exception(e);
 		} finally {
 			Constants.closeStream(in);
@@ -100,6 +113,19 @@ public class Downloader {
 		}
 	}
 
+	/**
+	 * Downloads a file from an url to a file in disk
+	 * 
+	 * @param mapURL
+	 *            The url to download from
+	 * @param fileName
+	 *            The fileName of the file to store the data
+	 * @param downloadPath
+	 *            The path to store the file
+	 * @param cancellable
+	 *            A {@link Cancellable} instance to cancel the download
+	 * @throws Exception
+	 */
 	public void downloadFromUrl(String mapURL, String fileName,
 			String downloadPath, Cancellable cancellable) throws Exception {
 		xmldata = null;
@@ -120,7 +146,7 @@ public class Downloader {
 			File file = new File(downloadPath + fileName);
 			file.createNewFile();
 			long startTime = System.currentTimeMillis();
-			
+
 			in = new BufferedInputStream(openConnection(mapURL + fileName),
 					Constants.IO_BUFFER_SIZE);
 			final ByteArrayOutputStream dataStream = new ByteArrayOutputStream();
@@ -135,7 +161,7 @@ public class Downloader {
 					listener.onBytesDownloaded(read);
 				}
 				if (cancellable != null && cancellable.getCanceled()) {
-					
+
 					file.delete();
 					return;
 				}
@@ -148,10 +174,9 @@ public class Downloader {
 			FileOutputStream fileout = new FileOutputStream(file);
 			fileout.write(xmldata);
 			fileout.close();
-		
 
 		} catch (IOException e) {
-//			Log.d("DownloadLog", "Error: " + e);
+			// Log.d("DownloadLog", "Error: " + e);
 			throw new Exception(e);
 		} finally {
 			Constants.closeStream(in);
@@ -159,6 +184,22 @@ public class Downloader {
 		}
 	}
 
+	/**
+	 * This method is similar to
+	 * {@link #downloadFromUrl(String, String, String, Cancellable)} but
+	 * directly writes the data into disk while the data is being read from the
+	 * {@link InputStream}
+	 * 
+	 * @param mapURL
+	 *            The url to download from
+	 * @param fileName
+	 *            The fileName of the file to store the data
+	 * @param downloadPath
+	 *            The path to store the file
+	 * @param cancellable
+	 *            A {@link Cancellable} instance to cancel the download
+	 * @throws Exception
+	 */
 	public void downloadFromUrlBigFile(String mapURL, String fileName,
 			String downloadPath, Cancellable cancellable) throws Exception {
 		InputStream in = null;
@@ -178,7 +219,7 @@ public class Downloader {
 			File file = new File(downloadPath + fileName);
 			file.createNewFile();
 			long startTime = System.currentTimeMillis();
-			
+
 			in = new BufferedInputStream(openConnection(mapURL + fileName),
 					Constants.IO_BUFFER_SIZE);
 			// final ByteArrayOutputStream dataStream = new
@@ -197,7 +238,7 @@ public class Downloader {
 					listener.onBytesDownloaded(read);
 				}
 				if (cancellable != null && cancellable.getCanceled()) {
-					
+
 					file.delete();
 					return;
 				}
@@ -209,10 +250,9 @@ public class Downloader {
 
 			// fileout.write(xmldata);
 			fileout.close();
-			
 
 		} catch (IOException e) {
-			
+
 			throw new Exception(e);
 		} finally {
 			Constants.closeStream(in);
@@ -220,10 +260,25 @@ public class Downloader {
 		}
 	}
 
+	/**
+	 * Returns the data downloaded. Call this method after one of the download
+	 * methods finishes
+	 * 
+	 * @return An array of bytes with the data downloaded
+	 */
 	public byte[] getData() {
 		return xmldata;
 	}
 
+	/**
+	 * Opens an http connection. By default the connection and read timeouts is
+	 * set to 15 seconds
+	 * 
+	 * @param query
+	 *            The url to connect
+	 * @return An InputStream
+	 * @throws IOException
+	 */
 	public static InputStream openConnection(String query) throws IOException {
 		final URL url = new URL(query.replace(" ", "%20"));
 		URLConnection urlconnec = url.openConnection();

@@ -38,10 +38,18 @@ package es.alrocar.poiproxy.configuration;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import sun.security.krb5.internal.crypto.Des;
+import es.alrocar.jpe.parser.JPEParser;
+import es.alrocar.jpe.parser.configuration.DescribeServiceParser;
+import es.alrocar.poiproxy.proxy.POIProxy;
 
-import es.alrocar.poiproxy.servlet.BaseServerResource;
-
+/**
+ * An entity where to load into memory a describe service json
+ * 
+ * @see DescribeServiceParser
+ * 
+ * @author albertoromeu
+ * 
+ */
 public class DescribeService {
 
 	public final static String SEARCH_TYPE = "search";
@@ -55,46 +63,115 @@ public class DescribeService {
 
 	private String type = BROWSE_TYPE;
 
+	/**
+	 * 
+	 * @return The apiKey
+	 */
 	public String getApiKey() {
 		return apiKey;
 	}
 
+	/**
+	 * Sets the apiKey
+	 * 
+	 * @param apiKey
+	 */
 	public void setApiKey(String apiKey) {
 		this.apiKey = apiKey;
 	}
 
+	/**
+	 * The current type selected to parse a file, one of {@link #SEARCH_TYPE} or
+	 * {@link #BROWSE_TYPE}
+	 * 
+	 * @return
+	 */
 	public String getType() {
 		return type;
 	}
 
+	/**
+	 * The current type depending on the request made by {@link POIProxy} one of
+	 * {@link #SEARCH_TYPE} or {@link #BROWSE_TYPE}
+	 * 
+	 * @param type
+	 */
 	public void setType(String type) {
 		this.type = type;
 	}
 
+	/**
+	 * The format of the source response of the service to parse.
+	 * 
+	 * @return {@link JPEParser#FORMAT_JSON} or {@link JPEParser#FORMAT_XML}
+	 */
 	public String getFormat() {
 		return format;
 	}
 
+	/**
+	 * Sets the format of the source response of the service to parse
+	 * 
+	 * @param format
+	 *            {@link JPEParser#FORMAT_JSON} or {@link JPEParser#FORMAT_XML}
+	 */
 	public void setFormat(String format) {
 		this.format = format;
 	}
 
+	/**
+	 * A map of {@link #BROWSE_TYPE}, {@link #SEARCH_TYPE} with
+	 * {@link RequestType}
+	 * 
+	 * @return
+	 */
 	public HashMap<String, RequestType> getRequestTypes() {
 		return requestTypes;
 	}
 
+	/**
+	 * sets the request types
+	 * 
+	 * @param requestTypes
+	 *            A map of {@link #BROWSE_TYPE}, {@link #SEARCH_TYPE} with
+	 *            {@link RequestType}
+	 */
 	public void setRequestTypes(HashMap<String, RequestType> requestTypes) {
 		this.requestTypes = requestTypes;
 	}
 
+	/**
+	 * A map of {@link #BROWSE_TYPE}, {@link #SEARCH_TYPE} with
+	 * {@link FeatureType}
+	 * 
+	 * @return
+	 */
 	public HashMap<String, FeatureType> getFeatureTypes() {
 		return featureTypes;
 	}
 
+	/**
+	 * sets the feature types
+	 * 
+	 * @param featureTypes
+	 *            A map of {@link #BROWSE_TYPE}, {@link #SEARCH_TYPE} with
+	 *            {@link FeatureType}
+	 */
 	public void setFeatureTypes(HashMap<String, FeatureType> featureTypes) {
 		this.featureTypes = featureTypes;
 	}
 
+	/**
+	 * returns the URL to request given an array of optional params. Usually if
+	 * optionalParam contains a {@link Param} of type {@link Param#QUERY} then
+	 * this method will return the url of the {@link RequestType} of type
+	 * {@link DescribeService#SEARCH_TYPE} otherwise will return the url of
+	 * {@link DescribeService#BROWSE_TYPE}
+	 * 
+	 * @param optionalParam
+	 *            An array of {@link Param}
+	 * @return The url to request
+	 */
 	public String getRequestForParam(ArrayList<Param> optionalParam) {
 		if (optionalParam == null) {
 			this.setType(DescribeService.BROWSE_TYPE);

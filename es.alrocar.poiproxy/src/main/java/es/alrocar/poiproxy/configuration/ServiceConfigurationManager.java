@@ -55,6 +55,23 @@ import java.util.zip.ZipFile;
 import es.alrocar.jpe.parser.configuration.DescribeServiceParser;
 import es.prodevelop.gvsig.mini.utiles.Constants;
 
+/**
+ * This class is used to register into the library al the json documents
+ * available that describe available services to request and parse responses
+ * 
+ * It takes all the services at
+ * {@link ServiceConfigurationManager#CONFIGURATION_DIR} parses the json
+ * documents through {@link DescribeServiceParser} and registers each file as a
+ * {@link DescribeService} taking as the id the name of the json file
+ * 
+ * So adding a new service to the library implies write its json document
+ * describing its {@link RequestType} and {@link FeatureType} and putting it
+ * into the {@link #CONFIGURATION_DIR}
+ * 
+ * 
+ * @author albertoromeu
+ * 
+ */
 public class ServiceConfigurationManager {
 
 	public static String CONFIGURATION_DIR = "/var/lib/services";
@@ -63,14 +80,29 @@ public class ServiceConfigurationManager {
 	private HashMap<String, DescribeService> parsedConfigurations = new HashMap<String, DescribeService>();
 	private DescribeServiceParser parser = new DescribeServiceParser();
 
+	/**
+	 * A map of ids of the registered services
+	 * 
+	 * @return
+	 */
 	public HashMap<String, String> getRegisteredConfigurations() {
 		return registeredConfigurations;
 	}
 
+	/**
+	 * The constructor.
+	 * 
+	 * Internally calls {@link #loadConfiguration()}
+	 */
 	public ServiceConfigurationManager() {
 		this.loadConfiguration();
 	}
 
+	/**
+	 * Iterates the files at {@link #CONFIGURATION_DIR} and calls
+	 * {@link #registerServiceConfiguration(String, String)} for each file found
+	 * setting as the id of the service the file name
+	 */
 	public void loadConfiguration() {
 		System.out.println("CONFIGURATION_DIR: " + CONFIGURATION_DIR);
 		File f = new File(CONFIGURATION_DIR);
@@ -84,10 +116,27 @@ public class ServiceConfigurationManager {
 		}
 	}
 
+	/**
+	 * Registers a new service into the library
+	 * 
+	 * @param id
+	 *            The id of the service
+	 * @param configFile
+	 *            The content of the json document describing the service
+	 */
 	public void registerServiceConfiguration(String id, String configFile) {
 		this.registeredConfigurations.put(id, configFile);
 	}
 
+	/**
+	 * Returns a {@link DescribeService} given an id. If the service has not
+	 * been used previously, this method parses the json document describing the
+	 * service
+	 * 
+	 * @param id
+	 *            The id of the service. Usually the name of the json document
+	 * @return The {@link DescribeService}
+	 */
 	public DescribeService getServiceConfiguration(String id) {
 		// Buscar los servicios registrados
 		DescribeService service = this.parsedConfigurations.get(id);
@@ -101,6 +150,14 @@ public class ServiceConfigurationManager {
 		return service;
 	}
 
+	/**
+	 * Returns the content of the json document describing a service given its
+	 * id
+	 * 
+	 * @param id
+	 *            The id of the service. Usually the name of the json document
+	 * @return The content of the json document
+	 */
 	public String getServiceAsJSON(String id) {
 		String path = this.registeredConfigurations.get(id);
 
@@ -141,6 +198,12 @@ public class ServiceConfigurationManager {
 		return res;
 	}
 
+	/**
+	 * not used at the moment
+	 * 
+	 * @param url
+	 * @return
+	 */
 	public DescribeService getRemoteConfiguration(String url) {
 		// Descargar json de la url y parsearlo
 		return null;

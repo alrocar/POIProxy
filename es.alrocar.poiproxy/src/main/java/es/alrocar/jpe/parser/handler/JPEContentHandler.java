@@ -35,29 +35,121 @@
 
 package es.alrocar.jpe.parser.handler;
 
+/**
+ * This interface is used to provide an event driven parser of a json or xml and
+ * make a parser independent of the geometry model
+ * 
+ * @author albertoromeu
+ * 
+ */
 public interface JPEContentHandler {
 
+	/**
+	 * Event thrown when a new feature collection has to be started
+	 * 
+	 * @return A new collection of features
+	 */
 	public Object startFeatureCollection();
 
+	/**
+	 * Event thrown when a feature collection is finished
+	 * 
+	 * @param featureCollection
+	 *            The feature collection created after
+	 *            {@link #startFeatureCollection()}
+	 * @return The feature collection object
+	 */
 	public Object endFeatureCollection(Object featureCollection);
 
+	/**
+	 * Event thrown when a new feature has to be started
+	 * 
+	 * @return The feature
+	 */
 	public Object startFeature();
 
+	/**
+	 * Event thrown when a feature is finished
+	 * 
+	 * @param feature
+	 *            The feature created after {@link #startFeature()}
+	 * @return The feature object
+	 */
 	public Object endFeature(Object feature);
 
+	/**
+	 * Event thrown when a new point has to be started
+	 * 
+	 * @return The Point
+	 */
 	public Object startPoint();
 
+	/**
+	 * Adds the x coordinate to the point created after {@link #startPoint()}
+	 * 
+	 * @param x
+	 *            The x coordinate
+	 * @param point
+	 *            The point object
+	 * @return The point object
+	 */
 	public Object addXToPoint(double x, Object point);
 
+	/**
+	 * Adds the y coordinate to the point created after {@link #startPoint()}
+	 * 
+	 * @param y
+	 *            The y coordinate
+	 * @param point
+	 *            The point object
+	 * @return The point object
+	 */
 	public Object addYToPoint(double y, Object point);
 
+	/**
+	 * Event thrown when a point is finished
+	 * 
+	 * @param point
+	 *            The point created after {@link #startPoint()}
+	 * @return The point object
+	 */
 	public Object endPoint(Object point);
 
+	/**
+	 * Event thrown when a new attribute has to be added to the current feature
+	 * 
+	 * @param element
+	 *            The attribute
+	 * @param key
+	 *            The attribute key
+	 * @param feature
+	 *            The feature
+	 * @return The feature
+	 */
 	public Object addElementToFeature(String element, String key, Object feature);
 
+	/**
+	 * Event thrown when a feature has to be added to the current feature
+	 * collection
+	 * 
+	 * @param featureCollection
+	 *            The feature collection
+	 * @param feature
+	 *            The feature
+	 * @return The feature collection
+	 */
 	public Object addFeatureToCollection(Object featureCollection,
 			Object feature);
 
+	/**
+	 * Event thrown when the point has to be added to the feature
+	 * 
+	 * @param feature
+	 *            The feature
+	 * @param point
+	 *            The point
+	 * @return The feature
+	 */
 	public Object addPointToFeature(Object feature, Object point);
 
 }

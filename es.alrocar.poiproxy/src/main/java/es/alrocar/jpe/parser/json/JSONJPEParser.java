@@ -44,10 +44,19 @@ import es.alrocar.jpe.parser.JPEParser;
 import es.alrocar.jpe.parser.handler.JPEContentHandler;
 import es.alrocar.jpe.parser.handler.MiniJPEContentHandler;
 import es.alrocar.jpe.parser.handler.json.JSONSimpleContentHandler;
+import es.alrocar.jpe.parser.handler.xml.XMLSimpleContentHandler;
 import es.alrocar.jpe.writer.handler.MiniJPEWriterHandler;
 import es.alrocar.poiproxy.configuration.DescribeService;
 import es.prodevelop.gvsig.mini.geom.impl.jts.JTSFeature;
 
+/**
+ * A JPEParser that parses a json document using
+ * {@link JSONSimpleContentHandler} and converts the xml into GeoJSON through
+ * {@link MiniJPEWriterHandler}
+ * 
+ * @author albertoromeu
+ * 
+ */
 public class JSONJPEParser extends JPEParser {
 
 	private JPEContentHandler contentHandler = new MiniJPEContentHandler();
@@ -55,6 +64,9 @@ public class JSONJPEParser extends JPEParser {
 	private JSONParser parser = new JSONParser();
 	private JSONSimpleContentHandler simpleContentHandler = new JSONSimpleContentHandler();
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public ArrayList<JTSFeature> parse(String json, DescribeService service) {
 		simpleContentHandler.setJPEParseContentHandler(contentHandler);
 		simpleContentHandler.setJPEWriteContentHandler(writerHandler);
@@ -71,6 +83,9 @@ public class JSONJPEParser extends JPEParser {
 		return simpleContentHandler.getResult();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getGeoJSON() {
 		if (writerHandler != null) {
 			return writerHandler.getGeoJSON();

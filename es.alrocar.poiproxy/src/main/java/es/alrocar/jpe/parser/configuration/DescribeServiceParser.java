@@ -43,7 +43,66 @@ import es.alrocar.poiproxy.configuration.DescribeService;
 import es.alrocar.poiproxy.configuration.FeatureType;
 import es.alrocar.poiproxy.configuration.RequestType;
 
+/**
+ * A JSON parser that uses the org.json package to parse de json document that
+ * describes a public POI service supported by POIProxy
+ * 
+ * An example of document could be something like this:
+ * 
+ * { describeService : { format: "json", apiKey : "", requestTypes : { "browse":
+ * {"url":
+ * "https://www.googleapis.com/buzz/v1/activities/search?key=AIzaSyDM7V5F3X0g4_aH6YSwsR4Hbd_uBuQ3QeA&lat=__LAT__&lon=__LON__&radius=__DIST__&alt=json"
+ * , "params": []}, "search": {"url": "b", "params": []} }, featureTypes : {
+ * "browse" : { "feature" : "kind", "elements" : ["title", "published", "name",
+ * "profileUrl", "thumbnailUrl"], "lon": "lng", "lat": "lat", "combinedLonLat":
+ * "geocode", "separator": " "
+ * 
+ * },"search" : { "feature" : "kind", "elements" : ["title", "published",
+ * "name", "profileUrl", "thumbnailUrl"], "lon": "lng", "lat": "lat",
+ * "combinedLonLat": "geocode", "separator": " "
+ * 
+ * } } }}
+ * 
+ * The format attribute specifies the format in which the service returns the
+ * response and is stored into {@link DescribeService#getFormat()}. Currently
+ * both json and xml are supported and the POIProxy response is always a GeoJSON
+ * 
+ * apiKey is not used at the moment and is stored into
+ * {@link DescribeService#getApiKey()}
+ * 
+ * There are currently two {@link RequestType} supported,
+ * {@link DescribeService#BROWSE_TYPE} simply looks for POIs and
+ * {@link DescribeService#BROWSE_TYPE}, allows to specify a search term. Not all
+ * services support both operations
+ * 
+ * {@link FeatureType} specifies the attributes of the response that are going
+ * to be parsed and iares stored into {@link DescribeService#getFeatureTypes()}.
+ * The parser engine used will take only the attributes specified.
+ * 
+ * The feature attribute is needed to know which is the first attribute of the
+ * response to start parsing a new feature through
+ * {@link FeatureType#getFeature()}.
+ * 
+ * The elements are the attributes that will be parsed and written to the
+ * GeoJSON response through {@link FeatureType#getElements()}.
+ * 
+ * lon, lat specify the attributes of both properties to parse the Point
+ * coordinates {@link FeatureType#getLon()}, {@link FeatureType#getLat()}
+ * 
+ * Finally as some services provide the lon, lat attributes as an array,
+ * {@link FeatureType#getCombinedLonLat()} is an optional attribute that is used
+ * to specify the name of that array, and
+ * {@link FeatureType#getLonLatSeparator()} is the separator character that is
+ * used inside the array
+ * 
+ * @author albertoromeu
+ * 
+ */
 public class DescribeServiceParser {
+
+	/******
+	 * TAGS TO BE PARSED
+	 */
 
 	public final static String DESCRIBE_SERVICE = "describeService";
 	public final static String API_KEY = "apiKey";
@@ -61,6 +120,13 @@ public class DescribeServiceParser {
 	public final static String COMBINEDLONLAT = "combinedLonLat";
 	public final static String SEPARATOR = "separator";
 
+	/**
+	 * Parses a describe service json document passed as a String
+	 * 
+	 * @param json
+	 *            The String containing the json document
+	 * @return The {@link DescribeService} instance
+	 */
 	public DescribeService parse(String json) {
 		DescribeService result = new DescribeService();
 
@@ -115,6 +181,18 @@ public class DescribeServiceParser {
 		return result;
 	}
 
+	/**
+	 * Parses a {@link FeatureType} object
+	 * 
+	 * @param type
+	 *            one of {@link DescribeServiceParser#BROWSE}
+	 *            {@link DescribeServiceParser#SEARCH}
+	 * @param featureTypes
+	 *            The {@link JSONObject} containing the {@link FeatureType}
+	 * @return The {@link FeatureType} parsed
+	 * @throws JSONException
+	 *             when the org.json library throws an exception
+	 */
 	public FeatureType parseFeatureType(String type, JSONObject featureTypes)
 			throws JSONException {
 		FeatureType result = new FeatureType();
@@ -149,6 +227,18 @@ public class DescribeServiceParser {
 		return result;
 	}
 
+	/**
+	 * Parses a {@link RequestType} object
+	 * 
+	 * @param type
+	 *            one of {@link DescribeServiceParser#BROWSE}
+	 *            {@link DescribeServiceParser#SEARCH}
+	 * @param requestTypes
+	 *            The {@link JSONObject} containing the {@link RequestType}
+	 * @return The parsed {@link RequestType}
+	 * @throws JSONException
+	 *             when the org.json library throws an exception
+	 */
 	public RequestType parseRequestType(String type, JSONObject requestTypes)
 			throws JSONException {
 		RequestType result = new RequestType();

@@ -35,6 +35,14 @@
 
 package es.alrocar.poiproxy.configuration;
 
+import es.alrocar.poiproxy.proxy.POIProxy;
+
+/**
+ * Optional parameters that comes from a request to {@link POIProxy}
+ * 
+ * @author albertoromeu
+ * 
+ */
 public class Param {
 
 	public static String QUERY = "query";
@@ -49,11 +57,22 @@ public class Param {
 	public static String LON = "lon";
 	public static String LAT = "lat";
 	public static String DIST = "dist";
-	public static String CALLBACK = "callback";	
+	public static String CALLBACK = "callback";
 
 	private String type;
 	private String value;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param type
+	 * 
+	 *            {@value #QUERY} {@value #SERVICE} {@value #X} {@value #Y}
+	 *            {@value #Z} {@value #MINX} {@value #MINY} {@value #MAXX}
+	 *            {@value #MAXY} {@value #LON} {@value #LAT} {@value #DIST}
+	 *            {@value #CALLBACK}
+	 * @param value
+	 */
 	public Param(String type, String value) {
 		this.type = type;
 		this.value = value;

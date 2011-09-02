@@ -56,6 +56,13 @@ import es.prodevelop.gvsig.mini.geom.impl.jts.JTSFeature;
 import es.prodevelop.gvsig.mini.projection.TileConversor;
 import es.prodevelop.gvsig.mobile.fmap.proj.CRSFactory;
 
+/**
+ * The main entry point of the library. This class has methods to make a request
+ * to a service, parse the response and return the GeoJSON result
+ * 
+ * @author albertoromeu
+ * 
+ */
 public class POIProxy {
 
 	public static String CACHE_DIR = "/var/lib/sp/cache";
@@ -64,6 +71,11 @@ public class POIProxy {
 	private ServiceConfigurationManager serviceManager;
 	private GeoJSONWriter geoJSONWriter;
 
+	/**
+	 * A singleton
+	 * 
+	 * @return The {@link POIProxy} instance
+	 */
 	public static POIProxy getInstance() {
 		if (proxy == null) {
 			proxy = new POIProxy();
@@ -72,6 +84,18 @@ public class POIProxy {
 		return proxy;
 	}
 
+	/**
+	 * Instantiates the {@link ServiceConfigurationManager} that loads the
+	 * services available at
+	 * {@link ServiceConfigurationManager#CONFIGURATION_DIR}
+	 * 
+	 * Registers a {@link JSONJPEParser} and a {@link XMLJPEParser} to allow
+	 * parsing either json or xml depending on the format response of the
+	 * registered services
+	 * 
+	 * And finally instantiates a {@link GeoJSONWriter} that will return the
+	 * GeoJSON document
+	 */
 	public void initialize() {
 		// Registra todos los servicios disponibles
 		serviceManager = new ServiceConfigurationManager();
@@ -81,6 +105,12 @@ public class POIProxy {
 		geoJSONWriter = new GeoJSONWriter();
 	}
 
+	/**
+	 * Returns a JSON containing the describe service document of each service
+	 * registered into the library
+	 * 
+	 * @return
+	 */
 	public String getAvailableServices() {
 		StringBuffer services = new StringBuffer();
 
@@ -111,6 +141,20 @@ public class POIProxy {
 	// BROWSE
 	// SEARCH WITH QUERY
 
+	/**
+	 * This method is used to get the pois from a service and return a GeoJSON
+	 * document with the data retrieved given a Z/X/Y tile.
+	 * 
+	 * @param id
+	 *            The id of the service
+	 * @param z
+	 *            The zoom level
+	 * @param x
+	 *            The x tile
+	 * @param y
+	 *            The y tile
+	 * @return The GeoJSON response from the original service response
+	 */
 	public String getPOIs(String id, int z, int x, int y,
 			ArrayList<Param> optionalParams) throws Exception {
 		DescribeService describeService = this.getServiceFromID(id);
@@ -144,10 +188,26 @@ public class POIProxy {
 		return geoJSON;
 	}
 
+	/**
+	 * Calls the
+	 * {@link ServiceConfigurationManager#getServiceConfiguration(String)}
+	 * 
+	 * @param id
+	 *            The id of the service
+	 * @return The {@link DescribeService}
+	 */
 	public DescribeService getServiceFromID(String id) {
 		return serviceManager.getServiceConfiguration(id);
 	}
 
+	/**
+	 * Exception text when a service requested is not registered into the
+	 * library
+	 * 
+	 * @param id
+	 *            The id of the service not found
+	 * @return The Exception text to show to the user
+	 */
 	private String getErrorForUnknownService(String id) {
 		StringBuffer error = new StringBuffer();
 		error.append("Services path: "
@@ -168,6 +228,21 @@ public class POIProxy {
 		return error.toString();
 	}
 
+	/**
+	 * This method is used to get the pois from a service and return a GeoJSON
+	 * document with the data retrieved given a longitude, latitude and a radius
+	 * in meters.
+	 * 
+	 * @param id
+	 *            The id of the service
+	 * @param lon
+	 *            The longitude
+	 * @param lat
+	 *            The latitude
+	 * @param distanceInMeters
+	 *            The distance in meters from the lon, lat
+	 * @return The GeoJSON response from the original service response
+	 */
 	public String getPOIs(String id, double lon, double lat,
 			double distanceInMeters, ArrayList<Param> optionalParams)
 			throws Exception {
@@ -196,6 +271,21 @@ public class POIProxy {
 		return geoJSON;
 	}
 
+	/**
+	 * This method is used to get the pois from a service and return a GeoJSON
+	 * document with the data retrieved given a bounding box corners
+	 * 
+	 * @param id
+	 *            The id of the service
+	 * @param minX
+	 * 
+	 * @param minY
+	 * 
+	 * @param maxX
+	 * 
+	 * @param maxY
+	 * @return The GeoJSON response from the original service response
+	 */
 	public String getPOIs(String id, double minX, double minY, double maxX,
 			double maxY, ArrayList<Param> optionalParams) throws Exception {
 		DescribeService describeService = this.getServiceFromID(id);
@@ -220,6 +310,22 @@ public class POIProxy {
 		return geoJSON;
 	}
 
+	/**
+	 * Given a DescribeService and some mandatory parameters, builds a valid
+	 * request for the POI service
+	 * 
+	 * @param describeService
+	 *            The DescribeService
+	 * @param minX
+	 * @param minY
+	 * @param maxX
+	 * @param maxY
+	 * @param optionalParams
+	 *            A list of {@link Param}
+	 * @param lon
+	 * @param lat
+	 * @return The url string to request to
+	 */
 	public String buildRequest(DescribeService describeService, double minX,
 			double minY, double maxX, double maxY,
 			ArrayList<Param> optionalParams, double lon, double lat) {
@@ -269,6 +375,15 @@ public class POIProxy {
 		return url;
 	}
 
+	/**
+	 * Calls
+	 * {@link Downloader#downloadFromUrl(String, es.prodevelop.gvsig.mini.utiles.Cancellable)}
+	 * 
+	 * @param url
+	 *            The url to request to
+	 * @return The data downloaded
+	 * @throws Exception
+	 */
 	public String doRequest(String url) throws Exception {
 		// hacer peticion en segundo plano
 		Downloader d = new Downloader();
@@ -277,6 +392,22 @@ public class POIProxy {
 		return new String(d.getData());
 	}
 
+	/**
+	 * Called after {@link #doRequest(String)} succesfully downlaods the data.
+	 * 
+	 * This method gets the {@link JPEParser} implementation given the
+	 * {@link DescribeService#getFormat()} and calls
+	 * {@link JPEParser#parse(String, DescribeService)}
+	 * 
+	 * Once the response is parsed succesfully returns the GeoJSON response
+	 * 
+	 * @param json
+	 *            The json document retrieved from the source service
+	 * @param service
+	 *            The {@link DescribeService} used to parse the json
+	 * @return A GeoJSON
+	 * @throws NoParserRegisteredException
+	 */
 	public String onResponseReceived(String json, DescribeService service)
 			throws NoParserRegisteredException {
 		final JPEParser jpeParser = JPEParserManager.getInstance()
@@ -287,6 +418,14 @@ public class POIProxy {
 		return geoJSON;
 	}
 
+	/**
+	 * Utility method to get the distance from the bottom left corner of the
+	 * bounding box to the upper right corner
+	 * 
+	 * @param boundingBox
+	 *            The bounding box
+	 * @return The distance in meters
+	 */
 	public double getDistanceMeters(Extent boundingBox) {
 		return Calculator.latLonDist(boundingBox.getMinX(),
 				boundingBox.getMinY(), boundingBox.getMaxX(),

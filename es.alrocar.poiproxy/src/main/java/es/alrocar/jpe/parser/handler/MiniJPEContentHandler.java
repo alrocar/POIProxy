@@ -45,43 +45,75 @@ import es.prodevelop.gvsig.mini.geom.impl.base.Point;
 import es.prodevelop.gvsig.mini.geom.impl.jts.JTSFeature;
 import es.prodevelop.gvsig.mini.geom.impl.jts.JTSGeometry;
 
+/**
+ * An implementation of {@link JPEContentHandler} that works with the geometries
+ * model of gvSIG Mini that is based on the JTS library. The class used as a
+ * feature is {@link JTSFeature}
+ * 
+ * @author albertoromeu
+ * 
+ */
 public class MiniJPEContentHandler implements JPEContentHandler {
 
 	ArrayList featureCollections = new ArrayList();
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Object startFeatureCollection() {
 		featureCollections = new ArrayList();
 		return new ArrayList();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Object endFeatureCollection(Object featureCollection) {
 		this.featureCollections.add(featureCollection);
 		return featureCollection;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Object startFeature() {
 		return new JTSFeature(null);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Object endFeature(Object feature) {
 		return feature;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Object startPoint() {
 		Point p = new Point();
 		return p;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Object addXToPoint(double x, Object point) {
 		((Point) point).setX(x);
 		return point;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Object addYToPoint(double y, Object point) {
 		((Point) point).setY(y);
 		return point;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Object endPoint(Object point) {
 		GeometryFactory factory = new GeometryFactory();
 		Coordinate coord = new Coordinate();
@@ -90,17 +122,26 @@ public class MiniJPEContentHandler implements JPEContentHandler {
 		return factory.createPoint(coord);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Object addPointToFeature(Object feature, Object point) {
 		((JTSFeature) feature).setGeometry(new JTSGeometry(
 				(com.vividsolutions.jts.geom.Point) point));
 		return feature;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Object addElementToFeature(String element, String key, Object feature) {
 		((JTSFeature) feature).addField(key, element, 0);
 		return feature;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Object addFeatureToCollection(Object featureCollection,
 			Object feature) {
 		JTSFeature feat = (JTSFeature) feature;

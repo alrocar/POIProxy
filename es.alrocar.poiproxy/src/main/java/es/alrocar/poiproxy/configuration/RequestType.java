@@ -37,6 +37,18 @@ package es.alrocar.poiproxy.configuration;
 
 import java.util.ArrayList;
 
+import es.alrocar.jpe.parser.configuration.DescribeServiceParser;
+
+/**
+ * An entity to parse a requestType object from the json document that describes
+ * a service
+ * 
+ * @see DescribeServiceParser
+ * @see DescribeService
+ * 
+ * @author albertoromeu
+ * 
+ */
 public class RequestType {
 
 	private String url;

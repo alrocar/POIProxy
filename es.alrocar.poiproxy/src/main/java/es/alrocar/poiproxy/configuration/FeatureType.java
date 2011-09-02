@@ -37,6 +37,21 @@ package es.alrocar.poiproxy.configuration;
 
 import java.util.ArrayList;
 
+import es.alrocar.jpe.parser.configuration.DescribeServiceParser;
+
+/**
+ * An Entity to where to parse featureType object of the describe service json
+ * document.
+ * 
+ * This class is used to know which attributes of the source response of a
+ * service should be parsed
+ * 
+ * @see DescribeServiceParser
+ * @see DescribeService
+ * 
+ * @author albertoromeu
+ * 
+ */
 public class FeatureType {
 
 	private String lon;
@@ -46,14 +61,29 @@ public class FeatureType {
 	private String combinedLonLat;
 	private String lonLatSeparator;
 
+	/**
+	 * An attribute that specify the lon lat attributes when they are on an
+	 * array
+	 * 
+	 * @return
+	 */
 	public String getCombinedLonLat() {
 		return combinedLonLat;
 	}
 
+	/**
+	 * 
+	 * @param combinedLonLat
+	 */
 	public void setCombinedLonLat(String combinedLonLat) {
 		this.combinedLonLat = combinedLonLat;
 	}
 
+	/**
+	 * The separator used to separate lon lat values, when they are on an array
+	 * 
+	 * @return
+	 */
 	public String getLonLatSeparator() {
 		return lonLatSeparator;
 	}
@@ -62,6 +92,12 @@ public class FeatureType {
 		this.lonLatSeparator = lonLatSeparator;
 	}
 
+	/**
+	 * The attribute where longitude is stored in the document response of a
+	 * service
+	 * 
+	 * @return
+	 */
 	public String getLon() {
 		return lon;
 	}
@@ -70,6 +106,12 @@ public class FeatureType {
 		this.lon = lon;
 	}
 
+	/**
+	 * The attribute where latitude is stored in the document response of a
+	 * service
+	 * 
+	 * @return
+	 */
 	public String getLat() {
 		return lat;
 	}
@@ -78,6 +120,11 @@ public class FeatureType {
 		this.lat = lat;
 	}
 
+	/**
+	 * An array of atributtes that need to be parsed from the source response
+	 * 
+	 * @return
+	 */
 	public ArrayList<String> getElements() {
 		return elements;
 	}
@@ -86,6 +133,12 @@ public class FeatureType {
 		this.elements = elements;
 	}
 
+	/**
+	 * The name of the attribute to start parsing a new feature from the source
+	 * response
+	 * 
+	 * @return
+	 */
 	public String getFeature() {
 		return feature;
 	}

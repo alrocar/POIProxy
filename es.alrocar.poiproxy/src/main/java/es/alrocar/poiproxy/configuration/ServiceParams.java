@@ -37,6 +37,15 @@ package es.alrocar.poiproxy.configuration;
 
 import java.util.HashMap;
 
+import es.alrocar.poiproxy.proxy.POIProxy;
+
+/**
+ * Mandatory params that are used by {@link POIProxy} to build a valid request
+ * to a service
+ * 
+ * @author albertoromeu
+ * 
+ */
 public class ServiceParams {
 
 	public static final String MINX = "__MINX__";

@@ -36,37 +36,58 @@
 package es.alrocar.jpe.parser.handler.json;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import org.json.simple.parser.ParseException;
 
 import es.alrocar.jpe.parser.handler.BaseContentHandler;
-import es.alrocar.jpe.parser.handler.JPEContentHandler;
-import es.alrocar.poiproxy.configuration.DescribeService;
-import es.alrocar.poiproxy.configuration.FeatureType;
 
+/**
+ * An event driven JSON parser
+ * 
+ * @author albertoromeu
+ * 
+ */
 public class JSONSimpleContentHandler extends BaseContentHandler implements
 		org.json.simple.parser.ContentHandler {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean endArray() throws ParseException, IOException {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * Internally calls {@link BaseContentHandler#end()}
+	 */
 	public void endJSON() throws ParseException, IOException {
 		this.end();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean endObject() throws ParseException, IOException {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean endObjectEntry() throws ParseException, IOException {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * Internally calls {@link BaseContentHandler#processValue(String)}
+	 */
 	public boolean primitive(Object arg0) throws ParseException, IOException {
 		if (arg0 == null)
 			return true;
@@ -74,20 +95,36 @@ public class JSONSimpleContentHandler extends BaseContentHandler implements
 		return true;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean startArray() throws ParseException, IOException {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * Internally calls {@link BaseContentHandler#start()}
+	 */
 	public void startJSON() throws ParseException, IOException {
 		start();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean startObject() throws ParseException, IOException {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * Internally calls {@link BaseContentHandler#startNewElement(String)}
+	 */
 	public boolean startObjectEntry(String arg0) throws ParseException,
 			IOException {
 		this.startNewElement(arg0);

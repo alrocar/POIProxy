@@ -37,6 +37,13 @@ package es.alrocar.jpe.parser.exceptions;
 
 import es.prodevelop.gvsig.mini.exceptions.BaseException;
 
+/**
+ * An exception thrown when there's no parser registered for some type of
+ * document (usually json or xml)
+ * 
+ * @author albertoromeu
+ * 
+ */
 public class NoParserRegisteredException extends BaseException {
 
 	public NoParserRegisteredException(Throwable cause) {
