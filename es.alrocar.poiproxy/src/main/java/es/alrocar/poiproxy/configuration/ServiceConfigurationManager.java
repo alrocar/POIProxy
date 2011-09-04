@@ -110,8 +110,10 @@ public class ServiceConfigurationManager {
 		if (f.isDirectory()) {
 			String[] files = f.list();
 			for (String s : files) {
-				System.out.println("Registering: " + s.toLowerCase());
-				this.registerServiceConfiguration(s.split(".json")[0], s);
+				if (s.endsWith(".json")) {
+					System.out.println("Registering: " + s.toLowerCase());
+					this.registerServiceConfiguration(s.split(".json")[0], s);
+				}
 			}
 		}
 	}

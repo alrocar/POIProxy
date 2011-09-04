@@ -1,0 +1,74 @@
+{
+  "type" : "FeatureCollection",
+  "features" : [ {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "3MN",
+      "typeClass" : "shop",
+      "typeName" : "mall",
+      "distance" : "0.12"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3805873, 39.4156004 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Burger King",
+      "typeClass" : "amenity",
+      "typeName" : "fast_food",
+      "distance" : "0.1"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3810978, 39.4149769 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "GALP",
+      "typeClass" : "amenity",
+      "typeName" : "fuel",
+      "distance" : "0.16"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.379222, 39.413333 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "typeClass" : "amenity",
+      "typeName" : "parking",
+      "distance" : "0.19"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3789305, 39.4160627 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Aparthotel Albufera",
+      "typeClass" : "tourism",
+      "typeName" : "hotel",
+      "distance" : "0.19"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3786623, 39.4159964 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "typeClass" : "amenity",
+      "typeName" : "parking",
+      "distance" : "0.26"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3786301, 39.4167009 ]
+    }
+  } ]
+}

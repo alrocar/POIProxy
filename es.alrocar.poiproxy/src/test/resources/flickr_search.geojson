@@ -1,0 +1,19 @@
+{
+  "type" : "FeatureCollection",
+  "features" : [ {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Valencia",
+      "url_t" : "http://farm4.static.flickr.com/3267/2788381805_6543154c78_t.jpg",
+      "url_s" : "http://farm4.static.flickr.com/3267/2788381805_6543154c78_m.jpg",
+      "url_m" : "http://farm4.static.flickr.com/3267/2788381805_6543154c78.jpg",
+      "url_z" : "http://farm4.static.flickr.com/3267/2788381805_6543154c78_z.jpg",
+      "url_l" : "http://farm4.static.flickr.com/3267/2788381805_6543154c78_b.jpg",
+      "url_o" : "http://farm4.static.flickr.com/3267/2788381805_63999b6154_o.jpg"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.35551, 39.459539 ]
+    }
+  } ]
+}

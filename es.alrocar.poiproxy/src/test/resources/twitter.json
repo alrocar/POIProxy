@@ -6,19 +6,15 @@
                     "search": {"url": "b", "params": []}
                     },
     featureTypes : { "browse" : {
-                    	"feature" : "id",
-                    	"elements" : ["title", "url", "distance"],
-                    	"lon": "lng", 
-                    	"lat": "lat",
-                    	"combinedLonLat": "location",
-                    	"separator": ","
+                    	"feature" : "created_at",
+                    	"elements" : ["from_user", "from_user_id", "location", "text", "full_name", "source"],
+                    	"lon": "coordinates", 
+                    	"lat": "coordinates"                    	
                     	},"search" : {
-                    	"feature" : "id",
-                    	"elements" : ["title", "url", "distance"],
-                    	"lon": "lng", 
-                    	"lat": "lat",
-                    	"combinedLonLat": "location",
-                    	"separator": ","
+                    	"feature" : "created_at",
+                    	"elements" : ["from_user", "from_user_id", "location", "text", "full_name", "source"],
+                    	"lon": "coordinates", 
+                    	"lat": "coordinates"                    	
                     	}
                     }
 }}

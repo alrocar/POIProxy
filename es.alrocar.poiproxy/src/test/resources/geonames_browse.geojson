@@ -1,0 +1,15 @@
+{
+  "type" : "FeatureCollection",
+  "features" : [ {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Eixample",
+      "countryName" : "Spain",
+      "distance" : "0.73644"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.37225, 39.46284 ]
+    }
+  } ]
+}

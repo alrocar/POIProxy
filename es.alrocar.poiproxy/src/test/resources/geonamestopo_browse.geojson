@@ -1,0 +1,16 @@
+{
+  "type" : "FeatureCollection",
+  "features" : [ {
+    "type" : "Feature",
+    "properties" : {
+      "toponymName" : "Aparthotel Albufera",
+      "name" : "Aparthotel Albufera",
+      "countryName" : "Spain",
+      "distance" : "0.19054"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.37886, 39.41607 ]
+    }
+  } ]
+}

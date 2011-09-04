@@ -41,6 +41,7 @@ import java.util.Map;
 
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonProcessingException;
+import org.codehaus.jackson.io.JsonStringEncoder;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.SerializationConfig;
 import org.json.simple.JSONArray;
@@ -199,10 +200,11 @@ public class MiniJPEWriterHandler implements JPEContentHandler {
 					true);
 
 			String originalJson = featureCollection.toString();
+			
 			JsonNode tree;
 			try {
 				tree = objectMapper.readTree(originalJson);
-				return objectMapper.writeValueAsString(tree);
+				return objectMapper.writeValueAsString(tree);				
 			} catch (JsonProcessingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
