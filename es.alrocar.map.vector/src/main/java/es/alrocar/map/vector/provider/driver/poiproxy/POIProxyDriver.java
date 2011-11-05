@@ -56,10 +56,14 @@ public class POIProxyDriver extends BaseDriver {
 				json = download(url);
 
 				if (listener != null) {
+					if (cancellable != null && cancellable.getCanceled())
+						return null;
 					listener.onRawDataRetrieved(tile, json, cancellable, this,
 							zoomLevel);
 				}
 
+				if (cancellable != null && cancellable.getCanceled())
+					return null;
 				result = parser.parse(json);
 			}
 		} catch (Exception e) {

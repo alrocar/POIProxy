@@ -46,16 +46,22 @@ public class TileStrategy extends BaseStrategy {
 					return;
 				if (driver.needsExtentToWork()) {
 					if (tiles[i][0] != 0 && tiles[i][1] != 0) {
+						if (cancellable != null && cancellable.getCanceled())
+							return;
 						Extent bbox = renderer.getTileExtent(tiles[i][0],
 								tiles[i][1], renderer.resolutions[zoomLevel],
 								-renderer.getOriginX(), -renderer.getOriginY());
 						bbox = convertExtent(bbox);
 						notifyObserver(observer, tiles[i], cancellable,
-								driver.getData(tiles[i], bbox, cancellable, zoomLevel), zoomLevel);
+								driver.getData(tiles[i], bbox, cancellable,
+										zoomLevel), zoomLevel);
 					}
 				} else {
+					if (cancellable != null && cancellable.getCanceled())
+						return;
 					notifyObserver(observer, tiles[i], cancellable,
-							driver.getData(tiles[i], null, cancellable, zoomLevel), zoomLevel);
+							driver.getData(tiles[i], null, cancellable,
+									zoomLevel), zoomLevel);
 				}
 			}
 		} catch (Exception e) {
