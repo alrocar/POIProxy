@@ -22,6 +22,7 @@ package es.alrocar.map.vector.provider.observer;
 
 import java.util.ArrayList;
 
+import es.alrocar.map.vector.provider.driver.ProviderDriver;
 import es.prodevelop.gvsig.mini.utiles.Cancellable;
 
 /**
@@ -32,6 +33,9 @@ import es.prodevelop.gvsig.mini.utiles.Cancellable;
 public interface VectorialProviderListener {
 
 	public void onVectorDataRetrieved(int[] tile, ArrayList data,
-			Cancellable cancellable);
+			Cancellable cancellable, int zoomLevel);
+
+	public void onRawDataRetrieved(int[] tile, Object data,
+			Cancellable cancellable, ProviderDriver driver, int zoomLevel);
 
 }

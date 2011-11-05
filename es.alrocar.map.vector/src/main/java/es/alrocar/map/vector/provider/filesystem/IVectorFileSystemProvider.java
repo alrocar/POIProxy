@@ -10,5 +10,5 @@ public interface IVectorFileSystemProvider {
 			Cancellable cancellable);
 
 	public void save(int[] tile, int zoomLevel, String driverName,
-			Cancellable cancellable, ArrayList data);
+			Cancellable cancellable, Object data);
 }

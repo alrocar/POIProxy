@@ -20,7 +20,7 @@ public class FixedStrategy extends BBoxTiledStrategy {
 		cacheValues(tiles, this.zoomLevel, extent);
 		Extent convertedExtent = convertExtent(extent);
 		notifyObserver(observer, tiles[0], cancellable, getProvider()
-				.getDriver().getData(null, convertedExtent, cancellable));
+				.getDriver().getData(null, convertedExtent, cancellable, zoomLevel), zoomLevel);
 	}
 
 }

@@ -23,6 +23,7 @@ package es.alrocar.map.vector.provider;
 import java.util.ArrayList;
 
 import es.alrocar.map.vector.provider.driver.ProviderDriver;
+import es.alrocar.map.vector.provider.filesystem.IVectorFileSystemProvider;
 import es.alrocar.map.vector.provider.observer.VectorialProviderListener;
 import es.alrocar.map.vector.provider.strategy.IVectorProviderStrategy;
 import es.prodevelop.gvsig.mini.geom.Extent;
@@ -72,7 +73,8 @@ public class VectorialProvider implements VectorialProviderListener {
 							currentCancellable.setCanceled(true);
 						}
 						// cache.mCachedTiles.clear();
-						observer.onVectorDataRetrieved(null, null, null);
+						observer.onVectorDataRetrieved(null, null, null,
+								zoomLevel);
 					}
 
 					currentCancellable = cancellable;
@@ -80,14 +82,28 @@ public class VectorialProvider implements VectorialProviderListener {
 					ArrayList tilesToRetrieve = new ArrayList();
 					final int size = tiles.length;
 
+					boolean found = false;
 					for (int i = 0; i < size; i++) {
+						found = false;
 						if (tiles[i] != null) {
 							ArrayList values = cache.getTile(format(tiles[i]));
-							if (values == null)
-								tilesToRetrieve.add(tiles[i]);
-							else
+							if (values == null) {
+								values = driver.getFileSystemProvider().load(
+										tiles[i], zoomLevel, driver.getName(),
+										cancellable);
+								if (values == null) {
+									tilesToRetrieve.add(tiles[i]);
+								} else {
+									found = true;
+								}
+							} else {
+								found = true;
+							}
+
+							if (found) {
 								observer.onVectorDataRetrieved(tiles[i],
-										values, cancellable);
+										values, cancellable, zoomLevel);
+							}
 						}
 					}
 
@@ -118,12 +134,13 @@ public class VectorialProvider implements VectorialProviderListener {
 	}
 
 	public void onVectorDataRetrieved(int[] tile, ArrayList data,
-			Cancellable cancellable) {
+			Cancellable cancellable, int zoomLevel) {
 		try {
 			if (data != null) {
-				cache.putTile(format(tile), data);			
+				cache.putTile(format(tile), data);
 
-				observer.onVectorDataRetrieved(tile, data, cancellable);
+				observer.onVectorDataRetrieved(tile, data, cancellable,
+						zoomLevel);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -133,5 +150,14 @@ public class VectorialProvider implements VectorialProviderListener {
 	public String format(int[] tile) {
 		return new StringBuffer().append(tile[0]).append("_").append(tile[1])
 				.toString();
+	}
+
+	public void onRawDataRetrieved(int[] tile, Object data,
+			Cancellable cancellable, ProviderDriver driver, int zoomLevel) {
+		if (driver.getFileSystemProvider() != null) {
+			driver.getFileSystemProvider().save(tile, zoomLevel,
+					driver.getName(), cancellable, data);
+		}
+
 	}
 }

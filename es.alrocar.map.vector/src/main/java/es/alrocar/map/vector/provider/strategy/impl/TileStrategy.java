@@ -51,11 +51,11 @@ public class TileStrategy extends BaseStrategy {
 								-renderer.getOriginX(), -renderer.getOriginY());
 						bbox = convertExtent(bbox);
 						notifyObserver(observer, tiles[i], cancellable,
-								driver.getData(tiles[i], bbox, cancellable));
+								driver.getData(tiles[i], bbox, cancellable, zoomLevel), zoomLevel);
 					}
 				} else {
 					notifyObserver(observer, tiles[i], cancellable,
-							driver.getData(tiles[i], null, cancellable));
+							driver.getData(tiles[i], null, cancellable, zoomLevel), zoomLevel);
 				}
 			}
 		} catch (Exception e) {

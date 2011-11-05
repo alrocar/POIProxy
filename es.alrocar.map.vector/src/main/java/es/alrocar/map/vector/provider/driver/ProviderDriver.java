@@ -24,13 +24,14 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import es.alrocar.map.vector.provider.VectorialProvider;
+import es.alrocar.map.vector.provider.filesystem.IVectorFileSystemProvider;
 import es.prodevelop.gvsig.mini.geom.Extent;
 import es.prodevelop.gvsig.mini.utiles.Cancellable;
 
 public interface ProviderDriver {
 
 	public ArrayList getData(int[] tile, Extent booundingBox,
-			Cancellable cancellable);
+			Cancellable cancellable, int zoom);
 
 	public boolean needsExtentToWork();
 
@@ -41,6 +42,8 @@ public interface ProviderDriver {
 	public void setProvider(VectorialProvider provider);
 
 	public String getName();
+	
+	public IVectorFileSystemProvider getFileSystemProvider();
 
 //	public void write(int[] tile, int zoomLevel, ArrayList data,
 //			Cancellable cancellable);

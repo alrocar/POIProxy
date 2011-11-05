@@ -32,11 +32,11 @@ import es.prodevelop.gvsig.mini.geom.Point;
 import es.prodevelop.gvsig.mini.utiles.Cancellable;
 
 public abstract class JSONDriver extends BaseDriver {
-	
+
 	protected String[] keys;
 
 	public ArrayList getData(int[] tile, Extent boundingBox,
-			Cancellable cancellable) {
+			Cancellable cancellable, int zoom) {
 
 		String query = null;
 		String jsonTweets = null;

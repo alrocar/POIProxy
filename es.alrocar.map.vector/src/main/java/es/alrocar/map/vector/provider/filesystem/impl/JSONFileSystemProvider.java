@@ -14,7 +14,7 @@ public class JSONFileSystemProvider implements IVectorFileSystemProvider {
 	}
 
 	public void save(int[] tile, int zoomLevel, String driverName,
-			Cancellable cancellable, ArrayList data) {
+			Cancellable cancellable, Object data) {
 		// TODO Auto-generated method stub
 
 		//Al persistir hay que guardar tambien el tipo

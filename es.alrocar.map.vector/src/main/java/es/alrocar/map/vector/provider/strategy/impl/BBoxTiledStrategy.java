@@ -54,7 +54,7 @@ public class BBoxTiledStrategy extends BaseStrategy {
 				// FIXME calc extent from tiles
 				Extent convertedExtent = convertExtent(viewExtent);
 				notifyObserver(observer, tiles[0], cancellable,
-						driver.getData(null, convertedExtent, cancellable));
+						driver.getData(null, convertedExtent, cancellable, zoomLevel), zoomLevel);
 				// observer.onVectorDataRetrieved(tiles[0],
 				// driver.getData(null, extent, cancellable), cancellable);
 			} else {
@@ -62,7 +62,7 @@ public class BBoxTiledStrategy extends BaseStrategy {
 					if (cancellable != null && cancellable.getCanceled())
 						return;
 					notifyObserver(observer, tiles[i], cancellable,
-							driver.getData(tiles[i], null, cancellable));
+							driver.getData(tiles[i], null, cancellable, zoomLevel), zoomLevel);
 				}
 			}
 		} catch (Exception e) {
@@ -77,7 +77,7 @@ public class BBoxTiledStrategy extends BaseStrategy {
 	}
 
 	public void notifyObserver(VectorialProviderListener observer, int[] tile,
-			Cancellable cancellable, ArrayList data) {
+			Cancellable cancellable, ArrayList data, int zoomLevel) {
 
 		convertCoordinates(data);
 
@@ -108,7 +108,7 @@ public class BBoxTiledStrategy extends BaseStrategy {
 
 		for (int i = 0; i < length; i++) {
 			te = extents.get(i);
-			observer.onVectorDataRetrieved(te.tile, te.points, cancellable);
+			observer.onVectorDataRetrieved(te.tile, te.points, cancellable, zoomLevel);
 		}
 	}
 

@@ -30,6 +30,8 @@ import java.net.URLConnection;
 
 import es.alrocar.map.vector.provider.VectorialProvider;
 import es.alrocar.map.vector.provider.driver.ProviderDriver;
+import es.alrocar.map.vector.provider.filesystem.IVectorFileSystemProvider;
+import es.alrocar.map.vector.provider.filesystem.impl.GeoJSONFileSystemProvider;
 import es.prodevelop.geodetic.utils.conversion.ConversionCoords;
 import es.prodevelop.gvsig.mini.geom.Extent;
 import es.prodevelop.gvsig.mini.geom.Point;
@@ -40,6 +42,7 @@ import es.prodevelop.gvsig.mobile.fmap.proj.CRSFactory;
 public abstract class BaseDriver implements ProviderDriver {
 
 	private VectorialProvider provider;
+	private IVectorFileSystemProvider fsProvider;
 	public final String MINX = "_MINX_";
 	public final String MINY = "_MINY_";
 	public final String MAXX = "_MAXX_";
@@ -51,6 +54,16 @@ public abstract class BaseDriver implements ProviderDriver {
 	public final String DIST = "_DIST_";
 
 	public final String MAXRESULTS = "_MAXRESULTS_";
+	
+	private String path;
+	
+	public BaseDriver() {
+		path = "";
+	}
+	
+	public BaseDriver(String fileSystemPath) {
+		path = fileSystemPath;
+	}
 
 	public String getExtent(int[] tile, Extent extent) {
 		if (extent != null) {
@@ -143,5 +156,14 @@ public abstract class BaseDriver implements ProviderDriver {
 		return Calculator.latLonDist(boundingBox.getMinX(),
 				boundingBox.getMinY(), boundingBox.getMaxX(),
 				boundingBox.getMaxY());
+	}
+
+	public IVectorFileSystemProvider getFileSystemProvider() {
+		if (fsProvider == null) {
+			fsProvider = new GeoJSONFileSystemProvider(path);
+		}
+
+		return fsProvider;
+
 	}
 }

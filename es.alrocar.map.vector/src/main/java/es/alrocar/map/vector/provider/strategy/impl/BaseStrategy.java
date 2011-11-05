@@ -91,8 +91,7 @@ public abstract class BaseStrategy implements IVectorProviderStrategy {
 	}
 
 	public void notifyObserver(VectorialProviderListener observer, int[] tile,
-			Cancellable cancellable, ArrayList data) {
-		convertCoordinates(data);
-		observer.onVectorDataRetrieved(tile, data, cancellable);
+			Cancellable cancellable, ArrayList data, int zoomLevel) {		
+		observer.onVectorDataRetrieved(tile, data, cancellable, zoomLevel);
 	}
 }
