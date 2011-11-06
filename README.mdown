@@ -76,9 +76,9 @@ POIProxy is composed by 4 projects:
 
      A REST interface of POIProxy to be deployed into Google App Engine
 
-* ***es.alrocar.map.vector (Under construction)***
+* ***es.alrocar.map.vector ***
 
-     A Java vectorial provider, to access the POIProxy from your application.
+     A Java vectorial provider, to access the POIProxy from your application. It's being used by gvSIG Mini to load POI layers provided by POIProxy.
 
 ##Building a workspace of POIProxy
 
