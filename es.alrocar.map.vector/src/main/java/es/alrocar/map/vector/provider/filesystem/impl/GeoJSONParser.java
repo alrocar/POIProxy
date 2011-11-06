@@ -118,11 +118,17 @@ public class GeoJSONParser {
 		JSONObject props = feature.getJSONObject("properties");
 		Iterator it = props.keys();
 
-		String key;
-
+		String key;		
+		
+		String val;
+		feat.setText("");
 		while (it.hasNext()) {
 			key = it.next().toString();
-			feat.addField(key, props.getString(key), 0);
+			val = props.getString(key);
+			feat.addField(key, val, 0);	
+			if (val.indexOf("http") == -1) {
+				feat.setText(feat.getText() + "  " + val);
+			}
 		}
 
 		return feat;

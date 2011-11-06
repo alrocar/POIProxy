@@ -22,14 +22,15 @@ package es.alrocar.map.vector.provider;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import es.alrocar.map.vector.provider.driver.ProviderDriver;
-import es.alrocar.map.vector.provider.filesystem.IVectorFileSystemProvider;
 import es.alrocar.map.vector.provider.observer.VectorialProviderListener;
 import es.alrocar.map.vector.provider.strategy.IVectorProviderStrategy;
 import es.prodevelop.gvsig.mini.geom.Extent;
 import es.prodevelop.gvsig.mini.utiles.Cancellable;
-import es.prodevelop.gvsig.mini.utiles.WorkQueue;
 import es.prodevelop.tilecache.renderer.MapRenderer;
 
 /**
@@ -47,6 +48,7 @@ public class VectorialProvider implements VectorialProviderListener {
 	private int lastZoomLevel = -1;
 	private Cancellable currentCancellable;
 	public HashSet<String> mPending = new HashSet<String>();
+	private ExecutorService executor = Executors.newCachedThreadPool();
 
 	public VectorialProvider(MapRenderer renderer,
 			IVectorProviderStrategy strategy, ProviderDriver driver,
@@ -66,7 +68,7 @@ public class VectorialProvider implements VectorialProviderListener {
 			if (zoomLevel < 2)
 				return;
 //			WorkQueue.getExclusiveInstance().clearPendingTasks();
-			WorkQueue.getExclusiveInstance().execute(new Runnable() {
+			executor.execute(new Runnable() {
 
 				public void run() {
 					if (lastZoomLevel != zoomLevel) {
@@ -125,7 +127,7 @@ public class VectorialProvider implements VectorialProviderListener {
 								VectorialProvider.this, cancellable);
 					}
 				}
-			}, true);
+			});
 
 		} catch (Exception e) {
 			e.printStackTrace();
