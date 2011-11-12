@@ -139,9 +139,55 @@ This diagram shows the internal collaboration among classes in the POIProxy libr
 [gsoc_idea]: https://confluence.prodevelop.es/display/GVMN/Design+and+implement+an+API+for+tiled+vectorial+support+of+geo-location+data+services
 [tiles_google]: http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/
 
+##Describe service specification
+
+POIProxy provides a parsing framework that enables supporting new services by just providing a configuration file of the service.
+
+A service configuration file, is a json formatted file like this:
+
+<pre><code>
+{
+    format: "xml",
+    apiKey : "",
+    requestTypes : {
+                    "browse": {"url": "http://wfs.prodevelop.es/geoserver/wfs?TYPENAME=world%3Acities&SERVICE=WFS&VERSION=1.0.0&REQUEST=GetFeature&SRS=EPSG%3A4326", "params": []},
+                    "search": {"url": "b", "params": []}
+                    },
+    featureTypes : { "browse" : {
+                         "feature" : "featureMember",
+                    	"elements" : ["City", "Country"],
+                    	"lon": "longitude", 
+                    	"lat": "latitude"
+                    },"search" : {
+                    	"feature" : "kind",
+                    	"elements" : ["title", "published", "name", "profileUrl", "thumbnailUrl"],
+                    	"lon": "lng", 
+                    	"lat": "lat"
+                    }
+     }
+}
+</pre></code>
+
+* **format**: The format of the original response from the source server. Currently supported formats are "xml" and "json".
+* **apiKey**: Not used
+* **requestTypes**: It's an object that describes two types of requests, "browse" or "search". For each request type it's enough with describing the "url". For the param substition in the URL there are several wildcards defined: \__MINX\__, \__MINY\__, \__MAXX\__, \__MAXY\__, \__LAT\__, \__LON\__, \__DIST\__, \__QUERY\__. You should add these wildcards properly inside the URL so the POIProxy can substitute them properly.
+* **featureTypes**: An object describing the type of the response of the source service. It's used to parse complex objects into plain GeoJSON objects.
+  * **feature**: The property defining a new POI. It should be the first property in the source response document to identify a new POI.
+  * **elements**: A list of properties to be parsed.
+  * **lon**: The longitude attribute in the source response document.
+  * **lat**: The latitude attribute in the source response document.
+
+##Use cases
+
+* ***POIProxy and gvSIG Mini***
+
+It's still a proof of concept, but current development version of gvSIG Mini is able to browse POIProxy layers.
+
+[![](http://www.alrocar.es/img/gvsigmini_poiproxy2.png)](http://www.alrocar.es/img/gvsigmini_poiproxy2.png)
+
 ##License and Contact
 
-POIProxy is free software and is released under GNU LGPL Version 2 (or any later version)
+POIProxy is free software and is released under GNU LGPL Version 2 (or any later version). Please read carefully the Terms of service of the different services supported and use your own API keys when apply.
 
 If you have any question, want to add a new service, etc. you can contact at:
 
