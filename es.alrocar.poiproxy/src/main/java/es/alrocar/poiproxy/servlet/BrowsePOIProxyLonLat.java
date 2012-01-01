@@ -48,6 +48,7 @@ import org.restlet.representation.StringRepresentation;
 import org.restlet.representation.Variant;
 import org.restlet.resource.ResourceException;
 
+import es.alrocar.poiproxy.configuration.ServiceConfigurationManager;
 import es.alrocar.poiproxy.configuration.Param;
 import es.alrocar.poiproxy.proxy.POIProxy;
 
@@ -84,7 +85,7 @@ public class BrowsePOIProxyLonLat extends BrowseQueryServerResource {
 					this.extractParams(params));
 		} catch (Exception e) {
 			return new StringRepresentation(
-					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the browseByLonLat service, check that your URL is of the type '/browseByLonLat?service=XXXXX&lon=-0.38&lat=39.6&distance=500&callback=whatever'");
+					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the browseByLonLat service, check that your URL is of the type '/browseByLonLat?service=XXXXX&lon=-0.38&lat=39.6&distance=500&callback=whatever'" + ServiceConfigurationManager.CONFIGURATION_DIR);
 		}
 
 		String callback = params.get(Param.CALLBACK);

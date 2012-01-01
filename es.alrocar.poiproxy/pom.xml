@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>es.prodevelop</groupId>
 	<artifactId>es.alrocar.poiproxy</artifactId>
-	<version>1.0.2-SNAPSHOT</version>
+	<version>1.0.3-SNAPSHOT</version>
 	<url>http://poiproxy.mapps.es</url>
 	<description>A proxy service to retrieve POIs from several public services</description>
 	<parent>
