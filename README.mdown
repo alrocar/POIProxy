@@ -94,7 +94,7 @@ Finally refresh the workspace
 
 * ***In a servlet container***
 
-     To run POIProxy in a servlet container (i.e. Tomcat) at localhost:
+     To run POIProxy in a servlet container (i.e. Jetty) at localhost:
 
      `cd es.alrocar.poiproxy.rest`
 
