@@ -94,17 +94,27 @@ Finally refresh the workspace
 
 * ***In a servlet container***
 
-     To run POIProxy in a servlet container (i.e. Tomcat), clone the es.alrocar.poiproxy.rest project and run:
+     To run POIProxy in a servlet container (i.e. Tomcat) at localhost:
+
+     `cd es.alrocar.poiproxy.rest`
 
      `mvn jetty:run`
+
+     The server will be up at http://localhost:8080
 
 *Note: The services configuration should be located at: /var/lib/sp/services*
 
 * ***In Google App Engine***
 
-     To run POIProxy in Google AppEngine, clone the es.alrocar.poiproxy.gae and run:
+     To run POIProxy in Google AppEngine (at localhost):
+
+     `cd es.alrocar.poiproxy.gae`
+
+     `mvn gae:unpack`
 
      `mvn gae:run`
+
+     The server will be up at http://localhost:8080
 
      Both projects depend on es.alrocar.poiproxy that is deployed at maven central and should be downloaded automatically to your local maven repository.
      
