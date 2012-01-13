@@ -85,6 +85,7 @@ POIProxy is composed by 4 projects:
 Just clone this repository `git clone https://github.com/alrocar/POIProxy`, import the projects into an Eclipse workspace and run from the root directory:
 
 `mvn eclipse:eclipse`
+
 `mvn clean install`
 
 Finally refresh the workspace
