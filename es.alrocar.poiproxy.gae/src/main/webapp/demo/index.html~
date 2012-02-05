@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+	<title>Leaflet Quick Start Guide Example</title>
+
+	<meta charset="utf-8" />
+
+	
+
+	<link rel="stylesheet" href="../dist/leaflet.css" />
+
+	<!--[if lte IE 8]><link rel="stylesheet" href="../dist/leaflet.ie.css" /><![endif]-->
+
+</head>
+
+<body>
+
+	<div id="map"></div>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../debug/leaflet.js"></script>
+
+	<script>
+
+		var map = new L.Map('map');
+
+		
+
+		var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png',
+
+			cloudmadeAttribution = 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
+
+			cloudmade = new L.TileLayer(cloudmadeUrl, {maxZoom: 18, attribution: cloudmadeAttribution});
+
+		
+
+		map.addLayer(cloudmade);
+
+		
+map.addLayer(new L.TileLayer.GeoJSON("http://poiproxy.mapps.es/browse?service=foursquare&x={x}&y={y}&z={z}&callback=?", {iconURL: "../dist/images/foursquare.png"}));
+map.addLayer(new L.TileLayer.GeoJSON("http://poiproxy.mapps.es/browse?service=panoramio&x={x}&y={y}&z={z}&callback=?", {iconURL: "../dist/images/panoramio.png"}));
+map.addLayer(new L.TileLayer.GeoJSON("http://poiproxy.mapps.es/browse?service=buzz&x={x}&y={y}&z={z}&callback=?", {iconURL: "../dist/images/buzz.png"}));
+map.addLayer(new L.TileLayer.GeoJSON("http://poiproxy.mapps.es/browse?service=flickr&x={x}&y={y}&z={z}&callback=?", {iconURL: "../dist/images/flickr.png"}));
+map.addLayer(new L.TileLayer.GeoJSON("http://poiproxy.mapps.es/browse?service=minube&x={x}&y={y}&z={z}&callback=?", {iconURL: "../dist/images/minube.png"}));
+map.addLayer(new L.TileLayer.GeoJSON("http://poiproxy.mapps.es/browse?service=twitter&x={x}&y={y}&z={z}&callback=?", {iconURL: "../dist/images/twitter.png"}));
+
+		
+
+map.locateAndSetView(16);
+map.on('locationfound', onLocationFound);
+        
+function onLocationFound(e) {
+    var radius = e.accuracy / 2;
+
+    var marker = new L.Marker(e.latlng);
+    map.addLayer(marker);
+    marker.bindPopup("You are within " + radius + " meters from this point").openPopup();
+    
+    var circle = new L.Circle(e.latlng, radius);
+    map.addLayer(circle);	
+}
+
+		map.on('click', onMapClick);
+
+		
+
+		var popup = new L.Popup();
+
+				
+
+		function onMapClick(e) {
+
+			var latlngStr = '(' + e.latlng.lat.toFixed(3) + ', ' + e.latlng.lng.toFixed(3) + ')';
+
+			
+
+			popup.setLatLng(e.latlng);
+
+			popup.setContent("You clicked the map at " + latlngStr);
+
+			map.openPopup(popup);
+
+		}
+
+	</script>
+
+</body>
+
+</html>
