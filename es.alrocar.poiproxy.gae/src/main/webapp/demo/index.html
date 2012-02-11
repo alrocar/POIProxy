@@ -103,10 +103,7 @@
     var minube = new L.TileLayer.GeoJSON("http://poiproxy.mapps.es/browse?service=minube&x={x}&y={y}&z={z}&callback=?", {iconURL: "../dist/images/minube.png", service: "minube"});
     var twitter = new L.TileLayer.GeoJSON("http://poiproxy.mapps.es/browse?service=twitter&x={x}&y={y}&z={z}&callback=?", {iconURL: "../dist/images/twitter.png", service: "twitter"});
 map.addLayer(foursquare);
-map.addLayer(panoramio);
-map.addLayer(flickr);
-map.addLayer(minube);
-map.addLayer(twitter);
+
     
         var controlLayers = new L.Control.Layers({}, {"Foursquare": foursquare, "Panoramio": panoramio, "Flickr": flickr, "Minube": minube, "Twitter": twitter});
 		map.addControl(controlLayers);
