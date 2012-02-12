@@ -451,7 +451,20 @@ L.Bounds = L.Class.extend({
 				(max.x <= this.max.x) &&
 				(min.y >= this.min.y) &&
 				(max.y <= this.max.y);
+	},
+
+	intersects: function (/*Bounds*/ bounds) {
+		var min = this.min,
+			max = this.max,
+			min2 = bounds.min,
+			max2 = bounds.max;
+
+		var xIntersects = (max2.x >= min.x) && (min2.x <= max.x),
+			yIntersects = (max2.y >= min.y) && (min2.y <= max.y);
+
+		return xIntersects && yIntersects;
 	}
+
 });
 
 
@@ -687,6 +700,22 @@ L.LatLng.prototype = {
 		return 'LatLng(' +
 				L.Util.formatNum(this.lat) + ', ' +
 				L.Util.formatNum(this.lng) + ')';
+	},
+
+	// Haversine distance formula, see http://en.wikipedia.org/wiki/Haversine_formula
+	distanceTo: function (/*LatLng*/ other)/*->Double*/ {
+		var R = 6378137, // earth radius in meters
+			d2r = L.LatLng.DEG_TO_RAD,
+			dLat = (other.lat - this.lat) * d2r,
+			dLon = (other.lng - this.lng) * d2r,
+			lat1 = this.lat * d2r,
+			lat2 = other.lat * d2r,
+			sin1 = Math.sin(dLat / 2),
+			sin2 = Math.sin(dLon / 2);
+
+		var a = sin1 * sin1 + sin2 * sin2 * Math.cos(lat1) * Math.cos(lat2);
+
+		return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 	}
 };
 
@@ -1125,7 +1154,7 @@ L.Map = L.Class.extend({
 			return this;
 		}
 
-		this._rawPanBy(oldSize.subtract(this.getSize()).divideBy(2));
+		this._rawPanBy(oldSize.subtract(this.getSize()).divideBy(2, true));
 
 		this.fire('move');
 
@@ -1572,9 +1601,11 @@ L.TileLayer = L.Class.extend({
 		continuousWorld: false,
 		noWrap: false,
 		zoomOffset: 0,
+		zoomReverse: false,
 
 		unloadInvisibleTiles: L.Browser.mobile,
-		updateWhenIdle: L.Browser.mobile
+		updateWhenIdle: L.Browser.mobile,
+		reuseTiles: false
 	},
 
 	initialize: function (url, options, urlParams) {
@@ -1680,6 +1711,10 @@ L.TileLayer = L.Class.extend({
 		}
 		this._tiles = {};
 
+		if (this.options.reuseTiles) {
+			this._unusedTiles = [];
+		}
+
 		if (clearOldContainer && this._container) {
 			this._container.innerHTML = "";
 		}
@@ -1700,7 +1735,7 @@ L.TileLayer = L.Class.extend({
 
 		this._addTilesFromCenterOut(tileBounds);
 
-		if (this.options.unloadInvisibleTiles) {
+		if (this.options.unloadInvisibleTiles || this.options.reuseTiles) {
 			this._removeOtherTiles(tileBounds);
 		}
 	},
@@ -1751,8 +1786,13 @@ L.TileLayer = L.Class.extend({
 					// evil, don't do this! crashes Android 3, produces load errors, doesn't solve memory leaks
 					// this._tiles[key].src = '';
 
+					//tile.src = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+
 					if (tile.parentNode === this._container) {
 						this._container.removeChild(tile);
+					}
+					if (this.options.reuseTiles) {
+						this._unusedTiles.push(this._tiles[key]);
 					}
 					delete this._tiles[key];
 				}
@@ -1764,7 +1804,7 @@ L.TileLayer = L.Class.extend({
 		var tilePos = this._getTilePos(tilePoint),
 			zoom = this._map.getZoom(),
 			key = tilePoint.x + ':' + tilePoint.y,
-			tileLimit = Math.pow(2, (zoom + this.options.zoomOffset));
+			tileLimit = Math.pow(2, this._getOffsetZoom(zoom));
 
 		// wrap tile coordinates
 		if (!this.options.continuousWorld) {
@@ -1781,8 +1821,8 @@ L.TileLayer = L.Class.extend({
 			}
 		}
 
-		// create tile
-		var tile = this._createTile();
+		// get unused tile - or create a new tile
+		var tile = this._getTile();
 		L.DomUtil.setPosition(tile, tilePos);
 
 		this._tiles[key] = tile;
@@ -1794,6 +1834,11 @@ L.TileLayer = L.Class.extend({
 		this._loadTile(tile, tilePoint, zoom);
 
 		container.appendChild(tile);
+	},
+
+	_getOffsetZoom: function (zoom) {
+		zoom = this.options.zoomReverse ? this.options.maxZoom - zoom : zoom;
+		return zoom + this.options.zoomOffset;
 	},
 
 	_getTilePos: function (tilePoint) {
@@ -1811,7 +1856,7 @@ L.TileLayer = L.Class.extend({
 
 		return L.Util.template(this._url, L.Util.extend({
 			s: s,
-			z: zoom + this.options.zoomOffset,
+			z: this._getOffsetZoom(zoom),
 			x: tilePoint.x,
 			y: tilePoint.y
 		}, this._urlParams));
@@ -1824,6 +1869,19 @@ L.TileLayer = L.Class.extend({
 		var tileSize = this.options.tileSize;
 		this._tileImg.style.width = tileSize + 'px';
 		this._tileImg.style.height = tileSize + 'px';
+	},
+
+	_getTile: function () {
+		if (this.options.reuseTiles && this._unusedTiles.length > 0) {
+			var tile = this._unusedTiles.pop();
+			this._resetTile(tile);
+			return tile;
+		}
+		return this._createTile();
+	},
+
+	_resetTile: function (tile) {
+		// Override if data stored on a tile needs to be cleaned up before reuse
 	},
 
 	_createTile: function () {
@@ -1914,9 +1972,65 @@ L.TileLayer.WMS = L.TileLayer.extend({
 });
 
 
-L.TileLayer.GeoJSON = L.TileLayer.extend({
+L.TileLayer.Canvas = L.TileLayer.extend({
 	options: {
-		async: false,
+		async: false
+	},
+
+	initialize: function (options) {
+		L.Util.setOptions(this, options);
+	},
+
+	redraw: function () {
+		for (var i in this._tiles) {
+			var tile = this._tiles[i];
+			this._redrawTile(tile);
+		}
+	},
+
+	_redrawTile: function (tile) {
+		this.drawTile(tile, tile._tilePoint, tile._zoom);
+	},
+
+	_createTileProto: function () {
+		this._canvasProto = L.DomUtil.create('canvas', 'leaflet-tile');
+
+		var tileSize = this.options.tileSize;
+		this._canvasProto.width = tileSize;
+		this._canvasProto.height = tileSize;
+	},
+
+	_createTile: function () {
+		var tile = this._canvasProto.cloneNode(false);
+		tile.onselectstart = tile.onmousemove = L.Util.falseFn;
+		return tile;
+	},
+
+	_loadTile: function (tile, tilePoint, zoom) {
+		tile._layer = this;
+		tile._tilePoint = tilePoint;
+		tile._zoom = zoom;
+
+		this.drawTile(tile, tilePoint, zoom);
+
+		if (!this.options.async) {
+			this.tileDrawn(tile);
+		}
+	},
+
+	drawTile: function (tile, tilePoint, zoom) {
+		// override with rendering code
+	},
+
+	tileDrawn: function (tile) {
+		this._tileOnLoad.call(tile);
+	}
+});
+
+
+L.TileLayer.POIProxy = L.TileLayer.extend({
+	options: {
+		async: true,
 		iconURL: null,
         service: ""
 	},
@@ -2014,6 +2128,9 @@ L.TileLayer.GeoJSON = L.TileLayer.extend({
                 e.layer.options.service = e.target.options.service;
 				if (e.properties) {
 					var popupContent = "";
+					popupContent += "<strong>" + ctx.options.service.toUpperCase() + "</strong>";
+                    popupContent += "<br>";
+                    popupContent += "<br>";
 					for (var prop in e.properties) {
 						if (e.properties[prop].indexOf("http") !== -1) {
 							if ((e.properties[prop].indexOf("png") !== -1 || e.properties[prop].indexOf("jpg") !== -1 || e.properties[prop].indexOf("jpeg") !== -1) && prop.indexOf("url_m") === -1 && prop.indexOf("url_s") === -1 && prop.indexOf("url_z") === -1 && prop.indexOf("url_z") === -1 && prop.indexOf("url_l") === -1 && prop.indexOf("url_o") === -1) {
@@ -2042,297 +2159,6 @@ L.TileLayer.GeoJSON = L.TileLayer.extend({
 	}
 });
 
-
-L.TileLayer.Canvas = L.TileLayer.extend({
-	options: {
-		async: false
-	},
-
-	initialize: function (options) {
-		//registrarse al evento tileunload para cancelar peticiones y si el tile tiene src eliminar la capa geojson correspondiente porque el tile ya no sirve
-		//hacer las peticiones en drawTile
-		//poner async a true y cuando llegue el geoJSON
-		//crear una capa geoJson pasándole el contenido, añadirla al mapa y llamar a tileDrawn, el nombre de la capa puede ser la url
-
-		L.Util.setOptions(this, options);
-	},
-
-	_createTileProto: function () {
-		this._canvasProto = L.DomUtil.create('canvas', 'leaflet-tile');
-
-		var tileSize = this.options.tileSize;
-		this._canvasProto.width = tileSize;
-		this._canvasProto.height = tileSize;
-	},
-
-	_createTile: function () {
-		var tile = this._canvasProto.cloneNode(false);
-		tile.onselectstart = tile.onmousemove = L.Util.falseFn;
-		return tile;
-	},
-
-	_loadTile: function (tile, tilePoint, zoom) {
-		tile._layer = this;
-
-		this.drawTile(tile, tilePoint, zoom);
-
-		if (!this.options.async) {
-			this.tileDrawn(tile);
-		}
-	},
-
-	drawTile: function (tile, tilePoint, zoom) {
-		// override with rendering code
-		this._map.addLayer(new L.Marker(this._map.getCenter(true)));
-	},
-
-	tileDrawn: function (tile) {
-		this._tileOnLoad.call(tile);
-	}
-});
-
-
-L.TileLayer.TileJSON = L.TileLayer.Canvas.extend({
-    options: {
-        debug: false
-    },
-
-    tileSize: 256,
-
-    initialize: function (options) {
-        L.Util.setOptions(this, options);
-
-        this.drawTile = function (canvas, tilePoint, zoom) {
-            var ctx = {
-                canvas: canvas,
-                tile: tilePoint,
-                zoom: zoom
-            };
-
-            if (this.options.debug) {
-                this._drawDebugInfo(ctx);
-            }
-            this._draw(ctx);
-        };
-    },
-
-    _drawDebugInfo: function (ctx) {
-        var max = this.tileSize;
-        var g = ctx.canvas.getContext('2d');
-        g.strokeStyle = '#000000';
-        g.fillStyle = '#FFFF00';
-        g.strokeRect(0, 0, max, max);
-        g.font = "12px Arial";
-        g.fillRect(0, 0, 5, 5);
-        g.fillRect(0, max - 5, 5, 5);
-        g.fillRect(max - 5, 0, 5, 5);
-        g.fillRect(max - 5, max - 5, 5, 5);
-        g.fillRect(max / 2 - 5, max / 2 - 5, 10, 10);
-        g.strokeText(ctx.tile.x + ' ' + ctx.tile.y + ' ' + ctx.zoom, max / 2 - 30, max / 2 - 10);
-    },
-
-    _tilePoint: function (ctx, coords) {
-        // start coords to tile 'space'
-        var s = ctx.tile.multiplyBy(this.tileSize);
-
-        // actual coords to tile 'space'
-        var p = this._map.project(new L.LatLng(coords[1], coords[0]));
-
-        // point to draw        
-        var x = Math.round(p.x - s.x);
-        var y = Math.round(p.y - s.y);
-        return {
-            x: x,
-            y: y
-        };
-    },
-
-    _clip: function (ctx, points) {
-        var nw = ctx.tile.multiplyBy(this.tileSize);
-        var se = nw.add(new L.Point(this.tileSize, this.tileSize));
-        var bounds = new L.Bounds([nw, se]);
-        var len = points.length;
-        var out = [];
-
-        for (var i = 0; i < len - 1; i++) {
-            var seg = L.LineUtil.clipSegment(points[i], points[i + 1], bounds, i);
-            if (!seg) {
-                continue;
-            }
-            out.push(seg[0]);
-            // if segment goes out of screen, or it's the last one, it's the end of the line part
-            if ((seg[1] !== points[i + 1]) || (i === len - 2)) {
-                out.push(seg[1]);
-            }
-        }
-        return out;
-    },
-
-    _isActuallyVisible: function (coords) {
-        var coord = coords[0];
-        var min = [coord.x, coord.y], max = [coord.x, coord.y];
-        for (var i = 1; i < coords.length; i++) {
-            coord = coords[i];
-            min[0] = Math.min(min[0], coord.x);
-            min[1] = Math.min(min[1], coord.y);
-            max[0] = Math.max(max[0], coord.x);
-            max[1] = Math.max(max[1], coord.y);
-        }
-        var diff0 = max[0] - min[0];
-        var diff1 = max[1] - min[1];
-        if (this.options.debug) {
-            console.log(diff0 + ' ' + diff1);
-        }
-        var visible = diff0 > 1 || diff1 > 1;
-        return visible;
-    },
-
-    _drawPoint: function (ctx, geom, style) {
-        if (!style) {
-            return;
-        }
-        
-        var p = this._tilePoint(ctx, geom);
-        var c = ctx.canvas;
-        var g = c.getContext('2d');
-        g.beginPath();
-        g.fillStyle = style.color;
-        g.arc(p.x, p.y, style.radius, 0, Math.PI * 2);
-        g.closePath();
-        g.fill();
-        g.restore();
-    },
-
-    _drawLineString: function (ctx, geom, style) {
-        if (!style) {
-            return;
-        }
-        
-        var coords = geom, proj = [], i;
-        coords = this._clip(ctx, coords);
-        coords = L.LineUtil.simplify(coords, 1);
-        for (i = 0; i < coords.length; i++) {
-            proj.push(this._tilePoint(ctx, coords[i]));
-        }
-        if (!this._isActuallyVisible(proj)) {
-            return;
-        }
-
-        var g = ctx.canvas.getContext('2d');
-        g.strokeStyle = style.color;
-        g.lineWidth = style.size;
-        g.beginPath();
-        for (i = 0; i < proj.length; i++) {
-            var method = (i === 0 ? 'move' : 'line') + 'To';
-            g[method](proj[i].x, proj[i].y);
-        }
-        g.stroke();
-        g.restore();
-    },
-
-    _drawPolygon: function (ctx, geom, style) {
-        if (!style) {
-            return;
-        }
-        
-        for (var el = 0; el < geom.length; el++) {
-            var coords = geom[el], proj = [], i;
-            coords = this._clip(ctx, coords);
-            for (i = 0; i < coords.length; i++) {
-                proj.push(this._tilePoint(ctx, coords[i]));
-            }
-            if (!this._isActuallyVisible(proj)) {
-                continue;
-            }
-
-            var g = ctx.canvas.getContext('2d');
-            var outline = style.outline;
-            g.fillStyle = style.color;
-            if (outline) {
-                g.strokeStyle = outline.color;
-                g.lineWidth = outline.size;
-            }
-            g.beginPath();
-            for (i = 0; i < proj.length; i++) {
-                var method = (i === 0 ? 'move' : 'line') + 'To';
-                g[method](proj[i].x, proj[i].y);
-            }
-            g.closePath();
-            g.fill();
-            if (outline) {
-                g.stroke();
-            }
-        }
-    },
-
-    _draw: function (ctx) {
-        // NOTE: this is the only part of the code that depends from external libraries (actually, jQuery only).        
-        var loader = $.getJSON;
-
-        var nwPoint = ctx.tile.multiplyBy(this.tileSize);
-        var sePoint = nwPoint.add(new L.Point(this.tileSize, this.tileSize));
-        var nwCoord = this._map.unproject(nwPoint, ctx.zoom, true);
-        var seCoord = this._map.unproject(sePoint, ctx.zoom, true);
-        var bounds = [nwCoord.lng, seCoord.lat, seCoord.lng, nwCoord.lat];
-
-        var url = this.createUrl(ctx.tile.x, ctx.tile.y, ctx.zoom);
-        var self = this, j;
-        loader(url, function (data) {
-            for (var i = 0; i < data.features.length; i++) {
-                var feature = data.features[i];
-                var style = self.styleFor(feature);
-
-                var type = feature.geometry.type;
-                var geom = feature.geometry.coordinates;
-                var len = geom.length;
-                switch (type) {
-                    case 'Point':
-                        self._drawPoint(ctx, geom, style);
-                        break;
-
-                    case 'MultiPoint':
-                        for (j = 0; j < len; j++) {
-                            self._drawPoint(ctx, geom[j], style);
-                        }
-                        break;
-
-                    case 'LineString':
-                        self._drawLineString(ctx, geom, style);
-                        break;
-
-                    case 'MultiLineString':
-                        for (j = 0; j < len; j++) {
-                            self._drawLineString(ctx, geom[j], style);
-                        }
-                        break;
-
-                    case 'Polygon':
-                        self._drawPolygon(ctx, geom, style);
-                        break;
-
-                    case 'MultiPolygon':
-                        for (j = 0; j < len; j++) {
-                            self._drawPolygon(ctx, geom[j], style);
-                        }
-                        break;
-
-                    default:
-                        throw new Error('Unmanaged type: ' + type);
-                }
-            }
-        });
-    },
-
-    // NOTE: a placeholder for a function that, given a tile context, returns a string to a GeoJSON service that retrieve features for that context
-    createUrl: function (x, y, zoom) {
-        // override with your code
-    },
-
-    // NOTE: a placeholder for a function that, given a feature, returns a style object used to render the feature itself
-    styleFor: function (feature) {
-        // override with your code
-    }
-});
 
 L.ImageOverlay = L.Class.extend({
 	includes: L.Mixin.Events,
@@ -2420,11 +2246,17 @@ L.Icon = L.Class.extend({
 
 	_createIcon: function (name) {
 		var size = this[name + 'Size'],
-			src = this[name + 'Url'],
-			img = this._createImg(src);
-
-		if (!src) {
+			src = this[name + 'Url'];
+		if (!src && name === 'shadow') {
 			return null;
+		}
+
+		var img;
+		if (!src) {
+			img = this._createDiv();
+		}
+		else {
+			img = this._createImg(src);
 		}
 
 		img.className = 'leaflet-marker-' + name;
@@ -2450,6 +2282,10 @@ L.Icon = L.Class.extend({
 			el.style.filter = 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src="' + src + '")';
 		}
 		return el;
+	},
+
+	_createDiv: function () {
+		return document.createElement('div');
 	}
 });
 
@@ -2554,9 +2390,9 @@ L.Marker = L.Class.extend({
 	},
 
 	_reset: function () {
-		if (!this._map) {
-			return;
-		}
+        if (!this._map) {
+            return;
+        }
 		var pos = this._map.latLngToLayerPoint(this._latlng).round();
 
 		L.DomUtil.setPosition(this._icon, pos);
@@ -3332,72 +3168,80 @@ L.LineUtil = {
 			return points.slice();
 		}
 
+		var sqTolerance = tolerance * tolerance;
+
 		// stage 1: vertex reduction
-		points = this.reducePoints(points, tolerance);
+		points = this._reducePoints(points, sqTolerance);
 
 		// stage 2: Douglas-Peucker simplification
-		points = this.simplifyDP(points, tolerance);
+		points = this._simplifyDP(points, sqTolerance);
 
 		return points;
 	},
 
 	// distance from a point to a segment between two points
 	pointToSegmentDistance:  function (/*Point*/ p, /*Point*/ p1, /*Point*/ p2) {
-		return Math.sqrt(this._sqPointToSegmentDist(p, p1, p2));
+		return Math.sqrt(this._sqClosestPointOnSegment(p, p1, p2, true));
 	},
 
 	closestPointOnSegment: function (/*Point*/ p, /*Point*/ p1, /*Point*/ p2) {
-		var point = this._sqClosestPointOnSegment(p, p1, p2);
-		point.distance = Math.sqrt(point._sqDist);
-		return point;
+		return this._sqClosestPointOnSegment(p, p1, p2);
 	},
 
 	// Douglas-Peucker simplification, see http://en.wikipedia.org/wiki/Douglas-Peucker_algorithm
-	simplifyDP: function (points, tol) {
-		var maxDist2 = 0,
-			index = 0,
-			t2 = tol * tol,
-			len = points.length,
-			i, dist2;
+	_simplifyDP: function (points, sqTolerance) {
 
-		if (len < 3) {
-			return points;
-		}
+		var len = points.length,
+			ArrayConstructor = typeof Uint8Array !== 'undefined' ? Uint8Array : Array,
+			markers = new ArrayConstructor(len);
 
-		for (i = 0; i < len - 1; i++) {
-			dist2 = this._sqPointToSegmentDist(points[i], points[0], points[len - 1]);
-			if (dist2 > maxDist2) {
-				index = i;
-				maxDist2 = dist2;
+		markers[0] = markers[len - 1] = 1;
+
+		this._simplifyDPStep(points, markers, sqTolerance, 0, len - 1);
+
+		var i,
+			newPoints = [];
+
+		for (i = 0; i < len; i++) {
+			if (markers[i]) {
+				newPoints.push(points[i]);
 			}
 		}
 
-		var part1, part2;
+		return newPoints;
+	},
 
-		if (maxDist2 >= t2) {
-			part1 = points.slice(0, index);
-			part2 = points.slice(index);
+	_simplifyDPStep: function (points, markers, sqTolerance, first, last) {
 
-			part1 = this.simplifyDP(part1, tol);
-			part2 = this.simplifyDP(part2, tol);
+		var maxSqDist = 0,
+			index, i, sqDist;
 
-			return part1.concat(part2);
-		} else {
-			return [points[0], points[len - 1]];
+		for (i = first + 1; i <= last - 1; i++) {
+			sqDist = this._sqClosestPointOnSegment(points[i], points[first], points[last], true);
+
+			if (sqDist > maxSqDist) {
+				index = i;
+				maxSqDist = sqDist;
+			}
+		}
+
+		if (maxSqDist > sqTolerance) {
+			markers[index] = 1;
+
+			this._simplifyDPStep(points, markers, sqTolerance, first, index);
+			this._simplifyDPStep(points, markers, sqTolerance, index, last);
 		}
 	},
 
 	// reduce points that are too close to each other to a single point
-	reducePoints: function (points, tol) {
-		var reducedPoints = [points[0]],
-			t2 = tol * tol;
+	_reducePoints: function (points, sqTolerance) {
+		var reducedPoints = [points[0]];
 
 		for (var i = 1, prev = 0, len = points.length; i < len; i++) {
-			if (this._sqDist(points[i], points[prev]) < t2) {
-				continue;
+			if (this._sqDist(points[i], points[prev]) > sqTolerance) {
+				reducedPoints.push(points[i]);
+				prev = i;
 			}
-			reducedPoints.push(points[i]);
-			prev = i;
 		}
 		if (prev < len - 1) {
 			reducedPoints.push(points[len - 1]);
@@ -3487,28 +3331,31 @@ L.LineUtil = {
 		return dx * dx + dy * dy;
 	},
 
-	// return closest point on segment with attribute _sqDist - square distance to segment
-	_sqClosestPointOnSegment: function (p, p1, p2) {
-		var x2 = p2.x - p1.x,
-			y2 = p2.y - p1.y,
-			apoint = p1;
-		if (x2 || y2) {
-			var dot = (p.x - p1.x) * x2 + (p.y - p1.y) * y2,
-				t = dot / this._sqDist(p1, p2);
+	// return closest point on segment or distance to that point
+	_sqClosestPointOnSegment: function (p, p1, p2, sqDist) {
+		var x = p1.x,
+			y = p1.y,
+			dx = p2.x - x,
+			dy = p2.y - y,
+			dot = dx * dx + dy * dy,
+			t;
+
+		if (dot > 0) {
+			t = ((p.x - x) * dx + (p.y - y) * dy) / dot;
 
 			if (t > 1) {
-				apoint = p2;
+				x = p2.x;
+				y = p2.y;
 			} else if (t > 0) {
-				apoint = new L.Point(p1.x + x2 * t, p1.y + y2 * t);
+				x += dx * t;
+				y += dy * t;
 			}
 		}
-		apoint._sqDist = this._sqDist(p, apoint);
-		return apoint;
-	},
 
-	// distance from a point to a segment between two points
-	_sqPointToSegmentDist: function (p, p1, p2) {
-		return this._sqClosestPointOnSegment(p, p1, p2)._sqDist;
+		dx = p.x - x;
+		dy = p.y - y;
+
+		return sqDist ? dx * dx + dy * dy : new L.Point(x, y);
 	}
 };
 
@@ -3910,7 +3757,6 @@ L.CircleMarker = L.Circle.extend({
 	},
 
 	projectLatlngs: function () {
-    if (!this._map) return;
 		this._point = this._map.latLngToLayerPoint(this._latlng);
 	},
 
@@ -4375,7 +4221,7 @@ L.DomEvent = {
 	},
 
 	disableClickPropagation: function (/*HTMLElement*/ el) {
-		L.DomEvent.addListener(el, 'mousedown', L.DomEvent.stopPropagation);
+		L.DomEvent.addListener(el, L.Draggable.START, L.DomEvent.stopPropagation);
 		L.DomEvent.addListener(el, 'click', L.DomEvent.stopPropagation);
 		L.DomEvent.addListener(el, 'dblclick', L.DomEvent.stopPropagation);
 	},
@@ -5123,7 +4969,9 @@ L.Control.Zoom = L.Class.extend({
 		link.title = title;
 		link.className = className;
 
-		L.DomEvent.disableClickPropagation(link);
+		if (!L.Browser.touch) {
+			L.DomEvent.disableClickPropagation(link);
+		}
 		L.DomEvent.addListener(link, 'click', L.DomEvent.preventDefault);
 		L.DomEvent.addListener(link, 'click', fn, context);
 
@@ -5203,7 +5051,7 @@ L.Control.Attribution = L.Class.extend({
 
 L.Control.Layers = L.Class.extend({
 	options: {
-		collapsed: !L.Browser.touch
+		collapsed: true
 	},
 
 	initialize: function (baseLayers, overlays, options) {
@@ -5260,7 +5108,9 @@ L.Control.Layers = L.Class.extend({
 
 	_initLayout: function () {
 		this._container = L.DomUtil.create('div', 'leaflet-control-layers');
-		L.DomEvent.disableClickPropagation(this._container);
+		if (!L.Browser.touch) {
+			L.DomEvent.disableClickPropagation(this._container);
+		}
 
 		this._form = L.DomUtil.create('form', 'leaflet-control-layers-list');
 
@@ -5272,8 +5122,13 @@ L.Control.Layers = L.Class.extend({
 			link.href = '#';
 			link.title = 'Layers';
 
-			L.DomEvent.addListener(link, 'focus', this._expand, this);
-			L.DomEvent.addListener(this._map, L.Draggable.START, this._collapse, this);
+			if (L.Browser.touch) {
+				L.DomEvent.addListener(link, 'click', this._expand, this);
+				//L.DomEvent.disableClickPropagation(link);
+			} else {
+				L.DomEvent.addListener(link, 'focus', this._expand, this);
+			}
+			this._map.on('movestart', this._collapse, this);
 			// TODO keyboard accessibility
 
 			this._container.appendChild(link);
@@ -5747,6 +5602,8 @@ L.Map.include(!L.DomUtil.TRANSITION ? {} : {
 
 		var transform = L.DomUtil.TRANSFORM;
 
+		clearTimeout(this._clearTileBgTimer);
+
 		//dumb FireFox hack, I have no idea why this magic zero translate fixes the scale transition problem
 		if (L.Browser.gecko || window.opera) {
 			this._tileBg.style[transform] += ' translate(0,0)';
@@ -5806,7 +5663,10 @@ L.Map.include(!L.DomUtil.TRANSITION ? {} : {
 
 		for (var i = 0, len = tiles.length; i < len; i++) {
 			if (!tiles[i].complete) {
-				// tiles[i].src = '' - evil, doesn't cancel the request!
+				tiles[i].onload = L.Util.falseFn;
+				tiles[i].onerror = L.Util.falseFn;
+				tiles[i].src = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+
 				tiles[i].parentNode.removeChild(tiles[i]);
 				tiles[i] = null;
 			}

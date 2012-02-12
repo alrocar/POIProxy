@@ -5,30 +5,46 @@
 
 <head>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" /> 
+                <meta name="apple-mobile-web-app-status-bar-style" content="black" /> 
+                <link rel="apple-touch-icon" href="icon.png" /> 
 
-	<title>Leaflet Quick Start Guide Example</title>
+<SCRIPT LANGUAGE="JavaScript" TYPE="TEXT/JAVASCRIPT">   
+                        if (navigator.userAgent.match(/iphone/i) || navigator.userAgent.match(/ipod/i) || navigator.userAgent.match(/ipad/i)) {
+                                document.write("<div id='map'></div>");
+                                document.write("<link rel='stylesheet' href='./mobile.css' />");
+                        } else if (navigator.userAgent.match(/android/i)) {
+                                document.write("<div id='map'></div>");
+                                document.write("<link rel='stylesheet' href='./mobile.css' />");
+                        } else {
+                                document.write("<div id='map' style='width: 600px; height: 600px; border: 1px solid #ccc'></div>");
+                                document.write("<link rel='stylesheet' href='./leaflet.css' />");
+                        }
+                </SCRIPT>
+
+	<title>POIProxy demo</title>
 
 	<meta charset="utf-8" />
 
-	
-
-	<link rel="stylesheet" href="./leaflet.css" />
 
 	<!--[if lte IE 8]><link rel="stylesheet" href="../dist/leaflet.ie.css" /><![endif]-->
 
 </head>
 
 <body>
-
-	<div id="map"></div>
-
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./jquery.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="./leaflet.js"></script>
+
+
+
+
+
 
 	<script>
 
-		var map = new L.Map('map');
+		var map = new L.Map('map', {
+        center: new L.LatLng(39.47544, -0.37639),
+        zoom: 16});
 
 		
 
@@ -42,70 +58,20 @@
 
 		map.addLayer(cloudmade);
         
-            var tile = new L.TileLayer.TileJSON({
-        debug: false,
-        point: {
-            color: 'rgba(252,146,114,0.6)',
-            radius: 5
-        },
-        linestring: {
-            color: 'rgba(161,217,155,0.8)',
-            size: 3
-        },
-        polygon: {
-            color: 'rgba(43,140,190,0.4)',
-            outline: {
-                color: 'rgb(0,0,0)',
-                size: 1
-            }
-        }
-    });
+           var foursquare = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=foursquare&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/foursquare.png", service: "foursquare"});
+    var panoramio = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=panoramio&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/panoramio.png", service: "panoramio"});
+    var flickr = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=flickr&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/flickr.png", service: "flickr"});
+    var minube = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=minube&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/minube.png", service: "minube"});
+    var nominatim = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=nominatim&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/marker0.png", service: "nominatim"});
+    var mapquest = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=mapquest&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/marker1.png", service: "mapquest"});
+    var geonames = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=geonamespois&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/marker3.png", service: "geonames"});
+    var cloudmade = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=cloudmade&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/marker4.png", service: "cloudmade"});
+    var ovi = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=ovi&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/marker5.png", service: "ovid"});
+    var lastfm = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=lastfm&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/marker6.png", service: "lastfm"});
 
-	    tile.createUrl = function (x, y, z) {
-        var url = ['http://poiproxy.mapps.es/browse?service=panoramio&x=',x,'&y=',y,'&z=',z,'&callback=?'].join('');
-        return url;
-    };
-    tile.styleFor = function (feature) {
-        var type = feature.geometry.type;
-        switch (type) {
-            case 'Point':
-            case 'MultiPoint':
-                return {
-                    color: 'rgba(252,146,114,0.6)',
-                    radius: 5
-                };
-                
-            case 'LineString':
-            case 'MultiLineString':
-                return {
-                    color: 'rgba(161,217,155,0.8)',
-                    size: 3
-                };
-
-            case 'Polygon':
-            case 'MultiPolygon':
-                return {
-                    color: 'rgba(43,140,190,0.4)',
-                    outline: {
-                        color: 'rgb(0,0,0)',
-                        size: 1
-                    }
-                };
-
-            default:
-                return null;
-        }
-    };
-    //map.addLayer(tile);	
-    var foursquare = new L.TileLayer.GeoJSON("http://poiproxy.mapps.es/browse?service=foursquare&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/foursquare.png", service: "foursquare"});
-    var panoramio = new L.TileLayer.GeoJSON("http://poiproxy.mapps.es/browse?service=panoramio&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/panoramio.png", service: "panoramio"});
-    var flickr = new L.TileLayer.GeoJSON("http://poiproxy.mapps.es/browse?service=flickr&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/flickr.png", service: "flickr"});
-    var minube = new L.TileLayer.GeoJSON("http://poiproxy.mapps.es/browse?service=minube&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/minube.png", service: "minube"});
-    var twitter = new L.TileLayer.GeoJSON("http://poiproxy.mapps.es/browse?service=twitter&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/twitter.png", service: "twitter"});
 map.addLayer(foursquare);
-
     
-        var controlLayers = new L.Control.Layers({}, {"Foursquare": foursquare, "Panoramio": panoramio, "Flickr": flickr, "Minube": minube, "Twitter": twitter});
+        var controlLayers = new L.Control.Layers({"Foursquare": foursquare, "Panoramio": panoramio, "Flickr": flickr, "Minube": minube, "Minube": minube, "Nominatim": nominatim, "Mapquest": mapquest, "Geonames": geonames, "Cloudmade": cloudmade, "LastFM": lastfm}, {});
 		map.addControl(controlLayers);
         map._controlLayers = controlLayers;
 
@@ -117,7 +83,7 @@ function onLocationFound(e) {
 
     var marker = new L.Marker(e.latlng);
     map.addLayer(marker);
-    marker.bindPopup("You are within " + radius + " meters from this point").openPopup();
+  /*  marker.bindPopup("You are within " + radius + " meters from this point").openPopup();*/
     
     var circle = new L.Circle(e.latlng, radius);
     map.addLayer(circle);	
@@ -133,7 +99,7 @@ function onLocationFound(e) {
 
 		function onMapClick(e) {
 
-			var latlngStr = '(' + e.latlng.lat.toFixed(3) + ', ' + e.latlng.lng.toFixed(3) + ')';
+		/*	var latlngStr = '(' + e.latlng.lat.toFixed(3) + ', ' + e.latlng.lng.toFixed(3) + ')';
 
 			
 
@@ -142,7 +108,7 @@ function onLocationFound(e) {
 			popup.setContent("You clicked the map at " + latlngStr);
 
 			map.openPopup(popup);
-
+*/
 		}
 
 	</script>
