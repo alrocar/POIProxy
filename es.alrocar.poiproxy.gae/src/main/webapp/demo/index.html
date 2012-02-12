@@ -4,18 +4,16 @@
 <html>
 
 <head>
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=false;"> 
 <meta name="apple-mobile-web-app-capable" content="yes" /> 
                 <meta name="apple-mobile-web-app-status-bar-style" content="black" /> 
                 <link rel="apple-touch-icon" href="icon.png" /> 
 
 <SCRIPT LANGUAGE="JavaScript" TYPE="TEXT/JAVASCRIPT">   
-                        if (navigator.userAgent.match(/iphone/i) || navigator.userAgent.match(/ipod/i) || navigator.userAgent.match(/ipad/i)) {
+                        var mobile = (/iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
+                        if (mobile) {
                                 document.write("<div id='map'></div>");
-                                document.write("<link rel='stylesheet' href='./mobile.css' />");
-                        } else if (navigator.userAgent.match(/android/i)) {
-                                document.write("<div id='map'></div>");
-                                document.write("<link rel='stylesheet' href='./mobile.css' />");
+//                                document.write("<link rel='stylesheet' href='./mobile.css' />");                        
                         } else {
                                 document.write("<div id='map' style='width: 600px; height: 600px; border: 1px solid #ccc'></div>");
                                 document.write("<link rel='stylesheet' href='./leaflet.css' />");
@@ -28,6 +26,7 @@
 
 
 	<!--[if lte IE 8]><link rel="stylesheet" href="../dist/leaflet.ie.css" /><![endif]-->
+    <link rel='stylesheet' href='./leaflet.css' />
 
 </head>
 

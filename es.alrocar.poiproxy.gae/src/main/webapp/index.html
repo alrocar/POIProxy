@@ -1,40 +1,119 @@
-<!doctype html>
-<!-- The DOCTYPE declaration above will set the    -->
-<!-- browser's rendering engine into               -->
-<!-- "Standards Mode". Replacing this declaration  -->
-<!-- with a "Quirks Mode" doctype may lead to some -->
-<!-- differences in layout.                        -->
+
+<!DOCTYPE html>
 
 <html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-    <!--                                                               -->
-    <!-- Consider inlining CSS to reduce the number of requested files -->
-    <!--                                                               -->
-    <link type="text/css" rel="stylesheet" href="Es_alrocar_poiproxy_gae.css">
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" /> 
+                <meta name="apple-mobile-web-app-status-bar-style" content="black" /> 
+                <link rel="apple-touch-icon" href="icon.png" /> 
 
-    <!--                                           -->
-    <!-- Any title is fine                         -->
-    <!--                                           -->
-    <title>POIProxy</title>
+<SCRIPT LANGUAGE="JavaScript" TYPE="TEXT/JAVASCRIPT">   
+                        if (navigator.userAgent.match(/iphone/i) || navigator.userAgent.match(/ipod/i) || navigator.userAgent.match(/ipad/i)) {
+                                document.write("<div id='map'></div>");
+//                                document.write("<link rel='stylesheet' href='./mobile.css' />");
+                        } else if (navigator.userAgent.match(/android/i)) {
+                                document.write("<div id='map'></div>");
+//                                document.write("<link rel='stylesheet' href='./mobile.css' />");
+                        } else {
+                                document.write("<div id='map' style='width: 600px; height: 600px; border: 1px solid #ccc'></div>");
+                                document.write("<link rel='stylesheet' href='./leaflet.css' />");
+                        }
+                </SCRIPT>
+
+	<title>POIProxy demo</title>
+
+	<meta charset="utf-8" />
+
+
+	<!--[if lte IE 8]><link rel="stylesheet" href="../dist/leaflet.ie.css" /><![endif]-->
+    <link rel='stylesheet' href='./leaflet.css' />
+
+</head>
+
+<body>
+<script src="./jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="./leaflet.js"></script>
+
+
+
+
+
+
+	<script>
+
+		var map = new L.Map('map', {
+        center: new L.LatLng(39.47544, -0.37639),
+        zoom: 16});
+
+		
+
+		var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png',
+
+			cloudmadeAttribution = 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
+
+			cloudmade = new L.TileLayer(cloudmadeUrl, {maxZoom: 18, attribution: cloudmadeAttribution});
+
+		
+
+		map.addLayer(cloudmade);
+        
+           var foursquare = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=foursquare&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/foursquare.png", service: "foursquare"});
+    var panoramio = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=panoramio&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/panoramio.png", service: "panoramio"});
+    var flickr = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=flickr&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/flickr.png", service: "flickr"});
+    var minube = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=minube&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/minube.png", service: "minube"});
+    var nominatim = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=nominatim&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/marker0.png", service: "nominatim"});
+    var mapquest = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=mapquest&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/marker1.png", service: "mapquest"});
+    var geonames = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=geonamespois&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/marker3.png", service: "geonames"});
+    var cloudmade = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=cloudmade&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/marker4.png", service: "cloudmade"});
+    var ovi = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=ovi&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/marker5.png", service: "ovid"});
+    var lastfm = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=lastfm&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/marker6.png", service: "lastfm"});
+
+map.addLayer(foursquare);
     
-    <!--                                           -->
-    <!-- This script loads your compiled module.   -->
-    <!-- If you add any GWT meta tags, they must   -->
-    <!-- be added before this line.                -->
-    <!--                                           -->
-  </head>
+        var controlLayers = new L.Control.Layers({"Foursquare": foursquare, "Panoramio": panoramio, "Flickr": flickr, "Minube": minube, "Minube": minube, "Nominatim": nominatim, "Mapquest": mapquest, "Geonames": geonames, "Cloudmade": cloudmade, "LastFM": lastfm}, {});
+		map.addControl(controlLayers);
+        map._controlLayers = controlLayers;
 
-  <!--                                           -->
-  <!-- The body can have arbitrary html, or      -->
-  <!-- you can leave the body empty if you want  -->
-  <!-- to create a completely dynamic UI.        -->
-  <!--                                           -->
-  <body>
+map.locateAndSetView(16);
+map.on('locationfound', onLocationFound);
+        
+function onLocationFound(e) {
+    var radius = e.accuracy / 2;
 
-    <iframe src="http://alrocar.github.com/POIProxy/" width="100%" height="100%"/>
-
+    var marker = new L.Marker(e.latlng);
+    map.addLayer(marker);
+  /*  marker.bindPopup("You are within " + radius + " meters from this point").openPopup();*/
     
-  </body>
+    var circle = new L.Circle(e.latlng, radius);
+    map.addLayer(circle);	
+}
+
+		map.on('click', onMapClick);
+
+		
+
+		var popup = new L.Popup();
+
+				
+
+		function onMapClick(e) {
+
+		/*	var latlngStr = '(' + e.latlng.lat.toFixed(3) + ', ' + e.latlng.lng.toFixed(3) + ')';
+
+			
+
+			popup.setLatLng(e.latlng);
+
+			popup.setContent("You clicked the map at " + latlngStr);
+
+			map.openPopup(popup);
+*/
+		}
+
+	</script>
+
+</body>
+
 </html>
