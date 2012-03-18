@@ -197,6 +197,11 @@ It's still a proof of concept, but current development version of gvSIG Mini is 
 
 [![](http://www.alrocar.es/img/gvsigmini_poiproxy2.png)](http://www.alrocar.es/img/gvsigmini_poiproxy2.png)
 
+* ***POIProxy and Leaflet***
+
+There's a <a href="http://poiproxy.mapps.es/demo/index.html">demo of POIProxy</a> running on <a href="http://leaflet.cloudmade.com/">Leaflet</a> 
+
+
 ##License and Contact
 
 POIProxy is free software and is released under GNU LGPL Version 2 (or any later version). Please read carefully the Terms of service of the different services supported and use your own API keys when apply.
