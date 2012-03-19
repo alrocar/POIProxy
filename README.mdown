@@ -201,6 +201,11 @@ It's still a proof of concept, but current development version of gvSIG Mini is 
 
 There's a <a href="http://poiproxy.mapps.es/demo/index.html">demo of POIProxy</a> running on <a href="http://leaflet.cloudmade.com/">Leaflet</a> 
 
+* ***POIProxy and OpenLayers***
+
+<a href="https://github.com/jacarma/olsocial">jacarma</a> has implemented a new OpenLayers Layer to load POIProxy services. 
+
+You can see a demo <a href="https://github.com/jacarma/olsocial">here</a>
 
 ##License and Contact
 
