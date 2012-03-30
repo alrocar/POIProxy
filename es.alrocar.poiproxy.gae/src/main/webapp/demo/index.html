@@ -67,10 +67,11 @@
     var cloudmade = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=cloudmade&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/marker4.png", service: "cloudmade"});
     var ovi = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=ovi&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/marker5.png", service: "ovid"});
     var lastfm = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=lastfm&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/marker6.png", service: "lastfm"});
+    var wikilocation = new L.TileLayer.POIProxy("http://poiproxy.mapps.es/browse?service=wikilocation&x={x}&y={y}&z={z}&callback=?", {iconURL: "./images/marker7.png", service: "wikilocation"});
 
 map.addLayer(foursquare);
     
-        var controlLayers = new L.Control.Layers({"Foursquare": foursquare, "Panoramio": panoramio, "Flickr": flickr, "Minube": minube, "Minube": minube, "Nominatim": nominatim, "Mapquest": mapquest, "Geonames": geonames, "Cloudmade": cloudmade, "LastFM": lastfm}, {});
+        var controlLayers = new L.Control.Layers({"Foursquare": foursquare, "Panoramio": panoramio, "Flickr": flickr, "Minube": minube, "Minube": minube, "Nominatim": nominatim, "Mapquest": mapquest, "Geonames": geonames, "Cloudmade": cloudmade, "LastFM": lastfm, "WikiLocation": wikilocation}, {});
 		map.addControl(controlLayers);
         map._controlLayers = controlLayers;
 
