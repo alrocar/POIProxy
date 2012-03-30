@@ -1,0 +1,23 @@
+{ describeService : {
+    format: "json",
+    apiKey : "",
+    requestTypes : {
+                    "browse": {"url": "http://api.wikilocation.org/articles?lat=__LAT__&lng=__LON__&radius=__DIST__", "params": []},
+                    "search": {"url": "b", "params": []}
+                    },
+    featureTypes : { "browse" : {
+                    	"feature" : "id",
+                    	"elements" : ["title", "url", "distance"],
+                    	"lon": "lng", 
+                    	"lat": "lat"
+                    	},"search" : {
+                    	"feature" : "kind",
+                    	"elements" : ["title", "published", "name", "profileUrl", "thumbnailUrl"],
+                    	"lon": "lng", 
+                    	"lat": "lat",
+                    	"combinedLonLat": "geocode",
+                    	"separator": " "
+
+                    	}
+                    }
+}}
