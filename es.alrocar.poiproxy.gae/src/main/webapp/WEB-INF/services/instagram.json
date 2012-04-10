@@ -1,0 +1,23 @@
+{ describeService : {
+    format: "json",
+    apiKey : "",
+    requestTypes : {
+                    "browse": {"url": "https://api.instagram.com/v1/media/search?distance=__DIST__&lat=__LAT__&lng=__LON__&access_token=37074513.bc3142f.9f43f4cd65db48e2870de22e1c798c01", "params": []},
+                    "search": {"url": "b", "params": []}
+                    },
+    featureTypes : { "browse" : {
+                    	"feature" : "type",
+                    	"elements" : ["link", "username", "profile_picture", "url", "id", "name"],
+                    	"lon": "longitude", 
+                    	"lat": "latitude"
+                    	},"search" : {
+                    	"feature" : "kind",
+                    	"elements" : ["title", "published", "name", "profileUrl", "thumbnailUrl"],
+                    	"lon": "longi", 
+                    	"lat": "lat",
+                    	"combinedLonLat": "geocode",
+                    	"separator": " "
+
+                    	}
+                    }
+}}
