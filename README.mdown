@@ -60,6 +60,10 @@ POIProxy supports JSONP by adding the parameter `callback`to any request. If not
 
 ***IMPORTANT***: Not all services registered in POIProxy support all the API requests. Please refer to the describeServices operation to see the list of available operations per registered service.
 
+## Javadocs
+
+* Check <a href="http://www.jarvana.com/jarvana/view/es/prodevelop/es.alrocar.poiproxy/1.0.1/es.alrocar.poiproxy-1.0.1-javadoc.jar!/index.html">here</a> the javadocs of the library
+
 ##Projects
 
 POIProxy is composed by 4 projects:
