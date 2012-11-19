@@ -2,7 +2,7 @@
     format: "json",
     apiKey : "",
     requestTypes : {
-                    "browse": {"url": "http://api.minube.com/places/coordinates.json%3Fapi_key%3D8d1622416ac9ddd97c5a86bd6c280d41%26latitude%3D__LAT__%26longitude%3D__LON__%26distance%3D__DIST__%26limit%3D20%26order%3Ddate", "params": []},
+                    "browse": {"url": "http://api.minube.com/places/coordinates.json%3Fapi_key%%26latitude%3D__LAT__%26longitude%3D__LON__%26distance%3D__DIST__%26limit%3D20%26order%3Ddate", "params": []},
                     "search": {"url": "b", "params": []}
                     },
     featureTypes : { "browse" : {
