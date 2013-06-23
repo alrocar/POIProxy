@@ -35,9 +35,13 @@
 
 package es.alrocar.poiproxy.proxy;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
 
 import es.alrocar.jpe.parser.JPEParser;
 import es.alrocar.jpe.parser.JPEParserManager;
@@ -46,6 +50,7 @@ import es.alrocar.jpe.parser.json.JSONJPEParser;
 import es.alrocar.jpe.parser.xml.XMLJPEParser;
 import es.alrocar.jpe.writer.GeoJSONWriter;
 import es.alrocar.poiproxy.configuration.DescribeService;
+import es.alrocar.poiproxy.configuration.DescribeServices;
 import es.alrocar.poiproxy.configuration.Param;
 import es.alrocar.poiproxy.configuration.ServiceConfigurationManager;
 import es.alrocar.poiproxy.configuration.ServiceParams;
@@ -110,26 +115,25 @@ public class POIProxy {
 	 * registered into the library
 	 * 
 	 * @return
+	 * @throws IOException
+	 * @throws JsonMappingException
+	 * @throws JsonGenerationException
 	 */
-	public String getAvailableServices() {
-		StringBuffer services = new StringBuffer();
-
+	public String getAvailableServices() throws JsonGenerationException,
+			JsonMappingException, IOException {
 		Set<String> keys = serviceManager.getRegisteredConfigurations()
 				.keySet();
 
 		Iterator<String> it = keys.iterator();
 
 		String id = null;
+		DescribeServices services = new DescribeServices();
 		while (it.hasNext()) {
 			id = it.next();
-			services.append("{").append(id).append(":\n");
-			services.append(serviceManager.getServiceAsJSON(id)).append("}");
-			if (it.hasNext()) {
-				services.append(",");
-			}
+			services.put(id, serviceManager.getServiceConfiguration(id));
 		}
 
-		return services.toString();
+		return services.asJSON();
 	}
 
 	// TODO Allow several strategies
