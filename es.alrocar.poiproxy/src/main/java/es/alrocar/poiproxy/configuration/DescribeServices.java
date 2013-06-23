@@ -28,7 +28,7 @@ public class DescribeServices {
 
 	public String asJSON() throws JsonGenerationException,
 			JsonMappingException, IOException {
-		return mapper.writeValueAsString(this);
+		return mapper.defaultPrettyPrintingWriter().writeValueAsString(this);
 	}
 
 	public DescribeServices fromJSON(String src) throws JsonParseException,
