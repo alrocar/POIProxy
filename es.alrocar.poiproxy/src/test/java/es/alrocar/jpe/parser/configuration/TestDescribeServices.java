@@ -569,7 +569,7 @@ public class TestDescribeServices extends BaseJSONTest {
 		System.out.println(mapper.writeValueAsString(services));
 		
 		
-		DescribeServices ss = services.fromJSON(mapper.writeValueAsString(services));
+		DescribeServices ss = services.fromJSON(this.services);
 		int i = 0;
 		
 	}
