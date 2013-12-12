@@ -163,9 +163,9 @@ public class POIProxy {
 			return this.getErrorForUnknownService(id);
 		}
 
-		// Buscar en cache el geoJSON y si est‡ llamar a onResponseReceived
+		// Buscar en cache el geoJSON y si estï¿½ llamar a onResponseReceived
 
-		// si no est‡ en cache
+		// si no estï¿½ en cache
 
 		// construir la url
 		Extent e1 = TileConversor.tileOSMMercatorBounds(x, y, z);
@@ -180,7 +180,7 @@ public class POIProxy {
 		String url = buildRequest(describeService, minXY[0], minXY[1],
 				maxXY[0], maxXY[1], optionalParams, 0, 0);
 
-		// hacer petici—n al servicio
+		// hacer peticiï¿½n al servicio
 		String file = doRequest(url);
 
 		String geoJSON = this.onResponseReceived(file, describeService);
@@ -252,9 +252,9 @@ public class POIProxy {
 			return this.getErrorForUnknownService(id);
 		}
 
-		// Buscar en cache el geoJSON y si est‡ llamar a onResponseReceived
+		// Buscar en cache el geoJSON y si estï¿½ llamar a onResponseReceived
 
-		// si no est‡ en cache
+		// si no estï¿½ en cache
 
 		// construir la url
 		double[] bbox = Calculator.boundingCoordinates(lon, lat,
@@ -263,7 +263,7 @@ public class POIProxy {
 		String url = buildRequest(describeService, bbox[0], bbox[1], bbox[2],
 				bbox[3], optionalParams, lon, lat);
 
-		// hacer petici—n al servicio
+		// hacer peticiï¿½n al servicio
 		String file = doRequest(url);
 
 		String geoJSON = this.onResponseReceived(file, describeService);
@@ -294,15 +294,15 @@ public class POIProxy {
 			return this.getErrorForUnknownService(id);
 		}
 
-		// Buscar en cache el geoJSON y si est‡ llamar a onResponseReceived
+		// Buscar en cache el geoJSON y si estï¿½ llamar a onResponseReceived
 
-		// si no est‡ en cache
+		// si no estï¿½ en cache
 
 		// construir la url
 		String url = buildRequest(describeService, minX, minY, maxX, maxY,
 				optionalParams, 0, 0);
 
-		// hacer petici—n al servicio
+		// hacer peticiï¿½n al servicio
 		String file = doRequest(url);
 
 		String geoJSON = this.onResponseReceived(file, describeService);
@@ -333,7 +333,7 @@ public class POIProxy {
 
 		Extent e1 = new Extent(minX, minY, maxX, maxY);
 
-		double distanceMeters = this.getDistanceMeters(e1);
+		int distanceMeters = this.getDistanceMeters(e1);
 
 		params.putParam(ServiceParams.MINX, String.valueOf(minX));
 		params.putParam(ServiceParams.MINY, String.valueOf(minY));
@@ -348,9 +348,9 @@ public class POIProxy {
 
 		params.putParam(ServiceParams.FORMAT, "json");
 
-		params.putParam(ServiceParams.DIST, String.valueOf(distanceMeters));
+		params.putParam(ServiceParams.DIST, String.valueOf((int) distanceMeters));
 		params.putParam(ServiceParams.DISTKM,
-				String.valueOf(distanceMeters / 1000));
+				String.valueOf((int)distanceMeters / 1000));
 		params.putParam(ServiceParams.KEY, describeService.getApiKey());
 
 		String url = describeService.getRequestForParam(optionalParams);
@@ -426,10 +426,10 @@ public class POIProxy {
 	 *            The bounding box
 	 * @return The distance in meters
 	 */
-	public double getDistanceMeters(Extent boundingBox) {
-		return Calculator.latLonDist(boundingBox.getMinX(),
+	public int getDistanceMeters(Extent boundingBox) {		
+		return new Double(Math.floor(Calculator.latLonDist(boundingBox.getMinX(),
 				boundingBox.getMinY(), boundingBox.getMaxX(),
-				boundingBox.getMaxY());
+				boundingBox.getMaxY()))).intValue();
 	}
 
 }
