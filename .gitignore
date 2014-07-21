@@ -6,4 +6,5 @@ es.alrocar.map.vector/target/**
 es.alrocar.poiproxy/target/**
 es.alrocar.poiproxy.rest/target/**
 es.alrocar.poiproxy.gae/target/**
+.DS_Store
 
