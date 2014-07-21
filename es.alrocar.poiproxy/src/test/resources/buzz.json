@@ -1,0 +1,69 @@
+{
+  "format": "json",
+  "apiKey": "",
+  "categories": [
+    "social",
+    "chat",
+    "location"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "https://www.googleapis.com/buzz/v1/activities/search?key=AIzaSyDM7V5F3X0g4_aH6YSwsR4Hbd_uBuQ3QeA&lat=__LAT__&lon=__LON__&radius=__DIST__&alt=json",
+      "params": []
+    },
+    "search": {
+      "url": "b",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "kind",
+      "elements": {
+        "description" : {
+          "input": "title"
+        },
+        "published" : {
+          "input": "published"
+        },
+        "name" : {
+          "input": "name"
+        },
+        "web" : {
+          "input": "profileUrl"
+        },
+        "image" : {
+          "input": "thumbnailUrl"
+        }
+      },
+      "lon": "lng",
+      "lat": "lat",
+      "combinedLonLat": "geocode",
+      "separator": " "
+    },
+    "search": {
+      "feature": "kind",
+      "elements": {
+        "description" : {
+          "input": "title"
+        },
+        "published" : {
+          "input": "published"
+        },
+        "name" : {
+          "input": "name"
+        },
+        "web" : {
+          "input": "profileUrl"
+        },
+        "image" : {
+          "input": "thumbnailUrl"
+        }
+      },
+      "lon": "lng",
+      "lat": "lat",
+      "combinedLonLat": "geocode",
+      "separator": " "
+    }
+  }
+}

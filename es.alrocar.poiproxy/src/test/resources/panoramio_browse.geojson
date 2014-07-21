@@ -1,0 +1,543 @@
+{
+  "type" : "FeatureCollection",
+  "features" : [ {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Valencia, Catedral",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/36639728.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/36639728"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3784170000000131, 39.457585 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Valencia, Joder... we had a car to repair...",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/33865712.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/33865712"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3856319999999869, 39.458935 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "= Panoràmica Parc Manuel Granero =",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/33683813.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/33683813"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.376606, 39.458401 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Shuttle Area: Juaquin Sorolla-Nord ",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/50920321.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/50920321"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.37997799999999415, 39.461149 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "  [ n_lorito ]  Contraste... Iglesia de San Vicente de la Roqueta...",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/39922215.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/39922215"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.381646424532, 39.4643554688 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "The Grand Via Dives Under Rails",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/50919811.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/50919811"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.37913599999998837, 39.463134 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Valencia aérea",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/2968945.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/2968945"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.37937199999999, 39.456607 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Accidente en Valencia",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/1098816.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/1098816"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.378959, 39.460766 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Verja antigua Estación del Norte mercancías",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/19030812.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/19030812"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.38278299999999, 39.460691 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/44187014.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/44187014"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.37988699999999653, 39.458198 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Gran Via Dos Germanies",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/56373189.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/56373189"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3778130000000033, 39.463232 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "calle Marvá",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/42532537.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/42532537"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3804979999999887, 39.462667 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/2587215.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/2587215"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.38417799999999, 39.461379 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Segundo Premio calles iluminadas:   Sueca-Literato Azorin. Fallas 2010",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/33445405.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/33445405"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3755089999999939, 39.459821 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Fallas 2010 :  Iluminación en azul.",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/33445357.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/33445357"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.37568099999998594, 39.461983 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : " = Hotel \"Parque Central\" =",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/18559856.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/18559856"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.37588500000001, 39.456599 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Finca Roja",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/106393.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/106393"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.384629, 39.463126 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Iluminación de calles en las fallas de Valencia",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/42143361.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/42143361"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.374479, 39.458257 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "FALLAS.2.007.",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/1432635.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/1432635"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.377312, 39.462207 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "= Font \"La Pantera Rosa\" (Pink Panther) =",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/18120932.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/18120932"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.37514999999999, 39.457067 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "We Are The Champions",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/36119377.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/36119377"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.376388999999989, 39.461039 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "= Finca roja =",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/18029545.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/18029545"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.38385600000001, 39.463416 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "= Finca roja =",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/18029517.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/18029517"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.38454300000001, 39.462397 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : " =Pantera Rosa amb aigua =",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/18672082.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/18672082"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.37657100000001, 39.457846 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "= Finca roja =",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/18029603.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/18029603"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.38530499999999, 39.464294 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Playa de Vías y Estación del Norte Valencia",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/7496833.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/7496833"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.38108800000001, 39.458662 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Valencia estación y plaza de Toros",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/21360130.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/21360130"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.38087400000001, 39.45611 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Estación Juaquín Sorolla de Valencia por la noche",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/48059698.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/48059698"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.381941, 39.46037 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Nueva estación \"Juaquin Sorolla\"",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/44334278.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/44334278"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.381904, 39.459631 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Fallas 2009 Sueca - Literato Azorín",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/20180467.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/20180467"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.37435099999999, 39.460476 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Fallas 2011, Iluminación Falla Cuba - Literato Azorín",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/49685702.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/49685702"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.376067, 39.460567 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "finca",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/24986120.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/24986120"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.37956199999999, 39.46417 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Train Station / Estación del Norte / Estación del Norte -  Aerial View 2/2011",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/47582740.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/47582740"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.378385, 39.463797 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Valencia, Jesus",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/34008762.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/34008762"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.384835, 39.459265 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Calle de Filipinas - Valencia",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/33308639.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/33308639"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.375853, 39.457504 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Valencia, Calle de San Vincente Martir",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/34008283.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/34008283"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.383092, 39.459029 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Fuente de \"la pantera rosa\"",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/44334609.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/44334609"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.375917, 39.457171 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Alumbrado Falla Sueca - Literato Azorín 2009.",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/20180400.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/20180400"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.37513899999999, 39.461538 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Valencia, Finca Roja (01)",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/33891683.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/33891683"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.385755, 39.463466 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Valencia, Finca Roja (02)",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/33891769.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/33891769"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.384339, 39.46258 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Valencia Town Town (Aerial View 2/2011)",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/48227938.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/48227938"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.382032, 39.459954 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "= Parc Manuel Granero =",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/33683773.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/33683773"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.376547, 39.458589 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Fallas 2010",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/33738482.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/33738482"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3745649999999898, 39.460766 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Gárgola",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/39777341.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/39777341"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.375767, 39.464241 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Valencia from the air",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/1179727.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/1179727"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.378234, 39.462124 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Caspita!, El Papamovil!!!",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/1632555.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/1632555"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.385637, 39.46012 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Luces amarillas",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/19992521.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/19992521"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.375348, 39.461726 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Calle Cuba",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/33156860.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/33156860"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.375327, 39.459581 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "photo_title" : "Cuba-Literato Azorin.La mas iluminada.",
+      "photo_file_url" : "http://mw2.google.com/mw-panoramio/photos/square/33428162.jpg",
+      "photo_url" : "http://www.panoramio.com/photo/33428162"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3757669999999962, 39.460103 ]
+    }
+  } ]
+}

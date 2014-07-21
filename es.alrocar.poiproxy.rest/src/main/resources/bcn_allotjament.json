@@ -1,0 +1,91 @@
+{
+  "format": "xml",
+  "apiKey": "",
+  "encoding": "UTF-8",
+  "compression": "zip",
+  "contentFile": "allotjament.rdf",
+  "categories": [
+    "local_bcn_hotel"
+  ],
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://www.bcn.cat/tercerlloc/allotjament.zip",
+      "params": []
+    },
+    "search": {
+      "url": "http://www.bcn.cat/tercerlloc/allotjament.zip",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "VCard",
+      "elements": {
+        "region": {
+          "input": "region"
+        },
+        "rev": {
+          "input": "rev"
+        },
+        "country": {
+          "input": "country-name"
+        },
+        "created": {
+          "input": "created"
+        },
+        "city": {
+          "input": "locality"
+        },
+        "streetName": {
+          "input": "streetName"
+        },
+        "address": {
+          "input": "street-address"
+        },
+        "name": {
+          "input": "fn"
+        },
+        "code": {
+          "input": "postal-code"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    },
+    "search": {
+      "feature": "VCard",
+      "elements": {
+        "region": {
+          "input": "region"
+        },
+        "rev": {
+          "input": "rev"
+        },
+        "country": {
+          "input": "country-name"
+        },
+        "created": {
+          "input": "created"
+        },
+        "city": {
+          "input": "locality"
+        },
+        "streetName": {
+          "input": "streetName"
+        },
+        "address": {
+          "input": "street-address"
+        },
+        "name": {
+          "input": "fn"
+        },
+        "code": {
+          "input": "postal-code"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    }
+  }
+}

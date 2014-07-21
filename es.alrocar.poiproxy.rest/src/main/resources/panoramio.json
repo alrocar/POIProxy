@@ -1,0 +1,59 @@
+{
+  "format": "json",
+  "apiKey": "",
+  "categories": [
+    "social",
+    "photo",
+    "panoramio"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=100&minx=__MINX__&miny=__MINY__&maxx=__MAXX__&maxy=__MAXY__&size=medium&mapfilter=true",
+      "params": []
+    },
+    "search": {
+      "url": "b",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "height",
+      "elements": {
+        "web": {
+          "input": "photo_url"
+        },
+        "name": {
+          "input": "photo_title"
+        },
+        "upload_date": {
+          "input": "upload_date"
+        },
+        "image": {
+          "input": "photo_file_url"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    },
+    "search": {
+      "feature": "height",
+      "elements": {
+        "web": {
+          "input": "photo_url"
+        },
+        "name": {
+          "input": "photo_title"
+        },
+        "upload_date": {
+          "input": "upload_date"
+        },
+        "image": {
+          "input": "photo_file_url"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "format": "csv",
+  "apiKey": "",
+  "csvSeparator": ";",
+  "encoding": "ISO-8859-1",
+  "decimalSeparator": ",",
+  "categories": [
+    "local_bcn_transport"
+  ],
+  "SRS": "EPSG:23031",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://opendata.bcn.cat/opendata/en/catalog/TRANSPORT/transports/0/CSV",
+      "params": []
+    },
+    "search": {
+      "url": "http://opendata.bcn.cat/opendata/en/catalog/TRANSPORT/transports/0/CSV",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "",
+      "elements": {
+        "phone": {
+          "input": "TELEFON"
+        },
+        "name": {
+          "input": "EQUIPAMENT"
+        },
+        "address": {
+          "input": "ADRECA"
+        }
+      },
+      "lon": "COORD_X",
+      "lat": "COORD_Y"
+    },
+    "search": {
+      "feature": "",
+      "elements": {
+        "phone": {
+          "input": "TELEFON"
+        },
+        "name": {
+          "input": "EQUIPAMENT"
+        },
+        "address": {
+          "input": "ADRECA"
+        }
+      },
+      "lon": "COORD_X",
+      "lat": "COORD_Y"
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "format": "json",
+  "apiKey": "",
+  "categories": [
+    "geo",
+    "nominatim"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "http://nominatim.openstreetmap.org/search?q=__QUERY__&format=json&polygon=1&addressdetails=1",
+      "params": []
+    },
+    "search": {
+      "url": "http://nominatim.openstreetmap.org/reverse?format=json&lat=__LAT__&lon=__LON__&addressdetails=1",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "place_id",
+      "elements": {
+        "name": {
+          "input": "display_name"
+        },
+        "state": {
+          "input": "state"
+        },
+        "code": {
+          "input": "postcode"
+        },
+        "country": {
+          "input": "country"
+        },
+        "city": {
+          "input": "city"
+        }
+      },
+      "lon": "lon",
+      "lat": "lat"
+    },
+    "search": {
+      "feature": "place_id",
+      "elements": {
+        "name": {
+          "input": "display_name"
+        },
+        "state": {
+          "input": "state"
+        },
+        "code": {
+          "input": "postcode"
+        },
+        "country": {
+          "input": "country"
+        },
+        "city": {
+          "input": "city"
+        }
+      },
+      "lon": "lon",
+      "lat": "lat"
+    }
+  }
+}

@@ -1,0 +1,260 @@
+{
+  "type" : "FeatureCollection",
+  "features" : [ {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Google Buzz Search within 1413 meters of 39.46000,-0.38000"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Public",
+      "published" : "2011-09-04T08:52:44.000Z",
+      "name" : "Игорь Потапов",
+      "profileUrl" : "https://profiles.google.com/igalpotapov",
+      "thumbnailUrl" : "http://www.google.com/s2/photos/public/AIbEiAIAAABDCNv6wfC91qPWciILdmNhcmRfcGhvdG8qKDA0OTliMmI2OTU3Y2MxMTUxMjQ4MTFjYWNhN2ZjMDM0ZTQwYmZhNzQwAZ-T4PrWroIkRUgFgiQriSg9gXyU"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.376805, 39.470239 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Public",
+      "published" : "2011-09-03T19:20:07.872Z",
+      "name" : "Feng-wei Yeh",
+      "profileUrl" : "https://plus.google.com/101211925441407890209",
+      "thumbnailUrl" : "http://www.google.com/s2/photos/public/AIbEiAIAAABDCKHmgKvJ-OfoECILdmNhcmRfcGhvdG8qKDliNjQ1YzYwZjM5MjhiOTA5ZjYzNzFlMWU2OWJiZWEwNTNiZTQ0ZDAwAWIj2x-ljbv_6t3zsMDTm8al8Q5U"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.376035, 39.466773 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Public",
+      "published" : "2011-09-04T01:10:46.179Z",
+      "name" : "Jose manuel Herrero gomez",
+      "profileUrl" : "https://plus.google.com/117544856347002844847",
+      "thumbnailUrl" : "http://www.google.com/s2/photos/public/AIbEiAIAAABECK_t8rLBvPa98wEiC3ZjYXJkX3Bob3RvKig4MTZiMTE1OWQ1OWFjZDg4Mzk2MGFmOGZjMGY3M2RiOTg2NWIwYTFmMAEwF0N_hszZszGOsUzP9hw-pitjlQ"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.377328, 39.476163 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Public",
+      "published" : "2011-09-03T16:10:18.000Z",
+      "name" : "Lucrècia de Borja i Bairén",
+      "profileUrl" : "https://plus.google.com/103365286634061856932",
+      "thumbnailUrl" : "http://www.google.com/s2/photos/public/AIbEiAIAAABDCKSBgrXRy_nZLiILdmNhcmRfcGhvdG8qKGQyMThhNzZmYTc5OTAzYzYwNjYzOTM2OGE2NDA5ZTE5NzY1OTdhZDkwAYIkfqk0sdqUgU8HScb88_NVyxxQ"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3773166, 39.4664902 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Public",
+      "published" : "2011-09-03T16:05:00.000Z",
+      "name" : "Lucrècia de Borja i Bairén",
+      "profileUrl" : "https://plus.google.com/103365286634061856932",
+      "thumbnailUrl" : "http://www.google.com/s2/photos/public/AIbEiAIAAABDCKSBgrXRy_nZLiILdmNhcmRfcGhvdG8qKGQyMThhNzZmYTc5OTAzYzYwNjYzOTM2OGE2NDA5ZTE5NzY1OTdhZDkwAYIkfqk0sdqUgU8HScb88_NVyxxQ"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3767125, 39.4674535 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Public",
+      "published" : "2011-09-03T22:35:57.374Z",
+      "name" : "Jose manuel Herrero gomez",
+      "profileUrl" : "https://plus.google.com/117544856347002844847",
+      "thumbnailUrl" : "http://www.google.com/s2/photos/public/AIbEiAIAAABECK_t8rLBvPa98wEiC3ZjYXJkX3Bob3RvKig4MTZiMTE1OWQ1OWFjZDg4Mzk2MGFmOGZjMGY3M2RiOTg2NWIwYTFmMAEwF0N_hszZszGOsUzP9hw-pitjlQ"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.373518, 39.47389 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Public",
+      "published" : "2011-09-03T21:48:49.000Z",
+      "name" : "Fran A. Meca",
+      "profileUrl" : "https://plus.google.com/110300593250447509396",
+      "thumbnailUrl" : "http://www.google.com/s2/photos/public/AIbEiAIAAABECJSP16XI38P5jgEiC3ZjYXJkX3Bob3RvKihiMjRjMDM5YmVhM2RiMWUwNTgyZWQ4OTA3ZTlhYzc3ZWIwOTg5MTFhMAEut2yTdtgfzvTqZYi9MuMtWcY9jQ"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.37585, 39.475226 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Public",
+      "published" : "2011-09-03T12:21:45.000Z",
+      "name" : "Maria Baixauli",
+      "profileUrl" : "https://profiles.google.com/106065944871891746373",
+      "thumbnailUrl" : "http://www.google.com/s2/photos/public/AIbEiAIAAABDCMX81qGOl6SXVCILdmNhcmRfcGhvdG8qKDE5ZmQ1MDBiNzc5NDA2ZmEwMjZmNWJjMGM2NjgyNzg2ZTE4ZDZjN2YwAfO2ygHK4aGS38O3S49yJuW8UAOn"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3784919, 39.4678061 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Public",
+      "published" : "2011-09-03T21:17:29.000Z",
+      "name" : "Leandro Landete Brocardo",
+      "profileUrl" : "https://profiles.google.com/pquepcom",
+      "thumbnailUrl" : "http://www.google.com/s2/photos/public/AIbEiAIAAABECPHLjuDWsp6V4QEiC3ZjYXJkX3Bob3RvKihlNDVlMGE3YTViYmMyMTFlOWM0NzBjNDZmMjNjYzE0OThlZjEyNTg0MAFSfQYIl06UxhcVhCHXXQ5Po-pbCg"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3799081, 39.4767671 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Public",
+      "published" : "2011-09-03T14:13:48.000Z",
+      "name" : "Maria Baixauli",
+      "profileUrl" : "https://profiles.google.com/106065944871891746373",
+      "thumbnailUrl" : "http://www.google.com/s2/photos/public/AIbEiAIAAABDCMX81qGOl6SXVCILdmNhcmRfcGhvdG8qKDE5ZmQ1MDBiNzc5NDA2ZmEwMjZmNWJjMGM2NjgyNzg2ZTE4ZDZjN2YwAfO2ygHK4aGS38O3S49yJuW8UAOn"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.378025, 39.470609 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Public",
+      "published" : "2011-09-03T19:35:32.000Z",
+      "name" : "Andres Rojo",
+      "profileUrl" : "https://plus.google.com/100355635039890467466",
+      "thumbnailUrl" : "http://www.google.com/s2/photos/public/AIbEiAIAAABDCIrV6fLzhd73BCILdmNhcmRfcGhvdG8qKDUyNzcxOWQyZTY2NzhkZGRmYzQ2NzNhNTY2ZGVjNDZkZjA0MDBiYjQwAaBGK1gazutSAG3CJPnHvZ4lHK9g"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.377384, 39.4760951 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Public",
+      "published" : "2011-09-03T11:40:53.000Z",
+      "name" : "Maria Baixauli",
+      "profileUrl" : "https://profiles.google.com/106065944871891746373",
+      "thumbnailUrl" : "http://www.google.com/s2/photos/public/AIbEiAIAAABDCMX81qGOl6SXVCILdmNhcmRfcGhvdG8qKDE5ZmQ1MDBiNzc5NDA2ZmEwMjZmNWJjMGM2NjgyNzg2ZTE4ZDZjN2YwAfO2ygHK4aGS38O3S49yJuW8UAOn"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.372202, 39.469348 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Public",
+      "published" : "2011-09-03T09:26:36.000Z",
+      "name" : "Juan Antonio Galindo Torres",
+      "profileUrl" : "https://plus.google.com/108835002213847378950",
+      "thumbnailUrl" : "http://www.google.com/s2/photos/public/AIbEiAIAAABDCIbYppHC9o7OeiILdmNhcmRfcGhvdG8qKGYwZTFjNjMzNzA2OGU4MmQ5ODNjMzA2NDlhYjFiYTMzODc0NWEwYjkwAc3i1IZH5VFKt2LI6dUtex7yQmMU"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.388396, 39.470964 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Public",
+      "published" : "2011-09-03T08:24:09.000Z",
+      "name" : "Jose Fos",
+      "profileUrl" : "https://plus.google.com/117093309545630562702",
+      "thumbnailUrl" : "http://www.google.com/s2/photos/public/AIbEiAIAAABECI7z6fj6zuib7QEiC3ZjYXJkX3Bob3RvKihiZDRiZjVhYWVmZjY1MGE1YWI1NzFkYzA5ZjQ3ZThiMDhjNjVmNjM5MAH-LZyiRhOXXnTUhGmGjT5RdRwKxQ"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.366033, 39.46654 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Public",
+      "published" : "2011-09-03T14:25:53.000Z",
+      "name" : "Pepe Doval",
+      "profileUrl" : "https://plus.google.com/109044488462040007119",
+      "thumbnailUrl" : ""
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.380127, 39.477773 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Public",
+      "published" : "2011-09-02T19:22:01.000Z",
+      "name" : "Daniel Delgado",
+      "profileUrl" : "https://plus.google.com/104256494096889659836",
+      "thumbnailUrl" : "http://www.google.com/s2/photos/public/AIbEiAIAAABDCLyDn83E2oaJOyILdmNhcmRfcGhvdG8qKGQzZmI2YTNiOWZkZmUyNDcyMWU4NmExMTBlYWFlMDQ3Y2NiMDczMzcwAZoHvqhq57KlBB6QUn8uNsu6TzU2"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3773166, 39.4664902 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Public",
+      "published" : "2011-09-03T13:01:57.000Z",
+      "name" : "Daniel Delgado",
+      "profileUrl" : "https://plus.google.com/104256494096889659836",
+      "thumbnailUrl" : "http://www.google.com/s2/photos/public/AIbEiAIAAABDCLyDn83E2oaJOyILdmNhcmRfcGhvdG8qKGQzZmI2YTNiOWZkZmUyNDcyMWU4NmExMTBlYWFlMDQ3Y2NiMDczMzcwAZoHvqhq57KlBB6QUn8uNsu6TzU2"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3565463, 39.4589739 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Public",
+      "published" : "2011-09-03T12:35:23.000Z",
+      "name" : "Daniel Delgado",
+      "profileUrl" : "https://plus.google.com/104256494096889659836",
+      "thumbnailUrl" : "http://www.google.com/s2/photos/public/AIbEiAIAAABDCLyDn83E2oaJOyILdmNhcmRfcGhvdG8qKGQzZmI2YTNiOWZkZmUyNDcyMWU4NmExMTBlYWFlMDQ3Y2NiMDczMzcwAZoHvqhq57KlBB6QUn8uNsu6TzU2"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3568231, 39.4603783 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Public",
+      "published" : "2011-09-02T12:13:03.000Z",
+      "name" : "Maria Baixauli",
+      "profileUrl" : "https://profiles.google.com/106065944871891746373",
+      "thumbnailUrl" : "http://www.google.com/s2/photos/public/AIbEiAIAAABDCMX81qGOl6SXVCILdmNhcmRfcGhvdG8qKDE5ZmQ1MDBiNzc5NDA2ZmEwMjZmNWJjMGM2NjgyNzg2ZTE4ZDZjN2YwAfO2ygHK4aGS38O3S49yJuW8UAOn"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3726651, 39.4655682 ]
+    }
+  } ]
+}

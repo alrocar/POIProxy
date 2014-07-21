@@ -1,0 +1,171 @@
+{
+  "type" : "FeatureCollection",
+  "features" : [ {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "The Dirt Tracks",
+      "artist" : "Automatic Sushi",
+      "name" : "Wah Wah",
+      "city" : "Valencia",
+      "country" : "Spain",
+      "street" : "Calle de Ram√≥n Campoamor, 52",
+      "postalcode" : "46022",
+      "url" : "http://www.last.fm/event/2040402+The+Dirt+Tracks+at+Wah+Wah+on+9+September+2011",
+      "website" : "http://www.wahwahclub.com/",
+      "startDate" : "Fri, 09 Sep 2011 22:30:00",
+      "description" : "<div class=\"bbcode\">Fiesta Reentr√© en WahWah despu√©s de las vacaciones de verano,2 bandas de la comunidad abren la temporada de conciertos,nuevos espacios y decoraci√≥n en la sala<br /><br />Entrada √∫nica en taquilla 6 euros<br /><br />After-Show: Amimedaban2 Djs</div>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.34692, 39.470921 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Lost Acapulco",
+      "artist" : "Wau y los Arrrghs!!!",
+      "name" : "Wah Wah",
+      "city" : "Valencia",
+      "country" : "Spain",
+      "street" : "Calle de Ram√≥n Campoamor, 52",
+      "postalcode" : "46022",
+      "url" : "http://www.last.fm/event/2016389+Lost+Acapulco+at+Wah+Wah+on+10+September+2011",
+      "website" : "http://www.wahwahclub.com/",
+      "startDate" : "Sat, 10 Sep 2011 22:00:00",
+      "description" : "<div class=\"bbcode\">Doblete brutal de Garage-Surf,Lost Acapulco desde Mexico con su surf instrumental y sus m√°scaras de lucha libre,les acompa√±an desde Valencia los  divertidisimos Wau y los Arrrghs!!!<br /><br />Entradas a la venta por s√≥lo 9 euros en Tienda Tipo,Discos Monterey y Vaiv√©n</div>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.34692, 39.470921 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Good Fellaz + The Hollowmen + Wasabi",
+      "artist" : "The Hollowmen",
+      "name" : "CSA La Residencia",
+      "city" : "Valencia",
+      "country" : "Spain",
+      "street" : "Carrer Font D'en Corts 184",
+      "postalcode" : "46007",
+      "url" : "http://www.last.fm/event/2037221+Good+Fellaz+-+The+Hollowmen+-+Wasabi",
+      "website" : "http://orxatanegra.blogspot.com/2011/08/sabado-10-sep-good-fellazthe.html",
+      "startDate" : "Sat, 10 Sep 2011 22:00:00",
+      "description" : "ollow\">http://orxatanegra.blogspot.com/</a></div>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.356197, 39.441297 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Southill(Tributo a Deep Purple)",
+      "artist" : "Southill(Tributo a Deep Purple)",
+      "name" : "Wah Wah",
+      "city" : "Valencia",
+      "country" : "Spain",
+      "street" : "Calle de Ram√≥n Campoamor, 52",
+      "postalcode" : "46022",
+      "url" : "http://www.last.fm/event/2040392+Southill%28Tributo+a+Deep+Purple%29+at+Wah+Wah+on+16+September+2011",
+      "website" : "http://www.wahwahclub.com/",
+      "startDate" : "Fri, 16 Sep 2011 23:00:00",
+      "description" : "<div class=\"bbcode\">Los valencianos Southill(banda curtida con m√∫sicos con mucha experiencia) recrear√° los mejores temas de la m√≠tica banda inglesa,fueron sus teloneros en los Jardines de Viveros en el a√±o 2010 .<br /><br />Entrada √∫nica en taquilla 6 euros</div>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.34692, 39.470921 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Anna Calvi",
+      "artist" : "Anna Calvi",
+      "name" : "Wah Wah",
+      "city" : "Valencia",
+      "country" : "Spain",
+      "street" : "Calle de Ram√≥n Campoamor, 52",
+      "postalcode" : "46022",
+      "url" : "http://www.last.fm/event/2002591+Anna+Calvi+at+Wah+Wah+on+17+September+2011",
+      "website" : "http://www.wahwahclub.com/",
+      "startDate" : "Sat, 17 Sep 2011 22:30:00"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.34692, 39.470921 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "B√ºrdel King",
+      "artist" : "B√ºrdel King",
+      "name" : "Fnac",
+      "city" : "Valencia",
+      "country" : "Spain",
+      "url" : "http://www.last.fm/event/2022516+B%C3%BCrdel+King+at+Fnac+on+23+September+2011",
+      "startDate" : "Fri, 23 Sep 2011 11:27:01",
+      "description" : "<div class=\"bbcode\">Showcase + Firma</div>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.380415, 39.468401 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Barrence Whitfield And The Savages",
+      "artist" : "Barrence Whitfield And The Savages",
+      "name" : "Wah Wah",
+      "city" : "Valencia",
+      "country" : "Spain",
+      "street" : "Calle de Ram√≥n Campoamor, 52",
+      "postalcode" : "46022",
+      "url" : "http://www.last.fm/event/2016397+Barrence+Whitfield+And+The+Savages+at+Wah+Wah+on+23+September+2011",
+      "website" : "http://www.wahwahclub.com/",
+      "startDate" : "Fri, 23 Sep 2011 22:00:00",
+      "description" : "<div class=\"bbcode\">Increible combo americano,su l√≠der, un front-man que parece salido de un cruce entre James Brown y Little Richard posee una voz  y un carisma brutal,con gente de The Lyres entre sus miembros.<br /><br />Abrir√°n la velada el grupo valenciano Electric Cabin y su potente rockinblues<br /><br />Entradas a la venta en Discos Monterey,Tienda Tipo y Vaiv√©n desde primeros de septiembre por 15 euros<br /><br />Taquilla: 18 euros</div>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.34692, 39.470921 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "Sexy Sadie",
+      "artist" : "No-Frosth",
+      "name" : "Wah Wah",
+      "city" : "Valencia",
+      "country" : "Spain",
+      "street" : "Calle de Ram√≥n Campoamor, 52",
+      "postalcode" : "46022",
+      "url" : "http://www.last.fm/event/2028512+Sexy+Sadie+at+Wah+Wah+on+24+September+2011",
+      "website" : "http://www.wahwahclub.com/",
+      "startDate" : "Sat, 24 Sep 2011 22:00:00",
+      "description" : "lencia y como banda invitada No-Frosth <br /><br />Apertura 22:00 horas<br />Entradas anticipadas a 12 euros en <a href=\"http://www.ticketea.com\" rel=\"nofollow\">www.ticketea.com</a><br /><br />Taquilla : 15 euros</div>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.34692, 39.470921 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "title" : "La Habitacion Roja",
+      "artist" : "La Habitacion Roja",
+      "name" : "Wah Wah",
+      "city" : "Valencia",
+      "country" : "Spain",
+      "street" : "Calle de Ram√≥n Campoamor, 52",
+      "postalcode" : "46022",
+      "url" : "http://www.last.fm/event/2016379+La+Habitacion+Roja+at+Wah+Wah+on+30+September+2011",
+      "website" : "http://www.wahwahclub.com/",
+      "startDate" : "Fri, 30 Sep 2011 22:30:00",
+      "description" : "<div class=\"bbcode\">Presentaci√≥n de su nuevo disco&quot;Para Ti&quot; Volumen 2,los chicos de La Habitaci√≥n Roja versionean algunos de los temas que m√°s les han marcado.<br /><br />Entradas a la venta en <a href=\"http://www.ticketmaster.es\" rel=\"nofollow\">www.ticketmaster.es</a>, Amsterdam Discos,Tienda Tipo,FNAC,Carrefour por 12 euros + gastos<br /><br />Taquilla:15 euros<br /><br /><br />Fiesta Presentaci√≥n nueva temporada de Vinilo Valencia<br /><br />After-Show:√Åtomos Djs</div>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.34692, 39.470921 ]
+    }
+  } ]
+}

@@ -1,0 +1,91 @@
+{
+  "format": "xml",
+  "apiKey": "",
+  "encoding": "UTF-8",
+  "compression": "zip",
+  "contentFile": "administracio_publica.rdf",
+  "categories": [
+    "local_bcn_administraciopublica"
+  ],
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://www.bcn.cat/tercerlloc/administracio_publica.zip",
+      "params": []
+    },
+    "search": {
+      "url": "http://www.bcn.cat/tercerlloc/administracio_publica.zip",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "VCard",
+      "elements": {
+        "streetName" : {
+          "input" : "streetName"
+        },
+        "name" : {
+          "input" : "fn"
+        },
+        "address" : {
+          "input" : "street-address"
+        },
+        "code" : {
+          "input" : "postal-code"
+        },
+        "city" : {
+          "input" : "locality"
+        },
+        "region" : {
+          "input" : "region"
+        },
+        "country" : {
+          "input" : "country-name"
+        },
+        "created" : {
+          "input" : "created"
+        },
+        "rev" : {
+          "input" : "rev"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    },
+    "search": {
+      "feature": "VCard",
+      "elements": {
+        "streetName" : {
+          "input" : "streetName"
+        },
+        "name" : {
+          "input" : "fn"
+        },
+        "address" : {
+          "input" : "street-address"
+        },
+        "code" : {
+          "input" : "postal-code"
+        },
+        "city" : {
+          "input" : "locality"
+        },
+        "region" : {
+          "input" : "region"
+        },
+        "country" : {
+          "input" : "country-name"
+        },
+        "created" : {
+          "input" : "created"
+        },
+        "rev" : {
+          "input" : "rev"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    }
+  }
+}

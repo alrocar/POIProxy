@@ -1,0 +1,76 @@
+{
+  "format": "json",
+  "apiKey": "",
+  "categories": [
+    "social",
+    "minube"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "http://api.minube.com/places/coordinates.json%3Fapi_key%__KEY__%26latitude%3D__LAT__%26longitude%3D__LON__%26distance%3D__DIST__%26limit%3D20%26order%3Ddate",
+      "params": []
+    },
+    "search": {
+      "url": "b",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "id",
+      "elements": {
+        "distance": {
+          "input": "distance"
+        },
+        "code": {
+          "input": "zip_code"
+        },
+        "web": {
+          "input": "website"
+        },
+        "address": {
+          "input": "address"
+        },
+        "name": {
+          "input": "name"
+        },
+        "phone": {
+          "input": "telephone"
+        },
+        "url": {
+          "input": "url"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    },
+    "search": {
+      "feature": "id",
+      "elements": {
+        "distance": {
+          "input": "distance"
+        },
+        "code": {
+          "input": "zip_code"
+        },
+        "web": {
+          "input": "website"
+        },
+        "address": {
+          "input": "address"
+        },
+        "name": {
+          "input": "name"
+        },
+        "phone": {
+          "input": "telephone"
+        },
+        "url": {
+          "input": "url"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    }
+  }
+}

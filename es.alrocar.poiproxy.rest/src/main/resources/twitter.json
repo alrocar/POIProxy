@@ -1,0 +1,70 @@
+{
+  "format": "json",
+  "apiKey": "",
+  "categories": [
+    "social",
+    "twitter"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "https://api.twitter.com/1.1/search/tweets.json?result_type=recent&callback=?&geocode=__LAT__,__LON__,__DISTKM__km",
+      "params": []
+    },
+    "search": {
+      "url": "b",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "created_at",
+      "elements": {
+        "text": {
+          "input": "text"
+        },
+        "from_user_id": {
+          "input": "from_user_id"
+        },
+        "source": {
+          "input": "source"
+        },
+        "location": {
+          "input": "location"
+        },
+        "from_user": {
+          "input": "from_user"
+        },
+        "full_name": {
+          "input": "full_name"
+        }
+      },
+      "lon": "coordinates",
+      "lat": "coordinates"
+    },
+    "search": {
+      "feature": "created_at",
+      "elements": {
+        "text": {
+          "input": "text"
+        },
+        "from_user_id": {
+          "input": "from_user_id"
+        },
+        "source": {
+          "input": "source"
+        },
+        "location": {
+          "input": "location"
+        },
+        "from_user": {
+          "input": "from_user"
+        },
+        "full_name": {
+          "input": "full_name"
+        }
+      },
+      "lon": "coordinates",
+      "lat": "coordinates"
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "format": "json",
+  "apiKey": "ee12a4ba6100887a7acfea448b34ca83",
+  "encoding": "UTF-8",
+  "categories": [
+    "weather"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "http://api.openweathermap.org/data/2.5/weather?lat=__LAT__&lon=__LON__&radius=10&APPID=__KEY__",
+      "params": []
+    },
+    "search": {
+      "url": "b",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "coord",
+      "elements": {
+        "id": {
+          "input": "id"
+        },
+        "humidity": {
+          "input": "humidity"
+        },
+        "pressure": {
+          "input": "pressure"
+        },
+        "speed": {
+          "input": "speed"
+        },
+        "temp_max": {
+          "input": "temp_max"
+        },
+        "description": {
+          "input": "description"
+        },
+        "name": {
+          "input": "name"
+        },
+        "temp_min": {
+          "input": "temp_min"
+        },
+        "temp": {
+          "input": "temp"
+        },
+        "main": {
+          "input": "main"
+        }
+      },
+      "lon": "lon",
+      "lat": "lat"
+    },
+    "search": {
+      "feature": "coord",
+      "elements": {
+        "id": {
+          "input": "id"
+        },
+        "humidity": {
+          "input": "humidity"
+        },
+        "pressure": {
+          "input": "pressure"
+        },
+        "speed": {
+          "input": "speed"
+        },
+        "temp_max": {
+          "input": "temp_max"
+        },
+        "description": {
+          "input": "description"
+        },
+        "name": {
+          "input": "name"
+        },
+        "temp_min": {
+          "input": "temp_min"
+        },
+        "temp": {
+          "input": "temp"
+        },
+        "main": {
+          "input": "main"
+        }
+      },
+      "lon": "lon",
+      "lat": "lat"
+    }
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "format": "json",
+  "apiKey": "ee12a4ba6100887a7acfea448b34ca83",
+  "encoding": "UTF-8",
+  "categories": [
+    "weather"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "http://api.openweathermap.org/data/2.5/forecast?lat=__LAT__&lon=__LON__&radius=10&APPID=__KEY__",
+      "params": []
+    },
+    "search": {
+      "url": "b",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "dt",
+      "elements": {
+        "clouds": {
+          "input": "clouds"
+        },
+        "min": {
+          "input": "min"
+        },
+        "humidity": {
+          "input": "humidity"
+        },
+        "eve": {
+          "input": "eve"
+        },
+        "max": {
+          "input": "max"
+        },
+        "pressure": {
+          "input": "pressure"
+        },
+        "speed": {
+          "input": "speed"
+        },
+        "deg": {
+          "input": "deg"
+        },
+        "morn": {
+          "input": "morn"
+        },
+        "night": {
+          "input": "night"
+        },
+        "day": {
+          "input": "day"
+        },
+        "main": {
+          "input": "main"
+        }
+      },
+      "lon": "lon",
+      "lat": "lat"
+    },
+    "search": {
+      "feature": "dt",
+      "elements": {
+        "clouds": {
+          "input": "clouds"
+        },
+        "min": {
+          "input": "min"
+        },
+        "humidity": {
+          "input": "humidity"
+        },
+        "eve": {
+          "input": "eve"
+        },
+        "max": {
+          "input": "max"
+        },
+        "pressure": {
+          "input": "pressure"
+        },
+        "speed": {
+          "input": "speed"
+        },
+        "deg": {
+          "input": "deg"
+        },
+        "morn": {
+          "input": "morn"
+        },
+        "night": {
+          "input": "night"
+        },
+        "day": {
+          "input": "day"
+        },
+        "main": {
+          "input": "main"
+        }
+      },
+      "lon": "lon",
+      "lat": "lat"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "format": "xml",
+  "apiKey": "",
+  "encoding": "UTF-8",
+  "requestTypes": {
+    "browse": {
+      "url": "http://opendata.bcn.cat/opendata/en/catalog/SECTOR_PUBLIC/equipamentadministracio/#",
+      "params": []
+    },
+    "search": {
+      "url": "b",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "VCard",
+      "elements": {
+        "name" : {
+          "input" : "fn"
+        },
+        "address" : {
+          "input" : "street-address"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    },
+    "search": {
+      "feature": "VCard",
+      "elements": {
+        "name" : {
+          "input" : "fn"
+        },
+        "address" : {
+          "input" : "street-address"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "format": "json",
+  "apiKey": "37074513.bc3142f.9f43f4cd65db48e2870de22e1c798c01",
+  "categories": [
+    "social",
+    "photo",
+    "instagram"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "https://api.instagram.com/v1/media/search?lat=__LAT__&lng=__LON__&access_token=__KEY__",
+      "params": []
+    },
+    "search": {
+      "url": "b",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "type",
+      "elements": {
+        "id": {
+          "input": "id"
+        },
+        "description": {
+          "input": "text"
+        },
+        "profile_picture": {
+          "input": "profile_picture"
+        },
+        "username": {
+          "input": "username"
+        },
+        "count": {
+          "input": "count"
+        },
+        "name": {
+          "input": "name"
+        },
+        "link": {
+          "input": "link"
+        },
+        "created_time": {
+          "input": "created_time"
+        },
+        "image": {
+          "input": "url"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    },
+    "search": {
+      "feature": "type",
+      "elements": {
+        "id": {
+          "input": "id"
+        },
+        "description": {
+          "input": "text"
+        },
+        "profile_picture": {
+          "input": "profile_picture"
+        },
+        "username": {
+          "input": "username"
+        },
+        "count": {
+          "input": "count"
+        },
+        "name": {
+          "input": "name"
+        },
+        "link": {
+          "input": "link"
+        },
+        "created_time": {
+          "input": "created_time"
+        },
+        "image": {
+          "input": "url"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    }
+  }
+}

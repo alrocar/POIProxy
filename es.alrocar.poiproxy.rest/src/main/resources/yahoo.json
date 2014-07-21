@@ -1,0 +1,82 @@
+{
+  "format": "xml",
+  "apiKey": "",
+  "categories": [
+    "geo",
+    "yahoo"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "http://where.yahooapis.com/geocode?q=__LAT__,+__LON__&gflags=R&appid=KjT2M36u",
+      "params": []
+    },
+    "search": {
+      "url": "http://where.yahooapis.com/geocode?q=__QUERY__&gflags=R&appid=KjT2M36u",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "quality",
+      "elements": {
+        "line4": {
+          "input": "line4"
+        },
+        "address": {
+          "input": "street"
+        },
+        "name": {
+          "input": "name"
+        },
+        "country": {
+          "input": "state"
+        },
+        "code": {
+          "input": "uzip"
+        },
+        "line3": {
+          "input": "line3"
+        },
+        "city": {
+          "input": "city"
+        },
+        "line2": {
+          "input": "line2"
+        }
+      },
+      "lon": "latitude",
+      "lat": "longitude"
+    },
+    "search": {
+      "feature": "quality",
+      "elements": {
+        "line4": {
+          "input": "line4"
+        },
+        "address": {
+          "input": "street"
+        },
+        "name": {
+          "input": "name"
+        },
+        "country": {
+          "input": "state"
+        },
+        "code": {
+          "input": "uzip"
+        },
+        "line3": {
+          "input": "line3"
+        },
+        "city": {
+          "input": "city"
+        },
+        "line2": {
+          "input": "line2"
+        }
+      },
+      "lon": "latitude",
+      "lat": "longitude"
+    }
+  }
+}

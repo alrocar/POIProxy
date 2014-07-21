@@ -1,0 +1,26 @@
+{ describeService : {
+    format: "json",
+    apiKey : "",
+    requestTypes : {
+                    "browse": {"url": "http://api.gowalla.com/spots?lat=__LAT__&lng=__LON__&radius=__DIST__", "params": []},
+                    "search": {"url": "b", "params": []}
+                    },
+    featureTypes : { "browse" : {
+                    	"feature" : "checkins_count",
+                    	"elements" : ["locality", "activity_url", "image_url", "name", "url", "items_url", "description", "_image_url_50"],
+                    	"lon": "lng", 
+                    	"lat": "lat",
+                    	"combinedLonLat": "geocode",
+                    	"separator": " "
+
+                    	},"search" : {
+                    	"feature" : "title",
+                    	"elements" : ["title", "published", "name", "profileUrl", "thumbnailUrl"],
+                    	"lon": "lng", 
+                    	"lat": "lat",
+                    	"combinedLonLat": "geocode",
+                    	"separator": " "
+
+                    	}
+                    }
+}}

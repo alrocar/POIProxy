@@ -1,0 +1,221 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>es.alrocar.poiproxy</artifactId>
+	<version>2.0.0-SNAPSHOT</version>
+	<url>http://poiproxy.mapps.es</url>
+	<description>A proxy service to retrieve POIs from several public services</description>
+	<parent>
+		<groupId>es.prodevelop</groupId>
+		<artifactId>es.alrocar.poiproxy.modules</artifactId>
+		<version>2.0.0-SNAPSHOT</version>
+	</parent>
+
+	<licenses>
+		<license>
+			<name>GNU Library General Public License, Version 2.0 or any later version</name>
+			<url>http://www.gnu.org/licenses/lgpl-2.0.html</url>
+		</license>
+	</licenses>
+
+	<scm>
+		<url>git:git@github.com:alrocar/POIProxy.git</url>
+		<connection>scm:git:git@github.com:alrocar/POIProxy.git</connection>
+		<developerConnection>scm:git:git@github.com:alrocar/POIProxy.git</developerConnection>
+	</scm>
+
+	<developers>
+		<developer>
+			<id>alrocar</id>
+			<name>Alberto Romeu</name>
+			<email>alberto@alrocar.es</email>
+		</developer>
+	</developers>
+
+	<properties>
+		<geotools.version>11.1</geotools.version>
+		<restlet.version>2.0.0</restlet.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.8.2</version>
+		</dependency>
+		<dependency>
+			<groupId>es.prodevelop</groupId>
+			<artifactId>es.prodevelop.gvsig.mini.compat</artifactId>
+			<version>0.5.5</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>es.prodevelop</groupId>
+			<artifactId>es.prodevelop.gvsig.mini.geom</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20090211</version>
+		</dependency>
+		<dependency>
+			<groupId>org.geotools</groupId>
+			<artifactId>gt-shapefile</artifactId>
+			<version>${geotools.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.geotools.xsd</groupId>
+			<artifactId>gt-xsd-kml</artifactId>
+			<version>${geotools.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.geotools</groupId>
+			<artifactId>gt-wfs</artifactId>
+			<version>${geotools.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.geotools</groupId>
+			<artifactId>gt-epsg-hsql</artifactId>
+			<version>${geotools.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.geotools</groupId>
+			<artifactId>gt-wms</artifactId>
+			<version>${geotools.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.geotools</groupId>
+			<artifactId>gt-main</artifactId>
+			<version>${geotools.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.geotools</groupId>
+			<artifactId>gt-referencing</artifactId>
+			<version>${geotools.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.geotools</groupId>
+			<artifactId>gt-epsg-extension</artifactId>
+			<version>${geotools.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.restlet.jse</groupId>
+			<artifactId>org.restlet</artifactId>
+			<version>${restlet.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.restlet.jse</groupId>
+			<artifactId>org.restlet.ext.simple</artifactId>
+			<version>${restlet.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.restlet.gae</groupId>
+			<artifactId>org.restlet.ext.servlet</artifactId>
+			<version>${restlet.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-servlet_2.5_spec</artifactId>
+			<version>1.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>es.prodevelop</groupId>
+			<artifactId>es.prodevelop.csv</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.2.4</version>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.google.guava</groupId> -->
+<!-- 			<artifactId>guava-base</artifactId> -->
+<!-- 			<version>r03</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.google.guava</groupId> -->
+<!-- 			<artifactId>guava-collections</artifactId> -->
+<!-- 			<version>r03</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.glassfish.hk2.external</groupId> -->
+<!-- 			<artifactId>javax.inject</artifactId> -->
+<!-- 			<version>2.3.0-b09</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>net.fortytwo.rdfagents</groupId> -->
+<!-- 			<artifactId>rdfagents-demos</artifactId> -->
+<!-- 			<version>1.0</version> -->
+<!-- 		</dependency> -->
+	</dependencies>
+	<repositories>
+		<repository>
+			<id>maven2-repository.dev.java.net</id>
+			<name>Java.net repository</name>
+			<url>http://download.java.net/maven/2</url>
+		</repository>
+		<repository>
+			<id>osgeo</id>
+			<name>Open Source Geospatial Foundation Repository</name>
+			<url>http://download.osgeo.org/webdav/geotools/</url>
+		</repository>
+		<repository>
+			<id>maven-restlet</id>
+			<name>Public online Restlet repository</name>
+			<url>http://maven.restlet.org</url>
+		</repository>
+		<repository>
+			<id>fortytwo</id>
+			<name>fortytwo.net Maven repository</name>
+			<url>http://fortytwo.net/maven2</url>
+		</repository>
+		<repository>
+			<id>aduna-repo</id>
+			<name>Aduna repository</name>
+			<url>http://repo.aduna-software.org/maven2/releases</url>
+		</repository>
+	</repositories>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<excludes>
+					<exclude>**/*.java</exclude>
+					<exclude>config/*.properties</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<directory>src/main/java</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+				<includes>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+		</resources>
+		<filters>
+			<filter>src/main/resources/config/poiproxy-${env}.properties</filter>
+		</filters>
+	</build>
+</project>

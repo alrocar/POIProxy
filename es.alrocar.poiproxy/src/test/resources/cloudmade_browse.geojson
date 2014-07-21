@@ -1,0 +1,15 @@
+{
+  "type" : "FeatureCollection",
+  "features" : [ {
+    "type" : "Feature",
+    "properties" : {
+      "addr:city" : "Valencia",
+      "addr:country" : "ES",
+      "addr:street" : "Avenida Peris y Valero"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.37478, 39.45776 ]
+    }
+  } ]
+}

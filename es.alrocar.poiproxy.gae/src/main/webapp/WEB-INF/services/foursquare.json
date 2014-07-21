@@ -1,0 +1,20 @@
+{ describeService : {
+    format: "json",
+    apiKey : "",
+    requestTypes : {
+                    "browse": {"url": "https://api.foursquare.com/v2/venues/search?ll=__LAT__,__LON__&client_id=S5MN2YCYHT5EQS31KC1I10L4ELT43IGXO0FWE0IDTMSO5J2F&client_secret=QUIBVAC2Q0IIYVKVLJEMMABXEUEMTR3KJC3Z12UG5MCKFTSR", "params": []},
+                    "search": {"url": "b", "params": []}
+                    },
+    featureTypes : { "browse" : {
+                    	"feature" : "name",
+                    	"elements" : ["name", "address", "city", "state"],
+                    	"lon": "lng", 
+                    	"lat": "lat"
+                    	},"search" : {
+                    	"feature" : "name",
+                    	"elements" : ["name", "address", "city", "state"],
+                    	"lon": "lng", 
+                    	"lat": "lat"
+                    	}
+                    }
+}}

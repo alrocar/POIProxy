@@ -1,0 +1,48 @@
+{
+  "format": "json",
+  "apiKey": "",
+  "requestTypes": {
+    "browse": {
+      "url": "http://api.wikilocation.org/articles?lat=__LAT__&lng=__LON__&limit=20",
+      "params": []
+    },
+    "search": {
+      "url": "b",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "id",
+      "elements": {
+        "name": {
+          "input": "title"
+        },
+        "web": {
+          "input": "url"
+        },
+        "distance": {
+          "input": "distance"
+        }
+      },
+      "lon": "lng",
+      "lat": "lat"
+    },
+    "search": {
+      "feature": "id",
+      "elements": {
+        "name": {
+          "input": "title"
+        },
+        "web": {
+          "input": "url"
+        },
+        "distance": {
+          "input": "distance"
+        }
+      },
+      "lon": "lng",
+      "lat": "lat"
+    }
+  }
+}

@@ -1,0 +1,152 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>es.prodevelop</groupId>
+	<artifactId>es.alrocar.poiproxy.modules</artifactId>
+	<version>2.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<url>http://www.mapps.es</url>
+	<description>multi module for POIproxy</description>
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+
+	</parent>
+	<properties>
+		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+		<slf4j.version>1.6.1</slf4j.version>
+	</properties>
+
+	<distributionManagement>
+		<repository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>prodevelop-maven-server</id>
+			<name>Repositorio de maven de Prodevelop</name>
+			<url>ftp://congo.prodevelop.es/repository/release</url>
+			<layout>default</layout>
+		</repository>
+		<snapshotRepository>
+			<id>prodevelop-maven-snapshots</id>
+			<name>Repositorio de snapshots de maven de Prodevelop</name>
+			<url>ftp://congo.prodevelop.es/repository/snapshot</url>
+			<layout>default</layout>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<licenses>
+		<license>
+			<name>GNU General Public License, Version 2.0 or any later version</name>
+			<url>http://www.gnu.org/licenses/gpl-2.0.html</url>
+		</license>
+	</licenses>
+
+	<scm>
+		<url>git:git@github.com:alrocar/POIProxy.git</url>
+		<connection>scm:git:git@github.com:alrocar/POIProxy.git</connection>
+		<developerConnection>scm:git:git@github.com:alrocar/POIProxy.git</developerConnection>
+	</scm>
+	<developers>
+		<developer>
+			<id>alrocar</id>
+			<name>Alberto Romeu</name>
+			<email>alberto@alrocar.es</email>
+		</developer>
+	</developers>
+
+	<build>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ftp</artifactId>
+				<version>1.0</version>
+			</extension>
+		</extensions>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.1</version>
+					<configuration>
+						<encoding>${project.build.sourceEncoding}</encoding>
+						<source>1.6</source>
+						<target>1.6</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>LOCAL</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<env>LOCAL</env>
+			</properties>
+		</profile>
+		<profile>
+			<id>DEV</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<env>DEV</env>
+			</properties>
+		</profile>
+		<profile>
+			<id>PRE</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<env>PRE</env>
+			</properties>
+		</profile>
+		<profile>
+			<id>PRO</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<env>PRO</env>
+			</properties>
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+	</dependencies>
+
+
+
+	<modules>
+		<module>es.alrocar.map.vector</module>
+		<module>es.alrocar.poiproxy</module>
+		<module>es.alrocar.poiproxy.rest</module>
+<!-- 		<module>es.alrocar.poiproxy.gae</module> -->
+	</modules>
+</project>

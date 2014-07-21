@@ -1,0 +1,48 @@
+{
+    "format": "json",
+    "apiKey": "",
+    "requestTypes": {
+      "browse": {
+        "url": "http://services.odata.org/V4/OData/OData.svc/PersonDetails",
+        "params": []
+      },
+      "search": {
+        "url": "b",
+        "params": []
+      }
+    },
+    "featureTypes": {
+      "browse": {
+        "feature": "PersonID",
+        "elements": {
+          "age": {
+            "input": "Age"
+          },
+          "phone": {
+            "input": "Phone"
+          },
+          "address": {
+            "input": "Street"
+          }
+        },
+        "lon": "lon",
+        "lat": "lat"
+      },
+      "search": {
+        "feature": "PersonID",
+        "elements": {
+          "age": {
+            "input": "Age"
+          },
+          "phone": {
+            "input": "Phone"
+          },
+          "address": {
+            "input": "Street"
+          }
+        },
+        "lon": "lon",
+        "lat": "lat"
+      }
+    }
+  }

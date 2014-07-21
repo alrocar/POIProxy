@@ -1,0 +1,144 @@
+{
+  "format": "xml",
+  "apiKey": "48eab8780ca8e82651138c7f0c7db4f8",
+  "categories": [
+    "event",
+    "music",
+    "concert",
+    "nvivo"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "b",
+      "params": []
+    },
+    "search": {
+      "url": "http://www.nvivo.es/api/request.php?api_key=__KEY__&method=city.getEvents&city=__QUERY__",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "event",
+      "elements": {
+        "code": {
+          "input": "postalcode"
+        },
+        "startDate": {
+          "input": "startDate"
+        },
+        "phone": {
+          "input": "phonenumber"
+        },
+        "tickets_url": {
+          "input": "tickets_url"
+        },
+        "web": {
+          "input": "website"
+        },
+        "tag": {
+          "input": "tag"
+        },
+        "address": {
+          "input": "street"
+        },
+        "image": {
+          "input": "image"
+        },
+        "url": {
+          "input": "url"
+        },
+        "city": {
+          "input": "city"
+        },
+        "country": {
+          "input": "country"
+        },
+        "startTime": {
+          "input": "startTime"
+        },
+        "title": {
+          "input": "title"
+        },
+        "modDate": {
+          "input": "modDate"
+        },
+        "description": {
+          "input": "description"
+        },
+        "name": {
+          "input": "name"
+        },
+        "artist": {
+          "input": "artist"
+        },
+        "headliner": {
+          "input": "headliner"
+        }
+      },
+      "lon": "long",
+      "lat": "lat"
+    },
+    "search": {
+      "feature": "event",
+      "elements": {
+        "code": {
+          "input": "postalcode"
+        },
+        "startDate": {
+          "input": "startDate"
+        },
+        "phone": {
+          "input": "phonenumber"
+        },
+        "tickets_url": {
+          "input": "tickets_url"
+        },
+        "web": {
+          "input": "website"
+        },
+        "tag": {
+          "input": "tag"
+        },
+        "address": {
+          "input": "street"
+        },
+        "image": {
+          "input": "image"
+        },
+        "url": {
+          "input": "url"
+        },
+        "city": {
+          "input": "city"
+        },
+        "country": {
+          "input": "country"
+        },
+        "startTime": {
+          "input": "startTime"
+        },
+        "title": {
+          "input": "title"
+        },
+        "modDate": {
+          "input": "modDate"
+        },
+        "description": {
+          "input": "description"
+        },
+        "name": {
+          "input": "name"
+        },
+        "artist": {
+          "input": "artist"
+        },
+        "headliner": {
+          "input": "headliner"
+        }
+      },
+      "lon": "long",
+      "lat": "lat"
+    }
+  }
+}

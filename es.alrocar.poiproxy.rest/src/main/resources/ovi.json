@@ -1,0 +1,83 @@
+{
+  "format": "json",
+  "apiKey": "",
+  "encoding": "ISO-8859-1",
+  "categories": [
+    "geo",
+    "ovi"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "http://where.desktop.mos.svc.ovi.com/json?to=20&la=es-ES&lat=__LAT__&lon=__LON__&ds=1200&vi=places",
+      "params": []
+    },
+    "search": {
+      "url": "http://where.desktop.mos.svc.ovi.com/json?q=__QUERY__&to=20&la=es-ES&lat=__LAT__&lon=__LON__&ds=1200&vi=places",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "id",
+      "elements": {
+        "name": {
+          "input": "title"
+        },
+        "addrHouseNumber": {
+          "input": "addrHouseNumber"
+        },
+        "phone": {
+          "input": "phoneNumber"
+        },
+        "city": {
+          "input": "addrCityName"
+        },
+        "country": {
+          "input": "addrCountryName"
+        },
+        "addrDistrictName": {
+          "input": "addrDistrictName"
+        },
+        "geoDistance": {
+          "input": "geoDistance"
+        },
+        "address": {
+          "input": "addrStreetName"
+        }
+      },
+      "lon": "geoLongitude",
+      "lat": "geoLatitude"
+    },
+    "search": {
+      "feature": "id",
+      "elements": {
+        "name": {
+          "input": "title"
+        },
+        "addrHouseNumber": {
+          "input": "addrHouseNumber"
+        },
+        "phone": {
+          "input": "phoneNumber"
+        },
+        "city": {
+          "input": "addrCityName"
+        },
+        "country": {
+          "input": "addrCountryName"
+        },
+        "addrDistrictName": {
+          "input": "addrDistrictName"
+        },
+        "geoDistance": {
+          "input": "geoDistance"
+        },
+        "address": {
+          "input": "addrStreetName"
+        }
+      },
+      "lon": "geoLongitude",
+      "lat": "geoLatitude"
+    }
+  }
+}

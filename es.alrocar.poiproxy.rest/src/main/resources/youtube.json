@@ -1,0 +1,67 @@
+{
+  "format": "json",
+  "apiKey": "AIzaSyDCgdFhkaVNUurakbvgB8ALL8nP0KFcbqk",
+  "categories": [
+    "social",
+    "video",
+    "youtube"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "http://gdata.youtube.com/feeds/api/videos?location=__LON__,__LAT__&location-radius=__DIST__km",
+      "params": []
+    },
+    "search": {
+      "url": "b",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "entry",
+      "elements": {
+        "title": {
+          "input": "title"
+        },
+        "profileUrl": {
+          "input": "profileUrl"
+        },
+        "thumbnailUrl": {
+          "input": "thumbnailUrl"
+        },
+        "name": {
+          "input": "name"
+        },
+        "published": {
+          "input": "published"
+        }
+      },
+      "lon": "pos",
+      "lat": "pos"
+    },
+    "search": {
+      "feature": "title",
+      "elements": {
+        "title": {
+          "input": "title"
+        },
+        "profileUrl": {
+          "input": "profileUrl"
+        },
+        "thumbnailUrl": {
+          "input": "thumbnailUrl"
+        },
+        "name": {
+          "input": "name"
+        },
+        "published": {
+          "input": "published"
+        }
+      },
+      "lon": "lng",
+      "lat": "lat",
+      "combinedLonLat": "geocode",
+      "separator": " "
+    }
+  }
+}

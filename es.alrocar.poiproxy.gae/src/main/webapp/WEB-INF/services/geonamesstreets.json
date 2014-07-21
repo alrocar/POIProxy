@@ -1,0 +1,21 @@
+{ describeService : {
+    format: "xml",
+    apiKey : "",
+    requestTypes : {
+                    "browse": {"url": "http://api.geonames.org/findNearbyStreetsOSM?lat=__LAT__&lng=__LON__&username=poiproxy", "params": []},
+                    "search": {"url": "b", "params": []}
+                    },
+    featureTypes : { "browse" : {
+                    	"feature" : "streetSegment",
+                    	"elements" : ["name", "distance"],
+                    	"lon": "", 
+                    	"lat": ""
+                    	},
+                        "search" : {
+                    	"feature" : "geoname",
+                    	"elements" : ["name", "countryName", "distance", ],
+                    	"lon": "lng", 
+                    	"lat": "lat"
+                    	},
+                    }
+}}

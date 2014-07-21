@@ -1,0 +1,563 @@
+{
+  "type" : "FeatureCollection",
+  "features" : [ {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Nearby"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Sala Club Estacion Joaquin Sorolla"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.381032, 39.459822 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Train Station"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Estaci√≥n AVE Joaqu√≠n Sorolla (Valencia)",
+      "address" : "Calle de San Vicente M√°rtir, 163",
+      "city" : "Valencia",
+      "state" : "Comunidad Valenciana"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3824926, 39.4611117 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Train Station"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Fnac Express",
+      "address" : "Estaci√≥n del AVE Joaqu√≠n Sorolla",
+      "city" : "Valencia",
+      "state" : "Comunidad Valenciana"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.38138866424560547, 39.46018578352706 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Bookstore"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Estaci√≥ de tren Joaqu√≠n Sorolla",
+      "city" : "Val√®ncia"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.38125455379486084, 39.45982217788696 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Train Station"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Orxata coffee shop AVE"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.381554, 39.459892 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Estacion Joaquin  Sorolla"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.382902, 39.461113 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Light Rail"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Belros (estaci√≥n AVE)"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.380592, 39.460097 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Publips",
+      "address" : "San Vicente 208",
+      "city" : "Valencia",
+      "state" : "Comunidad Valenciana"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3833786, 39.458602 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Office"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Ciao (estacion Ave)",
+      "city" : "Valencia",
+      "state" : "Valenciana"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.382023, 39.460073 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Caf√©"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Natura Estaci√≥n Joaqu√≠n Sorolla"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.380962, 39.459924 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Furniture or Home Store"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Almacora"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.382216, 39.459668 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Breakfast Spot"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "McDonald's Estacion Joaquin Sorolla",
+      "address" : "C/ San Vicente Martir, 173",
+      "city" : "Valencia",
+      "state" : "Valencia"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3830006, 39.4596597 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Burger Joint"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Renfe Lounge - Est. Joaqu√≠n Sorolla",
+      "city" : "Valencia",
+      "state" : "Comunidad Valenciana"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.381155, 39.459939 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Rest Area"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Euro Supermarket"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.38227046, 39.46185365 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Grocery Store"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "On The Sofa"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.38203515, 39.45820975 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Home, Work, Other"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Estaci√≥n Del Norte",
+      "address" : "Calle Xativa",
+      "city" : "Valencia"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.380878, 39.456361 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Train Station"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "La Estafeta"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.380235, 39.461237 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Caf√©"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Correos San Vicente",
+      "address" : "San vicente,175",
+      "city" : "Valencia",
+      "state" : "Spain"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3826925, 39.4608853 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Post Office"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Imaginarium Estacion Joaquin Sorolla"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.380659, 39.458414 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Toy or Game Store"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Consultorio Gil y Morte"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.382026, 39.462135 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Medical Center"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Los Pitufos",
+      "address" : "Puerto Rico 38",
+      "city" : "Valencia",
+      "state" : "Comunidad Valenciana"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3767856, 39.4609943 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Beer Garden"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Edificio Telefonica",
+      "address" : "Calle San Vicente M√°rtir 144-148",
+      "city" : "Valencia",
+      "state" : "Valencia"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.38247227668762207, 39.462389126093974 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Office"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Mercadona"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3833021, 39.4580855 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Grocery Store"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Mirror",
+      "address" : "Calle de San Vicente M√°rtir, 200",
+      "city" : "Valencia",
+      "state" : "Espa√±a"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.383433, 39.458637 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Nightclub"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Punchin Ball",
+      "city" : "Valencia",
+      "state" : "Comunidad Valenciana"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.383733, 39.458396 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "General Entertainment"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Bus Valencia 27",
+      "city" : "Valencia",
+      "state" : "Comunidad Valenciana"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.382693, 39.461027 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Bus Line"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Suministros Civera",
+      "address" : "San Vicente, 194",
+      "city" : "Valencia",
+      "state" : "Comunidad Valenciana"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3831605, 39.4592269 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Department Store"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "DGM peluqueros",
+      "address" : "Dr Vila Barbera,",
+      "city" : "Valencia",
+      "state" : "Valencia"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3804408, 39.4625962 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Casa Mar√≠a",
+      "address" : "Calle San Vicente 149",
+      "city" : "Valencia",
+      "state" : "Comunidad Valenciana"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.3823777, 39.4622347 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Apartment Building / Condo Complex"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 0, 0 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "name" : "Casa Adrian",
+      "city" : "Valencia",
+      "state" : "Comunidad Valenciana"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.382021, 39.46315705 ]
+    }
+  } ]
+}

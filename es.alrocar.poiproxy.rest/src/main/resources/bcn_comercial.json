@@ -1,0 +1,91 @@
+{
+  "format": "xml",
+  "apiKey": "",
+  "encoding": "UTF-8",
+  "compression": "zip",
+  "contentFile": "comercial.rdf",
+  "categories": [
+    "local_bcn_comercial"
+  ],
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://www.bcn.cat/tercerlloc/comercial.zip",
+      "params": []
+    },
+    "search": {
+      "url": "http://www.bcn.cat/tercerlloc/comercial.zip",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "VCard",
+      "elements": {
+        "region": {
+          "input": "region"
+        },
+        "rev": {
+          "input": "rev"
+        },
+        "country-name": {
+          "input": "country-name"
+        },
+        "created": {
+          "input": "created"
+        },
+        "locality": {
+          "input": "locality"
+        },
+        "streetName": {
+          "input": "streetName"
+        },
+        "street-address": {
+          "input": "street-address"
+        },
+        "name": {
+          "input": "fn"
+        },
+        "postal-code": {
+          "input": "postal-code"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    },
+    "search": {
+      "feature": "VCard",
+      "elements": {
+        "region": {
+          "input": "region"
+        },
+        "rev": {
+          "input": "rev"
+        },
+        "country-name": {
+          "input": "country-name"
+        },
+        "created": {
+          "input": "created"
+        },
+        "locality": {
+          "input": "locality"
+        },
+        "streetName": {
+          "input": "streetName"
+        },
+        "street-address": {
+          "input": "street-address"
+        },
+        "name": {
+          "input": "fn"
+        },
+        "postal-code": {
+          "input": "postal-code"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    }
+  }
+}

@@ -1,0 +1,544 @@
+<lfm status="ok">
+<events xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" location="(-0.37,39.46)" page="1" perPage="10" totalPages="5" total="45" festivalsonly="0">
+<event xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
+<id>2040402</id>
+<title>The Dirt Tracks</title>
+<artists>
+<artist>The Dirt Tracks</artist>
+<artist>Automatic Sushi</artist>
+<headliner>The Dirt Tracks</headliner>
+</artists>
+<venue>
+<id>8798968</id>
+<name>Wah Wah</name>
+<location>
+<city>Valencia</city>
+<country>Spain</country>
+<street>Calle de Ramón Campoamor, 52</street>
+<postalcode>46022</postalcode>
+<geo:point>
+<geo:lat>39.470921</geo:lat>
+<geo:long>-0.34692</geo:long>
+</geo:point>
+</location>
+<url>http://www.last.fm/venue/8798968+Wah+Wah</url>
+<website>http://www.wahwahclub.com/</website>
+<phonenumber/>
+<image size="small">http://userserve-ak.last.fm/serve/34/28782511.jpg</image>
+<image size="medium">http://userserve-ak.last.fm/serve/64/28782511.jpg</image>
+<image size="large">http://userserve-ak.last.fm/serve/126/28782511.jpg</image>
+<image size="extralarge">http://userserve-ak.last.fm/serve/252/28782511.jpg</image>
+<image size="mega">
+http://userserve-ak.last.fm/serve/500/28782511/Wah+Wah+3558449801_73cc9d9404_b.jpg
+</image>
+</venue>
+<startDate>Fri, 09 Sep 2011 22:30:00</startDate>
+<description>
+<![CDATA[
+<div class="bbcode">Fiesta Reentré en WahWah después de las vacaciones de verano,2 bandas de la comunidad abren la temporada de conciertos,nuevos espacios y decoración en la sala<br /><br />Entrada única en taquilla 6 euros<br /><br />After-Show: Amimedaban2 Djs</div>
+]]>
+</description>
+<image size="small"/>
+<image size="medium"/>
+<image size="large"/>
+<image size="extralarge"/>
+<attendance>0</attendance>
+<reviews>0</reviews>
+<tag>lastfm:event=2040402</tag>
+<url>
+http://www.last.fm/event/2040402+The+Dirt+Tracks+at+Wah+Wah+on+9+September+2011
+</url>
+<website/>
+<tickets></tickets>
+<cancelled>0</cancelled>
+</event>
+<event xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
+<id>2016389</id>
+<title>Lost Acapulco</title>
+<artists>
+<artist>Lost Acapulco</artist>
+<artist>Wau y los Arrrghs!!!</artist>
+<headliner>Lost Acapulco</headliner>
+</artists>
+<venue>
+<id>8798968</id>
+<name>Wah Wah</name>
+<location>
+<city>Valencia</city>
+<country>Spain</country>
+<street>Calle de Ramón Campoamor, 52</street>
+<postalcode>46022</postalcode>
+<geo:point>
+<geo:lat>39.470921</geo:lat>
+<geo:long>-0.34692</geo:long>
+</geo:point>
+</location>
+<url>http://www.last.fm/venue/8798968+Wah+Wah</url>
+<website>http://www.wahwahclub.com/</website>
+<phonenumber/>
+<image size="small">http://userserve-ak.last.fm/serve/34/28782511.jpg</image>
+<image size="medium">http://userserve-ak.last.fm/serve/64/28782511.jpg</image>
+<image size="large">http://userserve-ak.last.fm/serve/126/28782511.jpg</image>
+<image size="extralarge">http://userserve-ak.last.fm/serve/252/28782511.jpg</image>
+<image size="mega">
+http://userserve-ak.last.fm/serve/500/28782511/Wah+Wah+3558449801_73cc9d9404_b.jpg
+</image>
+</venue>
+<startDate>Sat, 10 Sep 2011 22:00:00</startDate>
+<description>
+<![CDATA[
+<div class="bbcode">Doblete brutal de Garage-Surf,Lost Acapulco desde Mexico con su surf instrumental y sus máscaras de lucha libre,les acompañan desde Valencia los divertidisimos Wau y los Arrrghs!!!<br /><br />Entradas a la venta por sólo 9 euros en Tienda Tipo,Discos Monterey y Vaivén</div>
+]]>
+</description>
+<image size="small">http://userserve-ak.last.fm/serve/34/160903.jpg</image>
+<image size="medium">http://userserve-ak.last.fm/serve/64/160903.jpg</image>
+<image size="large">http://userserve-ak.last.fm/serve/126/160903.jpg</image>
+<image size="extralarge">http://userserve-ak.last.fm/serve/252/160903.jpg</image>
+<attendance>13</attendance>
+<reviews>0</reviews>
+<tag>lastfm:event=2016389</tag>
+<url>
+http://www.last.fm/event/2016389+Lost+Acapulco+at+Wah+Wah+on+10+September+2011
+</url>
+<website/>
+<tickets></tickets>
+<cancelled>0</cancelled>
+<tags>
+<tag>garage rock</tag>
+<tag>spain</tag>
+<tag>garage punk</tag>
+<tag>garage</tag>
+<tag>mexico</tag>
+<tag>spanish</tag>
+<tag>surf rock</tag>
+<tag>surf</tag>
+</tags>
+</event>
+<event xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
+<id>2037221</id>
+<title>Good Fellaz + The Hollowmen + Wasabi</title>
+<artists>
+<artist>Good Fellaz</artist>
+<artist>Wasabi</artist>
+<artist>The Hollowmen</artist>
+<headliner>Good Fellaz</headliner>
+</artists>
+<venue>
+<id>9082647</id>
+<name>CSA La Residencia</name>
+<location>
+<city>Valencia</city>
+<country>Spain</country>
+<street>Carrer Font D'en Corts 184</street>
+<postalcode>46007</postalcode>
+<geo:point>
+<geo:lat>39.441297</geo:lat>
+<geo:long>-0.356197</geo:long>
+</geo:point>
+</location>
+<url>http://www.last.fm/venue/9082647+CSA+La+Residencia</url>
+<website>http://www.myspace.com/orxatafest</website>
+<phonenumber/>
+<image size="small"/>
+<image size="medium"/>
+<image size="large"/>
+<image size="extralarge"/>
+<image size="mega"/>
+</venue>
+<startDate>Sat, 10 Sep 2011 22:00:00</startDate>
+<description>
+<![CDATA[
+<div class="bbcode">Sabado 10 Septiembre a las 22h en el Csa La Residencia<br /><br />GOOD FELLAZ (Old School Gran Canaria)<br /><br /><a href="http://goodfellazhc.bandcamp.com/" rel="nofollow">http://goodfellazhc.bandcamp.com/</a><br /><br />THE HOLLOWMEN (Hardcore assault Tenerife)<br /><br /><a href="http://www.myspace.com/the.hollowmen" rel="nofollow">http://www.myspace.com/the.hollowmen</a><br /><br />WASABI (Anti Powerviolence Valencia)<br /><br />Ven y sabrás lo que hacen...<br /><br /><a href="http://orxatanegra.blogspot.com/" rel="nofollow">http://orxatanegra.blogspot.com/</a></div>
+]]>
+</description>
+<image size="small">http://userserve-ak.last.fm/serve/34/2244852.jpg</image>
+<image size="medium">http://userserve-ak.last.fm/serve/64/2244852.jpg</image>
+<image size="large">http://userserve-ak.last.fm/serve/126/2244852.jpg</image>
+<image size="extralarge">http://userserve-ak.last.fm/serve/252/2244852.jpg</image>
+<attendance>0</attendance>
+<reviews>0</reviews>
+<tag>lastfm:event=2037221</tag>
+<url>
+http://www.last.fm/event/2037221+Good+Fellaz+-+The+Hollowmen+-+Wasabi
+</url>
+<website>
+http://orxatanegra.blogspot.com/2011/08/sabado-10-sep-good-fellazthe.html
+</website>
+<tickets></tickets>
+<cancelled>0</cancelled>
+<tags>
+<tag>hardcore</tag>
+</tags>
+</event>
+<event xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
+<id>2040392</id>
+<title>Southill(Tributo a Deep Purple)</title>
+<artists>
+<artist>Southill(Tributo a Deep Purple)</artist>
+<headliner>Southill(Tributo a Deep Purple)</headliner>
+</artists>
+<venue>
+<id>8798968</id>
+<name>Wah Wah</name>
+<location>
+<city>Valencia</city>
+<country>Spain</country>
+<street>Calle de Ramón Campoamor, 52</street>
+<postalcode>46022</postalcode>
+<geo:point>
+<geo:lat>39.470921</geo:lat>
+<geo:long>-0.34692</geo:long>
+</geo:point>
+</location>
+<url>http://www.last.fm/venue/8798968+Wah+Wah</url>
+<website>http://www.wahwahclub.com/</website>
+<phonenumber/>
+<image size="small">http://userserve-ak.last.fm/serve/34/28782511.jpg</image>
+<image size="medium">http://userserve-ak.last.fm/serve/64/28782511.jpg</image>
+<image size="large">http://userserve-ak.last.fm/serve/126/28782511.jpg</image>
+<image size="extralarge">http://userserve-ak.last.fm/serve/252/28782511.jpg</image>
+<image size="mega">
+http://userserve-ak.last.fm/serve/500/28782511/Wah+Wah+3558449801_73cc9d9404_b.jpg
+</image>
+</venue>
+<startDate>Fri, 16 Sep 2011 23:00:00</startDate>
+<description>
+<![CDATA[
+<div class="bbcode">Los valencianos Southill(banda curtida con músicos con mucha experiencia) recreará los mejores temas de la mítica banda inglesa,fueron sus teloneros en los Jardines de Viveros en el año 2010 .<br /><br />Entrada única en taquilla 6 euros</div>
+]]>
+</description>
+<image size="small"/>
+<image size="medium"/>
+<image size="large"/>
+<image size="extralarge"/>
+<attendance>0</attendance>
+<reviews>0</reviews>
+<tag>lastfm:event=2040392</tag>
+<url>
+http://www.last.fm/event/2040392+Southill%28Tributo+a+Deep+Purple%29+at+Wah+Wah+on+16+September+2011
+</url>
+<website/>
+<tickets></tickets>
+<cancelled>0</cancelled>
+</event>
+<event xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
+<id>2002591</id>
+<title>Anna Calvi</title>
+<artists>
+<artist>Anna Calvi</artist>
+<headliner>Anna Calvi</headliner>
+</artists>
+<venue>
+<id>8798968</id>
+<name>Wah Wah</name>
+<location>
+<city>Valencia</city>
+<country>Spain</country>
+<street>Calle de Ramón Campoamor, 52</street>
+<postalcode>46022</postalcode>
+<geo:point>
+<geo:lat>39.470921</geo:lat>
+<geo:long>-0.34692</geo:long>
+</geo:point>
+</location>
+<url>http://www.last.fm/venue/8798968+Wah+Wah</url>
+<website>http://www.wahwahclub.com/</website>
+<phonenumber/>
+<image size="small">http://userserve-ak.last.fm/serve/34/28782511.jpg</image>
+<image size="medium">http://userserve-ak.last.fm/serve/64/28782511.jpg</image>
+<image size="large">http://userserve-ak.last.fm/serve/126/28782511.jpg</image>
+<image size="extralarge">http://userserve-ak.last.fm/serve/252/28782511.jpg</image>
+<image size="mega">
+http://userserve-ak.last.fm/serve/500/28782511/Wah+Wah+3558449801_73cc9d9404_b.jpg
+</image>
+</venue>
+<startDate>Sat, 17 Sep 2011 22:30:00</startDate>
+<description/>
+<image size="small">http://userserve-ak.last.fm/serve/34/60107165.jpg</image>
+<image size="medium">http://userserve-ak.last.fm/serve/64/60107165.jpg</image>
+<image size="large">http://userserve-ak.last.fm/serve/126/60107165.jpg</image>
+<image size="extralarge">http://userserve-ak.last.fm/serve/252/60107165.jpg</image>
+<attendance>18</attendance>
+<reviews>0</reviews>
+<tag>lastfm:event=2002591</tag>
+<url>
+http://www.last.fm/event/2002591+Anna+Calvi+at+Wah+Wah+on+17+September+2011
+</url>
+<website/>
+<tickets></tickets>
+<cancelled>0</cancelled>
+<tags>
+<tag>anna calvi-2011-anna calvi</tag>
+<tag>alternative</tag>
+<tag>alternative rock</tag>
+<tag>indie</tag>
+<tag>female vocalists</tag>
+</tags>
+</event>
+<event xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
+<id>2022516</id>
+<title>Bürdel King</title>
+<artists>
+<artist>Bürdel King</artist>
+<headliner>Bürdel King</headliner>
+</artists>
+<venue>
+<id>8923642</id>
+<name>Fnac</name>
+<location>
+<city>Valencia</city>
+<country>Spain</country>
+<street/>
+<postalcode/>
+<geo:point>
+<geo:lat>39.468401</geo:lat>
+<geo:long>-0.380415</geo:long>
+</geo:point>
+</location>
+<url>http://www.last.fm/venue/8923642+Fnac</url>
+<website/>
+<phonenumber/>
+<image size="small"/>
+<image size="medium"/>
+<image size="large"/>
+<image size="extralarge"/>
+<image size="mega"/>
+</venue>
+<startDate>Fri, 23 Sep 2011 11:27:01</startDate>
+<description>
+<![CDATA[ <div class="bbcode">Showcase + Firma</div> ]]>
+</description>
+<image size="small">http://userserve-ak.last.fm/serve/34/68502448.jpg</image>
+<image size="medium">http://userserve-ak.last.fm/serve/64/68502448.jpg</image>
+<image size="large">http://userserve-ak.last.fm/serve/126/68502448.jpg</image>
+<image size="extralarge">http://userserve-ak.last.fm/serve/252/68502448.jpg</image>
+<attendance>1</attendance>
+<reviews>0</reviews>
+<tag>lastfm:event=2022516</tag>
+<url>
+http://www.last.fm/event/2022516+B%C3%BCrdel+King+at+Fnac+on+23+September+2011
+</url>
+<website/>
+<tickets></tickets>
+<cancelled>0</cancelled>
+</event>
+<event xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
+<id>2016397</id>
+<title>Barrence Whitfield And The Savages</title>
+<artists>
+<artist>Barrence Whitfield And The Savages</artist>
+<headliner>Barrence Whitfield And The Savages</headliner>
+</artists>
+<venue>
+<id>8798968</id>
+<name>Wah Wah</name>
+<location>
+<city>Valencia</city>
+<country>Spain</country>
+<street>Calle de Ramón Campoamor, 52</street>
+<postalcode>46022</postalcode>
+<geo:point>
+<geo:lat>39.470921</geo:lat>
+<geo:long>-0.34692</geo:long>
+</geo:point>
+</location>
+<url>http://www.last.fm/venue/8798968+Wah+Wah</url>
+<website>http://www.wahwahclub.com/</website>
+<phonenumber/>
+<image size="small">http://userserve-ak.last.fm/serve/34/28782511.jpg</image>
+<image size="medium">http://userserve-ak.last.fm/serve/64/28782511.jpg</image>
+<image size="large">http://userserve-ak.last.fm/serve/126/28782511.jpg</image>
+<image size="extralarge">http://userserve-ak.last.fm/serve/252/28782511.jpg</image>
+<image size="mega">
+http://userserve-ak.last.fm/serve/500/28782511/Wah+Wah+3558449801_73cc9d9404_b.jpg
+</image>
+</venue>
+<startDate>Fri, 23 Sep 2011 22:00:00</startDate>
+<description>
+<![CDATA[
+<div class="bbcode">Increible combo americano,su líder, un front-man que parece salido de un cruce entre James Brown y Little Richard posee una voz y un carisma brutal,con gente de The Lyres entre sus miembros.<br /><br />Abrirán la velada el grupo valenciano Electric Cabin y su potente rockinblues<br /><br />Entradas a la venta en Discos Monterey,Tienda Tipo y Vaivén desde primeros de septiembre por 15 euros<br /><br />Taquilla: 18 euros</div>
+]]>
+</description>
+<image size="small">http://userserve-ak.last.fm/serve/34/2729137.jpg</image>
+<image size="medium">http://userserve-ak.last.fm/serve/64/2729137.jpg</image>
+<image size="large">http://userserve-ak.last.fm/serve/126/2729137.jpg</image>
+<image size="extralarge">http://userserve-ak.last.fm/serve/252/2729137.jpg</image>
+<attendance>0</attendance>
+<reviews>0</reviews>
+<tag>lastfm:event=2016397</tag>
+<url>
+http://www.last.fm/event/2016397+Barrence+Whitfield+And+The+Savages+at+Wah+Wah+on+23+September+2011
+</url>
+<website/>
+<tickets></tickets>
+<cancelled>0</cancelled>
+</event>
+<event xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
+<id>2028512</id>
+<title>Sexy Sadie</title>
+<artists>
+<artist>Sexy Sadie</artist>
+<artist>No-Frosth</artist>
+<headliner>Sexy Sadie</headliner>
+</artists>
+<venue>
+<id>8798968</id>
+<name>Wah Wah</name>
+<location>
+<city>Valencia</city>
+<country>Spain</country>
+<street>Calle de Ramón Campoamor, 52</street>
+<postalcode>46022</postalcode>
+<geo:point>
+<geo:lat>39.470921</geo:lat>
+<geo:long>-0.34692</geo:long>
+</geo:point>
+</location>
+<url>http://www.last.fm/venue/8798968+Wah+Wah</url>
+<website>http://www.wahwahclub.com/</website>
+<phonenumber/>
+<image size="small">http://userserve-ak.last.fm/serve/34/28782511.jpg</image>
+<image size="medium">http://userserve-ak.last.fm/serve/64/28782511.jpg</image>
+<image size="large">http://userserve-ak.last.fm/serve/126/28782511.jpg</image>
+<image size="extralarge">http://userserve-ak.last.fm/serve/252/28782511.jpg</image>
+<image size="mega">
+http://userserve-ak.last.fm/serve/500/28782511/Wah+Wah+3558449801_73cc9d9404_b.jpg
+</image>
+</venue>
+<startDate>Sat, 24 Sep 2011 22:00:00</startDate>
+<description>
+<![CDATA[
+<div class="bbcode">Los mallorquines Sexy Sadie,una de las bandas más influyentes en el indie nacional,se reunieron este verano para tocar en un montón de importantes festivale,amplian su gira a salas y recalan en WahWah para tocar sus grandes hits,desde Valencia y como banda invitada No-Frosth <br /><br />Apertura 22:00 horas<br />Entradas anticipadas a 12 euros en <a href="http://www.ticketea.com" rel="nofollow">www.ticketea.com</a><br /><br />Taquilla : 15 euros</div>
+]]>
+</description>
+<image size="small">http://userserve-ak.last.fm/serve/34/461102.jpg</image>
+<image size="medium">http://userserve-ak.last.fm/serve/64/461102.jpg</image>
+<image size="large">http://userserve-ak.last.fm/serve/126/461102.jpg</image>
+<image size="extralarge">http://userserve-ak.last.fm/serve/252/461102.jpg</image>
+<attendance>13</attendance>
+<reviews>0</reviews>
+<tag>lastfm:event=2028512</tag>
+<url>
+http://www.last.fm/event/2028512+Sexy+Sadie+at+Wah+Wah+on+24+September+2011
+</url>
+<website/>
+<tickets></tickets>
+<cancelled>0</cancelled>
+<tags>
+<tag>spanish</tag>
+<tag>indie</tag>
+<tag>alternative rock</tag>
+<tag>rock</tag>
+<tag>indie rock</tag>
+</tags>
+</event>
+<event xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
+<id>2016379</id>
+<title>La Habitacion Roja</title>
+<artists>
+<artist>La Habitacion Roja</artist>
+<headliner>La Habitacion Roja</headliner>
+</artists>
+<venue>
+<id>8798968</id>
+<name>Wah Wah</name>
+<location>
+<city>Valencia</city>
+<country>Spain</country>
+<street>Calle de Ramón Campoamor, 52</street>
+<postalcode>46022</postalcode>
+<geo:point>
+<geo:lat>39.470921</geo:lat>
+<geo:long>-0.34692</geo:long>
+</geo:point>
+</location>
+<url>http://www.last.fm/venue/8798968+Wah+Wah</url>
+<website>http://www.wahwahclub.com/</website>
+<phonenumber/>
+<image size="small">http://userserve-ak.last.fm/serve/34/28782511.jpg</image>
+<image size="medium">http://userserve-ak.last.fm/serve/64/28782511.jpg</image>
+<image size="large">http://userserve-ak.last.fm/serve/126/28782511.jpg</image>
+<image size="extralarge">http://userserve-ak.last.fm/serve/252/28782511.jpg</image>
+<image size="mega">
+http://userserve-ak.last.fm/serve/500/28782511/Wah+Wah+3558449801_73cc9d9404_b.jpg
+</image>
+</venue>
+<startDate>Fri, 30 Sep 2011 22:30:00</startDate>
+<description>
+<![CDATA[
+<div class="bbcode">Presentación de su nuevo disco&quot;Para Ti&quot; Volumen 2,los chicos de La Habitación Roja versionean algunos de los temas que más les han marcado.<br /><br />Entradas a la venta en <a href="http://www.ticketmaster.es" rel="nofollow">www.ticketmaster.es</a>, Amsterdam Discos,Tienda Tipo,FNAC,Carrefour por 12 euros + gastos<br /><br />Taquilla:15 euros<br /><br /><br />Fiesta Presentación nueva temporada de Vinilo Valencia<br /><br />After-Show:Átomos Djs</div>
+]]>
+</description>
+<image size="small">http://userserve-ak.last.fm/serve/34/8324059.jpg</image>
+<image size="medium">http://userserve-ak.last.fm/serve/64/8324059.jpg</image>
+<image size="large">http://userserve-ak.last.fm/serve/126/8324059.jpg</image>
+<image size="extralarge">http://userserve-ak.last.fm/serve/252/8324059.jpg</image>
+<attendance>8</attendance>
+<reviews>0</reviews>
+<tag>lastfm:event=2016379</tag>
+<url>
+http://www.last.fm/event/2016379+La+Habitacion+Roja+at+Wah+Wah+on+30+September+2011
+</url>
+<website/>
+<tickets></tickets>
+<cancelled>0</cancelled>
+</event>
+<event xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
+<id>2040413</id>
+<title>Amparo Sánchez</title>
+<artists>
+<artist>Amparo Sánchez</artist>
+<headliner>Amparo Sánchez</headliner>
+</artists>
+<venue>
+<id>8798968</id>
+<name>Wah Wah</name>
+<location>
+<city>Valencia</city>
+<country>Spain</country>
+<street>Calle de Ramón Campoamor, 52</street>
+<postalcode>46022</postalcode>
+<geo:point>
+<geo:lat>39.470921</geo:lat>
+<geo:long>-0.34692</geo:long>
+</geo:point>
+</location>
+<url>http://www.last.fm/venue/8798968+Wah+Wah</url>
+<website>http://www.wahwahclub.com/</website>
+<phonenumber/>
+<image size="small">http://userserve-ak.last.fm/serve/34/28782511.jpg</image>
+<image size="medium">http://userserve-ak.last.fm/serve/64/28782511.jpg</image>
+<image size="large">http://userserve-ak.last.fm/serve/126/28782511.jpg</image>
+<image size="extralarge">http://userserve-ak.last.fm/serve/252/28782511.jpg</image>
+<image size="mega">
+http://userserve-ak.last.fm/serve/500/28782511/Wah+Wah+3558449801_73cc9d9404_b.jpg
+</image>
+</venue>
+<startDate>Sat, 01 Oct 2011 22:30:00</startDate>
+<description>
+<![CDATA[
+<div class="bbcode">Amparo Sánchez(antes Amparanoia) viene a WahWah a presentar sus canciones en una onda más fronteriza,desde su colaboración con los americanos Calexico o Depedro cada vez está más influenciada por los sonidos americanos,vendrá con una banda de lujo........<br /><br />Entrada única 10 euros,más adelante a la venta en Tienda Tipo y Vaivén</div>
+]]>
+</description>
+<image size="small">http://userserve-ak.last.fm/serve/34/57370551.png</image>
+<image size="medium">http://userserve-ak.last.fm/serve/64/57370551.png</image>
+<image size="large">http://userserve-ak.last.fm/serve/126/57370551.png</image>
+<image size="extralarge">http://userserve-ak.last.fm/serve/252/57370551.png</image>
+<attendance>0</attendance>
+<reviews>0</reviews>
+<tag>lastfm:event=2040413</tag>
+<url>
+http://www.last.fm/event/2040413+Amparo+S%C3%A1nchez+at+Wah+Wah+on+1+October+2011
+</url>
+<website/>
+<tickets></tickets>
+<cancelled>0</cancelled>
+<tags>
+<tag>mestizaje</tag>
+<tag>soon come to el lokal</tag>
+<tag>mestizo</tag>
+<tag>female vocalists</tag>
+</tags>
+</event>
+</events>
+</lfm>

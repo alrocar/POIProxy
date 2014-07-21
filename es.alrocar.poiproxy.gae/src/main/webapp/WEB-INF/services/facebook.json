@@ -1,0 +1,22 @@
+{ describeService : {
+    format: "json",
+    apiKey : "",
+    requestTypes : {
+                    "browse": {"url": "https://graph.facebook.com/search?q=__QUERY__&type=place&center=__LAT__,__LON__&distance=__DIST__&access_token=AAAAAAITEghMBACZClQ1d92jluE6gzFLfqkZBEpyRcVU1Rn540O1KrTHYcolW3RmPCBRZA67b0TrvCtZAJnT9X8XFdvEScqoNmey8YGief4xzVZAQHW8ie", "params": []},
+                    "search": {"url": "https://graph.facebook.com/search?q=__QUERY__&type=place&center=__LAT__,__LON__&distance=__DIST__&access_token=AAAAAAITEghMBACZClQ1d92jluE6gzFLfqkZBEpyRcVU1Rn540O1KrTHYcolW3RmPCBRZA67b0TrvCtZAJnT9X8XFdvEScqoNmey8YGief4xzVZAQHW8ie", "params": []}
+                    },
+    featureTypes : { "browse" : {
+                    	"feature" : "name",
+                    	"elements" : ["name", "category", "street", "city", "country", "zip"],
+                    	"lon": "latitude", 
+                    	"lat": "longitude"
+                    	
+                    	},"search" : {
+						"feature" : "name",
+                    	"elements" : ["name", "category", "street", "city", "country", "zip"],
+                    	"lon": "latitude", 
+                    	"lat": "longitude"
+                    	
+                    	}
+                    }
+}}

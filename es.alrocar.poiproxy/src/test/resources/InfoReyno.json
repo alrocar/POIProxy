@@ -1,0 +1,51 @@
+{
+  "format": "xml",
+  "apiKey": "",
+  "requestTypes": {
+    "browse": {
+      "url": "http://www.gobiernoabierto.navarra.es/sites/all/modules/pubdlcnt/pubdlcnt.php?file=http%3A%2F%2Fwww.navarra.es%2Fappsext%2FDescargarFichero%2Fdefault.aspx%3FcodigoAcceso%3DOpenData%26fichero%3DInfoReyno%2FInfoReyno.kml&nid=381",
+      "params": []
+    },
+    "search": {
+      "url": "",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "geoname",
+      "elements": {
+        "name" : {
+          "input": "name"
+        },
+        "address" : {
+          "input": "localidad"
+        },
+        "description" : {
+          "input": "descripción"
+        }
+      },        
+      "lon": "lng",
+      "lat": "lat"
+    },
+    "search": {
+      "feature": "geoname",
+      "elements": {
+        "name" : {
+          "input": "title"
+        },
+        "description" : {
+          "input": "summary"
+        },
+        "web" : {
+          "input": "wikipediaUrl"
+        },
+        "image" : {
+          "input": "thumbnailImg"
+        }
+      }, 
+      "lon": "lng",
+      "lat": "lat"
+    }
+  }
+}

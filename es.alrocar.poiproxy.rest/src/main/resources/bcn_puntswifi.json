@@ -1,0 +1,54 @@
+{
+  "format": "xml",
+  "apiKey": "",
+  "encoding": "UTF-8",
+  "categories": [
+    "local_bcn_communication"
+  ],
+  "SRS": "EPSG:23031",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://bismartopendata.blob.core.windows.net/opendata/opendata/puntswifi_0_opendata_puntswifi.xml",
+      "params": []
+    },
+    "search": {
+      "url": "http://bismartopendata.blob.core.windows.net/opendata/opendata/puntswifi_0_opendata_puntswifi.xml",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "Punt",
+      "elements": {
+        "name": {
+          "input": "Tooltip"
+        },
+        "image": {
+          "input": "Icona"
+        },
+        "web": {
+          "input": "URL"
+        }
+      },
+      "lon": "X",
+      "lat": "Y"
+    },
+    "search": {
+      "feature": "Punt",
+      "elements": {
+        "name": {
+          "input": "Tooltip"
+        },
+        "image": {
+          "input": "Icona"
+        },
+        "web": {
+          "input": "URL"
+        }
+      },
+      "lon": "X",
+      "lat": "Y"
+    }
+  }
+}

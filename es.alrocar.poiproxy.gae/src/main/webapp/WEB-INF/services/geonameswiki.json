@@ -1,0 +1,21 @@
+{ describeService : {
+    format: "xml",
+    apiKey : "",
+    requestTypes : {
+                    "browse": {"url": "", "params": []},
+                    "search": {"url": "http://api.geonames.org/wikipediaSearch?q=__QUERY__&maxRows=10&username=poiproxy", "params": []}
+                    },
+    featureTypes : { "browse" : {
+                    	"feature" : "geoname",
+                    	"elements" : ["name", "countryName", "distance", "toponymName" ],
+                    	"lon": "lng", 
+                    	"lat": "lat"
+                    	},
+                        "search" : {
+                    	"feature" : "entry",
+                    	"elements" : ["title", "summary", "wikipediaUrl", "thumbnailImg"],
+                    	"lon": "lng", 
+                    	"lat": "lat"
+                    	},
+                    }
+}}

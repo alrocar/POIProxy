@@ -1,0 +1,162 @@
+{
+  "format": "xml",
+  "apiKey": "wpLhKPJRXjRFdJh4",
+  "categories": [
+    "event",
+    "music",
+    "concert",
+    "eventful"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "http://api.eventful.com/rest/events/search?app_key=__KEY__&where=__LAT__,__LON__&within=__DISTKM__&units=km",
+      "params": []
+    },
+    "search": {
+      "url": "http://api.eventful.com/rest/events/search?app_key=__KEY__&where=keywords=__QUERY__&__LAT__,__LON__&within=__DISTKM__&units=km",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "event",
+      "elements": {
+        "comment_count": {
+          "input": "comment_count"
+        },
+        "trackback_count": {
+          "input": "trackback_count"
+        },
+        "city_name": {
+          "input": "city_name"
+        },
+        "calendar_count": {
+          "input": "calendar_count"
+        },
+        "stop_time": {
+          "input": "stop_time"
+        },
+        "venue_name": {
+          "input": "venue_name"
+        },
+        "url": {
+          "input": "url"
+        },
+        "venue_url": {
+          "input": "venue_url"
+        },
+        "modified": {
+          "input": "modified"
+        },
+        "region_name": {
+          "input": "region_name"
+        },
+        "title": {
+          "input": "title"
+        },
+        "venue_address": {
+          "input": "venue_address"
+        },
+        "created": {
+          "input": "created"
+        },
+        "link_count": {
+          "input": "link_count"
+        },
+        "description": {
+          "input": "description"
+        },
+        "short_bio": {
+          "input": "short_bio"
+        },
+        "name": {
+          "input": "name"
+        },
+        "postal_code": {
+          "input": "postal_code"
+        },
+        "owner": {
+          "input": "owner"
+        },
+        "start_time": {
+          "input": "start_time"
+        },
+        "venue_id": {
+          "input": "venue_id"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    },
+    "search": {
+      "feature": "event",
+      "elements": {
+        "comment_count": {
+          "input": "comment_count"
+        },
+        "trackback_count": {
+          "input": "trackback_count"
+        },
+        "city_name": {
+          "input": "city_name"
+        },
+        "calendar_count": {
+          "input": "calendar_count"
+        },
+        "stop_time": {
+          "input": "stop_time"
+        },
+        "venue_name": {
+          "input": "venue_name"
+        },
+        "url": {
+          "input": "url"
+        },
+        "venue_url": {
+          "input": "venue_url"
+        },
+        "modified": {
+          "input": "modified"
+        },
+        "region_name": {
+          "input": "region_name"
+        },
+        "title": {
+          "input": "title"
+        },
+        "venue_address": {
+          "input": "venue_address"
+        },
+        "created": {
+          "input": "created"
+        },
+        "link_count": {
+          "input": "link_count"
+        },
+        "description": {
+          "input": "description"
+        },
+        "short_bio": {
+          "input": "short_bio"
+        },
+        "name": {
+          "input": "name"
+        },
+        "postal_code": {
+          "input": "postal_code"
+        },
+        "owner": {
+          "input": "owner"
+        },
+        "start_time": {
+          "input": "start_time"
+        },
+        "venue_id": {
+          "input": "venue_id"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    }
+  }
+}
