@@ -1,21 +1,60 @@
-{ describeService : {
-    format: "json",
-    apiKey : "",
-    requestTypes : {
-                    "browse": {"url": "http://geocoding.cloudmade.com/8ee2a50541944fb9bcedded5165f09d9/geocoding/v2/find.geojs?around=__LAT__,__LON__&distance=closest&results=20", "params": []},
-                    "search": {"url": "http://geocoding.cloudmade.com/8ee2a50541944fb9bcedded5165f09d9/geocoding/v2/find.geojs?query=__QUERY__", "params": []}
-                    },
-    featureTypes : { "browse" : {
-                    	"feature" : "id",
-                    	"elements" : ["addr:city", "addr:street", "addr:country", "phone", "synthesized_name"],
-                    	"lon": "coordinates", 
-                    	"lat": "coordinates"
-
-                    	},"search" : {
-                    	"feature" : "id",
-                    	"elements" : ["addr:city", "addr:street", "addr:country", "phone", "synthesized_name"],
-                    	"lon": "coordinates", 
-                    	"lat": "coordinates"
-                    	}
-                    }
-}}
+{
+  "format": "json",
+  "apiKey": "",
+  "requestTypes": {
+    "browse": {
+      "url": "http://geocoding.cloudmade.com/8ee2a50541944fb9bcedded5165f09d9/geocoding/v2/find.geojs?around=__LAT__,__LON__&distance=closest&results=20",
+      "params": []
+    },
+    "search": {
+      "url": "http://geocoding.cloudmade.com/8ee2a50541944fb9bcedded5165f09d9/geocoding/v2/find.geojs?query=__QUERY__",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "id",
+      "elements": {
+        "city": {
+          "input": "addr:city"
+        },
+        "address": {
+          "input": "addr:street"
+        },
+        "country": {
+          "input": "addr:country"
+        },
+        "phone": {
+          "input": "phone"
+        },
+        "name": {
+          "input": "synthesized_name"
+        }
+      },
+      "lon": "coordinates",
+      "lat": "coordinates"
+    },
+    "search": {
+      "feature": "id",
+      "elements": {
+        "city": {
+          "input": "addr:city"
+        },
+        "address": {
+          "input": "addr:street"
+        },
+        "country": {
+          "input": "addr:country"
+        },
+        "phone": {
+          "input": "phone"
+        },
+        "name": {
+          "input": "synthesized_name"
+        }
+      },
+      "lon": "coordinates",
+      "lat": "coordinates"
+    }
+  }
+}

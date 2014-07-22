@@ -1,0 +1,68 @@
+{
+  "format": "json",
+  "apiKey": "37074513.bc3142f.9f43f4cd65db48e2870de22e1c798c01",
+  "categories": [
+    "social",
+    "photo",
+    "instagramlocation"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "https://api.instagram.com/v1/locations/search?lat=__LAT__&lng=__LON__&access_token=__KEY__",
+      "params": []
+    },
+    "search": {
+      "url": "https://api.instagram.com/v1/locations/__QUERY__/media/recent?access_token=__KEY__",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "latitude",
+      "elements": {
+        "id": {
+          "input": "id"
+        },
+        "name": {
+          "input": "name"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    },
+    "search": {
+      "feature": "attribution",
+      "elements": {
+        "id": {
+          "input": "id"
+        },
+        "description": {
+          "input": "text"
+        },
+        "profile_picture": {
+          "input": "profile_picture"
+        },
+        "username": {
+          "input": "username"
+        },
+        "count": {
+          "input": "count"
+        },
+        "name": {
+          "input": "name"
+        },
+        "link": {
+          "input": "link"
+        },
+        "created_time": {
+          "input": "created_time"
+        },
+        "web": {
+          "input": "url"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    }
+  }
+}

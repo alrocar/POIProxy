@@ -1,21 +1,55 @@
-{ describeService : {
-    format: "xml",
-    apiKey : "",
-    requestTypes : {
-                    "browse": {"url": "http://api.geonames.org/findNearbyPOIsOSM?lat=__LAT__&lng=__LON__&username=poiproxy", "params": []},
-                    "search": {"url": "b", "params": []}
-                    },
-    featureTypes : { "browse" : {
-                    	"feature" : "poi",
-                    	"elements" : ["typeClass", "typeName", "name", "distance"],
-                    	"lon": "lng", 
-                    	"lat": "lat"
-                    	},
-                        "search" : {
-                    	"feature" : "geoname",
-                    	"elements" : ["name", "countryName", "distance", ],
-                    	"lon": "lng", 
-                    	"lat": "lat"
-                    	},
-                    }
-}}
+{
+  "format": "xml",
+  "apiKey": "poiproxy",
+  "categories": [
+    "geo",
+    "geonamespois"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "http://api.geonames.org/findNearbyPOIsOSM?lat=__LAT__&lng=__LON__&username=__KEY__",
+      "params": []
+    },
+    "search": {
+      "url": "b",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "poi",
+      "elements": {
+        "typeName": {
+          "input": "typeName"
+        },
+        "distance": {
+          "input": "distance"
+        },
+        "name": {
+          "input": "name"
+        },
+        "typeClass": {
+          "input": "typeClass"
+        }
+      },
+      "lon": "lng",
+      "lat": "lat"
+    },
+    "search": {
+      "feature": "geoname",
+      "elements": {
+        "distance": {
+          "input": "distance"
+        },
+        "country": {
+          "input": "countryName"
+        },
+        "name": {
+          "input": "name"
+        }
+      },
+      "lon": "lng",
+      "lat": "lat"
+    }
+  }
+}

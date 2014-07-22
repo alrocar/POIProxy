@@ -1,20 +1,82 @@
-{ describeService : {
-    format: "json",
-    apiKey : "",
-    requestTypes : {
-                    "browse": {"url": "https://api.foursquare.com/v2/venues/search?ll=__LAT__,__LON__&client_id=S5MN2YCYHT5EQS31KC1I10L4ELT43IGXO0FWE0IDTMSO5J2F&client_secret=QUIBVAC2Q0IIYVKVLJEMMABXEUEMTR3KJC3Z12UG5MCKFTSR", "params": []},
-                    "search": {"url": "b", "params": []}
-                    },
-    featureTypes : { "browse" : {
-                    	"feature" : "name",
-                    	"elements" : ["name", "address", "city", "state"],
-                    	"lon": "lng", 
-                    	"lat": "lat"
-                    	},"search" : {
-                    	"feature" : "name",
-                    	"elements" : ["name", "address", "city", "state"],
-                    	"lon": "lng", 
-                    	"lat": "lat"
-                    	}
-                    }
-}}
+{
+  "format": "json",
+  "apiKey": "client_id=S5MN2YCYHT5EQS31KC1I10L4ELT43IGXO0FWE0IDTMSO5J2F&client_secret=QUIBVAC2Q0IIYVKVLJEMMABXEUEMTR3KJC3Z12UG5MCKFTSR",
+  "categories": [
+    "social",
+    "foursquare"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "https://api.foursquare.com/v2/venues/search?ll=__LAT__,__LON__&__KEY__&v=20131016",
+      "params": []
+    },
+    "search": {
+      "url": "https://api.foursquare.com/v2/venues/search?ll=__LAT__,__LON__&__KEY__&v=20131016&query=__QUERY__",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "id",
+      "elements": {
+        "id": {
+          "input": "id"
+        },
+        "checkinsCount": {
+          "input": "checkinsCount"
+        },
+        "address": {
+          "input": "address"
+        },
+        "name": {
+          "input": "name"
+        },
+        "country": {
+          "input": "state"
+        },
+        "usersCount": {
+          "input": "usersCount"
+        },
+        "tipCount": {
+          "input": "tipCount"
+        },
+        "city": {
+          "input": "city"
+        }
+      },
+      "lon": "lng",
+      "lat": "lat"
+    },
+    "search": {
+      "feature": "id",
+      "elements": {
+        "id": {
+          "input": "id"
+        },
+        "checkinsCount": {
+          "input": "checkinsCount"
+        },
+        "address": {
+          "input": "address"
+        },
+        "name": {
+          "input": "name"
+        },
+        "country": {
+          "input": "state"
+        },
+        "usersCount": {
+          "input": "usersCount"
+        },
+        "tipCount": {
+          "input": "tipCount"
+        },
+        "city": {
+          "input": "city"
+        }
+      },
+      "lon": "lng",
+      "lat": "lat"
+    }
+  }
+}

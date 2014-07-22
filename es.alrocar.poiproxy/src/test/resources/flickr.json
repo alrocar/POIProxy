@@ -1,21 +1,42 @@
-{ describeService : {
-    format: "json",
-    apiKey : "",
-    requestTypes : {
-                    browse: {"url": "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=66385d0991aa4041b9d25db0afcd362d&bbox=__MINX__%2C__MINY__%2C__MAXX__%2C__MAXY__&media=&has_geo=1&extras=geo%2C+media%2C+path_alias%2C+url_sq%2C+url_t%2C+url_s%2C+url_m%2C+url_z%2C+url_l%2C+url_o&format=json&nojsoncallback=1&per_page=20&accuracy=3&sort=interestingness-desc&min_upload_date=1157305292.956", "params": []},
-                    search: {"url": "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=66385d0991aa4041b9d25db0afcd362d&bbox=__MINX__%2C__MINY__%2C__MAXX__%2C__MAXY__&media=&has_geo=1&extras=geo%2C+media%2C+path_alias%2C+url_sq%2C+url_t%2C+url_s%2C+url_m%2C+url_z%2C+url_l%2C+url_o&format=json&nojsoncallback=1&text=__QUERY__&per_page=20&accuracy=3&sort=interestingness-desc&min_upload_date=1157305292.956", "params": []}
-                    },
-    featureTypes : { browse : {
-                    	"feature" : "id",
-                    	"elements" : ["title", "url_t", "url_o", "url_m", "url_z", "url_s", "url_l"],
-                    	"lon": "longitude", 
-                    	"lat": "latitude"
-                    	},
-                        search : {
-                    	"feature" : "id",
-                    	"elements" : ["title", "url_t", "url_o", "url_m", "url_z", "url_s", "url_l"],
-                    	"lon": "longitude", 
-                    	"lat": "latitude"
-                    	}
-                    }
-}}
+{
+  "format": "json",
+  "apiKey": "",
+  "requestTypes": {
+    "browse": {
+      "url": "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=66385d0991aa4041b9d25db0afcd362d&bbox=__MINX__%2C__MINY__%2C__MAXX__%2C__MAXY__&media=&has_geo=1&extras=geo%2C+media%2C+path_alias%2C+url_sq%2C+url_t%2C+url_s%2C+url_m%2C+url_z%2C+url_l%2C+url_o&format=json&nojsoncallback=1&per_page=20&accuracy=3&sort=interestingness-desc&min_upload_date=1157305292.956",
+      "params": []
+    },
+    "search": {
+      "url": "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=66385d0991aa4041b9d25db0afcd362d&bbox=__MINX__%2C__MINY__%2C__MAXX__%2C__MAXY__&media=&has_geo=1&extras=geo%2C+media%2C+path_alias%2C+url_sq%2C+url_t%2C+url_s%2C+url_m%2C+url_z%2C+url_l%2C+url_o&format=json&nojsoncallback=1&text=__QUERY__&per_page=20&accuracy=3&sort=interestingness-desc&min_upload_date=1157305292.956",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "id",
+      "elements": {
+        "name" : {
+          "input": "title"
+        },
+        "web" : {
+          "input": "url_t"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    },
+    "search": {
+      "feature": "id",
+      "elements": {
+        "name" : {
+          "input": "title"
+        },
+        "web" : {
+          "input": "url_t"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    }
+  }
+}

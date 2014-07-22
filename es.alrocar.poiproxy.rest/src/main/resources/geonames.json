@@ -1,21 +1,55 @@
-{ describeService : {
-    format: "xml",
-    apiKey : "",
-    requestTypes : {
-                    "browse": {"url": "http://api.geonames.org/findNearbyPlaceName?lat=__LAT__&lng=__LON__&username=poiproxy", "params": []},
-                    "search": {"url": "b", "params": []}
-                    },
-    featureTypes : { "browse" : {
-                    	"feature" : "geoname",
-                    	"elements" : ["name", "countryName", "distance", ],
-                    	"lon": "lng", 
-                    	"lat": "lat"
-                    	},
-                        "search" : {
-                    	"feature" : "geoname",
-                    	"elements" : ["name", "countryName", "distance", ],
-                    	"lon": "lng", 
-                    	"lat": "lat"
-                    	},
-                    }
-}}
+{
+  "format": "xml",
+  "apiKey": "poiproxy",
+  "categories": [
+    "geo",
+    "geonames"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "http://api.geonames.org/findNearbyPlaceName?lat=__LAT__&lng=__LON__&username=__KEY__",
+      "params": []
+    },
+    "search": {
+      "url": "http://api.geonames.org/wikipediaSearch?q=__QUERY__&maxRows=10&username=__KEY__",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "geoname",
+      "elements": {
+        "distance": {
+          "input": "distance"
+        },
+        "country": {
+          "input": "countryName"
+        },
+        "name": {
+          "input": "name"
+        }
+      },
+      "lon": "lng",
+      "lat": "lat"
+    },
+    "search": {
+      "feature": "entry",
+      "elements": {
+        "desciption": {
+          "input": "summary"
+        },
+        "name": {
+          "input": "title"
+        },
+        "web": {
+          "input": "wikipediaUrl"
+        },
+        "image": {
+          "input": "thumbnailImg"
+        }
+      },
+      "lon": "lng",
+      "lat": "lat"
+    }
+  }
+}

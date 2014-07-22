@@ -1,21 +1,21 @@
-/* POIProxy
+/*
+ * Licensed to Prodevelop SL under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The Prodevelop SL licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
- * Copyright (C) 2011 Alberto Romeu.
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,USA.
- *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ * 
  * For more information, contact:
  *
  *   Prodevelop, S.L.
@@ -27,39 +27,24 @@
  *   +34 963 510 968
  *   prode@prodevelop.es
  *   http://www.prodevelop.es
- *   
- *   2011.
- *   author Alberto Romeu aromeu@prodevelop.es  
- *   
+ * 
+ * @author Alberto Romeu Carrasco http://www.albertoromeu.com
  */
 
 package es.alrocar.jpe.parser.configuration;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.URL;
 
-import org.restlet.engine.http.connector.BaseHelper;
-
-import junit.framework.TestCase;
 import es.alrocar.jpe.BaseJSONTest;
-import es.alrocar.jpe.parser.configuration.DescribeServiceParser;
 import es.alrocar.poiproxy.configuration.DescribeService;
 import es.alrocar.poiproxy.configuration.FeatureType;
 import es.alrocar.poiproxy.proxy.POIProxy;
-import es.prodevelop.gvsig.mini.utiles.Constants;
 
 public class TestDescribeServiceParser extends BaseJSONTest {
 
 	public void testParseDescribeService() {
 		System.out.println("=======================================");
-		System.out.println("TEST PARSE DESCRIBE SERVICE: buzz.json");
+		System.out.println("TEST PARSE DESCRIBE SERVICE: test.json");
 		System.out.println("=======================================");
 
 		URL uReport = POIProxy.class.getClassLoader().getResource(
@@ -131,40 +116,57 @@ public class TestDescribeServiceParser extends BaseJSONTest {
 		System.out.println("=======================================");
 	}
 
-	public String getJSON(String resource) {
-		File f = new File(resource);
-		FileInputStream fis = null;
-		InputStream in = null;
-		OutputStream out = null;
-		String res = null;
-		try {
-			fis = new FileInputStream(f);
-			in = new BufferedInputStream(fis, Constants.IO_BUFFER_SIZE);
-			final ByteArrayOutputStream dataStream = new ByteArrayOutputStream();
-			out = new BufferedOutputStream(dataStream, Constants.IO_BUFFER_SIZE);
-			byte[] b = new byte[8 * 1024];
-			int read;
-			int total = 0;
-			while ((read = in.read(b)) != -1) {
-				total += read;
-				out.write(b, 0, read);
-			}
-			out.flush();
-			res = new String(dataStream.toByteArray());
+	public void testParseDescribeServiceCategories() {
+		System.out.println("=======================================");
+		System.out.println("TEST PARSE DESCRIBE SERVICE CATEOGRIES: test.json");
+		System.out.println("=======================================");
 
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		} finally {
-			Constants.closeStream(fis);
-			Constants.closeStream(in);
-			Constants.closeStream(out);
-		}
+		URL uReport = POIProxy.class.getClassLoader().getResource(
+				this.getResource());
+		System.out.println(uReport.getPath());
 
-		return res;
+		String json = this.getJSON(uReport.getPath());
+
+		assertTrue(json.length() > 0);
+
+		DescribeServiceParser parser = new DescribeServiceParser();
+		DescribeService service = parser.parse(json);
+
+		assertEquals(service.getSRS(), "EPSG:23030");
+
+		assertEquals(service.getCategories().size(), 3);
+		assertEquals(service.getCategories().get(0), "social");
+		assertEquals(service.getCategories().get(2), "location");
+
+		System.out.println("=======================================");
+		System.out.println("TEST SUCCESSFULL!!!");
+		System.out.println("=======================================");
+	}
+
+	public void testParseDescribeServiceSRS() {
+		System.out.println("=======================================");
+		System.out.println("TEST PARSE DESCRIBE SERVICE SRS: test.json");
+		System.out.println("=======================================");
+
+		URL uReport = POIProxy.class.getClassLoader().getResource(
+				this.getResource());
+		System.out.println(uReport.getPath());
+
+		String json = this.getJSON(uReport.getPath());
+
+		assertTrue(json.length() > 0);
+
+		DescribeServiceParser parser = new DescribeServiceParser();
+		DescribeService service = parser.parse(json);
+
+		assertEquals(service.getSRS(), "EPSG:23030");
+
+		System.out.println("=======================================");
+		System.out.println("TEST SUCCESSFULL!!!");
+		System.out.println("=======================================");
 	}
 
 	public String getResource() {
-		return "buzz.json";
+		return "test.json";
 	}
 }

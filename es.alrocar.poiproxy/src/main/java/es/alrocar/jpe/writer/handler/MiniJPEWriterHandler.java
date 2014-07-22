@@ -1,21 +1,21 @@
-/* POIProxy. A proxy service to retrieve POIs from public services
+/*
+ * Licensed to Prodevelop SL under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The Prodevelop SL licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
- * Copyright (C) 2011 Alberto Romeu.
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
- *
- * You should have received a copy of the GNU Library General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
- *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ * 
  * For more information, contact:
  *
  *   Prodevelop, S.L.
@@ -25,29 +25,31 @@
  *
  *   +34 963 510 612
  *   +34 963 510 968
- *   aromeu@prodevelop.es
+ *   prode@prodevelop.es
  *   http://www.prodevelop.es
- *   
- *   2011.
- *   author Alberto Romeu aromeu@prodevelop.es  
- *   
+ * 
+ * @author Alberto Romeu Carrasco http://www.albertoromeu.com
  */
 
 package es.alrocar.jpe.writer.handler;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonProcessingException;
-import org.codehaus.jackson.io.JsonStringEncoder;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.SerializationConfig;
 import org.json.simple.JSONArray;
 
 import es.alrocar.jpe.parser.handler.BaseContentHandler;
 import es.alrocar.jpe.parser.handler.JPEContentHandler;
+import es.alrocar.poiproxy.geotools.GeotoolsUtils;
+import es.prodevelop.gvsig.mini.exceptions.BaseException;
+import es.prodevelop.gvsig.mini.geom.impl.jts.JTSFeature;
 
 /**
  * A {@link JPEContentHandler} used to write a GeoJSON document on the fly while
@@ -154,7 +156,26 @@ public class MiniJPEWriterHandler implements JPEContentHandler {
 	/**
 	 * {@inheritDoc}
 	 */
-	public Object endPoint(Object point) {
+	public Object endPoint(Object point, String from, String to) {
+		JSONArray coords = ((JSONArray) ((LinkedHashMap) point)
+				.get("coordinates"));
+
+		try {
+			double[] xy = GeotoolsUtils.transform(
+					from,
+					to,
+					new double[] {
+							Double.valueOf(String.valueOf(coords.get(0))),
+							Double.valueOf(String.valueOf(coords.get(1))) });
+			if (xy != null) {
+				coords.set(0, xy[0]);
+				coords.set(1, xy[1]);
+				((LinkedHashMap) point).put("coordinates", coords);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		return point;
 	}
 
@@ -195,26 +216,69 @@ public class MiniJPEWriterHandler implements JPEContentHandler {
 	 */
 	public String getGeoJSON() {
 		if (this.featureCollection != null) {
-			ObjectMapper objectMapper = new ObjectMapper();
-			objectMapper.configure(SerializationConfig.Feature.INDENT_OUTPUT,
-					true);
-
-			String originalJson = featureCollection.toString();
-			
-			JsonNode tree;
-			try {
-				tree = objectMapper.readTree(originalJson);
-				return objectMapper.writeValueAsString(tree);				
-			} catch (JsonProcessingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			return featureCollectionAsJSON(this.featureCollection);
 		}
 
 		return null;
 	}
 
+	private String featureCollectionAsJSON(org.json.JSONObject featureCollection) {
+		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.configure(SerializationConfig.Feature.INDENT_OUTPUT, true);
+
+		String originalJson = featureCollection.toString();
+
+		JsonNode tree;
+		try {
+			tree = objectMapper.readTree(originalJson);
+			return objectMapper.writeValueAsString(tree);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	/**
+	 * Creates a GeoJSON from a List of {@link JTSFeature}
+	 * 
+	 * @param fc
+	 * @return
+	 */
+	public String toJSON(ArrayList<JTSFeature> fc) {
+		Object fcJSON = this.startFeatureCollection();
+		for (JTSFeature feature : fc) {
+			Object f = this.startFeature();
+			Object p = this.startPoint();
+			try {
+				this.addXToPoint(feature.getGeometry().getGeometry()
+						.getCentroid().getX(), p);
+				this.addYToPoint(feature.getGeometry().getGeometry()
+						.getCentroid().getY(), p);
+			} catch (BaseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			Iterator it = feature.getAttributes().keySet().iterator();
+			while (it.hasNext()) {
+				String key = it.next().toString();
+				this.addElementToFeature(feature.getAttribute(key).value, key,
+						f);
+			}
+
+			p = this.endPoint(p, null, null);
+			this.addPointToFeature(f, p);
+			this.endFeature(f);
+			this.addFeatureToCollection(fcJSON, f);
+		}
+
+		fcJSON = this.endFeatureCollection(fcJSON);
+
+		return this.featureCollectionAsJSON((org.json.JSONObject) fcJSON);
+	}
 }

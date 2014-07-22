@@ -1,0 +1,50 @@
+{
+    "csvSeparator": ";",
+    "decimalSeparator": ",",
+    "encoding": "UTF-8",
+    "featureTypes": {
+        "browse": {
+            "elements": {
+              "name": {
+                  "input": "EQUIPAMENT"
+              },
+              "phone": {
+                  "input": "TELEFON"
+              },
+              "address": {
+                  "input": "ADRECA"
+              }
+            },
+            "feature": "",
+            "lat": "COORD_Y",
+            "lon": "COORD_X"
+        },
+        "search": {
+            "elements": {
+              "name": {
+                  "input": "EQUIPAMENT"
+              },
+              "phone": {
+                  "input": "TELEFON"
+              },
+              "address": {
+                  "input": "ADRECA"
+              }
+            },
+            "feature": "",
+            "lat": "COORD_Y",
+            "lon": "COORD_X"
+        }
+    },
+    "format": "csv",
+    "requestTypes": {
+        "browse": {
+            "params": [],
+            "url": "http://opendata.bcn.cat/opendata/en/catalog/TRANSPORT/estacionsbus/#"
+        },
+        "search": {
+            "params": [],
+            "url": "b"
+        }
+    }
+}

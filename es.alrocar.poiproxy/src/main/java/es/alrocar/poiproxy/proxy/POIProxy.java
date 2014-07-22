@@ -1,21 +1,21 @@
-/* POIProxy. A proxy service to retrieve POIs from public services
+/*
+ * Licensed to Prodevelop SL under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The Prodevelop SL licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
- * Copyright (C) 2011 Alberto Romeu.
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
- *
- * You should have received a copy of the GNU Library General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
- *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ * 
  * For more information, contact:
  *
  *   Prodevelop, S.L.
@@ -25,28 +25,31 @@
  *
  *   +34 963 510 612
  *   +34 963 510 968
- *   aromeu@prodevelop.es
+ *   prode@prodevelop.es
  *   http://www.prodevelop.es
- *   
- *   2011.
- *   author Alberto Romeu aromeu@prodevelop.es  
- *   
+ * 
+ * @author Alberto Romeu Carrasco http://www.albertoromeu.com
  */
 
 package es.alrocar.poiproxy.proxy;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 
 import es.alrocar.jpe.parser.JPEParser;
 import es.alrocar.jpe.parser.JPEParserManager;
+import es.alrocar.jpe.parser.csv.CSVParser;
 import es.alrocar.jpe.parser.exceptions.NoParserRegisteredException;
 import es.alrocar.jpe.parser.json.JSONJPEParser;
+import es.alrocar.jpe.parser.kml.KMLParser;
 import es.alrocar.jpe.parser.xml.XMLJPEParser;
 import es.alrocar.jpe.writer.GeoJSONWriter;
 import es.alrocar.poiproxy.configuration.DescribeService;
@@ -54,7 +57,13 @@ import es.alrocar.poiproxy.configuration.DescribeServices;
 import es.alrocar.poiproxy.configuration.Param;
 import es.alrocar.poiproxy.configuration.ServiceConfigurationManager;
 import es.alrocar.poiproxy.configuration.ServiceParams;
+import es.alrocar.poiproxy.exceptions.POIProxyException;
+import es.alrocar.poiproxy.geotools.GeotoolsUtils;
 import es.alrocar.poiproxy.proxy.utiles.Calculator;
+import es.alrocar.utils.CompressionEnum;
+import es.alrocar.utils.Downloader;
+import es.alrocar.utils.PropertyLocator;
+import es.alrocar.utils.Unzip;
 import es.prodevelop.geodetic.utils.conversion.ConversionCoords;
 import es.prodevelop.gvsig.mini.geom.Extent;
 import es.prodevelop.gvsig.mini.geom.impl.jts.JTSFeature;
@@ -70,20 +79,21 @@ import es.prodevelop.gvsig.mobile.fmap.proj.CRSFactory;
  */
 public class POIProxy {
 
+	private static final String MERCATOR_SRS = "EPSG:900913";
+
+	private static final String GEODETIC_SRS = "EPSG:4326";
+
+	private final static Logger logger = Logger.getLogger(POIProxy.class);
+
 	public static String CACHE_DIR = "/var/lib/sp/cache";
 
 	private static POIProxy proxy;
 	private ServiceConfigurationManager serviceManager;
-	private GeoJSONWriter geoJSONWriter;
 
-	/**
-	 * A singleton
-	 * 
-	 * @return The {@link POIProxy} instance
-	 */
-	public static POIProxy getInstance() {
+	public static POIProxy asSingleton() {
 		if (proxy == null) {
 			proxy = new POIProxy();
+			proxy.initialize();
 		}
 
 		return proxy;
@@ -107,7 +117,8 @@ public class POIProxy {
 
 		JPEParserManager.getInstance().registerJPEParser(new JSONJPEParser());
 		JPEParserManager.getInstance().registerJPEParser(new XMLJPEParser());
-		geoJSONWriter = new GeoJSONWriter();
+		JPEParserManager.getInstance().registerJPEParser(new CSVParser());
+		JPEParserManager.getInstance().registerJPEParser(new KMLParser());
 	}
 
 	/**
@@ -121,29 +132,10 @@ public class POIProxy {
 	 */
 	public String getAvailableServices() throws JsonGenerationException,
 			JsonMappingException, IOException {
-		Set<String> keys = serviceManager.getRegisteredConfigurations()
-				.keySet();
-
-		Iterator<String> it = keys.iterator();
-
-		String id = null;
-		DescribeServices services = new DescribeServices();
-		while (it.hasNext()) {
-			id = it.next();
-			services.put(id, serviceManager.getServiceConfiguration(id));
-		}
+		DescribeServices services = serviceManager.getAvailableServices();
 
 		return services.asJSON();
 	}
-
-	// TODO Allow several strategies
-	// LAT LON
-	// BBOX
-	// TILES
-
-	// AND DIFERENT REQUESTS
-	// BROWSE
-	// SEARCH WITH QUERY
 
 	/**
 	 * This method is used to get the pois from a service and return a GeoJSON
@@ -160,36 +152,84 @@ public class POIProxy {
 	 * @return The GeoJSON response from the original service response
 	 */
 	public String getPOIs(String id, int z, int x, int y,
-			ArrayList<Param> optionalParams) throws Exception {
-		DescribeService describeService = this.getServiceFromID(id);
+			List<Param> optionalParams) throws Exception {
+		DescribeService describeService = getDescribeServiceByID(id);
 
-		if (describeService == null) {
-			return this.getErrorForUnknownService(id);
-		}
-
-		// Buscar en cache el geoJSON y si est� llamar a onResponseReceived
-
-		// si no est� en cache
-
-		// construir la url
 		Extent e1 = TileConversor.tileOSMMercatorBounds(x, y, z);
 
 		double[] minXY = ConversionCoords.reproject(e1.getMinX(), e1.getMinY(),
-				CRSFactory.getCRS("EPSG:900913"),
-				CRSFactory.getCRS("EPSG:4326"));
+				CRSFactory.getCRS(MERCATOR_SRS),
+				CRSFactory.getCRS(GEODETIC_SRS));
 		double[] maxXY = ConversionCoords.reproject(e1.getMaxX(), e1.getMaxY(),
-				CRSFactory.getCRS("EPSG:900913"),
-				CRSFactory.getCRS("EPSG:4326"));
+				CRSFactory.getCRS(MERCATOR_SRS),
+				CRSFactory.getCRS(GEODETIC_SRS));
 
-		String url = buildRequest(describeService, minXY[0], minXY[1],
-				maxXY[0], maxXY[1], optionalParams, 0, 0);
-
-		// hacer petici�n al servicio
-		String file = doRequest(url);
-
-		String geoJSON = this.onResponseReceived(file, describeService);
+		String geoJSON = getResponseAsGeoJSON(id, optionalParams,
+				describeService, minXY[0], minXY[1], maxXY[0], maxXY[1], 0, 0);
 
 		return geoJSON;
+	}
+
+	/**
+	 * This method is used to get the pois from a service and return a list of
+	 * {@link JTSFeature} document with the data retrieved given a Z/X/Y tile.
+	 * 
+	 * @param id
+	 *            The id of the service
+	 * @param z
+	 *            The zoom level
+	 * @param x
+	 *            The x tile
+	 * @param y
+	 *            The y tile
+	 * @return a list of {@link JTSFeature}
+	 */
+	public ArrayList<JTSFeature> getFeatures(String id, int z, int x, int y,
+			List<Param> optionalParams) throws Exception {
+		DescribeService describeService = getDescribeServiceByID(id);
+
+		Extent e1 = TileConversor.tileOSMMercatorBounds(x, y, z);
+
+		double[] minXY = ConversionCoords.reproject(e1.getMinX(), e1.getMinY(),
+				CRSFactory.getCRS(MERCATOR_SRS),
+				CRSFactory.getCRS(GEODETIC_SRS));
+		double[] maxXY = ConversionCoords.reproject(e1.getMaxX(), e1.getMaxY(),
+				CRSFactory.getCRS(MERCATOR_SRS),
+				CRSFactory.getCRS(GEODETIC_SRS));
+
+		return getFeatures(id, optionalParams, describeService, minXY[0],
+				minXY[1], maxXY[0], maxXY[1], 0, 0);
+	}
+
+	/**
+	 * This method is used to get the pois from a category and return a list of
+	 * {@link JTSFeature} document with the data retrieved given a Z/X/Y tile.
+	 * 
+	 * @param id
+	 *            The category to request
+	 * @see #getAvailableCategories()
+	 * @param z
+	 *            The zoom level
+	 * @param x
+	 *            The x tile
+	 * @param y
+	 *            The y tile
+	 * @return a list of {@link JTSFeature}
+	 */
+	public ArrayList<JTSFeature> getFeaturesByCategory(String category, int z,
+			int x, int y, List<Param> optionalParams) throws Exception {
+		List<String> ids = serviceManager.getAvailableServices()
+				.getServicesIDByCategory(category);
+		ArrayList<JTSFeature> features = new ArrayList<JTSFeature>();
+		for (String id : ids) {
+			try {
+				features.addAll(this.getFeatures(id, z, x, y, optionalParams));
+			} catch (Exception e) {
+				logger.error("POIProxy", e);
+			}
+		}
+
+		return features;
 	}
 
 	/**
@@ -202,34 +242,6 @@ public class POIProxy {
 	 */
 	public DescribeService getServiceFromID(String id) {
 		return serviceManager.getServiceConfiguration(id);
-	}
-
-	/**
-	 * Exception text when a service requested is not registered into the
-	 * library
-	 * 
-	 * @param id
-	 *            The id of the service not found
-	 * @return The Exception text to show to the user
-	 */
-	private String getErrorForUnknownService(String id) {
-		StringBuffer error = new StringBuffer();
-		error.append("Services path: "
-				+ ServiceConfigurationManager.CONFIGURATION_DIR);
-		error.append("The service with id: " + id + " is not registered");
-
-		error.append("\n Available services are: ");
-
-		Set<String> keys = serviceManager.getRegisteredConfigurations()
-				.keySet();
-
-		Iterator<String> it = keys.iterator();
-
-		while (it.hasNext()) {
-			error.append(it.next()).append(" ");
-		}
-
-		return error.toString();
 	}
 
 	/**
@@ -248,31 +260,78 @@ public class POIProxy {
 	 * @return The GeoJSON response from the original service response
 	 */
 	public String getPOIs(String id, double lon, double lat,
-			double distanceInMeters, ArrayList<Param> optionalParams)
+			double distanceInMeters, List<Param> optionalParams)
 			throws Exception {
-		DescribeService describeService = this.getServiceFromID(id);
+		DescribeService describeService = getDescribeServiceByID(id);
 
-		if (describeService == null) {
-			return this.getErrorForUnknownService(id);
-		}
-
-		// Buscar en cache el geoJSON y si est� llamar a onResponseReceived
-
-		// si no est� en cache
-
-		// construir la url
 		double[] bbox = Calculator.boundingCoordinates(lon, lat,
 				distanceInMeters);
 
-		String url = buildRequest(describeService, bbox[0], bbox[1], bbox[2],
-				bbox[3], optionalParams, lon, lat);
-
-		// hacer petici�n al servicio
-		String file = doRequest(url);
-
-		String geoJSON = this.onResponseReceived(file, describeService);
+		String geoJSON = getResponseAsGeoJSON(id, optionalParams,
+				describeService, bbox[0], bbox[1], bbox[2], bbox[3], lon, lat);
 
 		return geoJSON;
+	}
+
+	/**
+	 * This method is used to get the pois from a service and return a list of
+	 * {@link JTSFeature} document with the data retrieved given a longitude,
+	 * latitude and a radius in meters.
+	 * 
+	 * @param id
+	 *            The id of the service
+	 * @param lon
+	 *            The longitude
+	 * @param lat
+	 *            The latitude
+	 * @param distanceInMeters
+	 *            The distance in meters from the lon, lat
+	 * @return A list of {@link JTSFeature}
+	 */
+	public ArrayList<JTSFeature> getFeatures(String id, double lon, double lat,
+			double distanceInMeters, List<Param> optionalParams)
+			throws Exception {
+		DescribeService describeService = getDescribeServiceByID(id);
+
+		double[] bbox = Calculator.boundingCoordinates(lon, lat,
+				distanceInMeters);
+
+		return getFeatures(id, optionalParams, describeService, bbox[0],
+				bbox[1], bbox[2], bbox[3], lon, lat);
+	}
+
+	/**
+	 * This method is used to get the pois from a category and return a list of
+	 * {@link JTSFeature} document with the data retrieved given a longitude,
+	 * latitude and a radius in meters.
+	 * 
+	 * @param id
+	 *            The id of the service
+	 * @param lon
+	 *            The longitude
+	 * @param lat
+	 *            The latitude
+	 * @param distanceInMeters
+	 *            The distance in meters from the lon, lat
+	 * @return A list of {@link JTSFeature}
+	 */
+	public ArrayList<JTSFeature> getFeaturesByCategory(String category,
+			double lon, double lat, double distanceInMeters,
+			List<Param> optionalParams) throws Exception {
+		List<String> ids = serviceManager.getAvailableServices()
+				.getServicesIDByCategory(category);
+		ArrayList<JTSFeature> features = new ArrayList<JTSFeature>();
+		for (String id : ids) {
+			try {
+				features.addAll(this.getFeatures(id, lon, lat,
+						distanceInMeters, optionalParams));
+			} catch (Exception e) {
+				logger.error("POIProxy", e);
+			}
+		}
+
+		return features;
+
 	}
 
 	/**
@@ -291,27 +350,72 @@ public class POIProxy {
 	 * @return The GeoJSON response from the original service response
 	 */
 	public String getPOIs(String id, double minX, double minY, double maxX,
-			double maxY, ArrayList<Param> optionalParams) throws Exception {
-		DescribeService describeService = this.getServiceFromID(id);
+			double maxY, List<Param> optionalParams) throws Exception {
+		DescribeService describeService = getDescribeServiceByID(id);
 
-		if (describeService == null) {
-			return this.getErrorForUnknownService(id);
-		}
-
-		// Buscar en cache el geoJSON y si est� llamar a onResponseReceived
-
-		// si no est� en cache
-
-		// construir la url
-		String url = buildRequest(describeService, minX, minY, maxX, maxY,
-				optionalParams, 0, 0);
-
-		// hacer petici�n al servicio
-		String file = doRequest(url);
-
-		String geoJSON = this.onResponseReceived(file, describeService);
+		String geoJSON = getResponseAsGeoJSON(id, optionalParams,
+				describeService, minX, minY, maxX, maxY, 0, 0);
 
 		return geoJSON;
+	}
+
+	/**
+	 * This method is used to get the pois from a service and return a list of
+	 * {@link JTSFeature} document with the data retrieved given a bounding box
+	 * corners
+	 * 
+	 * @param id
+	 *            The id of the service
+	 * @param minX
+	 * 
+	 * @param minY
+	 * 
+	 * @param maxX
+	 * 
+	 * @param maxY
+	 * @return A list of {@link JTSFeature}
+	 */
+	public ArrayList<JTSFeature> getFeatures(String id, double minX,
+			double minY, double maxX, double maxY, List<Param> optionalParams)
+			throws Exception {
+		DescribeService describeService = getDescribeServiceByID(id);
+
+		return getFeatures(id, optionalParams, describeService, minX, minY,
+				maxX, maxY, 0, 0);
+	}
+
+	/**
+	 * This method is used to get the pois from a category and return a list of
+	 * {@link JTSFeature} document with the data retrieved given a bounding box
+	 * corners
+	 * 
+	 * @param id
+	 *            The id of the service
+	 * @param minX
+	 * 
+	 * @param minY
+	 * 
+	 * @param maxX
+	 * 
+	 * @param maxY
+	 * @return A list of {@link JTSFeature}
+	 */
+	public ArrayList<JTSFeature> getFeaturesByCategory(String category,
+			double minX, double minY, double maxX, double maxY,
+			List<Param> optionalParams) throws Exception {
+		List<String> ids = serviceManager.getAvailableServices()
+				.getServicesIDByCategory(category);
+		ArrayList<JTSFeature> features = new ArrayList<JTSFeature>();
+		for (String id : ids) {
+			try {
+				features.addAll(getFeatures(id, minX, minY, maxX, maxY,
+						optionalParams));
+			} catch (Exception e) {
+				logger.error("POIProxy", e);
+			}
+		}
+
+		return features;
 	}
 
 	/**
@@ -331,18 +435,31 @@ public class POIProxy {
 	 * @return The url string to request to
 	 */
 	public String buildRequest(DescribeService describeService, double minX,
-			double minY, double maxX, double maxY,
-			ArrayList<Param> optionalParams, double lon, double lat) {
+			double minY, double maxX, double maxY, List<Param> optionalParams,
+			double lon, double lat) {
 		ServiceParams params = new ServiceParams();
 
 		Extent e1 = new Extent(minX, minY, maxX, maxY);
 
+		double[] minXY = GeotoolsUtils.transform(GEODETIC_SRS,
+				describeService.getSRS(),
+				new double[] { e1.getMinX(), e1.getMinY() });
+
+		double[] maxXY = GeotoolsUtils.transform(GEODETIC_SRS,
+				describeService.getSRS(),
+				new double[] { e1.getMaxX(), e1.getMaxY() });
+
 		int distanceMeters = this.getDistanceMeters(e1);
 
-		params.putParam(ServiceParams.MINX, String.valueOf(minX));
-		params.putParam(ServiceParams.MINY, String.valueOf(minY));
-		params.putParam(ServiceParams.MAXX, String.valueOf(maxX));
-		params.putParam(ServiceParams.MAXY, String.valueOf(maxY));
+		e1.setMinX(minXY[0]);
+		e1.setMinY(minXY[1]);
+		e1.setMaxX(maxXY[0]);
+		e1.setMaxY(maxXY[1]);
+
+		params.putParam(ServiceParams.MINX, String.valueOf(minXY[0]));
+		params.putParam(ServiceParams.MINY, String.valueOf(minXY[1]));
+		params.putParam(ServiceParams.MAXX, String.valueOf(maxXY[0]));
+		params.putParam(ServiceParams.MAXY, String.valueOf(maxXY[1]));
 
 		double longitude = (lon != 0) ? lon : e1.getCenter().getX();
 		double latitude = (lat != 0) ? lat : e1.getCenter().getY();
@@ -352,9 +469,10 @@ public class POIProxy {
 
 		params.putParam(ServiceParams.FORMAT, "json");
 
-		params.putParam(ServiceParams.DIST, String.valueOf((int) distanceMeters));
+		params.putParam(ServiceParams.DIST,
+				String.valueOf((int) distanceMeters));
 		params.putParam(ServiceParams.DISTKM,
-				String.valueOf((int)distanceMeters / 1000));
+				String.valueOf((int) distanceMeters / 1000));
 		params.putParam(ServiceParams.KEY, describeService.getApiKey());
 
 		String url = describeService.getRequestForParam(optionalParams);
@@ -385,14 +503,33 @@ public class POIProxy {
 	 * 
 	 * @param url
 	 *            The url to request to
+	 * @param service
+	 *            The {@link DescribeService} object
+	 * @param id
+	 *            The ID of the {@link DescribeService}
 	 * @return The data downloaded
 	 * @throws Exception
 	 */
-	public String doRequest(String url) throws Exception {
-		// hacer peticion en segundo plano
+	public String doRequest(String url, DescribeService service, String id)
+			throws Exception {
+		// TODO do it in backgound?
 		Downloader d = new Downloader();
 		System.out.println(url);
-		d.downloadFromUrl(url, null);
+		d.downloadFromUrl(url, id, PropertyLocator.getInstance().tempFolder
+				+ id + File.separator, null);
+
+		if (service.getCompression() != null
+				&& service.getCompression().equals(CompressionEnum.ZIP.format)) {
+			Unzip unzip = new Unzip();
+			unzip.unzip(PropertyLocator.getInstance().tempFolder + id
+					+ File.separator, PropertyLocator.getInstance().tempFolder
+					+ id + File.separator + id, true);
+
+			Downloader opener = new Downloader();
+			return opener.openFile(PropertyLocator.getInstance().tempFolder
+					+ id + File.separator + service.getContentFile());
+		}
+
 		return new String(d.getData());
 	}
 
@@ -412,14 +549,22 @@ public class POIProxy {
 	 * @return A GeoJSON
 	 * @throws NoParserRegisteredException
 	 */
-	public String onResponseReceived(String json, DescribeService service)
-			throws NoParserRegisteredException {
+	public String onResponseReceived(String json, DescribeService service,
+			LocalFilter localFilter) throws NoParserRegisteredException {
 		final JPEParser jpeParser = JPEParserManager.getInstance()
 				.getJPEParser(service.getFormat());
-		ArrayList<JTSFeature> features = jpeParser.parse(json, service);
+		jpeParser.parse(json, service, localFilter);
 		String geoJSON = jpeParser.getGeoJSON();
 		// Escribir en cache el geoJSON
 		return geoJSON;
+	}
+
+	private ArrayList<JTSFeature> parseFeatures(String json,
+			DescribeService service, LocalFilter localFilter)
+			throws NoParserRegisteredException {
+		final JPEParser jpeParser = JPEParserManager.getInstance()
+				.getJPEParser(service.getFormat());
+		return jpeParser.parse(json, service, localFilter);
 	}
 
 	/**
@@ -430,10 +575,111 @@ public class POIProxy {
 	 *            The bounding box
 	 * @return The distance in meters
 	 */
-	public int getDistanceMeters(Extent boundingBox) {		
-		return new Double(Math.floor(Calculator.latLonDist(boundingBox.getMinX(),
-				boundingBox.getMinY(), boundingBox.getMaxX(),
-				boundingBox.getMaxY()))).intValue();
+	public int getDistanceMeters(Extent boundingBox) {
+		return new Double(Math.floor(Calculator.latLonDist(
+				boundingBox.getMinX(), boundingBox.getMinY(),
+				boundingBox.getMaxX(), boundingBox.getMaxY()))).intValue();
 	}
 
+	/**
+	 * Frees this instance of {@link POIProxy}
+	 */
+	public void destroy() {
+		logger.debug("Goodbye POIProxy");
+	}
+
+	/**
+	 * Iterates the {@link DescribeServices} and returns a list of categories
+	 * configured
+	 * 
+	 * @return
+	 */
+	public List<String> getAvailableCategories() {
+		DescribeServices services = serviceManager.getAvailableServices();
+		return services.getCategories();
+	}
+
+	private DescribeService getDescribeServiceByID(String id)
+			throws POIProxyException {
+		DescribeService describeService = this.getServiceFromID(id);
+
+		if (describeService == null) {
+			throw new POIProxyException(this.getErrorForUnknownService(id));
+		}
+		return describeService;
+	}
+
+	/**
+	 * Exception text when a service requested is not registered into the
+	 * library
+	 * 
+	 * @param id
+	 *            The id of the service not found
+	 * @return The Exception text to show to the user
+	 */
+	private String getErrorForUnknownService(String id) {
+		StringBuffer error = new StringBuffer();
+		error.append("Services path: "
+				+ ServiceConfigurationManager.CONFIGURATION_DIR);
+		error.append("The service with id: " + id + " is not registered");
+
+		error.append("\n Available services are: ");
+
+		Set<String> keys = serviceManager.getRegisteredConfigurations()
+				.keySet();
+
+		Iterator<String> it = keys.iterator();
+
+		while (it.hasNext()) {
+			error.append(it.next()).append(" ");
+		}
+
+		return error.toString();
+	}
+
+	private String getResponseAsGeoJSON(String id, List<Param> optionalParams,
+			DescribeService describeService, double minX, double minY,
+			double maxX, double maxY, double lon, double lat) throws Exception,
+			NoParserRegisteredException {
+		String url = buildRequest(describeService, minX, minY, maxX, maxY,
+				optionalParams, lon, lat);
+
+		String file = doRequest(url, describeService, id);
+
+		String geoJSON = this.onResponseReceived(file, describeService,
+				describeService.getLocalFilter(optionalParams));
+		return geoJSON;
+	}
+
+	private ArrayList<JTSFeature> getFeatures(String id,
+			List<Param> optionalParams, DescribeService describeService,
+			double minX, double minY, double maxX, double maxY, double lon,
+			double lat) throws Exception, NoParserRegisteredException {
+		String url = buildRequest(describeService, minX, minY, maxX, maxY,
+				optionalParams, lon, lat);
+
+		String file = doRequest(url, describeService, id);
+
+		ArrayList<JTSFeature> features = this
+				.parseFeatures(file, describeService,
+						LocalFilter.fromOptionalParams(optionalParams));
+
+		return features;
+	}
+
+	/**
+	 * Interface for registering a new service in POIProxy
+	 * 
+	 * @param service
+	 *            The {@link DescribeService}
+	 * @param describeService
+	 *            The JSON representation of the DescribeService for hot
+	 *            registering
+	 * @throws POIProxyException
+	 */
+	public void register(DescribeService service, String describeService)
+			throws POIProxyException {
+		serviceManager.registerServiceConfiguration(service.getId(),
+				describeService, service);
+	}
 }

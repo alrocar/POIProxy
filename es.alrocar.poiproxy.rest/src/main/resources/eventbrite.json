@@ -1,0 +1,105 @@
+{
+  "format": "json",
+  "apiKey": "NPCDNQIQDPZ5DSENY2CZ",
+  "requestTypes": {
+    "browse": {
+      "url": "https://www.eventbriteapi.com/v3/events/search/?location.within=__DIST__&location.latitude=__LAT__&location.longitude=__LON__&token=__KEY__",
+      "params": []
+    },
+    "search": {
+      "url": "https://www.eventbriteapi.com/v3/events/search/?location.within=__DIST__&location.latitude=__LAT__&location.longitude=__LON__&token=__KEY__&q=__QUERY__",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "resource_uri",
+      "elements": {
+        "id": {
+          "input": "id"
+        },
+        "timezone": {
+          "input": "timezone"
+        },
+        "name": {
+          "input": "text"
+        },
+        "image_url": {
+          "input": "image_url"
+        },
+        "created": {
+          "input": "created"
+        },
+        "utc": {
+          "input": "utc"
+        },
+        "resource_uri": {
+          "input": "resource_uri"
+        },
+        "address_1": {
+          "input": "address_1"
+        },
+        "html": {
+          "input": "html"
+        },
+        "local": {
+          "input": "local"
+        },
+        "logo_url": {
+          "input": "logo_url"
+        },
+        "url": {
+          "input": "url"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    },
+    "search": {
+      "feature": "id",
+      "elements": {
+        "comments_count": {
+          "input": "comments_count"
+        },
+        "times_viewed": {
+          "input": "times_viewed"
+        },
+        "location": {
+          "input": "location"
+        },
+        "url": {
+          "input": "url"
+        },
+        "favorites_count": {
+          "input": "favorites_count"
+        },
+        "username": {
+          "input": "username"
+        },
+        "image_url": {
+          "input": "image_url"
+        },
+        "description": {
+          "input": "description"
+        },
+        "name": {
+          "input": "name"
+        },
+        "created_at": {
+          "input": "created_at"
+        },
+        "rating": {
+          "input": "rating"
+        },
+        "followers_count": {
+          "input": "followers_count"
+        },
+        "positive_votes_count": {
+          "input": "positive_votes_count"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    }
+  }
+}

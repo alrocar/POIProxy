@@ -1,0 +1,70 @@
+{
+  "type" : "FeatureCollection",
+  "features" : [ {
+    "type" : "Feature",
+    "properties" : {
+      "Age" : "21",
+      "Phone" : "(505) 555-5939",
+      "Street" : "2817 Milton Dr."
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 1, 1 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Age" : "24",
+      "Phone" : "(208) 555-8097",
+      "Street" : "187 Suffolk Ln."
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 1, 1 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Age" : "23",
+      "Phone" : "(307) 555-4680",
+      "Street" : "P.O. Box 555"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 1, 1 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Age" : "30",
+      "Phone" : "(503) 555-3612",
+      "Street" : "89 Jefferson Way Suite 2"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 1, 1 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Age" : "40",
+      "Phone" : "(406) 555-5834",
+      "Street" : "55 Grizzly Peak Rd."
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 1, 1 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Age" : "30",
+      "Phone" : "(415) 555-5938",
+      "Street" : "87 Polk St. Suite 5"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 1, 1 ]
+    }
+  } ]
+}

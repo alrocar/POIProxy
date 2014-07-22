@@ -1,0 +1,113 @@
+{
+  "format": "json",
+  "apiKey": "FLltMj2bGxHQvi6wwVLxh6Z8vnD5ti5R1c3MwBds",
+  "categories": [
+    "social",
+    "photo",
+    "500px"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "https://api.500px.com/v1/photos/search?radius=__DIST__&lat=__LAT__&lng=__LON__&consumer_key=__KEY__&tag=",
+      "params": []
+    },
+    "search": {
+      "url": "https://api.500px.com/v1/photos/search?radius=__DIST__&lat=__LAT__&lng=__LON__&consumer_key=__KEY__&term=__QUERY__",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "id",
+      "elements": {
+        "name": {
+          "input": "name"
+        },
+        "description": {
+          "input": "description"
+        },
+        "created_at": {
+          "input": "created_at"
+        },
+        "favorites_count": {
+          "input": "favorites_count"
+        },
+        "comments_count": {
+          "input": "comments_count"
+        },
+        "positive_votes_count": {
+          "input": "positive_votes_count"
+        },
+        "followers_count": {
+          "input": "followers_count"
+        },
+        "times_viewed": {
+          "input": "times_viewed"
+        },
+        "rating": {
+          "input": "rating"
+        },
+        "username": {
+          "input": "username"
+        },
+        "address": {
+          "input": "location"
+        },
+        "web": {
+          "input": "url"
+        },
+        "image": {
+          "input": "image_url"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    },
+    "search": {
+      "feature": "id",
+      "elements": {
+        "name": {
+          "input": "name"
+        },
+        "description": {
+          "input": "description"
+        },
+        "created_at": {
+          "input": "created_at"
+        },
+        "favorites_count": {
+          "input": "favorites_count"
+        },
+        "comments_count": {
+          "input": "comments_count"
+        },
+        "positive_votes_count": {
+          "input": "positive_votes_count"
+        },
+        "followers_count": {
+          "input": "followers_count"
+        },
+        "times_viewed": {
+          "input": "times_viewed"
+        },
+        "rating": {
+          "input": "rating"
+        },
+        "username": {
+          "input": "username"
+        },
+        "address": {
+          "input": "location"
+        },
+        "web": {
+          "input": "url"
+        },
+        "image": {
+          "input": "image_url"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    }
+  }
+}

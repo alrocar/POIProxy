@@ -1,9 +1,47 @@
+/*
+ * Licensed to Prodevelop SL under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The Prodevelop SL licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ * 
+ * For more information, contact:
+ *
+ *   Prodevelop, S.L.
+ *   Pza. Don Juan de Villarrasa, 14 - 5
+ *   46001 Valencia
+ *   Spain
+ *
+ *   +34 963 510 612
+ *   +34 963 510 968
+ *   prode@prodevelop.es
+ *   http://www.prodevelop.es
+ * 
+ * @author Alberto Romeu Carrasco http://www.albertoromeu.com
+ */
+
 package es.alrocar.jpe.parser.handler;
 
 import java.util.ArrayList;
 
+import org.xml.sax.Attributes;
+
+import es.alrocar.jpe.parser.JPEParser;
 import es.alrocar.poiproxy.configuration.DescribeService;
 import es.alrocar.poiproxy.configuration.FeatureType;
+import es.alrocar.poiproxy.proxy.LocalFilter;
+import es.alrocar.utils.Utils;
 
 /**
  * Base class that can be used by a json or xml content handler to throw the
@@ -35,6 +73,19 @@ public class BaseContentHandler {
 
 	private boolean processedLon = false;
 	private boolean processedLat = false;
+
+	private LocalFilter localFilter;
+	private boolean hasPassedLocalFilter = false;
+
+	/**
+	 * A {@link LocalFilter} instance to apply filters on the features to be
+	 * parsed
+	 * 
+	 * @param localFilter
+	 */
+	public void setLocalFilter(LocalFilter localFilter) {
+		this.localFilter = localFilter;
+	}
 
 	/**
 	 * Sets an implementation of {@link JPEContentHandler} to load into memory
@@ -105,7 +156,8 @@ public class BaseContentHandler {
 	 * @param arg0
 	 */
 	public void processValue(String arg0) {
-		if (arg0 == null || this.currentFeatureGeoJSON == null)
+		if (arg0 == null || this.currentFeatureGeoJSON == null
+				|| arg0.trim().isEmpty())
 			return;
 		FeatureType fType = this.currentFeatureType;
 		final int size = fType.getElements().size();
@@ -116,40 +168,47 @@ public class BaseContentHandler {
 			processedLon = false;
 		}
 
-		for (int i = 0; i < size; i++) {
-			if (fType.getElements().get(i)
+		for (String destProp : fType.getElements().keySet()) {
+			if (fType.getElements().get(destProp).getInput()
 					.compareTo(this.currentKey.toString()) == 0) {
+				checkValidAttribute(localFilter, arg0.toString());
 				if (writerContentHandler != null)
 					writerContentHandler.addElementToFeature(arg0.toString(),
-							this.currentKey, this.currentFeatureGeoJSON);
-				contentHandler.addElementToFeature(arg0.toString(),
-						this.currentKey, this.currentFeature);
+							destProp, this.currentFeatureGeoJSON);
+				contentHandler.addElementToFeature(arg0.toString(), destProp,
+						this.currentFeature);
 				return;
 			}
 		}
 
 		if (currentKey.toString().compareTo(fType.getLon()) == 0
 				&& !processedLon) {
+			double lon = Utils
+					.formatNumber(arg0.toString(),
+							service.getDecimalSeparator(),
+							service.getNumberSeparator());
 			if (this.currentGeometryGeoJSON == null)
 				this.currentGeometryGeoJSON = writerContentHandler.startPoint();
 			if (writerContentHandler != null)
-				writerContentHandler.addXToPoint(new Double(arg0.toString()),
+				writerContentHandler.addXToPoint(new Double(lon),
 						this.currentGeometryGeoJSON);
-			contentHandler.addXToPoint(new Double(arg0.toString()),
-					this.currentPoint);
+			contentHandler.addXToPoint(new Double(lon), this.currentPoint);
 			processedLon = true;
 			return;
 		}
 
 		if (currentKey.toString().compareTo(fType.getLat()) == 0
 				&& !processedLat) {
+			double lat = Utils
+					.formatNumber(arg0.toString(),
+							service.getDecimalSeparator(),
+							service.getNumberSeparator());
 			if (this.currentGeometryGeoJSON == null)
 				this.currentGeometryGeoJSON = writerContentHandler.startPoint();
 			if (writerContentHandler != null)
-				writerContentHandler.addYToPoint(new Double(arg0.toString()),
+				writerContentHandler.addYToPoint(new Double(lat),
 						this.currentGeometryGeoJSON);
-			contentHandler.addYToPoint(new Double(arg0.toString()),
-					this.currentPoint);
+			contentHandler.addYToPoint(new Double(lat), this.currentPoint);
 			processedLat = true;
 			return;
 		}
@@ -161,8 +220,13 @@ public class BaseContentHandler {
 				String[] latLon = arg0.toString().split(
 						fType.getLonLatSeparator());
 
-				double lat = Double.valueOf(latLon[0]);
-				double lon = Double.valueOf(latLon[1]);
+				double lon = Utils.formatNumber(latLon[0].toString(),
+						service.getDecimalSeparator(),
+						service.getNumberSeparator());
+				double lat = Utils.formatNumber(latLon[1].toString(),
+						service.getDecimalSeparator(),
+						service.getNumberSeparator());
+
 				if (writerContentHandler != null) {
 					writerContentHandler.addYToPoint(lat,
 							this.currentGeometryGeoJSON);
@@ -179,6 +243,18 @@ public class BaseContentHandler {
 		}
 
 		return;
+	}
+
+	private boolean checkValidAttribute(LocalFilter localFilter,
+			String attribute) {
+		if (localFilter == null) {
+			hasPassedLocalFilter = true;
+		} else {
+			hasPassedLocalFilter = localFilter.apply(attribute)
+					|| hasPassedLocalFilter;
+		}
+
+		return hasPassedLocalFilter;
 	}
 
 	/**
@@ -213,8 +289,11 @@ public class BaseContentHandler {
 	 * 
 	 * @param localName
 	 *            The current tag name being parsed
+	 * @param atts
+	 *            Additional attributes
+	 * @param atts
 	 */
-	public void startNewElement(String localName) {
+	public void startNewElement(String localName, Attributes atts) {
 		String arg0 = localName;
 		this.currentKey = arg0;
 		if (arg0.compareTo(this.currentFeatureType.getFeature()) == 0) {
@@ -228,6 +307,17 @@ public class BaseContentHandler {
 			this.currentFeature = contentHandler.startFeature();
 			this.currentPoint = contentHandler.startPoint();
 		}
+
+		// FIXME improve the support for attributes
+		if (atts != null) {
+			int length = atts.getLength();
+			for (int i = 0; i < length; i++) {
+				String key = atts.getQName(i);
+				String value = atts.getValue(i);
+				this.currentKey = key;
+				this.processValue(value);
+			}
+		}
 	}
 
 	/**
@@ -237,25 +327,57 @@ public class BaseContentHandler {
 	 */
 	public void endNewElement() {
 		if (this.currentFeature != null) {
+			if (!hasPassedLocalFilter) {
+				hasPassedLocalFilter = false;
+				return;
+			}
 
 			if (writerContentHandler != null) {
+				this.currentFeatureGeoJSON = this.fillCategories(
+						writerContentHandler, this.currentFeatureGeoJSON,
+						service);
+				this.currentFeatureGeoJSON = this.fillService(
+						writerContentHandler, this.currentFeatureGeoJSON,
+						service);
 				this.currentFeatureGeoJSON = writerContentHandler
 						.addPointToFeature(this.currentFeatureGeoJSON,
-								writerContentHandler
-										.endPoint(this.currentGeometryGeoJSON));
+								writerContentHandler.endPoint(
+										this.currentGeometryGeoJSON,
+										this.service.getSRS(),
+										DescribeService.DEFAULT_SRS));
 				this.currentFeatureGeoJSON = writerContentHandler
 						.endFeature(this.currentFeatureGeoJSON);
 				writerContentHandler.addFeatureToCollection(this.geoJSON,
 						this.currentFeatureGeoJSON);
 			}
-			this.currentFeature = contentHandler.addPointToFeature(
-					this.currentFeature,
-					contentHandler.endPoint(this.currentPoint));
+			this.currentFeature = this.fillCategories(contentHandler,
+					this.currentFeature, service);
+			this.currentFeature = this.fillService(contentHandler,
+					this.currentFeature, service);
+
+			this.currentFeature = contentHandler
+					.addPointToFeature(this.currentFeature, contentHandler
+							.endPoint(this.currentPoint, this.service.getSRS(),
+									DescribeService.DEFAULT_SRS));
 			this.currentFeature = contentHandler
 					.endFeature(this.currentFeature);
 			contentHandler.addFeatureToCollection(this.featureCollection,
 					this.currentFeature);
+			hasPassedLocalFilter = false;
 		}
 	}
 
+	public Object fillService(JPEContentHandler handler, Object feature,
+			DescribeService service) {
+		return handler.addElementToFeature(service.getId(), JPEParser.SERVICE,
+				feature);
+	}
+
+	public Object fillCategories(JPEContentHandler handler, Object feature,
+			DescribeService service) {
+		String categories = service.getCategoriesAsString();
+
+		return handler.addElementToFeature(categories, JPEParser.CATEGORIES,
+				feature);
+	}
 }

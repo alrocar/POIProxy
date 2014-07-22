@@ -1,0 +1,308 @@
+{
+  "type" : "FeatureCollection",
+  "features" : [ {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Punt de connexió Barcelona WiFi a la cruïlla Federico García Lorca amb  Antonio Machado</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 3032.0009999999893, 88386.33700000029 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Casal de Barri Verneda</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 32975.76299999998, 86207.43200000003 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Punt de connexió Barcelona WiFi a la cruïlla de l'Avinguda Gaudí amb el carrer Indústria</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 31075.16200000001, 84728.9040000001 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Punt de connexió Barcelona WiFi a la cruïlla de Bac de Roda amb el Passeig Taulat</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 34060.61200000002, 83979.39400000032 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Punt de connexió Barcelona WiFi a la cruïlla del carrer Jonqueres amb Ramon Mas</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 31074.63500000001, 82282.1950000003 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Punt de connexió Barcelona WiFi a la cruïlla del carrer Provençals amb Llull</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 34030.98700000002, 84423.48000000045 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Centre Cívic Torre Llobeta</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 31071.79999999999, 86682.40299999993 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Punt de connexió Barcelona WiFi a la cruïlla del carrer Lope de Vega amb el Passeig Garcia Faria</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 34003.418000000005, 83691.54200000037 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Unitat Territorial de la Guàrdia Urbana del Districte de Ciutat Vella</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 31058.030000000028, 81427.20000000019 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Punt de connexió Barcelona WiFi a la cruïlla del carrer Selva de Mar amb Avinguda Diagonal</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 34000.49900000001, 84619.60400000028 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Pavelló Municipal  Virrei Amat</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 31057.732000000018, 86954.52300000004 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Casal de Barri La Pau-Piramidón</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 33992.429000000004, 86195.87899999972 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Punt de connexió Barcelona WiFi a la cruïlla del Passeig de Sant Joan amb el carrer Diputació</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 31047.994999999995, 83241.33299999963 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Punt de connexió Barcelona WiFi a la cruïlla del carrer Bilbao amb la Ronda Litoral</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 33984.42300000001, 83518.38300000038 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Centre Esportiu Municipal Guinardó</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 31045.04700000002, 85577.63499999978 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Punt de connexió Barcelona WiFi a la cruïlla del carrer Espronceda amb Passeig Taulat</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 33983.369999999995, 83886.95500000007 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Punt de connexió Barcelona WiFi a la cruïlla de La Rambla amb el carrer Ferran</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 31031.050999999978, 81510.01400000043 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Punt de connexió Barcelona WiFi a la cruïlla del carrer Lope de Vega amb el Passeig Taulat</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 33879.84499999997, 83790.12999999989 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Punt de connexió Barcelona WiFi a la cruïlla del carrer Nàpols amb l'Avinguda Diagonal</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 31019.04999999999, 83689.12899999972 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Punt de connexió Barcelona WiFi a la cruïlla del carrer Ferrocarril amb el Passeig Calvell</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 33845.44500000001, 83507.00600000005 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Centre Cívic Can Basté-Sala d'Estudi Can Basté</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 31014.337, 87077.76999999955 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Punt de connexió Barcelona WiFi a la cruïlla del carrer Bilbao amb Fernando Poo</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 33820.917000000016, 83669.1509999996 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Punt de connexió Barcelona WiFi a la cruïlla del carrer Mallorca amb Sicília</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 30998.91499999998, 83915.70299999975 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Platja del Bogatell</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 33778.66200000001, 83067.64199999999 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Punt de connexió Barcelona WiFi a la cruïlla de l'Avinguda Paral·lel amb Portal de Santa Madrona</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 30989.640000000014, 80893.56599999964 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Casal de Barri Diagonal Mar</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 34104.06099999999, 84551.91999999993 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Punt de connexió Barcelona WiFi a la cruïlla del carrer Girona amb Gran Via de les Corts Catalanes</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 30975.78700000001, 82926.50499999989 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Icona" : "ad_ajuntament.png",
+      "Tooltip" : " <b>WiFi BCN</b> <i>Punt de connexió Barcelona WiFi a la cruïlla del carrer Llacuna amb l'Avinguda Litoral</i>",
+      "URL" : "http://www.bcn.cat"
+    },
+    "geometry" : {
+      "type" : ...

@@ -1,21 +1,125 @@
-{ describeService : {
-    format: "json",
-    apiKey : "",
-    requestTypes : {
-                    browse: {"url": "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=66385d0991aa4041b9d25db0afcd362d&bbox=__MINX__%2C__MINY__%2C__MAXX__%2C__MAXY__&media=&has_geo=1&extras=geo%2C+media%2C+path_alias%2C+url_sq%2C+url_t%2C+url_s%2C+url_m%2C+url_z%2C+url_l%2C+url_o&format=json&nojsoncallback=1&per_page=20&accuracy=3&sort=interestingness-desc&min_upload_date=1157305292.956", "params": []},
-                    search: {"url": "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=66385d0991aa4041b9d25db0afcd362d&bbox=__MINX__%2C__MINY__%2C__MAXX__%2C__MAXY__&media=&has_geo=1&extras=geo%2C+media%2C+path_alias%2C+url_sq%2C+url_t%2C+url_s%2C+url_m%2C+url_z%2C+url_l%2C+url_o&format=json&nojsoncallback=1&text=__QUERY__&per_page=20&accuracy=3&sort=interestingness-desc&min_upload_date=1157305292.956", "params": []}
-                    },
-    featureTypes : { browse : {
-                    	"feature" : "id",
-                    	"elements" : ["title", "url_t", "url_o", "url_m", "url_z", "url_s", "url_l"],
-                    	"lon": "longitude", 
-                    	"lat": "latitude"
-                    	},
-                        search : {
-                    	"feature" : "id",
-                    	"elements" : ["title", "url_t", "url_o", "url_m", "url_z", "url_s", "url_l"],
-                    	"lon": "longitude", 
-                    	"lat": "latitude"
-                    	}
-                    }
-}}
+{
+  "format": "json",
+  "apiKey": "87c99763bacd56eec1db7ff3d71e230e",
+  "categories": [
+    "social",
+    "photo",
+    "flickr"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=__KEY__&bbox=__MINX__%2C__MINY__%2C__MAXX__%2C__MAXY__&media=&has_geo=1&extras=views%2C+description%2C+license%2C+date_upload%2C+date_taken%2C+owner_name%2C+geo%2C+media%2C+path_alias%2C+url_sq%2C+url_t%2C+url_s%2C+url_m%2C+url_z%2C+url_l%2C+url_o&format=json&nojsoncallback=1&per_page=20&accuracy=11&sort=interestingness-desc$safe_search=1",
+      "params": []
+    },
+    "search": {
+      "url": "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=__KEY__&bbox=__MINX__%2C__MINY__%2C__MAXX__%2C__MAXY__&media=&has_geo=1&extras=views%2C+description%2C+license%2C+date_upload%2C+date_taken%2C+owner_name%2C+geo%2C+media%2C+path_alias%2C+url_sq%2C+url_t%2C+url_s%2C+url_m%2C+url_z%2C+url_l%2C+url_o&format=json&nojsoncallback=1&text=__QUERY__&per_page=20&accuracy=11&sort=interestingness-desc&safe_search=1",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "id",
+      "elements": {
+        "url_t": {
+          "input": "url_t"
+        },
+        "dateupload": {
+          "input": "dateupload"
+        },
+        "place_id": {
+          "input": "place_id"
+        },
+        "url_s": {
+          "input": "url_s"
+        },
+        "image": {
+          "input": "url_z"
+        },
+        "name": {
+          "input": "title"
+        },
+        "ownername": {
+          "input": "ownername"
+        },
+        "_content": {
+          "input": "_content"
+        },
+        "views": {
+          "input": "views"
+        },
+        "owner": {
+          "input": "owner"
+        },
+        "url_o": {
+          "input": "url_o"
+        },
+        "url_m": {
+          "input": "url_m"
+        },
+        "url_l": {
+          "input": "url_l"
+        },
+        "license": {
+          "input": "license"
+        },
+        "datetaken": {
+          "input": "datetaken"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    },
+    "search": {
+      "feature": "id",
+      "elements": {
+        "url_t": {
+          "input": "url_t"
+        },
+        "dateupload": {
+          "input": "dateupload"
+        },
+        "place_id": {
+          "input": "place_id"
+        },
+        "url_s": {
+          "input": "url_s"
+        },
+        "image": {
+          "input": "url_z"
+        },
+        "name": {
+          "input": "title"
+        },
+        "ownername": {
+          "input": "ownername"
+        },
+        "_content": {
+          "input": "_content"
+        },
+        "views": {
+          "input": "views"
+        },
+        "owner": {
+          "input": "owner"
+        },
+        "url_o": {
+          "input": "url_o"
+        },
+        "url_m": {
+          "input": "url_m"
+        },
+        "url_l": {
+          "input": "url_l"
+        },
+        "license": {
+          "input": "license"
+        },
+        "datetaken": {
+          "input": "datetaken"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    }
+  }
+}

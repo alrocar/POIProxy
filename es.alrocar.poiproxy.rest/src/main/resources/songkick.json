@@ -1,0 +1,78 @@
+{
+  "format": "json",
+  "apiKey": "PwBAEZKTxnU9Yi96",
+  "categories": [
+    "event",
+    "music",
+    "concert",
+    "songkick"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "http://api.songkick.com/api/3.0/events.json?apikey=__KEY__&location=geo:__LAT__,__LON__",
+      "params": []
+    },
+    "search": {
+      "url": "http://api.songkick.com/api/3.0/events.json?apikey=__KEY__&location=geo:__LAT__,__LON__&artist_name=__QUERY__",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "event",
+      "elements": {
+        "id": {
+          "input": "id"
+        },
+        "time": {
+          "input": "time"
+        },
+        "datetime": {
+          "input": "datetime"
+        },
+        "date": {
+          "input": "date"
+        },
+        "type": {
+          "input": "type"
+        },
+        "name": {
+          "input": "displayName"
+        },
+        "web": {
+          "input": "uri"
+        }
+      },
+      "lon": "lng",
+      "lat": "lat"
+    },
+    "search": {
+      "feature": "event",
+      "elements": {
+        "id": {
+          "input": "id"
+        },
+        "time": {
+          "input": "time"
+        },
+        "datetime": {
+          "input": "datetime"
+        },
+        "date": {
+          "input": "date"
+        },
+        "type": {
+          "input": "type"
+        },
+        "name": {
+          "input": "displayName"
+        },
+        "web": {
+          "input": "uri"
+        }
+      },
+      "lon": "lng",
+      "lat": "lat"
+    }
+  }
+}

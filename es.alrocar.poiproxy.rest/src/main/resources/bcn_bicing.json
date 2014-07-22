@@ -1,0 +1,84 @@
+{
+  "format": "xml",
+  "apiKey": "",
+  "encoding": "ISO-8859-1",
+  "categories": [
+    "local_bcn_bikes"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://wservice.viabicing.cat/getstations.php?v=1",
+      "params": []
+    },
+    "search": {
+      "url": "http://wservice.viabicing.cat/getstations.php?v=1",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "station",
+      "elements": {
+        "id": {
+          "input": "id"
+        },
+        "height": {
+          "input": "height"
+        },
+        "nearbyStationList": {
+          "input": "nearbyStationList"
+        },
+        "bikes": {
+          "input": "bikes"
+        },
+        "status": {
+          "input": "status"
+        },
+        "slots": {
+          "input": "slots"
+        },
+        "name": {
+          "input": "street"
+        },
+        "streetNumber": {
+          "input": "streetNumber"
+        }
+      },
+      "lon": "long",
+      "lat": "lat"
+    },
+    "search": {
+      "feature": "station",
+      "elements": {
+        "id": {
+          "input": "id"
+        },
+        "height": {
+          "input": "height"
+        },
+        "nearbyStationList": {
+          "input": "nearbyStationList"
+        },
+        "bikes": {
+          "input": "bikes"
+        },
+        "status": {
+          "input": "status"
+        },
+        "slots": {
+          "input": "slots"
+        },
+        "name": {
+          "input": "street"
+        },
+        "streetNumber": {
+          "input": "streetNumber"
+        }
+      },
+      "lon": "long",
+      "lat": "lat"
+    }
+  }
+}

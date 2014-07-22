@@ -1,0 +1,55 @@
+{
+  "format": "xml",
+  "apiKey": "",
+  "decimalSeparator": ",",
+  "encoding": "ISO-8859-1",
+  "categories": [
+    "local_bcn_communication"
+  ],
+  "SRS": "EPSG:23031",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://bcnodata.cloudapp.net:8080/v1/Data/PUNTSWIFI/?$filter=codi_capa eq 'P001' and coord_x ge '__MINX__' and coord_y ge '__MINY__' and coord_x le '__MAXX__' and coord_y le '__MAXY__'",
+      "params": []
+    },
+    "search": {
+      "url": "http://bcnodata.cloudapp.net:8080/v1/Data/PUNTSWIFI/?$filter=codi_capa eq 'P001' and coord_x ge '__MINX__' and coord_y ge '__MINY__' and coord_x le '__MAXX__' and coord_y le '__MAXY__'",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "entry",
+      "elements": {
+        "TimeStamp": {
+          "input": "TimeStamp"
+        },
+        "address": {
+          "input": "adreca"
+        },
+        "name": {
+          "input": "nom_capa_angl"
+        }
+      },
+      "lon": "coord_x",
+      "lat": "coord_y"
+    },
+    "search": {
+      "feature": "entry",
+      "elements": {
+        "TimeStamp": {
+          "input": "TimeStamp"
+        },
+        "address": {
+          "input": "adreca"
+        },
+        "name": {
+          "input": "nom_capa_angl"
+        }
+      },
+      "lon": "coord_x",
+      "lat": "coord_y"
+    }
+  }
+}

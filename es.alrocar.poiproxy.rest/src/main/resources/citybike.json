@@ -1,0 +1,78 @@
+{
+  "format": "json",
+  "apiKey": "",
+  "encoding": "UTF-8",
+  "categories": [
+    "bikes"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": false,
+  "requestTypes": {
+    "browse": {
+      "url": "b",
+      "params": []
+    },
+    "search": {
+      "url": "http://api.citybik.es/__QUERY__.json",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "bikes",
+      "elements": {
+        "id": {
+          "input": "id"
+        },
+        "timestamp": {
+          "input": "timestamp"
+        },
+        "free": {
+          "input": "free"
+        },
+        "idx": {
+          "input": "idx"
+        },
+        "bikes": {
+          "input": "bikes"
+        },
+        "name": {
+          "input": "name"
+        },
+        "number": {
+          "input": "number"
+        }
+      },
+      "lon": "lng",
+      "lat": "lat"
+    },
+    "search": {
+      "feature": "bikes",
+      "elements": {
+        "id": {
+          "input": "id"
+        },
+        "timestamp": {
+          "input": "timestamp"
+        },
+        "free": {
+          "input": "free"
+        },
+        "idx": {
+          "input": "idx"
+        },
+        "bikes": {
+          "input": "bikes"
+        },
+        "name": {
+          "input": "name"
+        },
+        "number": {
+          "input": "number"
+        }
+      },
+      "lon": "lng",
+      "lat": "lat"
+    }
+  }
+}

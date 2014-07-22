@@ -1,0 +1,91 @@
+{
+  "format": "xml",
+  "apiKey": "",
+  "encoding": "UTF-8",
+  "compression": "zip",
+  "contentFile": "religio.rdf",
+  "useLocalFilter": true,
+  "categories": [
+    "local_bcn_temple"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "http://www.bcn.cat/tercerlloc/religio.zip",
+      "params": []
+    },
+    "search": {
+      "url": "http://www.bcn.cat/tercerlloc/religio.zip",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "VCard",
+      "elements": {
+        "region": {
+          "input": "region"
+        },
+        "rev": {
+          "input": "rev"
+        },
+        "country-name": {
+          "input": "country-name"
+        },
+        "created": {
+          "input": "created"
+        },
+        "locality": {
+          "input": "locality"
+        },
+        "streetName": {
+          "input": "streetName"
+        },
+        "street-address": {
+          "input": "street-address"
+        },
+        "name": {
+          "input": "fn"
+        },
+        "postal-code": {
+          "input": "postal-code"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    },
+    "search": {
+      "feature": "VCard",
+      "elements": {
+        "region": {
+          "input": "region"
+        },
+        "rev": {
+          "input": "rev"
+        },
+        "country-name": {
+          "input": "country-name"
+        },
+        "created": {
+          "input": "created"
+        },
+        "locality": {
+          "input": "locality"
+        },
+        "streetName": {
+          "input": "streetName"
+        },
+        "street-address": {
+          "input": "street-address"
+        },
+        "name": {
+          "input": "fn"
+        },
+        "postal-code": {
+          "input": "postal-code"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    }
+  }
+}

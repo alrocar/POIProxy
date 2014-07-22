@@ -1,20 +1,52 @@
-{ describeService : {
-    format: "json",
-    apiKey : "",
-    requestTypes : {
-                    "browse": {"url": "http://api.wikilocation.org/articles?lat=__LAT__&lng=__LON__&limit=20", "params": []},
-                    "search": {"url": "b", "params": []}
-                    },
-    featureTypes : { "browse" : {
-                    	"feature" : "id",
-                    	"elements" : ["title", "url", "distance"],
-                    	"lon": "lng", 
-                    	"lat": "lat"
-                    	}, "search" : {
-                    	"feature" : "id",
-                    	"elements" : ["title", "url", "distance"],
-                    	"lon": "lng", 
-                    	"lat": "lat"
-                    	}
-                    }
-}}
+{
+  "format": "json",
+  "apiKey": "",
+  "categories": [
+    "social",
+    "wikipedia"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "http://api.wikilocation.org/articles?lat=__LAT__&lng=__LON__&limit=20",
+      "params": []
+    },
+    "search": {
+      "url": "b",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "id",
+      "elements": {
+        "distance": {
+          "input": "distance"
+        },
+        "name": {
+          "input": "title"
+        },
+        "web": {
+          "input": "url"
+        }
+      },
+      "lon": "lng",
+      "lat": "lat"
+    },
+    "search": {
+      "feature": "id",
+      "elements": {
+        "distance": {
+          "input": "distance"
+        },
+        "name": {
+          "input": "title"
+        },
+        "web": {
+          "input": "url"
+        }
+      },
+      "lon": "lng",
+      "lat": "lat"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "format": "xml",
+  "apiKey": "",
+  "requestTypes": {
+    "browse": {
+      "url": "http://wservice.viabicing.cat/getstations.php?v=1",
+      "params": []
+    },
+    "search": {
+      "url": "b",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "station",
+      "elements": {
+        "address" : {
+          "input": "street"
+        },
+        "id" : {
+          "input" : "id"
+        },
+        "height": {
+          "input" : "height"
+        }
+      },
+      "lon": "long",
+      "lat": "lat"
+    },
+    "search": {
+      "feature": "station",
+      "elements": {
+        "address" : {
+          "input": "street"
+        },
+        "id" : {
+          "input" : "id"
+        },
+        "height": {
+          "input" : "height"
+        }
+      },
+      "lon": "long",
+      "lat": "lat"
+    }
+  }
+}

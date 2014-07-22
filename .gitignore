@@ -1,10 +1,17 @@
-es.alrocar.map.vector/release.properties
+*.class
+*.classpath
+*.settings/
+*/target
+*/bin
 
-es.alrocar.map.vector/target/maven-archiver/pom.properties
-
-es.alrocar.map.vector/target/**
-es.alrocar.poiproxy/target/**
-es.alrocar.poiproxy.rest/target/**
-es.alrocar.poiproxy.gae/target/**
 .DS_Store
 
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*

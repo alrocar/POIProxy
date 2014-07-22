@@ -1,21 +1,70 @@
-{ describeService : {
-    format: "json",
-    apiKey : "",
-    requestTypes : {
-                    "browse": {"url": "http://www.mapquestapi.com/search/v1/rectangle?key=Fmjtd|luu22h62nl%2Cr0%3Do5-h07n5&boundingBox=__MAXY__,__MINX__,__MINY__,__MAXX__", "params": []},
-                    "search": {"url": "http://www.mapquestapi.com/geocoding/v1/address?key=Fmjtd|luu22h62nl%2Cr0%3Do5-h07n5&inFormat=kvp&outFormat=json&location=__QUERY__", "params": []}
-                    },
-    featureTypes : { "browse" : {
-                    	"feature" : "gefId",
-                    	"elements" : ["distance", "poiImageUrl", "name", "N", "Phone", "City", "Country", "Address"],
-                    	"lon": "Lng", 
-                    	"lat": "Lat"
-                    	},"search" : {
-                    	"feature" : "latLng",
-                    	"elements" : ["adminArea5", "adminArea5Type", "street", "postalCode"],
-                    	"lon": "lng", 
-                    	"lat": "lat"
-
-                    	}
-                    }
-}}
+{
+  "format": "json",
+  "apiKey": "",
+  "categories": [
+    "geo",
+    "mapquestsearch"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "http://www.mapquestapi.com/search/v1/rectangle?key=Fmjtd|luu22h62nl%2Cr0%3Do5-h07n5&boundingBox=__MAXY__,__MINX__,__MINY__,__MAXX__",
+      "params": []
+    },
+    "search": {
+      "url": "http://www.mapquestapi.com/geocoding/v1/address?key=Fmjtd|luu22h62nl%2Cr0%3Do5-h07n5&inFormat=kvp&outFormat=json&location=__QUERY__",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "gefId",
+      "elements": {
+        "phone": {
+          "input": "Phone"
+        },
+        "distance": {
+          "input": "distance"
+        },
+        "image": {
+          "input": "poiImageUrl"
+        },
+        "address": {
+          "input": "Address"
+        },
+        "name": {
+          "input": "name"
+        },
+        "N": {
+          "input": "N"
+        },
+        "country": {
+          "input": "Country"
+        },
+        "city": {
+          "input": "City"
+        }
+      },
+      "lon": "Lng",
+      "lat": "Lat"
+    },
+    "search": {
+      "feature": "latLng",
+      "elements": {
+        "code": {
+          "input": "postalCode"
+        },
+        "adminArea5Type": {
+          "input": "adminArea5Type"
+        },
+        "adminArea5": {
+          "input": "adminArea5"
+        },
+        "address": {
+          "input": "street"
+        }
+      },
+      "lon": "lng",
+      "lat": "lat"
+    }
+  }
+}

@@ -1,3 +1,36 @@
+/*
+ * Licensed to Prodevelop SL under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The Prodevelop SL licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ * 
+ * For more information, contact:
+ *
+ *   Prodevelop, S.L.
+ *   Pza. Don Juan de Villarrasa, 14 - 5
+ *   46001 Valencia
+ *   Spain
+ *
+ *   +34 963 510 612
+ *   +34 963 510 968
+ *   prode@prodevelop.es
+ *   http://www.prodevelop.es
+ * 
+ * @author Alberto Romeu Carrasco http://www.albertoromeu.com
+ */
+
 package es.alrocar.jpe.parser.configuration;
 
 import java.io.IOException;
@@ -11,12 +44,11 @@ import es.alrocar.jpe.BaseJSONTest;
 import es.alrocar.poiproxy.configuration.DescribeService;
 import es.alrocar.poiproxy.configuration.DescribeServices;
 import es.alrocar.poiproxy.proxy.POIProxy;
-import junit.framework.TestCase;
 
 public class TestDescribeServices extends BaseJSONTest {
 
 	private String services = "{instagram:"
-			+ "{ describeService : {"
+			+ "{"
 			+ "    format: \"json\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -38,8 +70,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ ""
 			+ "                    	}"
 			+ "                    }"
-			+ "}}},{mapquest:"
-			+ "{ describeService : {"
+			+ "}},{mapquest:"
+			+ "{"
 			+ "    format: \"json\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -59,8 +91,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ ""
 			+ "                    	}"
 			+ "                    }"
-			+ "}}},{testwfs:"
-			+ "{ describeService : {"
+			+ "}},{testwfs:"
+			+ "{"
 			+ "    format: \"xml\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -79,8 +111,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ "                    	\"lat\": \"lat\""
 			+ "                    	}"
 			+ "                    }"
-			+ "}}},{geonamespois:"
-			+ "{ describeService : {"
+			+ "}},{geonamespois:"
+			+ "{"
 			+ "    format: \"xml\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -100,8 +132,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ "                    	\"lat\": \"lat\""
 			+ "                    	},"
 			+ "                    }"
-			+ "}}},{simplegeo:"
-			+ "{ describeService : {"
+			+ "}},{simplegeo:"
+			+ "{"
 			+ "    format: \"json\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -120,8 +152,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ "                    	\"lat\": \"coordinates\""
 			+ "                    	}"
 			+ "                    }"
-			+ "}}},{geonames:"
-			+ "{ describeService : {"
+			+ "}},{geonames:"
+			+ "{"
 			+ "    format: \"xml\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -141,8 +173,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ "                    	\"lat\": \"lat\""
 			+ "                    	},"
 			+ "                    }"
-			+ "}}},{ovi:"
-			+ "{ describeService : {"
+			+ "}},{ovi:"
+			+ "{"
 			+ "    format: \"json\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -163,8 +195,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ "                    	"
 			+ "                    	}"
 			+ "                    }"
-			+ "}}},{twitter:"
-			+ "{ describeService : {"
+			+ "}},{twitter:"
+			+ "{"
 			+ "    format: \"json\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -183,8 +215,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ "                    	\"lat\": \"coordinates\"                    	"
 			+ "                    	}"
 			+ "                    }"
-			+ "}}},{buzz:"
-			+ "{ describeService : {"
+			+ "}},{buzz:"
+			+ "{"
 			+ "    format: \"json\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -209,8 +241,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ ""
 			+ "                    	}"
 			+ "                    }"
-			+ "}}},{youtube:"
-			+ "{ describeService : {"
+			+ "}},{youtube:"
+			+ "{"
 			+ "    format: \"json\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -232,8 +264,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ ""
 			+ "                    	}"
 			+ "                    }"
-			+ "}}},{foursquare:"
-			+ "{ describeService : {"
+			+ "}},{foursquare:"
+			+ "{"
 			+ "    format: \"json\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -252,8 +284,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ "                    	\"lat\": \"lat\""
 			+ "                    	}"
 			+ "                    }"
-			+ "}}},{nominatim:"
-			+ "{ describeService : {"
+			+ "}},{nominatim:"
+			+ "{"
 			+ "    format: \"json\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -273,8 +305,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ "                    	\"lat\": \"lat\""
 			+ "                    	}"
 			+ "                    }"
-			+ "}}},{mapquestsearch:"
-			+ "{ describeService : {"
+			+ "}},{mapquestsearch:"
+			+ "{"
 			+ "    format: \"json\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -294,8 +326,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ ""
 			+ "                    	}"
 			+ "                    }"
-			+ "}}},{wikilocation:"
-			+ "{ describeService : {"
+			+ "}},{wikilocation:"
+			+ "{"
 			+ "    format: \"json\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -317,8 +349,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ ""
 			+ "                    	}"
 			+ "                    }"
-			+ "}}},{cloudmade:"
-			+ "{ describeService : {"
+			+ "}},{cloudmade:"
+			+ "{"
 			+ "    format: \"json\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -338,8 +370,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ "                    	\"lat\": \"coordinates\""
 			+ "                    	}"
 			+ "                    }"
-			+ "}}},{panoramio:"
-			+ "{ describeService : {"
+			+ "}},{panoramio:"
+			+ "{"
 			+ "    format: \"json\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -359,8 +391,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ "                    	\"lat\": \"latitude\""
 			+ "                    	}"
 			+ "                    }"
-			+ "}}},{flickr:"
-			+ "{ describeService : {"
+			+ "}},{flickr:"
+			+ "{"
 			+ "    format: \"json\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -380,8 +412,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ "                    	\"lat\": \"latitude\""
 			+ "                    	}"
 			+ "                    }"
-			+ "}}},{lastfm:"
-			+ "{ describeService : {"
+			+ "}},{lastfm:"
+			+ "{"
 			+ "    format: \"xml\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -402,8 +434,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ "                    	}"
 			+ "                    }"
 			+ "	}"
-			+ "}},{geonamestopo:"
-			+ "{ describeService : {"
+			+ "},{geonamestopo:"
+			+ "{"
 			+ "    format: \"xml\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -423,8 +455,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ "                    	\"lat\": \"lat\""
 			+ "                    	},"
 			+ "                    }"
-			+ "}}},{geonameswiki:"
-			+ "{ describeService : {"
+			+ "}},{geonameswiki:"
+			+ "{"
 			+ "    format: \"xml\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -444,8 +476,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ "                    	\"lat\": \"lat\""
 			+ "                    	},"
 			+ "                    }"
-			+ "}}},{minube:"
-			+ "{ describeService : {"
+			+ "}},{minube:"
+			+ "{"
 			+ "    format: \"json\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -464,8 +496,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ "                    	\"lat\": \"latitude\""
 			+ "                    	}"
 			+ "                    }"
-			+ "}}},{wikipedia:"
-			+ "{ describeService : {"
+			+ "}},{wikipedia:"
+			+ "{"
 			+ "    format: \"json\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -484,8 +516,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ "                    	\"lat\": \"lat\""
 			+ "                    	}"
 			+ "                    }"
-			+ "}}},{geonamesstreets:"
-			+ "{ describeService : {"
+			+ "}},{geonamesstreets:"
+			+ "{"
 			+ "    format: \"xml\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -505,8 +537,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ "                    	\"lat\": \"lat\""
 			+ "                    	},"
 			+ "                    }"
-			+ "}}},{mapquestnominatim:"
-			+ "{ describeService : {"
+			+ "}},{mapquestnominatim:"
+			+ "{"
 			+ "    format: \"json\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -525,8 +557,8 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ "                    	\"lat\": \"lat\""
 			+ "                    	}"
 			+ "                    }"
-			+ "}}},{gowalla:"
-			+ "{ describeService : {"
+			+ "}},{gowalla:"
+			+ "{"
 			+ "    format: \"json\","
 			+ "    apiKey : \"\","
 			+ "    requestTypes : {"
@@ -548,9 +580,10 @@ public class TestDescribeServices extends BaseJSONTest {
 			+ "                    	\"lat\": \"lat\","
 			+ "                    	\"combinedLonLat\": \"geocode\","
 			+ "                    	\"separator\": \" \"" + ""
-			+ "                    	}" + "                    }" + "}}}";
+			+ "                    	}" + "                    }" + "}}";
 
-	public void testServices() throws JsonGenerationException, JsonMappingException, IOException {
+	public void testServices() throws JsonGenerationException,
+			JsonMappingException, IOException {
 		URL uReport = POIProxy.class.getClassLoader().getResource(
 				this.getResource());
 		System.out.println(uReport.getPath());
@@ -561,17 +594,16 @@ public class TestDescribeServices extends BaseJSONTest {
 
 		DescribeServiceParser parser = new DescribeServiceParser();
 		DescribeService service = parser.parse(json);
-		
+
 		DescribeServices services = new DescribeServices();
 		services.put("buzz", service);
-		
+
 		ObjectMapper mapper = new ObjectMapper();
 		System.out.println(mapper.writeValueAsString(services));
-		
-		
-//		DescribeServices ss = services.fromJSON(this.services);
-//		int i = 0;
-		
+
+		// DescribeServices ss = services.fromJSON(this.services);
+		// int i = 0;
+
 	}
 
 	@Override

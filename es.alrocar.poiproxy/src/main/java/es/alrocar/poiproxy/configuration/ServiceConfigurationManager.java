@@ -1,21 +1,21 @@
-/* POIProxy. A proxy service to retrieve POIs from public services
+/*
+ * Licensed to Prodevelop SL under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The Prodevelop SL licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
- * Copyright (C) 2011 Alberto Romeu.
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
- *
- * You should have received a copy of the GNU Library General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
- *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ * 
  * For more information, contact:
  *
  *   Prodevelop, S.L.
@@ -25,12 +25,10 @@
  *
  *   +34 963 510 612
  *   +34 963 510 968
- *   aromeu@prodevelop.es
+ *   prode@prodevelop.es
  *   http://www.prodevelop.es
- *   
- *   2011.
- *   author Alberto Romeu aromeu@prodevelop.es  
- *   
+ * 
+ * @author Alberto Romeu Carrasco http://www.albertoromeu.com
  */
 
 package es.alrocar.poiproxy.configuration;
@@ -45,14 +43,15 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.regex.Pattern;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipException;
-import java.util.zip.ZipFile;
+
+import org.apache.commons.io.FileUtils;
 
 import es.alrocar.jpe.parser.configuration.DescribeServiceParser;
+import es.alrocar.poiproxy.exceptions.POIProxyException;
 import es.prodevelop.gvsig.mini.utiles.Constants;
 
 /**
@@ -79,6 +78,7 @@ public class ServiceConfigurationManager {
 	private HashMap<String, String> registeredConfigurations = new HashMap<String, String>();
 	private HashMap<String, DescribeService> parsedConfigurations = new HashMap<String, DescribeService>();
 	private DescribeServiceParser parser = new DescribeServiceParser();
+	private DescribeServices services;
 
 	/**
 	 * A map of ids of the registered services
@@ -131,6 +131,40 @@ public class ServiceConfigurationManager {
 	}
 
 	/**
+	 * Registers a new service into the library
+	 * 
+	 * @param id
+	 *            The id of the service
+	 * @param configFile
+	 *            The content of the json document describing the service
+	 * @param describeService
+	 *            The parsed {@link DescribeService}
+	 * @throws POIProxyException
+	 *             When any of the parameters is null
+	 */
+	public void registerServiceConfiguration(String id, String configFile,
+			DescribeService service) throws POIProxyException {
+		if (service == null || configFile == null || service.getId() == null) {
+			throw new POIProxyException("Null service configuration");
+		}
+
+		this.registeredConfigurations.put(id, configFile);
+		this.parsedConfigurations.put(id, service);
+
+		try {
+			this.save(id, configFile);
+		} catch (IOException e) {
+			throw new POIProxyException("Unable to write service configuration");
+		}
+	}
+
+	private void save(String id, String configFile) throws IOException {
+		FileUtils.writeStringToFile(new File(
+				ServiceConfigurationManager.CONFIGURATION_DIR + File.separator
+						+ id + ".json"), configFile);
+	}
+
+	/**
 	 * Returns a {@link DescribeService} given an id. If the service has not
 	 * been used previously, this method parses the json document describing the
 	 * service
@@ -146,6 +180,7 @@ public class ServiceConfigurationManager {
 		if (service == null) {
 			String res = this.getServiceAsJSON(id);
 			service = parser.parse(res);
+			service.setId(id);
 			this.parsedConfigurations.put(id, service);
 		}
 
@@ -180,9 +215,7 @@ public class ServiceConfigurationManager {
 			out = new BufferedOutputStream(dataStream, Constants.IO_BUFFER_SIZE);
 			byte[] b = new byte[8 * 1024];
 			int read;
-			int total = 0;
 			while ((read = in.read(b)) != -1) {
-				total += read;
 				out.write(b, 0, read);
 			}
 			out.flush();
@@ -209,6 +242,29 @@ public class ServiceConfigurationManager {
 	public DescribeService getRemoteConfiguration(String url) {
 		// Descargar json de la url y parsearlo
 		return null;
+	}
+
+	/**
+	 * Iterates the registered configurations and returns a
+	 * {@link DescribeServices} instance
+	 * 
+	 * @return
+	 */
+	public DescribeServices getAvailableServices() {
+		if (services == null) {
+			Set<String> keys = this.getRegisteredConfigurations().keySet();
+
+			Iterator<String> it = keys.iterator();
+
+			String id = null;
+			services = new DescribeServices();
+			while (it.hasNext()) {
+				id = it.next();
+				services.put(id, this.getServiceConfiguration(id));
+			}
+		}
+
+		return services;
 	}
 
 	/**
@@ -244,34 +300,6 @@ public class ServiceConfigurationManager {
 				retval.addAll(getResourcesFromDirectory(file, pattern));
 			} else {
 				// retval.addAll(getResourcesFromJarFile(file, pattern));
-			}
-			return retval;
-		}
-
-		private static Collection<String> getResourcesFromJarFile(File file,
-				Pattern pattern) {
-			ArrayList<String> retval = new ArrayList<String>();
-			ZipFile zf;
-			try {
-				zf = new ZipFile(file);
-			} catch (ZipException e) {
-				throw new Error(e);
-			} catch (IOException e) {
-				throw new Error(e);
-			}
-			Enumeration e = zf.entries();
-			while (e.hasMoreElements()) {
-				ZipEntry ze = (ZipEntry) e.nextElement();
-				String fileName = ze.getName();
-				boolean accept = pattern.matcher(fileName).matches();
-				if (accept) {
-					retval.add(fileName);
-				}
-			}
-			try {
-				zf.close();
-			} catch (IOException e1) {
-				throw new Error(e1);
 			}
 			return retval;
 		}
@@ -319,5 +347,4 @@ public class ServiceConfigurationManager {
 
 		}
 	}
-
 }

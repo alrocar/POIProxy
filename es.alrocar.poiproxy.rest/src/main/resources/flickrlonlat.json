@@ -1,0 +1,69 @@
+{
+  "format": "json",
+  "apiKey": "87c99763bacd56eec1db7ff3d71e230e",
+  "categories": [
+    "flickrlonlat"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "https://api.flickr.com/services/rest/?method=flickr.places.findByLatLon&api_key=__KEY__&lat=__LAT__&lon=__LON__&format=json&nojsoncallback=1",
+      "params": []
+    },
+    "search": {
+      "url": "https://api.flickr.com/services/rest/?method=flickr.places.find&api_key=__KEY__&query=__QUERY__&format=json&nojsoncallback=1",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "place_id",
+      "elements": {
+        "woe_name": {
+          "input": "woe_name"
+        },
+        "place_type": {
+          "input": "place_type"
+        },
+        "timezone": {
+          "input": "timezone"
+        },
+        "_content": {
+          "input": "_content"
+        },
+        "woeid": {
+          "input": "woeid"
+        },
+        "place_url": {
+          "input": "place_url"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    },
+    "search": {
+      "feature": "place_id",
+      "elements": {
+        "woe_name": {
+          "input": "woe_name"
+        },
+        "place_type": {
+          "input": "place_type"
+        },
+        "timezone": {
+          "input": "timezone"
+        },
+        "_content": {
+          "input": "_content"
+        },
+        "woeid": {
+          "input": "woeid"
+        },
+        "place_url": {
+          "input": "place_url"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    }
+  }
+}

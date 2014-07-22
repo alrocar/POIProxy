@@ -1,71 +1,51 @@
+/*
+ * Licensed to Prodevelop SL under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The Prodevelop SL licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ * 
+ * For more information, contact:
+ *
+ *   Prodevelop, S.L.
+ *   Pza. Don Juan de Villarrasa, 14 - 5
+ *   46001 Valencia
+ *   Spain
+ *
+ *   +34 963 510 612
+ *   +34 963 510 968
+ *   prode@prodevelop.es
+ *   http://www.prodevelop.es
+ * 
+ * @author Alberto Romeu Carrasco http://www.albertoromeu.com
+ */
+
 package es.alrocar.poiproxy.proxy.utiles;
 
-/* gvSIG. Sistema de Informaci�n Geogr�fica de la Generalitat Valenciana
-*
-* Copyright (C) 2006 Prodevelop and Generalitat Valenciana.
-*
-* This program is free software; you can redistribute it and/or
-* modify it under the terms of the GNU General Public License
-* as published by the Free Software Foundation; either version 2
-* of the License, or (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,USA.
-*
-* For more information, contact:
-*
-*   Generalitat Valenciana
-*   Conselleria d'Infraestructures i Transport
-*   Av. Blasco Ib��ez, 50
-*   46010 VALENCIA
-*   SPAIN
-*
-*   +34 963862235
-*   gvsig@gva.es
-*   http://www.gvsig.gva.es
-*
-*    or
-*
-*   Prodevelop Integraci�n de Tecnolog�as SL
-*   Conde Salvatierra de �lava , 34-10
-*   46004 Valencia
-*   Spain
-*
-*   +34 963 510 612
-*   +34 963 510 968
-*   gis@prodevelop.es
-*   http://www.prodevelop.es
-*
-*    or
-*
-*   Instituto de Rob�tica
-*   Apartado de correos 2085
-*   46071 Valencia
-*   (Spain)
-*   
-*   +34 963 543 577
-*   jjordan@robotica.uv.es
-*   http://robotica.uv.es
-*   
-*/
-
-
 /**
-* Ellipsoide ED50 or WGS84
-* @author vsanjaime
-*
-*/
+ * Ellipsoide ED50 or WGS84
+ * 
+ * @author vsanjaime
+ * 
+ */
 public class Ellipsoid {
-	
-	public static final Ellipsoid WGS84 = new Ellipsoid(6378137.0,1/298.257223563);
-	public static final Ellipsoid ED50 = new Ellipsoid(6378388.0,1/297.0);
-	public static final Ellipsoid INTL_1924 = new Ellipsoid(6378388.0,1.0/297.0);
+
+	public static final Ellipsoid WGS84 = new Ellipsoid(6378137.0,
+			1 / 298.257223563);
+	public static final Ellipsoid ED50 = new Ellipsoid(6378388.0, 1 / 297.0);
+	public static final Ellipsoid INTL_1924 = new Ellipsoid(6378388.0,
+			1.0 / 297.0);
 
 	/**
 	 * Semimayor Axis
@@ -99,47 +79,51 @@ public class Ellipsoid {
 	 * Radio de curvatura polar
 	 */
 	private double c;
-	
-	
+
 	/**
 	 * Constructor
-	 * @param _a  Semimayor Axis elipsoide
-	 * @param _f  Flattening elipsoide
+	 * 
+	 * @param _a
+	 *            Semimayor Axis elipsoide
+	 * @param _f
+	 *            Flattening elipsoide
 	 */
-	public Ellipsoid(double _a, double _f){
+	public Ellipsoid(double _a, double _f) {
 		this.a = _a;
 		this.f = _f;
 
-		b = a*(1-f);
-		pe = Math.sqrt(((Math.pow(a,2))-(Math.pow(b,2)))/((Math.pow(a,2))));
-		se = Math.sqrt(((Math.pow(a,2))-(Math.pow(b,2)))/((Math.pow(b,2))));		
-		pe2 = Math.pow(pe,2);
-		se2 = Math.pow(se,2);
-		c = (Math.pow(a,2))/b;
+		b = a * (1 - f);
+		pe = Math.sqrt(((Math.pow(a, 2)) - (Math.pow(b, 2)))
+				/ ((Math.pow(a, 2))));
+		se = Math.sqrt(((Math.pow(a, 2)) - (Math.pow(b, 2)))
+				/ ((Math.pow(b, 2))));
+		pe2 = Math.pow(pe, 2);
+		se2 = Math.pow(se, 2);
+		c = (Math.pow(a, 2)) / b;
 	}
 
-	
 	/**
 	 * 
-	 * @param lat = latitude
+	 * @param lat
+	 *            = latitude
 	 * @return double[] = {rm, rn, rg}
 	 */
-	public double[] radios (double lat){
-		
-		double rlat = lat*Math.PI/180;
-		double denomin = (1-pe2*(Math.pow(Math.sin(rlat),2)));
-		/* radio meridiano*/
-		double rm = (a*(1-pe2))/(Math.pow(denomin, 1.5));
-		/* radio primer vertical*/
-		double rn = a/(Math.sqrt(denomin));
+	public double[] radios(double lat) {
+
+		double rlat = lat * Math.PI / 180;
+		double denomin = (1 - pe2 * (Math.pow(Math.sin(rlat), 2)));
+		/* radio meridiano */
+		double rm = (a * (1 - pe2)) / (Math.pow(denomin, 1.5));
+		/* radio primer vertical */
+		double rn = a / (Math.sqrt(denomin));
 		/* radio gaussiano */
-		double rg = Math.sqrt(rm*rn);
-		
-		double[] lRadios = {rm, rn, rg}; 
+		double rg = Math.sqrt(rm * rn);
+
+		double[] lRadios = { rm, rn, rg };
 		return lRadios;
-		
+
 	}
-	
+
 	/**
 	 * Get Semimayor Axis
 	 */
@@ -188,12 +172,12 @@ public class Ellipsoid {
 	public double getSe2() {
 		return se2;
 	}
+
 	/**
 	 * Get Radio de curvatura polar
 	 */
 	public double getC() {
 		return c;
 	}
-
 
 }

@@ -1,0 +1,283 @@
+{
+  "type" : "FeatureCollection",
+  "features" : [ {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Registre de la Propietat Número 24",
+      "street-address" : "C Joan Miró 19*21 4t"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 2.194534111111111, 41.390243202777775 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Departament d'Empresa i Ocupació",
+      "street-address" : "Pg Gràcia 105"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 2.1597773888888887, 41.39588757777778 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Centre Cívic Can Castelló",
+      "street-address" : "C Castelló 1*7"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 2.1401612777777776, 41.39901004722222 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Ambaixada Espanyola a la República de Macedònia",
+      "street-address" : "Prote Mateje 45"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 1.8162114264366, 40.642949464754395 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Consell Català d'Estadística",
+      "street-address" : "Via Laietana 58"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 2.173681388888889, 41.38791476111111 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Biblioteca Les Roquetes",
+      "street-address" : "Via Favència 288*LB"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 2.177103361111111, 41.445372424999995 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Centre Cultural Teresa Pàmies",
+      "street-address" : "C Comte d'Urgell 145"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 2.1520314444444444, 41.38686467777778 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Servei Territorial del Joc i d'Espectacles a Barcelona",
+      "street-address" : "Via Laietana 14"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 2.17988525, 41.38322922222222 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Agència Tributària de Via Augusta",
+      "street-address" : "Via Augusta 197*199"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 2.139582416666667, 41.397702852777776 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Fundació Mobile World Capital Barcelona",
+      "street-address" : "C Roc Boronat 117 4t"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 2.1944523888888887, 41.40267586666666 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Ajuntament de Cornellà de Llobregat",
+      "street-address" : "Pl Esglesia 1"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 1.8162114264366, 40.642949464754395 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Consolat de Geòrgia",
+      "street-address" : "C Muntaner 48*50 3r 1a"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 2.16014725, 41.38620638055556 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Consolat General d'Hondures",
+      "street-address" : "Via Augusta 48*50 2n 4a"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 2.1535747499999998, 41.39835723611111 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Oficina de Benestar Social i Família de Badalona *Sant Roc",
+      "street-address" : "Av Maresme 182*190"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 1.8162114264366, 40.642949464754395 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Oficina de Benestar Social i Família de Cerdanyola del Vallès",
+      "street-address" : "Sant Antoni 36"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 1.8162114264366, 40.642949464754395 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Oficina de Benestar Social i Família d'Esplugues de Llobregat",
+      "street-address" : "Cedres 29"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 1.8162114264366, 40.642949464754395 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Centre de Normalització Lingüística de Les Corts",
+      "street-address" : "C Dolors Masferrer i Bosch 29"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 2.1281588611111113, 41.38494974722222 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Oficina de Seguretat de l'Internauta"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 1.8162114264366, 40.642949464754395 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Ministeri de l'Interior",
+      "street-address" : "Amador de los Ríos 7"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 1.8162114264366, 40.642949464754395 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Secretaria de Cooperació i Coordinació de les Administracions Locals",
+      "street-address" : "Via Laietana 26"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 2.178171444444444, 41.38452243888889 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Secretaria d'Empresa i Competitivitat",
+      "street-address" : "Pg Gràcia 105"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 2.1597773888888887, 41.39588757777778 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Servei Territorial d'Administració Local a Barcelona",
+      "street-address" : "C Tapineria 10"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 2.176937333333333, 41.384668238888885 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Servei Territorial de Cooperació Local a Barcelona",
+      "street-address" : "C Tapineria 10"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 2.176937333333333, 41.384668238888885 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Consolat de la República Democràtica Popular d'Algèria",
+      "street-address" : "C García-Mariño 7"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 2.136599472222222, 41.412519869444445 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Consorci de Comerç, Artesania i Moda de Catalunya",
+      "street-address" : "C Provença 339"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 2.1680143055555554, 41.39979272222222 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Consolat Honorari de Bosnia i Herzegovina",
+      "street-address" : "C València 277 4t 2a"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 2.1657308333333334, 41.394653472222224 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Consolat Honorari dels Emirats Àrabs Units",
+      "street-address" : "C Balmes 7"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 2.1664038055555555, 41.386316655555554 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "fn" : "Ajuntament Població del Garraf",
+      "street-address" : "Pl. de l'Ajuntament s/n"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 1.8162114264366, 40.642949464754395 ]
+    }
+  } ]
+}

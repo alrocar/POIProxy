@@ -1,0 +1,100 @@
+{
+  "format": "json",
+  "apiKey": "72747b2d172d422421b62586d385764",
+  "categories": [
+    "event",
+    "meetup"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "https://api.meetup.com/2/open_events?&key=__KEY__&lon=__LON__&lat=__LAT__&page=20",
+      "params": []
+    },
+    "search": {
+      "url": "https://api.meetup.com/2/open_events?&key=__KEY__&lon=__LON__&lat=__LAT__&page=20&text=__QUERY__",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "status",
+      "elements": {
+        "id": {
+          "input": "id"
+        },
+        "time": {
+          "input": "time"
+        },
+        "duration": {
+          "input": "duration"
+        },
+        "waitlist_count": {
+          "input": "waitlist_count"
+        },
+        "web": {
+          "input": "event_url"
+        },
+        "description": {
+          "input": "description"
+        },
+        "headcount": {
+          "input": "headcount"
+        },
+        "name": {
+          "input": "name"
+        },
+        "address": {
+          "input": "address_1"
+        },
+        "city": {
+          "input": "city"
+        },
+        "country": {
+          "input": "country"
+        }
+      },
+      "lon": "lon",
+      "lat": "lat"
+    },
+    "search": {
+      "feature": "status",
+      "elements": {
+        "id": {
+          "input": "id"
+        },
+        "time": {
+          "input": "time"
+        },
+        "duration": {
+          "input": "duration"
+        },
+        "waitlist_count": {
+          "input": "waitlist_count"
+        },
+        "web": {
+          "input": "event_url"
+        },
+        "description": {
+          "input": "description"
+        },
+        "headcount": {
+          "input": "headcount"
+        },
+        "name": {
+          "input": "name"
+        },
+        "address": {
+          "input": "address_1"
+        },
+        "city": {
+          "input": "city"
+        },
+        "country": {
+          "input": "country"
+        }
+      },
+      "lon": "lon",
+      "lat": "lat"
+    }
+  }
+}

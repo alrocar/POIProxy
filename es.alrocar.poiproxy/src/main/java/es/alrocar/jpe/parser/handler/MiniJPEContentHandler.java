@@ -1,21 +1,21 @@
-/* POIProxy. A proxy service to retrieve POIs from public services
+/*
+ * Licensed to Prodevelop SL under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The Prodevelop SL licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
- * Copyright (C) 2011 Alberto Romeu.
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
- *
- * You should have received a copy of the GNU Library General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
- *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ * 
  * For more information, contact:
  *
  *   Prodevelop, S.L.
@@ -25,12 +25,10 @@
  *
  *   +34 963 510 612
  *   +34 963 510 968
- *   aromeu@prodevelop.es
+ *   prode@prodevelop.es
  *   http://www.prodevelop.es
- *   
- *   2011.
- *   author Alberto Romeu aromeu@prodevelop.es  
- *   
+ * 
+ * @author Alberto Romeu Carrasco http://www.albertoromeu.com
  */
 
 package es.alrocar.jpe.parser.handler;
@@ -40,6 +38,7 @@ import java.util.ArrayList;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.GeometryFactory;
 
+import es.alrocar.poiproxy.geotools.GeotoolsUtils;
 import es.prodevelop.gvsig.mini.exceptions.BaseException;
 import es.prodevelop.gvsig.mini.geom.impl.base.Point;
 import es.prodevelop.gvsig.mini.geom.impl.jts.JTSFeature;
@@ -114,12 +113,24 @@ public class MiniJPEContentHandler implements JPEContentHandler {
 	/**
 	 * {@inheritDoc}
 	 */
-	public Object endPoint(Object point) {
+	public Object endPoint(Object point, String from, String to) {
 		GeometryFactory factory = new GeometryFactory();
 		Coordinate coord = new Coordinate();
 		coord.x = ((Point) point).getX();
 		coord.y = ((Point) point).getY();
+
+		transform(from, to, coord);
+
 		return factory.createPoint(coord);
+	}
+
+	private void transform(String from, String to, Coordinate coord) {
+		double[] xy = GeotoolsUtils.transform(from, to, new double[] { coord.x,
+				coord.y });
+		if (xy != null && xy.length == 2) {
+			coord.x = xy[0];
+			coord.y = xy[1];
+		}
 	}
 
 	/**

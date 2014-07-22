@@ -1,22 +1,120 @@
-{ describeService : {
-    format: "xml",
-    apiKey : "",
-    requestTypes : {
-                    "browse": {"url": "http://ws.audioscrobbler.com/2.0/?method=geo.getevents&lat=__LAT__&long=__LON__&distance=__DIST__&api_key=b25b959554ed76058ac220b7b2e0a026", "params": []},
-                    "search": {"url": "b", "params": []}
-                    },
-    featureTypes : { "browse" : {
-                    	"feature" : "event",
-                    	"elements" : ["title", "artist", "name", "city", "country", "street", "postalcode", "url", "startDate", "startTime", "phonenumber", "website", "url", "description"],
-                    	"lon": "long", 
-                    	"lat": "lat"
-                    	},
-                    "search" : {
-                    	"feature" : "event",
-                    	"elements" : ["title", "artist", "name", "city", "country", "street", "postalcode", "url", "startDate", "startTime", "phonenumber", "website", "url", "description"],
-                    	"lon": "long", 
-                    	"lat": "lat"
-                    	}
-                    }
-	}
+{
+  "format": "xml",
+  "apiKey": "6507e6341f13a14c59e9d57572a882dd",
+  "categories": [
+    "event",
+    "music",
+    "concert",
+    "lastfm"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "http://ws.audioscrobbler.com/2.0/?method=geo.getevents&lat=__LAT__&long=__LON__&distance=__DIST__&api_key=__KEY__",
+      "params": []
+    },
+    "search": {
+      "url": "b",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "event",
+      "elements": {
+        "code": {
+          "input": "postalcode"
+        },
+        "startDate": {
+          "input": "startDate"
+        },
+        "phone": {
+          "input": "phonenumber"
+        },
+        "web": {
+          "input": "website"
+        },
+        "address": {
+          "input": "street"
+        },
+        "url": {
+          "input": "url"
+        },
+        "city": {
+          "input": "city"
+        },
+        "country": {
+          "input": "country"
+        },
+        "startTime": {
+          "input": "startTime"
+        },
+        "title": {
+          "input": "title"
+        },
+        "description": {
+          "input": "description"
+        },
+        "name": {
+          "input": "name"
+        },
+        "artist": {
+          "input": "artist"
+        },
+        "headliner": {
+          "input": "headliner"
+        }
+      },
+      "lon": "long",
+      "lat": "lat"
+    },
+    "search": {
+      "feature": "event",
+      "elements": {
+        "code": {
+          "input": "postalcode"
+        },
+        "startDate": {
+          "input": "startDate"
+        },
+        "phone": {
+          "input": "phonenumber"
+        },
+        "web": {
+          "input": "website"
+        },
+        "address": {
+          "input": "street"
+        },
+        "url": {
+          "input": "url"
+        },
+        "city": {
+          "input": "city"
+        },
+        "country": {
+          "input": "country"
+        },
+        "startTime": {
+          "input": "startTime"
+        },
+        "title": {
+          "input": "title"
+        },
+        "description": {
+          "input": "description"
+        },
+        "name": {
+          "input": "name"
+        },
+        "artist": {
+          "input": "artist"
+        },
+        "headliner": {
+          "input": "headliner"
+        }
+      },
+      "lon": "long",
+      "lat": "lat"
+    }
+  }
 }
