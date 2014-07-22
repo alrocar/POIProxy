@@ -3,6 +3,12 @@ POIProxy
 
 A proxy service to retrieve POIs (Points Of Interest) from several public services (Nominatim, Mapquest, Cloudmade, Geonames, Panoramio, Ovi, Flickr, Twitter, LastFM, Wikipedia, Youtube, Minube, Buzz, Foursquare, Gowalla, ...)
 
+##What is POIProxy?
+
+The main purpose is to have a single service that handles requests to any public POI service providing a well defined REST API. POIProxy is able to parse JSON and XML responses and serve standard GeoJSON format. Finally it has the capability to add new services by providing a configuration file.
+
+<img src="https://raw.githubusercontent.com/Prodevelop/POIProxy/dd43d29e063528ec7fd1aefe5126c309b784eb49/doc/img/poiproxy_diagram.png"/>
+
 ##How to build a development workspace of POIProxy (Work in progress)
 
 ***Pre-requisites***
