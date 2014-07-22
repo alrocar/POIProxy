@@ -38,18 +38,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
-
+import es.alrocar.csv.CsvReader;
 import es.alrocar.jpe.parser.DefaultJPEParser;
-import es.alrocar.jpe.parser.JPEParser;
 import es.alrocar.jpe.parser.JPEParserFormatEnum;
 import es.alrocar.poiproxy.configuration.DescribeService;
 import es.alrocar.poiproxy.proxy.LocalFilter;
 import es.alrocar.utils.Utils;
-import es.prodevelop.csv.CsvReader;
-import es.prodevelop.gvsig.mini.geom.AttributePoint.Attribute;
 import es.prodevelop.gvsig.mini.geom.impl.base.Point;
 import es.prodevelop.gvsig.mini.geom.impl.jts.JTSFeature;
 
