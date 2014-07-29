@@ -1,0 +1,61 @@
+{
+  "format": "xml",
+  "apiKey": "",
+  "categories": [
+    "social",
+    "photo",
+    "picasa"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "https://picasaweb.google.com/data/feed/base/all?bbox=__MINX__,__MINY__,__MAXX__,__MAXY__",
+      "params": []
+    },
+    "search": {
+      "url": "https://picasaweb.google.com/data/feed/base/all?bbox=__MINX__,__MINY__,__MAXX__,__MAXY__&q=__QUERY__",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "published",
+      "elements": {
+        "name": {
+          "input": "title"
+        },
+        "description": {
+          "input": "snippet"
+        },
+        "published": {
+          "input": "published"
+        },
+        "image": {
+          "input": "src"
+        }
+      },
+      "combinedLonLat" : "pos",
+      "separator": " ",
+      "reverseLonLat": true
+    },
+    "search": {
+      "feature": "published",
+      "elements": {
+        "name": {
+          "input": "title"
+        },
+        "description": {
+          "input": "snippet"
+        },
+        "published": {
+          "input": "published"
+        },
+        "image": {
+          "input": "src"
+        }
+      },
+      "combinedLonLat" : "pos",
+      "separator": " ",
+      "reverseLonLat": true
+    }
+  }
+}

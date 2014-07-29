@@ -8,11 +8,11 @@
   ],
   "requestTypes": {
     "browse": {
-      "url": "http://gdata.youtube.com/feeds/api/videos?location=__LON__,__LAT__&location-radius=__DIST__km",
+      "url": "http://gdata.youtube.com/feeds/api/videos?v=2&prettyprint=true&bbox=__MINX__,__MINY__,__MAXX__,__MAXY__",
       "params": []
     },
     "search": {
-      "url": "b",
+      "url": "http://gdata.youtube.com/feeds/api/videos?v=2&prettyprint=true&bbox=__MINX__,__MINY__,__MAXX__,__MAXY__&q=__QUERY__",
       "params": []
     }
   },
@@ -23,14 +23,8 @@
         "title": {
           "input": "title"
         },
-        "profileUrl": {
-          "input": "profileUrl"
-        },
-        "thumbnailUrl": {
-          "input": "thumbnailUrl"
-        },
-        "name": {
-          "input": "name"
+        "description": {
+          "input": "description"
         },
         "published": {
           "input": "published"

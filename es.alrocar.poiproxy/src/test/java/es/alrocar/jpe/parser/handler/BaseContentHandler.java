@@ -156,11 +156,8 @@ public class BaseContentHandler {
 	 * @param arg0
 	 */
 	public void processValue(String arg0) {
-<<<<<<< HEAD
-=======
 		System.out.println(this.currentKey);
 		System.out.println(arg0);
->>>>>>> prode/master
 		if (arg0 == null || this.currentFeatureGeoJSON == null
 				|| arg0.trim().isEmpty())
 			return;
@@ -186,12 +183,8 @@ public class BaseContentHandler {
 			}
 		}
 
-<<<<<<< HEAD
-		if (currentKey.toString().compareTo(fType.getLon()) == 0
-=======
 		if (fType.getLon() != null
 				&& currentKey.toString().compareTo(fType.getLon()) == 0
->>>>>>> prode/master
 				&& !processedLon) {
 			double lon = Utils
 					.formatNumber(arg0.toString(),
@@ -207,12 +200,8 @@ public class BaseContentHandler {
 			return;
 		}
 
-<<<<<<< HEAD
-		if (currentKey.toString().compareTo(fType.getLat()) == 0
-=======
 		if (fType.getLat() != null
 				&& currentKey.toString().compareTo(fType.getLat()) == 0
->>>>>>> prode/master
 				&& !processedLat) {
 			double lat = Utils
 					.formatNumber(arg0.toString(),
@@ -235,12 +224,6 @@ public class BaseContentHandler {
 				String[] latLon = arg0.toString().split(
 						fType.getLonLatSeparator());
 
-<<<<<<< HEAD
-				double lon = Utils.formatNumber(latLon[0].toString(),
-						service.getDecimalSeparator(),
-						service.getNumberSeparator());
-				double lat = Utils.formatNumber(latLon[1].toString(),
-=======
 				int lonPos = 0;
 				int latPos = 1;
 
@@ -253,7 +236,6 @@ public class BaseContentHandler {
 						service.getDecimalSeparator(),
 						service.getNumberSeparator());
 				double lat = Utils.formatNumber(latLon[latPos].toString(),
->>>>>>> prode/master
 						service.getDecimalSeparator(),
 						service.getNumberSeparator());
 

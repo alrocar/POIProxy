@@ -46,16 +46,17 @@ import org.restlet.representation.StringRepresentation;
 import org.restlet.representation.Variant;
 import org.restlet.resource.ResourceException;
 
+import es.alrocar.poiproxy.configuration.ServiceConfigurationManager;
 import es.alrocar.poiproxy.configuration.Param;
 import es.alrocar.poiproxy.proxy.POIProxy;
 
-public class BrowsePOIProxyBBox extends BrowseQueryServerResource {
+public class BrowsePOIProxyLonLat extends BrowseQueryServerResource {
 
-	public BrowsePOIProxyBBox() {
+	public BrowsePOIProxyLonLat() {
 		super();
 	}
 
-	public BrowsePOIProxyBBox(Context context, Request request,
+	public BrowsePOIProxyLonLat(Context context, Request request,
 			Response response) {
 		getVariants().add(new Variant(MediaType.TEXT_PLAIN));
 	}
@@ -74,18 +75,13 @@ public class BrowsePOIProxyBBox extends BrowseQueryServerResource {
 		String geoJSON = "";
 		try {
 			geoJSON = proxy.getPOIs(params.get(Param.SERVICE),
-					Double.valueOf(params.get(Param.MINX)),
-					Double.valueOf(params.get(Param.MINY)),
-					Double.valueOf(params.get(Param.MAXX)),
-					Double.valueOf(params.get(Param.MAXY)),
+					Double.valueOf(params.get(Param.LON)),
+					Double.valueOf(params.get(Param.LAT)),
+					Double.valueOf(params.get(Param.DIST)),
 					this.extractParams(params));
 		} catch (Exception e) {
 			return new StringRepresentation(
-<<<<<<< HEAD
-					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the browseByExtent service, check that your URL is of the type '/browseByExtent?service=XXXXX&minX=-180&minY=-90&maxX=180&maxY=90&callback=whatever'");
-=======
-					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the browseByExtent service, check that your URL is of the type '/browseByExtent?service=XXXXX&minX=-180&minY=-90&maxX=180&maxY=90&callback=whatever' " +  e.getMessage());
->>>>>>> prode/master
+					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the browseByLonLat service, check that your URL is of the type '/browseByLonLat?service=XXXXX&lon=-0.38&lat=39.6&distance=500&callback=whatever'" + ServiceConfigurationManager.CONFIGURATION_DIR);
 		}
 
 		String callback = params.get(Param.CALLBACK);

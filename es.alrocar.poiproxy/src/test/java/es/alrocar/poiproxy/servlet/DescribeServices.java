@@ -45,18 +45,17 @@ import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.representation.Variant;
 import org.restlet.resource.ResourceException;
+import org.restlet.resource.ServerResource;
 
-import es.alrocar.poiproxy.configuration.Param;
 import es.alrocar.poiproxy.proxy.POIProxy;
 
-public class BrowsePOIProxyBBox extends BrowseQueryServerResource {
+public class DescribeServices extends ServerResource {
 
-	public BrowsePOIProxyBBox() {
+	public DescribeServices() {
 		super();
 	}
 
-	public BrowsePOIProxyBBox(Context context, Request request,
-			Response response) {
+	public DescribeServices(Context context, Request request, Response response) {
 		getVariants().add(new Variant(MediaType.TEXT_PLAIN));
 	}
 
@@ -69,34 +68,28 @@ public class BrowsePOIProxyBBox extends BrowseQueryServerResource {
 			params.put(parameter.getName(), parameter.getValue());
 		}
 
-		POIProxy proxy = POIProxy.asSingleton();
+		POIProxy proxy = new POIProxy();
 
-		String geoJSON = "";
+		proxy.initialize();
+
+		String services = "";
 		try {
-			geoJSON = proxy.getPOIs(params.get(Param.SERVICE),
-					Double.valueOf(params.get(Param.MINX)),
-					Double.valueOf(params.get(Param.MINY)),
-					Double.valueOf(params.get(Param.MAXX)),
-					Double.valueOf(params.get(Param.MAXY)),
-					this.extractParams(params));
+			services = proxy.getAvailableServices();
 		} catch (Exception e) {
 			return new StringRepresentation(
-<<<<<<< HEAD
-					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the browseByExtent service, check that your URL is of the type '/browseByExtent?service=XXXXX&minX=-180&minY=-90&maxX=180&maxY=90&callback=whatever'");
-=======
-					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the browseByExtent service, check that your URL is of the type '/browseByExtent?service=XXXXX&minX=-180&minY=-90&maxX=180&maxY=90&callback=whatever' " +  e.getMessage());
->>>>>>> prode/master
+					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the describeServices service, check that your URL is of the type '/describeServices'");
 		}
 
-		String callback = params.get(Param.CALLBACK);
+		String callback = params.get("callback");
 
 		if (callback == null) {
-			return new StringRepresentation(geoJSON, MediaType.APPLICATION_JSON);
+			return new StringRepresentation(services,
+					MediaType.APPLICATION_JSON);
 		} else if (callback.compareTo("?") == 0) {
-			return new StringRepresentation("poiproxy(" + geoJSON + ");",
+			return new StringRepresentation("poiproxy(" + services + ");",
 					MediaType.TEXT_JAVASCRIPT);
 		} else {
-			return new StringRepresentation(callback + "(" + geoJSON + ");",
+			return new StringRepresentation(callback + "(" + services + ");",
 					MediaType.TEXT_JAVASCRIPT);
 		}
 	}

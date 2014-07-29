@@ -81,11 +81,7 @@ public class BrowsePOIProxyBBox extends BrowseQueryServerResource {
 					this.extractParams(params));
 		} catch (Exception e) {
 			return new StringRepresentation(
-<<<<<<< HEAD
-					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the browseByExtent service, check that your URL is of the type '/browseByExtent?service=XXXXX&minX=-180&minY=-90&maxX=180&maxY=90&callback=whatever'");
-=======
 					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the browseByExtent service, check that your URL is of the type '/browseByExtent?service=XXXXX&minX=-180&minY=-90&maxX=180&maxY=90&callback=whatever' " +  e.getMessage());
->>>>>>> prode/master
 		}
 
 		String callback = params.get(Param.CALLBACK);

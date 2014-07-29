@@ -97,11 +97,8 @@ public class XMLSimpleContentHandler extends BaseContentHandler implements
 	 */
 	public void startElement(String uri, String localName, String qName,
 			Attributes atts) throws SAXException {
-<<<<<<< HEAD
-=======
 		System.out.println("Hello from startElement()!" + uri + ", "
 				+ localName + ", " + qName + ", " + atts.toString());
->>>>>>> prode/master
 		this.startNewElement(localName, atts);
 	}
 
@@ -110,12 +107,8 @@ public class XMLSimpleContentHandler extends BaseContentHandler implements
 	 */
 	public void endElement(String uri, String localName, String qName)
 			throws SAXException {
-<<<<<<< HEAD
-		// this.endElement(localName);
-=======
 		System.out.println("Hello from endElement()!" + uri + ", "
 				+ localName + ", " + qName);
->>>>>>> prode/master
 	}
 
 	/**
@@ -127,10 +120,7 @@ public class XMLSimpleContentHandler extends BaseContentHandler implements
 			throws SAXException {
 		String arg0 = new String(ch);
 		arg0 = arg0.substring(start, start + length);
-<<<<<<< HEAD
-=======
 		System.out.println(arg0);
->>>>>>> prode/master
 
 		if (arg0.startsWith("\n"))
 			return;

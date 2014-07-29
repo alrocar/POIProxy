@@ -59,10 +59,7 @@ public class FeatureType {
 	private String feature;
 	private String combinedLonLat;
 	private String separator;
-<<<<<<< HEAD
-=======
 	private Boolean reverseLonLat = false;
->>>>>>> prode/master
 
 	/**
 	 * An attribute that specify the lon lat attributes when they are on an
@@ -152,8 +149,6 @@ public class FeatureType {
 	public void setSeparator(String separator) {
 		this.separator = separator;
 	}
-<<<<<<< HEAD
-=======
 
 	public Boolean getReverseLonLat() {
 		return reverseLonLat;
@@ -162,5 +157,4 @@ public class FeatureType {
 	public void setReverseLonLat(Boolean reverseLonLat) {
 		this.reverseLonLat = reverseLonLat;
 	}
->>>>>>> prode/master
 }
