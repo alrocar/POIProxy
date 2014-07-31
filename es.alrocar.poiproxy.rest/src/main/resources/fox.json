@@ -1,0 +1,76 @@
+{
+  "format": "xml",
+  "apiKey": "",
+  "categories": [
+    "news",
+    "fox"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "http://api.geonames.org/rssToGeoRSS?feedUrl=http://feeds.foxnews.com/foxnews/latest&username=poiproxy",
+      "params": []
+    },
+    "search": {
+      "url": "b",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "item",
+      "elements": {
+        "name": {
+          "input": "title"
+        },
+        "web": {
+          "input": "link"
+        },
+        "description": {
+          "input": "description"
+        },
+        "category": {
+          "input": "category"
+        },
+        "published": {
+        	"input": "pubDate"
+        },
+        "link": {
+          "input": "guid"
+        },
+        "date": {
+        	"input": "date"
+        }
+      },
+      "lon": "long",
+      "lat": "lat"
+    },
+    "search": {
+      "feature": "item",
+      "elements": {
+        "name": {
+          "input": "title"
+        },
+        "web": {
+          "input": "link"
+        },
+        "description": {
+          "input": "description"
+        },
+        "category": {
+          "input": "category"
+        },
+        "published": {
+        	"input": "pubDate"
+        },
+        "link": {
+          "input": "guid"
+        },
+        "date": {
+        	"input": "date"
+        }
+      },
+      "lon": "long",
+      "lat": "lat"
+    }
+  }
+}

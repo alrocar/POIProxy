@@ -2,8 +2,6 @@
   "format": "json",
   "apiKey": "FLltMj2bGxHQvi6wwVLxh6Z8vnD5ti5R1c3MwBds",
   "categories": [
-    "social",
-    "photo",
     "500px"
   ],
   "requestTypes": {
