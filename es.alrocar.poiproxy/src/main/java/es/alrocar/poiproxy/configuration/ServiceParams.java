@@ -61,12 +61,22 @@ public class ServiceParams {
 
 	public static final String QUERY = "__QUERY__";
 
+	public static final String FROMDATE = "__FROMDATE__";
+	public static final String TODATE = "__TODATE__";
+
+	public static final String LIMIT = "__LIMIT__";
+	public static final String OFFSET = "__OFFSET__";
+
 	private HashMap<String, String> params = new HashMap<String, String>();
 	private static HashMap<String, String> optParams = new HashMap<String, String>();
 
 	static {
-		optParams.put(Param.QUERY, QUERY);
-		optParams.put(Param.APIKEY, KEY);
+		optParams.put(ParamEnum.QUERY.name, QUERY);
+		optParams.put(ParamEnum.APIKEY.name, KEY);
+		optParams.put(ParamEnum.FROMDATE.name, FROMDATE);
+		optParams.put(ParamEnum.TODATE.name, TODATE);
+		optParams.put(ParamEnum.LIMIT.name, LIMIT);
+		optParams.put(ParamEnum.OFFSET.name, OFFSET);
 	}
 
 	public void putParam(String param, String value) {
@@ -83,5 +93,15 @@ public class ServiceParams {
 
 	public String getServiceParamFromURLParam(String urlParam) {
 		return optParams.get(urlParam);
+	}
+
+	/**
+	 * Decides if the parameter name is of date type
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public boolean isDate(String key) {
+		return key.toLowerCase().indexOf("date") != -1;
 	}
 }

@@ -43,21 +43,6 @@ import es.alrocar.poiproxy.proxy.POIProxy;
  */
 public class Param {
 
-	public static String QUERY = "query";
-	public static String APIKEY = "apiKey";
-	public static String SERVICE = "service";
-	public static String X = "x";
-	public static String Y = "y";
-	public static String Z = "z";
-	public static String MINX = "minX";
-	public static String MINY = "minY";
-	public static String MAXX = "maxX";
-	public static String MAXY = "maxY";
-	public static String LON = "lon";
-	public static String LAT = "lat";
-	public static String DIST = "dist";
-	public static String CALLBACK = "callback";
-
 	private String type;
 	private String value;
 
@@ -65,11 +50,7 @@ public class Param {
 	 * Constructor
 	 * 
 	 * @param type
-	 * 
-	 *            {@value #QUERY} {@value #SERVICE} {@value #X} {@value #Y}
-	 *            {@value #Z} {@value #MINX} {@value #MINY} {@value #MAXX}
-	 *            {@value #MAXY} {@value #LON} {@value #LAT} {@value #DIST}
-	 *            {@value #CALLBACK} {@value #APIKEY}
+	 *            A {@link ParamEnum} name
 	 * @param value
 	 */
 	public Param(String type, String value) {

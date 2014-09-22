@@ -35,7 +35,7 @@ package es.alrocar.poiproxy.servlet;
 
 import java.util.ArrayList;
 
-import es.alrocar.poiproxy.configuration.Param;
+import es.alrocar.poiproxy.configuration.ParamEnum;
 
 public class BrowseQueryServerResource extends BaseServerResource {
 
@@ -45,8 +45,12 @@ public class BrowseQueryServerResource extends BaseServerResource {
 	public ArrayList<String> getOptionalParamsNames() {
 		if (optParams == null) {
 			optParams = new ArrayList<String>();
-			optParams.add(Param.QUERY);
-			optParams.add(Param.APIKEY);
+			optParams.add(ParamEnum.QUERY.name);
+			optParams.add(ParamEnum.APIKEY.name);
+			optParams.add(ParamEnum.FROMDATE.name);
+			optParams.add(ParamEnum.TODATE.name);
+			optParams.add(ParamEnum.LIMIT.name);
+			optParams.add(ParamEnum.OFFSET.name);
 		}
 
 		return optParams;

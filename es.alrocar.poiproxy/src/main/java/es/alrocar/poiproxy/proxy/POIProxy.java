@@ -35,7 +35,10 @@ package es.alrocar.poiproxy.proxy;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -89,6 +92,8 @@ public class POIProxy {
 
 	private static POIProxy proxy;
 	private ServiceConfigurationManager serviceManager;
+
+	private final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
 	public static POIProxy asSingleton() {
 		if (proxy == null) {
@@ -433,10 +438,11 @@ public class POIProxy {
 	 * @param lon
 	 * @param lat
 	 * @return The url string to request to
+	 * @throws POIProxyException
 	 */
 	public String buildRequest(DescribeService describeService, double minX,
 			double minY, double maxX, double maxY, List<Param> optionalParams,
-			double lon, double lat) {
+			double lon, double lat) throws POIProxyException {
 		ServiceParams params = new ServiceParams();
 
 		Extent e1 = new Extent(minX, minY, maxX, maxY);
@@ -475,15 +481,19 @@ public class POIProxy {
 				String.valueOf((int) distanceMeters / 1000));
 		params.putParam(ServiceParams.KEY, describeService.getApiKey());
 
-		String url = describeService.getRequestForParam(optionalParams);
-
 		if (optionalParams != null) {
 			String p;
 			for (Param optParam : optionalParams) {
 				p = params.getServiceParamFromURLParam(optParam.getType());
-				params.putParam(p, optParam.getValue());
+				if (p == null) {
+					params.putParam(optParam.getType(), optParam.getValue());
+				} else {
+					params.putParam(p, optParam.getValue());
+				}
 			}
 		}
+
+		String url = describeService.getRequestForParam(optionalParams, params);
 
 		Set<String> keys = params.getParams().keySet();
 		Iterator<String> it = keys.iterator();
@@ -491,10 +501,31 @@ public class POIProxy {
 		String key;
 		while (it.hasNext()) {
 			key = it.next();
-			url = url.replaceAll(key, params.getValueForParam(key));
+			if (describeService.isSpecialParam(key)) {
+				url = url.replaceAll(key,
+						getValue(params, key, describeService));
+			}
 		}
 
 		return url;
+	}
+
+	protected String getValue(ServiceParams params, String key,
+			DescribeService describeService) throws POIProxyException {
+		if (params.isDate(key)) {
+			SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+			SimpleDateFormat outsdf = new SimpleDateFormat(
+					describeService.getDateFormat());
+			try {
+				Date date = sdf.parse(params.getValueForParam(key));
+				return outsdf.format(date);
+			} catch (ParseException e) {
+				logger.warn(e);
+				throw new POIProxyException("Error with dates");
+			}
+		} else {
+			return params.getValueForParam(key);
+		}
 	}
 
 	/**

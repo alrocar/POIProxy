@@ -53,7 +53,7 @@ public class XMLSimpleContentHandler extends BaseContentHandler implements
 	 * {@inheritDoc}
 	 */
 	public void setDocumentLocator(Locator locator) {
-		System.out.println("Hello from setDocumentLocator()!");
+//		System.out.println("Hello from setDocumentLocator()!");
 	}
 
 	/**
@@ -79,15 +79,15 @@ public class XMLSimpleContentHandler extends BaseContentHandler implements
 	 */
 	public void startPrefixMapping(String prefix, String uri)
 			throws SAXException {
-		System.out.println("Hello from startPrefixMapping()!" + prefix + ", "
-				+ uri);
+//		System.out.println("Hello from startPrefixMapping()!" + prefix + ", "
+//				+ uri);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void endPrefixMapping(String prefix) throws SAXException {
-		System.out.println("Hello from endPrefixMapping()!" + prefix);
+//		System.out.println("Hello from endPrefixMapping()!" + prefix);
 	}
 
 	/**
@@ -97,11 +97,8 @@ public class XMLSimpleContentHandler extends BaseContentHandler implements
 	 */
 	public void startElement(String uri, String localName, String qName,
 			Attributes atts) throws SAXException {
-<<<<<<< HEAD
-=======
-		System.out.println("Hello from startElement()!" + uri + ", "
-				+ localName + ", " + qName + ", " + atts.toString());
->>>>>>> prode/master
+//		System.out.println("Hello from startElement()!" + uri + ", "
+//				+ localName + ", " + qName + ", " + atts.toString());
 		this.startNewElement(localName, atts);
 	}
 
@@ -110,12 +107,8 @@ public class XMLSimpleContentHandler extends BaseContentHandler implements
 	 */
 	public void endElement(String uri, String localName, String qName)
 			throws SAXException {
-<<<<<<< HEAD
-		// this.endElement(localName);
-=======
-		System.out.println("Hello from endElement()!" + uri + ", "
-				+ localName + ", " + qName);
->>>>>>> prode/master
+//		System.out.println("Hello from endElement()!" + uri + ", "
+//				+ localName + ", " + qName);
 	}
 
 	/**
@@ -127,10 +120,7 @@ public class XMLSimpleContentHandler extends BaseContentHandler implements
 			throws SAXException {
 		String arg0 = new String(ch);
 		arg0 = arg0.substring(start, start + length);
-<<<<<<< HEAD
-=======
-		System.out.println(arg0);
->>>>>>> prode/master
+//		System.out.println(arg0);
 
 		if (arg0.startsWith("\n"))
 			return;
@@ -140,7 +130,7 @@ public class XMLSimpleContentHandler extends BaseContentHandler implements
 
 	public void ignorableWhitespace(char ch[], int start, int length)
 			throws SAXException {
-		System.out.println("Hello from ignorableWhitespace()!" + ch.toString());
+//		System.out.println("Hello from ignorableWhitespace()!" + ch.toString());
 	}
 
 	/**
@@ -148,14 +138,15 @@ public class XMLSimpleContentHandler extends BaseContentHandler implements
 	 */
 	public void processingInstruction(String target, String data)
 			throws SAXException {
-		System.out.println("Hello from processingInstruction()!" + target
-				+ ", " + data);
+//		System.out.println("Hello from processingInstruction()!" + target
+//				+ ", " + data);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void skippedEntity(String name) throws SAXException {
-		System.out.println("Hello from skippedEntity()!" + name);
+//		System.out.println("Hello from skippedEntity()!" + name);
 	}
 }
+

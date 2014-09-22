@@ -74,6 +74,7 @@ public class DescribeService {
 	private List<String> categories = new ArrayList<String>();
 
 	private String format;
+	private String dateFormat;
 	private String csvSeparator;
 	private String encoding;
 	private String numberSeparator;
@@ -194,29 +195,77 @@ public class DescribeService {
 	 * 
 	 * @param optionalParam
 	 *            An array of {@link Param}
+	 * @param params
+	 *            A {@link ServiceParams} instance
 	 * @return The url to request
 	 */
-	public String getRequestForParam(List<Param> optionalParam) {
+	public String getRequestForParam(List<Param> optionalParam,
+			ServiceParams params) {
+		String url;
+		ArrayList<String> requestParams;
+		RequestType requestType;
 		if (optionalParam == null) {
 			this.setType(DescribeService.BROWSE_TYPE);
-			return getRequestTypes().get(DescribeService.BROWSE_TYPE).getUrl();
+			requestType = getRequestTypes().get(DescribeService.BROWSE_TYPE);
 		}
 
 		if (optionalParam.size() == 0) {
 			this.setType(DescribeService.BROWSE_TYPE);
-			return getRequestTypes().get(DescribeService.BROWSE_TYPE).getUrl();
+			requestType = getRequestTypes().get(DescribeService.BROWSE_TYPE);
 		}
 
 		for (Param optParam : optionalParam) {
-			if (optParam.getType() == Param.QUERY) {
+			if (optParam.getType() == ParamEnum.QUERY.name) {
 				this.setType(DescribeService.SEARCH_TYPE);
-				return getRequestTypes().get(DescribeService.SEARCH_TYPE)
-						.getUrl();
+				requestType = getRequestTypes()
+						.get(DescribeService.SEARCH_TYPE);
 			}
 		}
 
 		this.setType(DescribeService.BROWSE_TYPE);
-		return getRequestTypes().get(DescribeService.BROWSE_TYPE).getUrl();
+		requestType = getRequestTypes().get(DescribeService.BROWSE_TYPE);
+
+		url = requestType.getUrl();
+		requestParams = requestType.getParams();
+
+		String optionalUrl = processRequestParams(requestParams, params);
+		return url + optionalUrl;
+	}
+
+	private String processRequestParams(ArrayList<String> requestParams,
+			ServiceParams params) {
+		String p;
+		String value;
+		StringBuffer optionalUrl = new StringBuffer();
+		for (String requestParam : requestParams) {
+			try {
+				p = requestParam.split("=")[1];
+				value = params.getValueForParam(p);
+				if (value != null) {
+					optionalUrl.append("&" + requestParam);
+				}
+			} catch (Exception ignore) {
+				ignore.printStackTrace();
+			}
+		}
+
+		addOriginalParams(params, optionalUrl);
+
+		return optionalUrl.toString();
+	}
+
+	protected void addOriginalParams(ServiceParams params,
+			StringBuffer optionalUrl) {
+		for (String key : params.getParams().keySet()) {
+			if (!ParamEnum.from(key) && !isSpecialParam(key)) {
+				optionalUrl.append("&" + key + "="
+						+ params.getParams().get(key));
+			}
+		}
+	}
+
+	public boolean isSpecialParam(String key) {
+		return key.startsWith("__");
 	}
 
 	/**
@@ -489,5 +538,13 @@ public class DescribeService {
 			localFilter = LocalFilter.fromOptionalParams(optionalParams);
 		}
 		return localFilter;
+	}
+
+	public String getDateFormat() {
+		return dateFormat;
+	}
+
+	public void setDateFormat(String dateFormat) {
+		this.dateFormat = dateFormat;
 	}
 }
