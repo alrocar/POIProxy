@@ -40,6 +40,7 @@ import org.apache.commons.lang3.StringUtils;
 import es.alrocar.jpe.parser.JPEParser;
 import es.alrocar.poiproxy.configuration.DescribeService;
 import es.alrocar.poiproxy.configuration.Param;
+import es.alrocar.poiproxy.configuration.ParamEnum;
 
 /**
  * A class that contains properties to perform a LocalFilter while a
@@ -77,7 +78,7 @@ public class LocalFilter {
 	// FIXME Extract the ArrayList to a Class
 	private Param getQueryParam(List<Param> optionalParams) {
 		for (Param p : optionalParams) {
-			if (p.getType().equals(Param.QUERY)) {
+			if (p.getType().equals(ParamEnum.QUERY.name)) {
 				return p;
 			}
 		}

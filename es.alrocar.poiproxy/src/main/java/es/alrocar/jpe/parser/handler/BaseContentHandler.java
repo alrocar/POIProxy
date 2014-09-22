@@ -156,8 +156,8 @@ public class BaseContentHandler {
 	 * @param arg0
 	 */
 	public void processValue(String arg0) {
-		System.out.println(this.currentKey);
-		System.out.println(arg0);
+//		System.out.println(this.currentKey);
+//		System.out.println(arg0);
 		if (arg0 == null || this.currentFeatureGeoJSON == null
 				|| arg0.trim().isEmpty())
 			return;

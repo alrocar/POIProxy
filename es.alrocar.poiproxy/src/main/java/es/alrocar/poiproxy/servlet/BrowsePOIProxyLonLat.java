@@ -46,8 +46,8 @@ import org.restlet.representation.StringRepresentation;
 import org.restlet.representation.Variant;
 import org.restlet.resource.ResourceException;
 
+import es.alrocar.poiproxy.configuration.ParamEnum;
 import es.alrocar.poiproxy.configuration.ServiceConfigurationManager;
-import es.alrocar.poiproxy.configuration.Param;
 import es.alrocar.poiproxy.proxy.POIProxy;
 
 public class BrowsePOIProxyLonLat extends BrowseQueryServerResource {
@@ -74,17 +74,18 @@ public class BrowsePOIProxyLonLat extends BrowseQueryServerResource {
 
 		String geoJSON = "";
 		try {
-			geoJSON = proxy.getPOIs(params.get(Param.SERVICE),
-					Double.valueOf(params.get(Param.LON)),
-					Double.valueOf(params.get(Param.LAT)),
-					Double.valueOf(params.get(Param.DIST)),
+			geoJSON = proxy.getPOIs(params.get(ParamEnum.SERVICE.name),
+					Double.valueOf(params.get(ParamEnum.LON.name)),
+					Double.valueOf(params.get(ParamEnum.LAT.name)),
+					Double.valueOf(params.get(ParamEnum.DIST.name)),
 					this.extractParams(params));
 		} catch (Exception e) {
 			return new StringRepresentation(
-					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the browseByLonLat service, check that your URL is of the type '/browseByLonLat?service=XXXXX&lon=-0.38&lat=39.6&distance=500&callback=whatever'" + ServiceConfigurationManager.CONFIGURATION_DIR);
+					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the browseByLonLat service, check that your URL is of the type '/browseByLonLat?service=XXXXX&lon=-0.38&lat=39.6&distance=500&callback=whatever'"
+							+ ServiceConfigurationManager.CONFIGURATION_DIR);
 		}
 
-		String callback = params.get(Param.CALLBACK);
+		String callback = params.get(ParamEnum.CALLBACK.name);
 
 		if (callback == null) {
 			return new StringRepresentation(geoJSON, MediaType.APPLICATION_JSON);

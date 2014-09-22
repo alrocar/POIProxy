@@ -46,7 +46,7 @@ import org.restlet.representation.StringRepresentation;
 import org.restlet.representation.Variant;
 import org.restlet.resource.ResourceException;
 
-import es.alrocar.poiproxy.configuration.Param;
+import es.alrocar.poiproxy.configuration.ParamEnum;
 import es.alrocar.poiproxy.proxy.POIProxy;
 
 public class BrowsePOIProxyBBox extends BrowseQueryServerResource {
@@ -73,18 +73,19 @@ public class BrowsePOIProxyBBox extends BrowseQueryServerResource {
 
 		String geoJSON = "";
 		try {
-			geoJSON = proxy.getPOIs(params.get(Param.SERVICE),
-					Double.valueOf(params.get(Param.MINX)),
-					Double.valueOf(params.get(Param.MINY)),
-					Double.valueOf(params.get(Param.MAXX)),
-					Double.valueOf(params.get(Param.MAXY)),
+			geoJSON = proxy.getPOIs(params.get(ParamEnum.SERVICE.name),
+					Double.valueOf(params.get(ParamEnum.MINX.name)),
+					Double.valueOf(params.get(ParamEnum.MINY.name)),
+					Double.valueOf(params.get(ParamEnum.MAXX.name)),
+					Double.valueOf(params.get(ParamEnum.MAXY.name)),
 					this.extractParams(params));
 		} catch (Exception e) {
 			return new StringRepresentation(
-					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the browseByExtent service, check that your URL is of the type '/browseByExtent?service=XXXXX&minX=-180&minY=-90&maxX=180&maxY=90&callback=whatever' " +  e.getMessage());
+					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the browseByExtent service, check that your URL is of the type '/browseByExtent?service=XXXXX&minX=-180&minY=-90&maxX=180&maxY=90&callback=whatever' "
+							+ e.getMessage());
 		}
 
-		String callback = params.get(Param.CALLBACK);
+		String callback = params.get(ParamEnum.CALLBACK.name);
 
 		if (callback == null) {
 			return new StringRepresentation(geoJSON, MediaType.APPLICATION_JSON);

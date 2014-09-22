@@ -38,7 +38,9 @@ import java.util.HashMap;
 
 import org.restlet.resource.ServerResource;
 
+import es.alrocar.poiproxy.configuration.DescribeService;
 import es.alrocar.poiproxy.configuration.Param;
+import es.alrocar.poiproxy.configuration.ParamEnum;
 
 public abstract class BaseServerResource extends ServerResource {
 
@@ -53,12 +55,34 @@ public abstract class BaseServerResource extends ServerResource {
 			p = params.get(paramName);
 
 			if (p != null) {
+				params.remove(paramName);
 				optParam = new Param(paramName, p);
 				extractedParams.add(optParam);
 			}
 		}
 
+		addAdditionalParams(params, extractedParams);
+
 		return extractedParams;
+	}
+
+	/**
+	 * Adds params found in the URL that are not in the {@link DescribeService}
+	 * document of the service. Having this, we can add in the URL to POIProxy
+	 * params from the original service. This should not be a good option when
+	 * we want to have a single interface, but allows anyone to access the
+	 * original API adding the original parameters to the POIProxy request
+	 * 
+	 * @param params
+	 * @param extractedParams
+	 */
+	protected void addAdditionalParams(HashMap<String, String> params,
+			ArrayList<Param> extractedParams) {
+		for (String key : params.keySet()) {
+			if (!ParamEnum.from(key)) {
+				extractedParams.add(new Param(key, params.get(key)));
+			}
+		}
 	}
 
 	public abstract ArrayList<String> getOptionalParamsNames();
