@@ -13,8 +13,8 @@
       "params": ["min_taken_date=__FROMDATE__", "max_taken_date=__TODATE__", "page=__OFFSET__", "per_page=__LIMIT__"]
     },
     "search": {
-      "url": "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=__KEY__&bbox=__MINX__%2C__MINY__%2C__MAXX__%2C__MAXY__&media=&has_geo=1&extras=views%2C+description%2C+license%2C+date_upload%2C+date_taken%2C+owner_name%2C+geo%2C+media%2C+path_alias%2C+url_sq%2C+url_t%2C+url_s%2C+url_m%2C+url_z%2C+url_l%2C+url_o&format=json&nojsoncallback=1&text=__QUERY__&per_page=20&accuracy=11&sort=interestingness-desc&safe_search=1",
-      "params": []
+      "url": "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=__KEY__&bbox=__MINX__%2C__MINY__%2C__MAXX__%2C__MAXY__&media=&has_geo=1&extras=views%2C+description%2C+license%2C+date_upload%2C+date_taken%2C+owner_name%2C+geo%2C+media%2C+path_alias%2C+url_sq%2C+url_t%2C+url_s%2C+url_m%2C+url_z%2C+url_l%2C+url_o&format=json&nojsoncallback=1&text=__QUERY__&accuracy=11&sort=interestingness-desc&safe_search=1",
+      "params": ["min_taken_date=__FROMDATE__", "max_taken_date=__TODATE__", "page=__OFFSET__", "per_page=__LIMIT__"]
     }
   },
   "featureTypes": {

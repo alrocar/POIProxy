@@ -68,6 +68,8 @@ public class DescribeService {
 	private static final String DEFAULT_ENCODING = "UTF-8";
 	public static final String DEFAULT_SRS = "EPSG:4326";
 
+	public static final String TIMESTAMP = "timestamp";
+
 	private String apiKey;
 	private HashMap<String, RequestType> requestTypes = new HashMap<String, RequestType>();
 	private HashMap<String, FeatureType> featureTypes = new HashMap<String, FeatureType>();
