@@ -513,18 +513,29 @@ public class POIProxy {
 	protected String getValue(ServiceParams params, String key,
 			DescribeService describeService) throws POIProxyException {
 		if (params.isDate(key)) {
-			SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
-			SimpleDateFormat outsdf = new SimpleDateFormat(
-					describeService.getDateFormat());
-			try {
-				Date date = sdf.parse(params.getValueForParam(key));
-				return outsdf.format(date);
-			} catch (ParseException e) {
-				logger.warn(e);
-				throw new POIProxyException("Error with dates");
-			}
+			return getValueForDate(params, key, describeService);
 		} else {
 			return params.getValueForParam(key);
+		}
+	}
+
+	protected String getValueForDate(ServiceParams params, String key,
+			DescribeService describeService) throws POIProxyException {
+		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+		try {
+			if (describeService.getDateFormat().compareTo(
+					DescribeService.TIMESTAMP) == 0) {
+				return sdf.parse(params.getValueForParam(key)).getTime() + "";
+			} else {
+				SimpleDateFormat outsdf = new SimpleDateFormat(
+						describeService.getDateFormat());
+
+				Date date = sdf.parse(params.getValueForParam(key));
+				return outsdf.format(date);
+			}
+		} catch (ParseException e) {
+			logger.warn(e);
+			throw new POIProxyException("Error with dates");
 		}
 	}
 
