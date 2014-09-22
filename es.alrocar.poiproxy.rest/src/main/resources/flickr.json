@@ -27,6 +27,9 @@
         "dateupload": {
           "input": "dateupload"
         },
+        "dateupload": {
+          "input": "dateupload"
+          },
         "place_id": {
           "input": "place_id"
         },
@@ -59,6 +62,9 @@
         },
         "url_l": {
           "input": "url_l"
+        },
+        "url_sq": {
+          "input": "url_sq"
         },
         "license": {
           "input": "license"
