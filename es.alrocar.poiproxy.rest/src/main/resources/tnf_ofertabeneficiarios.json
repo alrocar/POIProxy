@@ -1,0 +1,90 @@
+{
+  "format": "json",
+  "apiKey": "",
+  "encoding": "UTF-8",
+  "categories": [
+    "local_tnf_ofertabeneficiarios"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://opendatacanarias.es/datos/dataset/fgull-consulta-de-informacion-de-becas-y-practicas/resource/68de21b2-27f5-401c-a4b1-bfceced2eef3/proxy",
+      "params": []
+    },
+    "search": {
+      "url": "http://opendatacanarias.es/datos/dataset/fgull-consulta-de-informacion-de-becas-y-practicas/resource/68de21b2-27f5-401c-a4b1-bfceced2eef3/proxy",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "Empresa",
+      "elements": {
+      	"name" : {
+      	  "input": "Puesto"
+      	},
+        "description": {
+          "input": "Titulacion"
+        },
+        "NIF": {
+          "input": "NIF"
+        },
+        "empresa": {
+          "input": "RazonComercial"
+        },
+        "address": {
+          "input": "NombreVia"
+        },
+        "numero": {
+          "input": "NumeroVia"
+        },
+        "zip": {
+          "input": "CodigoPostal"
+        },
+        "municipio": {
+          "input": "Municipio"
+        },
+        "provincia": {
+          "input": "Provincia"
+        }
+      },
+      "lon": "Longitud",
+      "lat": "Latitud"
+    },
+    "search": {
+            "feature": "Empresa",
+      "elements": {
+      	"name" : {
+      	  "input": "Puesto"
+      	},
+        "description": {
+          "input": "Titulacion"
+        },
+        "NIF": {
+          "input": "NIF"
+        },
+        "empresa": {
+          "input": "RazonComercial"
+        },
+        "address": {
+          "input": "NombreVia"
+        },
+        "numero": {
+          "input": "NumeroVia"
+        },
+        "zip": {
+          "input": "CodigoPostal"
+        },
+        "municipio": {
+          "input": "Municipio"
+        },
+        "provincia": {
+          "input": "Provincia"
+        }
+      },
+      "lon": "Longitud",
+      "lat": "Latitud"
+    }
+  }
+}

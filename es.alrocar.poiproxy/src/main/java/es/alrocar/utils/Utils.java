@@ -33,13 +33,23 @@
 
 package es.alrocar.utils;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class Utils {
+
+	private static String[] removeChars = new String[] { "{", "}", "(", ")",
+			"[", "]" };
+	private static String[] replaceChars = new String[] { "", "", "", "", "",
+			"" };
 
 	public static double formatNumber(String number, String decimalSeparator,
 			String numberSeparator) {
 		if (number == null || number.trim().isEmpty()) {
 			return 0;
 		}
+
+		number = StringUtils.replaceEach(number, removeChars, replaceChars);
+
 		String temp = number.trim();
 		if (numberSeparator != null) {
 			temp = number.replaceAll(numberSeparator, "");

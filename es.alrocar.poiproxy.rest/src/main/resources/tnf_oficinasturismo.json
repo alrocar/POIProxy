@@ -1,0 +1,105 @@
+{
+  "format": "csv",
+  "apiKey": "",
+  "csvSeparator": ",",
+  "encoding": "UTF-8",
+  "categories": [
+    "local_tnf_oficinasturismo"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://opendatacanarias.es/datos/dataset/ca47d1b3-69de-40c6-baa9-a7d1aaddb2a7/resource/3d1372e5-ab1a-4c14-a133-5bc21f06f171/download/oficinasdeturismo.csv",
+      "params": []
+    },
+    "search": {
+      "url": "http://opendatacanarias.es/datos/dataset/ca47d1b3-69de-40c6-baa9-a7d1aaddb2a7/resource/3d1372e5-ab1a-4c14-a133-5bc21f06f171/download/oficinasdeturismo.csv",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "",
+      "elements": {
+      	"name" : {
+      	  "input": "ows_LinkTitle"
+      	},
+        "zona": {
+          "input": "ows_Zona"
+        },
+        "horarios": {
+          "input": "ows_Horarios"
+        },
+        "address": {
+          "input": "ows_Direccion"
+        },
+        "zip": {
+          "input": "ows_CodigoPostal"
+        },
+        "web": {
+          "input": "ows_Web"
+        },
+        "phone": {
+          "input": "ows_Telefono"
+        },
+        "fax": {
+          "input": "ows_Fax"
+        },
+        "mail": {
+          "input": "ows_Email"
+        },
+        "municipio": {
+          "input": "ows_Municipio"
+        },
+        "description": {
+          "input": "ows_DescripcionEspanol"
+        }
+      },
+      "combinedLonLat": "ows_Georeferencia",
+      "separator": ",",
+      "reverseLonLat": true
+    },
+    "search": {
+      "feature": "",
+      "elements": {
+      	"name" : {
+      	  "input": "ows_LinkTitle"
+      	},
+        "zona": {
+          "input": "ows_Zona"
+        },
+        "horarios": {
+          "input": "ows_Horarios"
+        },
+        "address": {
+          "input": "ows_Direccion"
+        },
+        "zip": {
+          "input": "ows_CodigoPostal"
+        },
+        "web": {
+          "input": "ows_Web"
+        },
+        "phone": {
+          "input": "ows_Telefono"
+        },
+        "fax": {
+          "input": "ows_Fax"
+        },
+        "mail": {
+          "input": "ows_Email"
+        },
+        "municipio": {
+          "input": "ows_Municipio"
+        },
+        "description": {
+          "input": "ows_DescripcionEspanol"
+        }
+      },
+      "combinedLonLat": "ows_Georeferencia",
+      "separator": ",",
+      "reverseLonLat": true
+    }
+  }
+}

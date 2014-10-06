@@ -1,0 +1,123 @@
+{
+  "format": "csv",
+  "apiKey": "",
+  "csvSeparator": ",",
+  "encoding": "UTF-8",
+  "categories": [
+    "local_tnf_camposfutbol"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://opendatacanarias.es/datos/dataset/d1561851-ddaf-4baf-9cf7-a2fb956006f7/resource/dbeb2841-081e-4b61-bbd1-a98a893b7f26/download/camposdefutbol.csv",
+      "params": []
+    },
+    "search": {
+      "url": "http://opendatacanarias.es/datos/dataset/d1561851-ddaf-4baf-9cf7-a2fb956006f7/resource/dbeb2841-081e-4b61-bbd1-a98a893b7f26/download/camposdefutbol.csv",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "",
+      "elements": {
+      	"id" : {
+      	  "input": "N_DEF"
+      	},
+      	"name" : {
+      	  "input": "DENOMINACIÓN CAMPO DE FÚTBOL"
+      	},
+        "address": {
+          "input": "DIRECCIÓN"
+        },
+        "contacto": {
+          "input": "PERSONA DE CONTACTO"
+        },
+        "municipio": {
+          "input": "MUNICIPIO"
+        },
+        "phone": {
+          "input": "TFNO"
+        },
+        "titular": {
+          "input": "TITULAR"
+        },
+        "zip": {
+          "input": "C.P."
+        },
+        "localizacion": {
+          "input": "LOCALIZACIÓN"
+        },
+        "dimensiones": {
+          "input": "DIMENSIONES"
+        },
+        "superficie": {
+          "input": "SUPERFICIE"
+        },
+        "instalaciones": {
+          "input": "INSTALACIONES COMPLEMENTARIAS"
+        },
+        "aforo": {
+          "input": "AFORO PÚBLICO"
+        },
+        "horario": {
+          "input": "HORARIO DE USO"
+        }
+        
+      },
+      "lon": "LONGDEC",
+      "lat": "LATDEC"
+    },
+    "search": {
+      "feature": "",
+      "elements": {
+		"id" : {
+      	  "input": "N_DEF"
+      	},
+      	"name" : {
+      	  "input": "DENOMINACIÓN CAMPO DE FÚTBOL"
+      	},
+        "address": {
+          "input": "DIRECCIÓN"
+        },
+        "contacto": {
+          "input": "PERSONA DE CONTACTO"
+        },
+        "municipio": {
+          "input": "MUNICIPIO"
+        },
+        "phone": {
+          "input": "TFNO"
+        },
+        "titular": {
+          "input": "TITULAR"
+        },
+        "zip": {
+          "input": "C.P."
+        },
+        "localizacion": {
+          "input": "LOCALIZACIÓN"
+        },
+        "dimensiones": {
+          "input": "DIMENSIONES"
+        },
+        "superficie": {
+          "input": "SUPERFICIE"
+        },
+        "instalaciones": {
+          "input": "INSTALACIONES COMPLEMENTARIAS"
+        },
+        "aforo": {
+          "input": "AFORO PÚBLICO"
+        },
+        "horario": {
+          "input": "HORARIO DE USO"
+        }
+        
+      },
+      "lon": "LONGDEC",
+      "lat": "LATDEC"
+    }
+  }
+}

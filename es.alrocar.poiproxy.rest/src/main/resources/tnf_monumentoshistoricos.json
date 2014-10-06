@@ -1,0 +1,135 @@
+{
+  "format": "csv",
+  "apiKey": "",
+  "csvSeparator": ",",
+  "encoding": "UTF-8",
+  "categories": [
+    "local_tnf_monumentoshistoricos"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://opendatacanarias.es/datos/dataset/a3bbd0e9-fcbb-4c88-8949-9785ef2780b6/resource/32c5ad69-6262-4f1b-be26-22316c7ca986/download/monumentoshistoricos.csv",
+      "params": []
+    },
+    "search": {
+      "url": "http://opendatacanarias.es/datos/dataset/a3bbd0e9-fcbb-4c88-8949-9785ef2780b6/resource/32c5ad69-6262-4f1b-be26-22316c7ca986/download/monumentoshistoricos.csv",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "",
+      "elements": {
+      	"name" : {
+      	  "input": "ows_LinkTitle"
+      	},
+        "zona": {
+          "input": "ows_Zona"
+        },
+        "horarios": {
+          "input": "ows_Horarios"
+        },
+        "address": {
+          "input": "ows_Direccion"
+        },
+        "zip": {
+          "input": "ows_CodigoPostal"
+        },
+        "web": {
+          "input": "ows_Web"
+        },
+        "phone": {
+          "input": "ows_Telefono"
+        },
+        "fax": {
+          "input": "ows_Fax"
+        },
+        "mail": {
+          "input": "ows_Email"
+        },
+        "municipio": {
+          "input": "ows_Municipio"
+        },
+        "description": {
+          "input": "ows_DescripcionEspanol"
+        },
+        "fecha_actualizacion": {
+          "input": "ows_FechaActualizacion"
+        },
+        "situacion": {
+          "input": "ows_Situacion"
+        },
+        "recomendado": {
+          "input": "ows_Recomendado"
+        },
+        "peligrosidad": {
+          "input": "ows_Peligrosidad"
+        },
+        "como_llegar": {
+          "input": "ows_ComoLlegarEspanol"
+        }
+      },
+      "combinedLonLat": "ows_Georeferencia",
+      "separator": ",",
+      "reverseLonLat": true
+    },
+    "search": {
+      "feature": "",
+      "elements": {
+      	"name" : {
+      	  "input": "ows_LinkTitle"
+      	},
+        "zona": {
+          "input": "ows_Zona"
+        },
+        "horarios": {
+          "input": "ows_Horarios"
+        },
+        "address": {
+          "input": "ows_Direccion"
+        },
+        "zip": {
+          "input": "ows_CodigoPostal"
+        },
+        "web": {
+          "input": "ows_Web"
+        },
+        "phone": {
+          "input": "ows_Telefono"
+        },
+        "fax": {
+          "input": "ows_Fax"
+        },
+        "mail": {
+          "input": "ows_Email"
+        },
+        "municipio": {
+          "input": "ows_Municipio"
+        },
+        "description": {
+          "input": "ows_DescripcionEspanol"
+        },
+        "fecha_actualizacion": {
+          "input": "ows_FechaActualizacion"
+        },
+        "situacion": {
+          "input": "ows_Situacion"
+        },
+        "recomendado": {
+          "input": "ows_Recomendado"
+        },
+        "peligrosidad": {
+          "input": "ows_Peligrosidad"
+        },
+        "como_llegar": {
+          "input": "ows_ComoLlegarEspanol"
+        }
+      },
+      "combinedLonLat": "ows_Georeferencia",
+      "separator": ",",
+      "reverseLonLat": true
+    }
+  }
+}

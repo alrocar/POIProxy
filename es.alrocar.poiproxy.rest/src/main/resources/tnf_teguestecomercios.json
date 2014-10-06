@@ -1,0 +1,97 @@
+{
+  "format": "csv",
+  "apiKey": "",
+  "csvSeparator": ",",
+  "encoding": "ISO-8859-1",
+  "categories": [
+    "local_tnf_teguestecomercios"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://opendatacanarias.es/datos/dataset/08b74816-8ad7-4122-9c19-91b9a450d11d/resource/b7b3baaf-e3a2-4c82-8650-f222d893e320/download/listadoempresasteguesteconestablecimientocongeoreferencia2.csv",
+      "params": []
+    },
+    "search": {
+      "url": "http://opendatacanarias.es/datos/dataset/08b74816-8ad7-4122-9c19-91b9a450d11d/resource/b7b3baaf-e3a2-4c82-8650-f222d893e320/download/listadoempresasteguesteconestablecimientocongeoreferencia2.csv",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "",
+      "elements": {
+      	"id" : {
+      	  "input": "_id"
+      	},
+        "name": {
+          "input": "DENOMINACION DEL ESTABLECIMIENTO"
+        },
+        "description": {
+          "input": "DESCRIPCION DE LA ACTIVIDAD"
+        },
+        "address": {
+          "input": "NOMBRE DE VIA"
+        },
+        "address2": {
+          "input": "OTRA REF DOMIC"
+        },
+        "zip": {
+          "input": "CODPOS"
+        },
+        "web": {
+          "input": "WEB"
+        },
+        "mail": {
+          "input": "EMAIL"
+        },
+        "phone": {
+          "input": "TEL 1"
+        },
+        "fax": {
+          "input": "FAX"
+        }
+      },
+      "lon": "Longitud",
+      "lat": "Latitud"
+    },
+    "search": {
+      "feature": "",
+      "elements": {
+        "id" : {
+      	  "input": "_id"
+      	},
+        "name": {
+          "input": "DENOMINACION DEL ESTABLECIMIENTO"
+        },
+        "description": {
+          "input": "DESCRIPCION DE LA ACTIVIDAD"
+        },
+        "address": {
+          "input": "NOMBRE DE VIA"
+        },
+        "address2": {
+          "input": "OTRA REF DOMIC"
+        },
+        "zip": {
+          "input": "CODPOS"
+        },
+        "web": {
+          "input": "WEB"
+        },
+        "mail": {
+          "input": "EMAIL"
+        },
+        "phone": {
+          "input": "TEL 1"
+        },
+        "fax": {
+          "input": "FAX"
+        }
+      },
+      "lon": "Longitud",
+      "lat": "Latitud"
+    }
+  }
+}

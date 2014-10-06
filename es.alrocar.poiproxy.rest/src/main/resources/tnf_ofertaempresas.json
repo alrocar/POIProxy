@@ -1,0 +1,84 @@
+{
+  "format": "json",
+  "apiKey": "",
+  "encoding": "UTF-8",
+  "categories": [
+    "local_tnf_ofertaempresas"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://opendatacanarias.es/datos/dataset/fgull-consulta-de-informacion-de-becas-y-practicas/resource/894b6739-80d1-43bf-99aa-338ae5267ec6/proxy",
+      "params": []
+    },
+    "search": {
+      "url": "http://opendatacanarias.es/datos/dataset/fgull-consulta-de-informacion-de-becas-y-practicas/resource/894b6739-80d1-43bf-99aa-338ae5267ec6/proxy",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "NIF",
+      "elements": {
+        "description": {
+          "input": "OtrosDatos"
+        },
+        "NIF": {
+          "input": "NIF"
+        },
+        "name": {
+          "input": "RazonComercial"
+        },
+        "address": {
+          "input": "NombreVia"
+        },
+        "numero": {
+          "input": "NumeroVia"
+        },
+        "zip": {
+          "input": "CodigoPostal"
+        },
+        "municipio": {
+          "input": "Municipio"
+        },
+        "provincia": {
+          "input": "Provincia"
+        }
+      },
+      "lon": "Longitud",
+      "lat": "Latitud"
+    },
+    "search": {
+            "feature": "NIF",
+      "elements": {
+        "description": {
+          "input": "OtrosDatos"
+        },
+        "NIF": {
+          "input": "NIF"
+        },
+        "name": {
+          "input": "RazonComercial"
+        },
+        "address": {
+          "input": "NombreVia"
+        },
+        "numero": {
+          "input": "NumeroVia"
+        },
+        "zip": {
+          "input": "CodigoPostal"
+        },
+        "municipio": {
+          "input": "Municipio"
+        },
+        "provincia": {
+          "input": "Provincia"
+        }
+      },
+      "lon": "Longitud",
+      "lat": "Latitud"
+    }
+  }
+}

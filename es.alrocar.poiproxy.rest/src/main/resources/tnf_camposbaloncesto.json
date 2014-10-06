@@ -1,0 +1,67 @@
+{
+  "format": "csv",
+  "apiKey": "",
+  "csvSeparator": ",",
+  "encoding": "UTF-8",
+  "categories": [
+    "local_tnf_camposbaloncesto"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://opendatacanarias.es/datos/dataset/06e67b96-c473-43cc-a881-ad4030955eef/resource/aa9839e8-7248-490a-831f-560f614e30ee/download/camposdebaloncesto.csv",
+      "params": []
+    },
+    "search": {
+      "url": "http://opendatacanarias.es/datos/dataset/06e67b96-c473-43cc-a881-ad4030955eef/resource/aa9839e8-7248-490a-831f-560f614e30ee/download/camposdebaloncesto.csv",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "",
+      "elements": {
+      	"id" : {
+      	  "input": "COD"
+      	},
+      	"name" : {
+      	  "input": "First_NOM_"
+      	},
+        "address": {
+          "input": "First_DIR_"
+        },
+        "localidad": {
+          "input": "First_POB_"
+        },
+        "municipio": {
+          "input": "First_POB1"
+        }
+      },
+      "lon": "LONGDEC",
+      "lat": "LATDEC"
+    },
+    "search": {
+      "feature": "",
+      "elements": {
+		"id" : {
+      	  "input": "COD"
+      	},
+      	"name" : {
+      	  "input": "First_NOM_"
+      	},
+        "address": {
+          "input": "First_DIR_"
+        },
+        "localidad": {
+          "input": "First_POB_"
+        },
+        "municipio": {
+          "input": "First_POB1"
+        }
+      },
+      "lon": "LONGDEC",
+      "lat": "LATDEC"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "format": "csv",
+  "apiKey": "",
+  "csvSeparator": ",",
+  "encoding": "ISO-8859-1",
+  "categories": [
+    "local_tnf_carreteraspaneles"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://opendatacanarias.es/datos/dataset/6a0fe98c-ac7b-40f2-8592-75eb7f6711c7/resource/97b637e7-e088-43ef-9540-1506defbc101/download/carreteraspaneles.csv",
+      "params": []
+    },
+    "search": {
+      "url": "http://opendatacanarias.es/datos/dataset/6a0fe98c-ac7b-40f2-8592-75eb7f6711c7/resource/97b637e7-e088-43ef-9540-1506defbc101/download/carreteraspaneles.csv",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "",
+      "elements": {
+      	"id" : {
+      	  "input": "ID_WEB"
+      	},
+        "name": {
+          "input": "ALIAS"
+        }
+      },
+      "lon": "LON",
+      "lat": "LAT"
+    },
+    "search": {
+      "feature": "",
+      "elements": {
+        "id" : {
+      	  "input": "ID_WEB"
+      	},
+        "name": {
+          "input": "ALIAS"
+        }
+      },
+      "lon": "LON",
+      "lat": "LAT"
+    }
+  }
+}
