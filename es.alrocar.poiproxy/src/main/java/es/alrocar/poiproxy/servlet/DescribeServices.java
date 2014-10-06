@@ -77,7 +77,8 @@ public class DescribeServices extends ServerResource {
 			services = proxy.getAvailableServices();
 		} catch (Exception e) {
 			return new StringRepresentation(
-					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the describeServices service, check that your URL is of the type '/describeServices'");
+					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the describeServices service, check that your URL is of the type '/describeServices'"
+							+ " - " + e.getMessage());
 		}
 
 		String callback = params.get("callback");

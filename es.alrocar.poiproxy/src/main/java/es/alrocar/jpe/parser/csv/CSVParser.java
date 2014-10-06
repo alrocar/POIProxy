@@ -39,6 +39,9 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import es.alrocar.csv.CsvReader;
 import es.alrocar.jpe.parser.DefaultJPEParser;
 import es.alrocar.jpe.parser.JPEParserFormatEnum;
@@ -49,6 +52,8 @@ import es.prodevelop.gvsig.mini.geom.impl.base.Point;
 import es.prodevelop.gvsig.mini.geom.impl.jts.JTSFeature;
 
 public class CSVParser extends DefaultJPEParser {
+
+	private final static Logger log = LoggerFactory.getLogger(CSVParser.class);
 
 	@Override
 	public ArrayList<JTSFeature> parse(String contentFile,
@@ -83,22 +88,57 @@ public class CSVParser extends DefaultJPEParser {
 					addAttribute(element, feature, destProp);
 				}
 
-				setLatitude(Utils.formatNumber(
-						csvReader.get(this.currentFeatureType.getLat()),
-						service.getDecimalSeparator(),
-						service.getNumberSeparator()), point);
-				setLongitude(Utils.formatNumber(
-						csvReader.get(this.currentFeatureType.getLon()),
-						service.getDecimalSeparator(),
-						service.getNumberSeparator()), point);
+				try {
+					if (this.currentFeatureType.getCombinedLonLat() != null) {
+						String[] latLon = csvReader.get(
+								this.currentFeatureType.getCombinedLonLat())
+								.split(this.currentFeatureType
+										.getLonLatSeparator());
 
-				contentHandler.addPointToFeature(feature, contentHandler
-						.endPoint(point, service.getSRS(),
-								DescribeService.DEFAULT_SRS));
-				if (hasPassedFilter) {
-					fillCategories(feature, service);
-					fillService(feature, service);
-					contentHandler.addFeatureToCollection(fc, feature);
+						int lonPos = 0;
+						int latPos = 1;
+
+						if (this.currentFeatureType.getReverseLonLat()) {
+							lonPos = 1;
+							latPos = 0;
+						}
+
+						setLatitude(
+								Utils.formatNumber(latLon[latPos],
+										service.getDecimalSeparator(),
+										service.getNumberSeparator()), point);
+						setLongitude(
+								Utils.formatNumber(latLon[lonPos],
+										service.getDecimalSeparator(),
+										service.getNumberSeparator()), point);
+					} else {
+						setLatitude(
+								Utils.formatNumber(csvReader
+										.get(this.currentFeatureType.getLat()),
+										service.getDecimalSeparator(), service
+												.getNumberSeparator()), point);
+						setLongitude(
+								Utils.formatNumber(csvReader
+										.get(this.currentFeatureType.getLon()),
+										service.getDecimalSeparator(), service
+												.getNumberSeparator()), point);
+					}
+
+					contentHandler.addPointToFeature(feature, contentHandler
+							.endPoint(point, service.getSRS(),
+									DescribeService.DEFAULT_SRS));
+
+					if (hasPassedFilter) {
+						fillCategories(feature, service);
+						fillService(feature, service);
+						contentHandler.addFeatureToCollection(fc, feature);
+					}
+				} catch (NumberFormatException e) {
+					// Cuando los datos vienen mal
+					log.warn("CSVParser", e);
+				} catch (ArrayIndexOutOfBoundsException e) {
+					// Cuando los datos vienen mal
+					log.warn("CSVParser", e);
 				}
 			}
 

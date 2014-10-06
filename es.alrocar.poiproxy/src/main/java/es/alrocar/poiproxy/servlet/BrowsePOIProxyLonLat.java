@@ -82,7 +82,7 @@ public class BrowsePOIProxyLonLat extends BrowseQueryServerResource {
 		} catch (Exception e) {
 			return new StringRepresentation(
 					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the browseByLonLat service, check that your URL is of the type '/browseByLonLat?service=XXXXX&lon=-0.38&lat=39.6&distance=500&callback=whatever'"
-							+ ServiceConfigurationManager.CONFIGURATION_DIR);
+							+ ServiceConfigurationManager.CONFIGURATION_DIR + " - " + e.getMessage());
 		}
 
 		String callback = params.get(ParamEnum.CALLBACK.name);

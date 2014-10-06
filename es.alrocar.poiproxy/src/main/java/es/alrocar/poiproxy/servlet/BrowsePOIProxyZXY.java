@@ -80,7 +80,8 @@ public class BrowsePOIProxyZXY extends BrowseQueryServerResource {
 			// System.out.println(geoJSON);
 		} catch (Exception e) {
 			return new StringRepresentation(
-					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the browse service, check that your URL is of the type '/browse?service=panoramio&z=0&x=0&y=0&callback=whatever'");
+					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the browse service, check that your URL is of the type '/browse?service=panoramio&z=0&x=0&y=0&callback=whatever'"
+							+ " - " + e.getMessage());
 		}
 
 		String callback = params.get(ParamEnum.CALLBACK.name);
