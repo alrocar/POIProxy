@@ -1,0 +1,135 @@
+{
+  "format": "csv",
+  "apiKey": "",
+  "csvSeparator": ",",
+  "encoding": "UTF-8",
+  "categories": [
+    "local_tnf_restauracion"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://opendatacanarias.es/datos/dataset/df18833a-0796-45c8-9364-647a27197852/resource/23461646-39bf-4851-989e-b52d95e8314e/download/restauracion.csv",
+      "params": []
+    },
+    "search": {
+      "url": "http://opendatacanarias.es/datos/dataset/df18833a-0796-45c8-9364-647a27197852/resource/23461646-39bf-4851-989e-b52d95e8314e/download/restauracion.csv",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "",
+      "elements": {
+      	"name" : {
+      	  "input": "ows_LinkTitle"
+      	},
+        "zona": {
+          "input": "ows_Zona"
+        },
+        "horarios": {
+          "input": "ows_Horarios"
+        },
+        "address": {
+          "input": "ows_Direccion"
+        },
+        "zip": {
+          "input": "ows_CodigoPostal"
+        },
+        "web": {
+          "input": "ows_Web"
+        },
+        "phone": {
+          "input": "ows_Telefono"
+        },
+        "fax": {
+          "input": "ows_Fax"
+        },
+        "mascotas": {
+          "input": "ows_Mascotas"
+        },
+        "accesibilidad": {
+          "input": "ows_Accesibilidad"
+        },
+        "actividad": {
+          "input": "ows_Actividad"
+        },
+        "tipo_actividad": {
+          "input": "ows_TipoActividad"
+        },
+        "activo": {
+          "input": "ows_Activo"
+        },
+        "mail": {
+          "input": "ows_Email"
+        },
+        "municipio": {
+          "input": "ows_Municipio"
+        },
+        "description": {
+          "input": "ows_DescripcionEspanol"
+        }
+      },
+      "combinedLonLat": "ows_Georeferencia",
+      "separator": ",",
+      "reverseLonLat": true
+    },
+    "search": {
+      "feature": "",
+      "elements": {
+      	"name" : {
+      	  "input": "ows_LinkTitle"
+      	},
+        "zona": {
+          "input": "ows_Zona"
+        },
+        "horarios": {
+          "input": "ows_Horarios"
+        },
+        "address": {
+          "input": "ows_Direccion"
+        },
+        "zip": {
+          "input": "ows_CodigoPostal"
+        },
+        "web": {
+          "input": "ows_Web"
+        },
+        "phone": {
+          "input": "ows_Telefono"
+        },
+        "fax": {
+          "input": "ows_Fax"
+        },
+        "mascotas": {
+          "input": "ows_Mascotas"
+        },
+        "accesibilidad": {
+          "input": "ows_Accesibilidad"
+        },
+        "actividad": {
+          "input": "ows_Actividad"
+        },
+        "tipo_actividad": {
+          "input": "ows_TipoActividad"
+        },
+        "activo": {
+          "input": "ows_Activo"
+        },
+        "mail": {
+          "input": "ows_Email"
+        },
+        "municipio": {
+          "input": "ows_Municipio"
+        },
+        "description": {
+          "input": "ows_DescripcionEspanol"
+        }
+      },
+      "combinedLonLat": "ows_Georeferencia",
+      "separator": ",",
+      "reverseLonLat": true
+    }
+  }
+}

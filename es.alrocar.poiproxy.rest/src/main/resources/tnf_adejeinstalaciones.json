@@ -1,0 +1,85 @@
+{
+  "format": "csv",
+  "apiKey": "",
+  "csvSeparator": ",",
+  "encoding": "UTF-8",
+  "categories": [
+    "local_tnf_adejeinstalaciones"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://portal.adeje.es/opendata/get/instalaciones/HlN-5emloU590nE0WuYi5XpRCdw=/?format=csv",
+      "params": []
+    },
+    "search": {
+      "url": "http://portal.adeje.es/opendata/get/instalaciones/HlN-5emloU590nE0WuYi5XpRCdw=/?format=csv",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "",
+      "elements": {
+      	"id" : {
+      	  "input": "_id"
+      	},
+        "ciudad": {
+          "input": "ciudad"
+        },
+        "dias_disponibles": {
+          "input": "dias_disponibles"
+        },
+        "address": {
+          "input": "direccion"
+        },
+        "disponible_a_partir_de": {
+          "input": "disponible_a_partir_de"
+        },
+        "hora_apertura": {
+          "input": "hora_apertura"
+        },
+        "hora_cierre": {
+          "input": "hora_cierre"
+        },
+        "name": {
+          "input": "nombre"
+        }
+      },
+      "lon": "longitud",
+      "lat": "latitud"
+    },
+    "search": {
+      "feature": "",
+      "elements": {
+        "id" : {
+      	  "input": "_id"
+      	},
+        "ciudad": {
+          "input": "ciudad"
+        },
+        "dias_disponibles": {
+          "input": "dias_disponibles"
+        },
+        "address": {
+          "input": "direccion"
+        },
+        "disponible_a_partir_de": {
+          "input": "disponible_a_partir_de"
+        },
+        "hora_apertura": {
+          "input": "hora_apertura"
+        },
+        "hora_cierre": {
+          "input": "hora_cierre"
+        },
+        "name": {
+          "input": "nombre"
+        }
+      },
+      "lon": "longitud",
+      "lat": "latitud"
+    }
+  }
+}

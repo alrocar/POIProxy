@@ -1,0 +1,73 @@
+{
+  "format": "csv",
+  "apiKey": "",
+  "csvSeparator": ",",
+  "encoding": "UTF-8",
+  "categories": [
+    "local_tnf_vulcano"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://opendatacanarias.es/datos/dataset/29f4e239-c37f-402e-af92-d71380429a00/resource/9f8de637-ab90-464d-8e91-537fe8332b84/download/recursosvolcanicos.csv",
+      "params": []
+    },
+    "search": {
+      "url": "http://opendatacanarias.es/datos/dataset/29f4e239-c37f-402e-af92-d71380429a00/resource/9f8de637-ab90-464d-8e91-537fe8332b84/download/recursosvolcanicos.csv",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "",
+      "elements": {
+      	"id" : {
+      	  "input": "_id"
+      	},
+        "recurso": {
+          "input": "Recurso"
+        },
+        "categoria": {
+          "input": "Categoría"
+        },
+        "tipo": {
+          "input": "Tipo"
+        },
+        "subtipo": {
+          "input": "Subtipo"
+        },
+        "municipio": {
+          "input": "Municipio"
+        }
+      },
+      "lon": "LON",
+      "lat": "LAT"
+    },
+    "search": {
+      "feature": "",
+      "elements": {
+        "id" : {
+      	  "input": "_id"
+      	},
+        "recurso": {
+          "input": "Recurso"
+        },
+        "categoria": {
+          "input": "Categoría"
+        },
+        "tipo": {
+          "input": "Tipo"
+        },
+        "subtipo": {
+          "input": "Subtipo"
+        },
+        "municipio": {
+          "input": "Municipio"
+        }
+      },
+      "lon": "LON",
+      "lat": "LAT"
+    }
+  }
+}

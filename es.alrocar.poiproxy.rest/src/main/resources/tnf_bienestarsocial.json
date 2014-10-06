@@ -1,0 +1,97 @@
+{
+  "format": "csv",
+  "apiKey": "",
+  "csvSeparator": ",",
+  "encoding": "UTF-8",
+  "categories": [
+    "local_tnf_bienestarsocial"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://www.iass.es/iass/DEFAULT/IASS2014/open_data/iass.csv",
+      "params": []
+    },
+    "search": {
+      "url": "http://www.iass.es/iass/DEFAULT/IASS2014/open_data/iass.csv",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "",
+      "elements": {
+      	"name" : {
+      	  "input": "nombre"
+      	},
+        "clase": {
+          "input": "clase"
+        },
+        "municipio": {
+          "input": "mun"
+        },
+        "address": {
+          "input": "sigla"
+        },
+        "zip": {
+          "input": "num"
+        },
+        "mail": {
+          "input": "web"
+        },
+        "web": {
+          "input": "email"
+        },
+        "phone": {
+          "input": "tf"
+        },
+        "fax": {
+          "input": "fax"
+        },
+        "description": {
+          "input": "obs"
+        }
+      },
+      "lon": "lng",
+      "lat": "lat"
+    },
+    "search": {
+      "feature": "",
+      "elements": {
+      	"name" : {
+      	  "input": "nombre"
+      	},
+        "clase": {
+          "input": "clase"
+        },
+        "municipio": {
+          "input": "mun"
+        },
+        "address": {
+          "input": "sigla"
+        },
+        "zip": {
+          "input": "num"
+        },
+        "mail": {
+          "input": "web"
+        },
+        "web": {
+          "input": "email"
+        },
+        "phone": {
+          "input": "tf"
+        },
+        "fax": {
+          "input": "fax"
+        },
+        "description": {
+          "input": "obs"
+        }
+      },
+      "lon": "lng",
+      "lat": "lat"
+    }
+  }
+}

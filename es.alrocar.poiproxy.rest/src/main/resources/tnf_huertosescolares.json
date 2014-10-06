@@ -1,0 +1,105 @@
+{
+  "format": "csv",
+  "apiKey": "",
+  "csvSeparator": ",",
+  "encoding": "UTF-8",
+  "categories": [
+    "local_tnf_huertosescolares"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://opendatacanarias.es/datos/dataset/8b4e4707-9f81-45bd-af9d-211b7574aa38/resource/55a330cd-a0cf-4f6a-943d-27d3a710a7a6/download/cabtfe01032013huertosescolares.csv",
+      "params": []
+    },
+    "search": {
+      "url": "http://opendatacanarias.es/datos/dataset/8b4e4707-9f81-45bd-af9d-211b7574aa38/resource/55a330cd-a0cf-4f6a-943d-27d3a710a7a6/download/cabtfe01032013huertosescolares.csv",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "",
+      "elements": {
+      	"id" : {
+      	  "input": "Código"
+      	},
+      	"name" : {
+      	  "input": "Denominación"
+      	},
+        "address": {
+          "input": "Dirección"
+        },
+        "localidad": {
+          "input": "Localidad"
+        },
+        "municipio": {
+          "input": "Municipio"
+        },
+        "phone": {
+          "input": "Telefono1"
+        },
+        "mail": {
+          "input": "Email1"
+        },
+        "fax": {
+          "input": "Fax"
+        },
+        "description": {
+          "input": "DetalleDirección"
+        },
+        "zip": {
+          "input": "Código Postal"
+        },
+        "titular": {
+          "input": "Titular"
+        }
+        
+      },
+      "lon": "Longitud",
+      "lat": "Latitud"
+    },
+    "search": {
+      "feature": "",
+      "elements": {
+		"id" : {
+      	  "input": "Código"
+      	},
+      	"name" : {
+      	  "input": "Denominación"
+      	},
+        "address": {
+          "input": "Dirección"
+        },
+        "localidad": {
+          "input": "Localidad"
+        },
+        "municipio": {
+          "input": "Municipio"
+        },
+        "phone": {
+          "input": "Telefono1"
+        },
+        "mail": {
+          "input": "Email1"
+        },
+        "fax": {
+          "input": "Fax"
+        },
+        "description": {
+          "input": "DetalleDirección"
+        },
+        "zip": {
+          "input": "Código Postal"
+        },
+        "titular": {
+          "input": "Titular"
+        }
+        
+      },
+      "lon": "Longitud",
+      "lat": "Latitud"
+    }
+  }
+}

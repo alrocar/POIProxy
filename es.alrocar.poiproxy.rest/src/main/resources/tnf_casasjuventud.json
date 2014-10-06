@@ -1,0 +1,103 @@
+{
+  "format": "csv",
+  "apiKey": "",
+  "csvSeparator": ",",
+  "encoding": "UTF-8",
+  "categories": [
+    "local_tnf_casasjuventud"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://opendatacanarias.es/datos/dataset/be29af8e-8223-4ad4-ac41-26f036ccb1f1/resource/4c080829-db59-4e44-ae51-219c3bef225e/download/cabtfe01032013casasdelajuventud.csv",
+      "params": []
+    },
+    "search": {
+      "url": "http://opendatacanarias.es/datos/dataset/be29af8e-8223-4ad4-ac41-26f036ccb1f1/resource/4c080829-db59-4e44-ae51-219c3bef225e/download/cabtfe01032013casasdelajuventud.csv",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "",
+      "elements": {
+      	"name" : {
+      	  "input": "Entidad"
+      	},
+        "address": {
+          "input": "Dirección"
+        },
+        "poblacion": {
+          "input": "Población"
+        },
+        "municipio": {
+          "input": "Municipio"
+        },
+        "phone": {
+          "input": "Teléfono"
+        },
+        "mail": {
+          "input": "Email"
+        },
+        "fax": {
+          "input": "Fax"
+        },
+        "description": {
+          "input": "Descripción"
+        },
+        "horario": {
+          "input": "Horario"
+        },
+        "inauguracion": {
+          "input": "Inauguración"
+        },
+        "web": {
+          "input": "Web"
+        }
+      },
+      "lon": "Longitud",
+      "lat": "Latitud"
+    },
+    "search": {
+      "feature": "",
+      "elements": {
+        "name" : {
+      	  "input": "Entidad"
+      	},
+        "address": {
+          "input": "Dirección"
+        },
+        "poblacion": {
+          "input": "Población"
+        },
+        "municipio": {
+          "input": "Municipio"
+        },
+        "phone": {
+          "input": "Teléfono"
+        },
+        "mail": {
+          "input": "Email"
+        },
+        "fax": {
+          "input": "Fax"
+        },
+        "description": {
+          "input": "Descripción"
+        },
+        "horario": {
+          "input": "Horario"
+        },
+        "inauguracion": {
+          "input": "Inauguración"
+        },
+        "web": {
+          "input": "Web"
+        }
+      },
+      "lon": "Longitud",
+      "lat": "Latitud"
+    }
+  }
+}

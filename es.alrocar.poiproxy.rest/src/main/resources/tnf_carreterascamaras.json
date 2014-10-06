@@ -1,0 +1,55 @@
+{
+  "format": "csv",
+  "apiKey": "",
+  "csvSeparator": ",",
+  "encoding": "ISO-8859-1",
+  "categories": [
+    "local_tnf_carreterascamaras"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://opendatacanarias.es/datos/dataset/97ee6dcf-0900-4e56-9122-f999022db77d/resource/a158f500-960b-4369-8504-2e383553f242/download/carreterascamaras.csv",
+      "params": []
+    },
+    "search": {
+      "url": "http://opendatacanarias.es/datos/dataset/97ee6dcf-0900-4e56-9122-f999022db77d/resource/a158f500-960b-4369-8504-2e383553f242/download/carreterascamaras.csv",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "",
+      "elements": {
+      	"id" : {
+      	  "input": "ID_WEB"
+      	},
+        "name": {
+          "input": "ALIAS"
+        },
+        "description": {
+          "input": "CAMARA"
+        }
+      },
+      "lon": "LON",
+      "lat": "LAT"
+    },
+    "search": {
+      "feature": "",
+      "elements": {
+        "id" : {
+      	  "input": "ID_WEB"
+      	},
+        "name": {
+          "input": "ALIAS"
+        },
+        "description": {
+          "input": "CAMARA"
+        }
+      },
+      "lon": "LON",
+      "lat": "LAT"
+    }
+  }
+}

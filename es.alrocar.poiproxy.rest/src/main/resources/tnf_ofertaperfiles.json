@@ -1,0 +1,120 @@
+{
+  "format": "json",
+  "apiKey": "",
+  "encoding": "UTF-8",
+  "categories": [
+    "local_tnf_ofertaperfiles"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://opendatacanarias.es/datos/dataset/fgull-consulta-de-informacion-de-becas-y-practicas/resource/db050d5f-2108-4bbc-98ee-f034220c4d70/proxy",
+      "params": []
+    },
+    "search": {
+      "url": "http://opendatacanarias.es/datos/dataset/fgull-consulta-de-informacion-de-becas-y-practicas/resource/db050d5f-2108-4bbc-98ee-f034220c4d70/proxy",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "ID",
+      "elements": {
+      	"id" : {
+      	  "input": "ID"
+      	},
+      	"name" : {
+      	  "input": "Puesto"
+      	},
+        "web": {
+          "input": "URL"
+        },
+        "plazas": {
+          "input": "Plazas"
+        },
+        "objetivos": {
+          "input": "Objetivos"
+        },
+        "description": {
+          "input": "Requisitos"
+        },
+        "empresa_nif": {
+          "input": "NIF"
+        },
+        "empresa": {
+          "input": "RazonComercial"
+        },
+        "address": {
+          "input": "NombreVia"
+        },
+        "numero": {
+          "input": "NumeroVia"
+        },
+        "zip": {
+          "input": "CodigoPostal"
+        },
+        "municipio": {
+          "input": "Municipio"
+        },
+        "provincia": {
+          "input": "Provincia"
+        },
+        "bolsa": {
+          "input": "BolsaAyuda"
+        }
+      },
+      "lon": "Longitud",
+      "lat": "Latitud"
+    },
+    "search": {
+      "feature": "ID",
+      "elements": {
+      	"id" : {
+      	  "input": "ID"
+      	},
+      	"name" : {
+      	  "input": "Puesto"
+      	},
+        "web": {
+          "input": "URL"
+        },
+        "plazas": {
+          "input": "Plazas"
+        },
+        "objetivos": {
+          "input": "Objetivos"
+        },
+        "description": {
+          "input": "Requisitos"
+        },
+        "empresa_nif": {
+          "input": "NIF"
+        },
+        "empresa": {
+          "input": "RazonComercial"
+        },
+        "address": {
+          "input": "NombreVia"
+        },
+        "numero": {
+          "input": "NumeroVia"
+        },
+        "zip": {
+          "input": "CodigoPostal"
+        },
+        "municipio": {
+          "input": "Municipio"
+        },
+        "provincia": {
+          "input": "Provincia"
+        },
+        "bolsa": {
+          "input": "BolsaAyuda"
+        }
+      },
+      "lon": "Longitud",
+      "lat": "Latitud"
+    }
+  }
+}

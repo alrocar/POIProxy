@@ -1,0 +1,177 @@
+{
+  "format": "csv",
+  "apiKey": "",
+  "csvSeparator": ",",
+  "encoding": "UTF-8",
+  "categories": [
+    "local_tnf_alojamientos"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://opendatacanarias.es/datos/dataset/3f637e7d-d875-48c8-9337-6f16f767c655/resource/a6864f3e-acda-40fd-92a1-ae292e713399/download/alojamientos.csv",
+      "params": []
+    },
+    "search": {
+      "url": "http://opendatacanarias.es/datos/dataset/3f637e7d-d875-48c8-9337-6f16f767c655/resource/a6864f3e-acda-40fd-92a1-ae292e713399/download/alojamientos.csv",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "",
+      "elements": {
+      	"name" : {
+      	  "input": "ows_LinkTitle"
+      	},
+        "zona": {
+          "input": "ows_Zona"
+        },
+        "horarios": {
+          "input": "ows_Horarios"
+        },
+        "address": {
+          "input": "ows_Direccion"
+        },
+        "zip": {
+          "input": "ows_CodigoPostal"
+        },
+        "web": {
+          "input": "ows_Web"
+        },
+        "phone": {
+          "input": "ows_Telefono"
+        },
+        "fax": {
+          "input": "ows_Fax"
+        },
+        "mascotas": {
+          "input": "ows_Mascotas"
+        },
+        "accesibilidad": {
+          "input": "ows_Accesibilidad"
+        },
+        "actividad": {
+          "input": "ows_Actividad"
+        },
+        "tipo_actividad": {
+          "input": "ows_TipoActividad"
+        },
+        "activo": {
+          "input": "ows_Activo"
+        },
+        "mail": {
+          "input": "ows_Email"
+        },
+        "municipio": {
+          "input": "ows_Municipio"
+        },
+        "description": {
+          "input": "ows_DescripcionEspanol"
+        },
+        "habitaciones": {
+          "input": "ows_Habitaciones"
+        },
+        "subtipo": {
+          "input": "ows_SubTipo"
+        },
+        "cateogrias": {
+          "input": "ows_Categorias"
+        },
+        "suites": {
+          "input": "ows_Suites"
+        },
+        "piscinas": {
+          "input": "ows_Piscinas"
+        },
+        "bares": {
+          "input": "ows_Bares"
+        },
+        "restaurantes": {
+          "input": "ows_Restaurantes"
+        }
+      },
+      "combinedLonLat": "ows_Georeferencia",
+      "separator": ",",
+      "reverseLonLat": true
+    },
+    "search": {
+      "feature": "",
+      "elements": {
+      	"name" : {
+      	  "input": "ows_LinkTitle"
+      	},
+        "zona": {
+          "input": "ows_Zona"
+        },
+        "horarios": {
+          "input": "ows_Horarios"
+        },
+        "address": {
+          "input": "ows_Direccion"
+        },
+        "zip": {
+          "input": "ows_CodigoPostal"
+        },
+        "web": {
+          "input": "ows_Web"
+        },
+        "phone": {
+          "input": "ows_Telefono"
+        },
+        "fax": {
+          "input": "ows_Fax"
+        },
+        "mascotas": {
+          "input": "ows_Mascotas"
+        },
+        "accesibilidad": {
+          "input": "ows_Accesibilidad"
+        },
+        "actividad": {
+          "input": "ows_Actividad"
+        },
+        "tipo_actividad": {
+          "input": "ows_TipoActividad"
+        },
+        "activo": {
+          "input": "ows_Activo"
+        },
+        "mail": {
+          "input": "ows_Email"
+        },
+        "municipio": {
+          "input": "ows_Municipio"
+        },
+        "description": {
+          "input": "ows_DescripcionEspanol"
+        },
+        "habitaciones": {
+          "input": "ows_Habitaciones"
+        },
+        "subtipo": {
+          "input": "ows_SubTipo"
+        },
+        "cateogrias": {
+          "input": "ows_Categorias"
+        },
+        "suites": {
+          "input": "ows_Suites"
+        },
+        "piscinas": {
+          "input": "ows_Piscinas"
+        },
+        "bares": {
+          "input": "ows_Bares"
+        },
+        "restaurantes": {
+          "input": "ows_Restaurantes"
+        }
+      },
+      "combinedLonLat": "ows_Georeferencia",
+      "separator": ",",
+      "reverseLonLat": true
+    }
+  }
+}

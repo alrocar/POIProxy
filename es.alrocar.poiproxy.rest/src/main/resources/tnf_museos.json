@@ -1,0 +1,85 @@
+{
+  "format": "csv",
+  "apiKey": "",
+  "csvSeparator": ",",
+  "encoding": "ISO-8859-1",
+  "categories": [
+    "local_tnf_museum"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://opendatacanarias.es/datos/dataset/ca4b29db-ea57-4dbf-8cf7-febdfee6ccc3/resource/916c91ad-2b70-4a09-9958-79a1c2805364/download/museos1.csv",
+      "params": []
+    },
+    "search": {
+      "url": "http://opendatacanarias.es/datos/dataset/ca4b29db-ea57-4dbf-8cf7-febdfee6ccc3/resource/916c91ad-2b70-4a09-9958-79a1c2805364/download/museos1.csv",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "",
+      "elements": {
+      	"id" : {
+      	  "input": "Id"
+      	},
+        "phone": {
+          "input": "Telefono"
+        },
+        "name": {
+          "input": "Nombre"
+        },
+        "address": {
+          "input": "Domicilio"
+        },
+        "zip": {
+          "input": "CP"
+        },
+        "localidad": {
+          "input": "Localidad"
+        },
+        "Provincia": {
+          "input": "Provincia"
+        },
+        "web": {
+          "input": "URL"
+        }
+      },
+      "lon": "Longitud",
+      "lat": "Latitud"
+    },
+    "search": {
+      "feature": "",
+      "elements": {
+        "id" : {
+      	  "input": "Id"
+      	},
+        "phone": {
+          "input": "Telefono"
+        },
+        "name": {
+          "input": "Nombre"
+        },
+        "address": {
+          "input": "Domicilio"
+        },
+        "zip": {
+          "input": "CP"
+        },
+        "localidad": {
+          "input": "Localidad"
+        },
+        "Provincia": {
+          "input": "Provincia"
+        },
+        "web": {
+          "input": "URL"
+        }
+      },
+      "lon": "Longitud",
+      "lat": "Latitud"
+    }
+  }
+}

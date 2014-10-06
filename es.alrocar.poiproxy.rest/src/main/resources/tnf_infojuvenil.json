@@ -1,0 +1,91 @@
+{
+  "format": "csv",
+  "apiKey": "",
+  "csvSeparator": ",",
+  "encoding": "UTF-8",
+  "categories": [
+    "local_tnf_infojuvenil"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://opendatacanarias.es/datos/dataset/3ccd4b3e-9851-47e1-a875-813a7e987573/resource/d42818f5-ce44-4818-90d6-058013431fc8/download/cabtfe01032013sij.csv",
+      "params": []
+    },
+    "search": {
+      "url": "http://opendatacanarias.es/datos/dataset/3ccd4b3e-9851-47e1-a875-813a7e987573/resource/d42818f5-ce44-4818-90d6-058013431fc8/download/cabtfe01032013sij.csv",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "",
+      "elements": {
+      	"name" : {
+      	  "input": "ENTIDAD"
+      	},
+        "address": {
+          "input": "Dirección"
+        },
+        "poblacion": {
+          "input": "Población"
+        },
+        "municipio": {
+          "input": "Municipio"
+        },
+        "phone": {
+          "input": "Teléfono"
+        },
+        "mail": {
+          "input": "Email"
+        },
+        "fax": {
+          "input": "Fax"
+        },
+        "description": {
+          "input": "DetalleDirección"
+        },
+        "zip": {
+          "input": "CodPostal"
+        }
+      },
+      "lon": "Longitud",
+      "lat": "Latitud"
+    },
+    "search": {
+      "feature": "",
+      "elements": {
+              	"name" : {
+      	  "input": "ENTIDAD"
+      	},
+        "address": {
+          "input": "Dirección"
+        },
+        "poblacion": {
+          "input": "Población"
+        },
+        "municipio": {
+          "input": "Municipio"
+        },
+        "phone": {
+          "input": "Teléfono"
+        },
+        "mail": {
+          "input": "Email"
+        },
+        "fax": {
+          "input": "Fax"
+        },
+        "description": {
+          "input": "DetalleDirección"
+        },
+        "zip": {
+          "input": "CodPostal"
+        }
+      },
+      "lon": "Longitud",
+      "lat": "Latitud"
+    }
+  }
+}

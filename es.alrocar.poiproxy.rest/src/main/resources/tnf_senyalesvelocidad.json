@@ -1,0 +1,85 @@
+{
+  "format": "csv",
+  "apiKey": "",
+  "csvSeparator": ",",
+  "encoding": "UTF-8",
+  "categories": [
+    "local_tnf_senyalesvelocidad"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://opendatacanarias.es/datos/dataset/90adc891-8376-417e-9884-935e56987399/resource/bbb30619-121b-4be8-bbcc-4a2aef076f1c/download/senalesdelimitaciondevelocidad.csv",
+      "params": []
+    },
+    "search": {
+      "url": "http://opendatacanarias.es/datos/dataset/90adc891-8376-417e-9884-935e56987399/resource/bbb30619-121b-4be8-bbcc-4a2aef076f1c/download/senalesdelimitaciondevelocidad.csv",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "",
+      "elements": {
+      	"IdCtra" : {
+      	  "input": "IdCtra"
+      	},
+        "valor": {
+          "input": "Valor"
+        },
+        "description": {
+          "input": "Descripción"
+        },
+        "PKHito": {
+          "input": "PKHito"
+        },
+        "Distancia": {
+          "input": "Distancia"
+        },
+        "Situación": {
+          "input": "Situación"
+        },
+        "Sentido": {
+          "input": "Sentido"
+        },
+        "Fecha": {
+          "input": "Fecha"
+        }
+      },
+      "lon": "LONG",
+      "lat": "LAT"
+    },
+    "search": {
+      "feature": "",
+      "elements": {
+        "IdCtra" : {
+      	  "input": "IdCtra"
+      	},
+        "valor": {
+          "input": "Valor"
+        },
+        "description": {
+          "input": "Descripción"
+        },
+        "PKHito": {
+          "input": "PKHito"
+        },
+        "Distancia": {
+          "input": "Distancia"
+        },
+        "Situación": {
+          "input": "Situación"
+        },
+        "Sentido": {
+          "input": "Sentido"
+        },
+        "Fecha": {
+          "input": "Fecha"
+        }
+      },
+      "lon": "LONG",
+      "lat": "LAT"
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "format": "csv",
+  "apiKey": "",
+  "csvSeparator": ",",
+  "encoding": "UTF-8",
+  "categories": [
+    "local_tnf_movilidad"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://opendatacanarias.es/datos/dataset/158d173f-4a58-410a-92cf-fa583fae9ba6/resource/28ebf51e-5aa5-4a22-9b68-2eb93bf3b7d9/download/ull23062013acuerdosmovilidad.csv",
+      "params": []
+    },
+    "search": {
+      "url": "http://opendatacanarias.es/datos/dataset/158d173f-4a58-410a-92cf-fa583fae9ba6/resource/28ebf51e-5aa5-4a22-9b68-2eb93bf3b7d9/download/ull23062013acuerdosmovilidad.csv",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "",
+      "elements": {
+      	"id" : {
+      	  "input": "_id"
+      	},
+        "orden": {
+          "input": "Orden"
+        },
+        "universidad": {
+          "input": "Universidad"
+        },
+        "web": {
+          "input": "Web"
+        },
+        "tipo": {
+          "input": "Tipo"
+        }
+      },
+      "lon": "Longitud",
+      "lat": "Latitud"
+    },
+    "search": {
+      "feature": "",
+      "elements": {
+        "id" : {
+      	  "input": "_id"
+      	},
+        "orden": {
+          "input": "Orden"
+        },
+        "universidad": {
+          "input": "Universidad"
+        },
+        "web": {
+          "input": "Web"
+        },
+        "tipo": {
+          "input": "Tipo"
+        }
+      },
+      "lon": "Longitud",
+      "lat": "Latitud"
+    }
+  }
+}
