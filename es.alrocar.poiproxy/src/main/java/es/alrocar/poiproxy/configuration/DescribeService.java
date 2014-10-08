@@ -75,6 +75,8 @@ public class DescribeService {
 	private HashMap<String, FeatureType> featureTypes = new HashMap<String, FeatureType>();
 	private List<String> categories = new ArrayList<String>();
 
+	private Auth auth = new Auth();
+
 	private String format;
 	private String dateFormat;
 	private String csvSeparator;
@@ -206,6 +208,10 @@ public class DescribeService {
 		String url;
 		ArrayList<String> requestParams;
 		RequestType requestType;
+
+		this.setType(DescribeService.BROWSE_TYPE);
+		requestType = getRequestTypes().get(DescribeService.BROWSE_TYPE);
+
 		if (optionalParam == null) {
 			this.setType(DescribeService.BROWSE_TYPE);
 			requestType = getRequestTypes().get(DescribeService.BROWSE_TYPE);
@@ -223,9 +229,6 @@ public class DescribeService {
 						.get(DescribeService.SEARCH_TYPE);
 			}
 		}
-
-		this.setType(DescribeService.BROWSE_TYPE);
-		requestType = getRequestTypes().get(DescribeService.BROWSE_TYPE);
 
 		url = requestType.getUrl();
 		requestParams = requestType.getParams();
@@ -548,5 +551,17 @@ public class DescribeService {
 
 	public void setDateFormat(String dateFormat) {
 		this.dateFormat = dateFormat;
+	}
+
+	public String getAuthType() {
+		return auth.getType();
+	}
+
+	public Auth getAuth() {
+		return auth;
+	}
+
+	public void setAuth(Auth auth) {
+		this.auth = auth;
 	}
 }
