@@ -90,19 +90,19 @@ Open this URL in your preferred browser:
 
      Returns the points inside the given tile (Z/X/Y) for the given query. The tile notation is the same as [Google Maps uses][tiles_google].
 
-     `http://localhost:8080/poiproxy/browse?service=flickr&z=0&x=0&y=0&search=search_term&callback=whatever`
+     `http://localhost:8080/poiproxy/browse?service=flickr&z=0&x=0&y=0&query=search_term&callback=whatever`
 
 * ***Search by extent***
 
      Returns the points inside the given bounding box for the given query. The coordinate reference system is EPSG:4326
 
-     `http://localhost:8080/poiproxy/browseByExtent?service=flickr&minX=-0.376&minY=39.47&maxX=-0.37&maxY=39.48&search=search_term&callback=whatever`
+     `http://localhost:8080/poiproxy/browseByExtent?service=flickr&minX=-0.376&minY=39.47&maxX=-0.37&maxY=39.48&query=search_term&callback=whatever`
 
 * ***Search by lon,lat and distance***
 
      Returns the points inside a given radius distance of a point for the given query. The coordinate reference system is EPSG:4326
 
-     `http://localhost:8080/poiproxy/browseByLonLat?service=flickr&lon=-0.38&lat=39.46&dist=500&search=search_term&callback=whatever`
+     `http://localhost:8080/poiproxy/browseByLonLat?service=flickr&lon=-0.38&lat=39.46&dist=500&query=search_term&callback=whatever`
 
 POIProxy supports JSONP by adding the parameter `callback`to any request. If not provided then a JSON response is returned.
 
