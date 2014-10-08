@@ -55,6 +55,7 @@ import es.alrocar.jpe.parser.json.JSONJPEParser;
 import es.alrocar.jpe.parser.kml.KMLParser;
 import es.alrocar.jpe.parser.xml.XMLJPEParser;
 import es.alrocar.jpe.writer.GeoJSONWriter;
+import es.alrocar.poiproxy.configuration.AuthTypeEnum;
 import es.alrocar.poiproxy.configuration.DescribeService;
 import es.alrocar.poiproxy.configuration.DescribeServices;
 import es.alrocar.poiproxy.configuration.Param;
@@ -63,6 +64,10 @@ import es.alrocar.poiproxy.configuration.ServiceParams;
 import es.alrocar.poiproxy.exceptions.POIProxyException;
 import es.alrocar.poiproxy.geotools.GeotoolsUtils;
 import es.alrocar.poiproxy.proxy.utiles.Calculator;
+import es.alrocar.poiproxy.request.OauthRequestService;
+import es.alrocar.poiproxy.request.RequestService;
+import es.alrocar.poiproxy.request.RequestServices;
+import es.alrocar.poiproxy.request.SimpleHttpRequestService;
 import es.alrocar.utils.CompressionEnum;
 import es.alrocar.utils.Downloader;
 import es.alrocar.utils.PropertyLocator;
@@ -93,6 +98,8 @@ public class POIProxy {
 	private static POIProxy proxy;
 	private ServiceConfigurationManager serviceManager;
 
+	private RequestServices requestServices;
+
 	private final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
 	public static POIProxy asSingleton() {
@@ -120,10 +127,26 @@ public class POIProxy {
 		// Registra todos los servicios disponibles
 		serviceManager = new ServiceConfigurationManager();
 
+		registerRequestServices();
+
 		JPEParserManager.getInstance().registerJPEParser(new JSONJPEParser());
 		JPEParserManager.getInstance().registerJPEParser(new XMLJPEParser());
 		JPEParserManager.getInstance().registerJPEParser(new CSVParser());
 		JPEParserManager.getInstance().registerJPEParser(new KMLParser());
+	}
+
+	protected void registerRequestServices() {
+		requestServices = RequestServices.getInstance();
+
+		for (AuthTypeEnum authType : AuthTypeEnum.values()) {
+			if (authType.isOauth()) {
+				requestServices.addRequestService(authType,
+						new OauthRequestService());
+			} else {
+				requestServices.addRequestService(authType,
+						new SimpleHttpRequestService());
+			}
+		}
 	}
 
 	/**
@@ -554,11 +577,13 @@ public class POIProxy {
 	 */
 	public String doRequest(String url, DescribeService service, String id)
 			throws Exception {
-		// TODO do it in backgound?
-		Downloader d = new Downloader();
+		RequestService request = requestServices.getRequestService(service
+				.getAuthType());
+		byte[] data = request.download(url, id,
+				PropertyLocator.getInstance().tempFolder + id + File.separator,
+				service.getAuth());
+
 		System.out.println(url);
-		d.downloadFromUrl(url, id, PropertyLocator.getInstance().tempFolder
-				+ id + File.separator, null);
 
 		if (service.getCompression() != null
 				&& service.getCompression().equals(CompressionEnum.ZIP.format)) {
@@ -572,7 +597,7 @@ public class POIProxy {
 					+ id + File.separator + service.getContentFile());
 		}
 
-		return new String(d.getData());
+		return new String(data);
 	}
 
 	/**
