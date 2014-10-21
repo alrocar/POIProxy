@@ -38,6 +38,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -70,11 +72,13 @@ public class DescribeService {
 
 	public static final String TIMESTAMP = "timestamp";
 
+	@JsonIgnore
 	private String apiKey;
 	private HashMap<String, RequestType> requestTypes = new HashMap<String, RequestType>();
 	private HashMap<String, FeatureType> featureTypes = new HashMap<String, FeatureType>();
 	private List<String> categories = new ArrayList<String>();
 
+	@JsonIgnore
 	private Auth auth = new Auth();
 
 	private String format;
@@ -96,6 +100,7 @@ public class DescribeService {
 	 * 
 	 * @return The apiKey
 	 */
+	@JsonIgnore
 	public String getApiKey() {
 		return apiKey;
 	}
@@ -105,6 +110,7 @@ public class DescribeService {
 	 * 
 	 * @param apiKey
 	 */
+	@JsonProperty
 	public void setApiKey(String apiKey) {
 		this.apiKey = apiKey;
 	}
@@ -557,10 +563,12 @@ public class DescribeService {
 		return auth.getType();
 	}
 
+	@JsonIgnore
 	public Auth getAuth() {
 		return auth;
 	}
 
+	@JsonProperty
 	public void setAuth(Auth auth) {
 		this.auth = auth;
 	}
