@@ -2,7 +2,7 @@
   "format": "csv",
   "apiKey": "",
   "csvSeparator": ",",
-  "encoding": "ISO-8859-1",
+  "encoding": "ISO-8859-3",
   "categories": [
     "local_tnf_museum"
   ],
