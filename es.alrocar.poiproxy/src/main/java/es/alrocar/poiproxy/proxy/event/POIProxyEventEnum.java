@@ -9,24 +9,26 @@ import es.alrocar.poiproxy.proxy.POIProxyListener;
  */
 public enum POIProxyEventEnum {
 	
-	BeforeBrowseZXY(10),
-	AfterBrowseZXY(11),
-	BeforeBrowseExtent(20),
-	AfterBrowseExtent(21),
-	BeforeBrowseLonLat(30),
-	AfterBrowseLonLat(31),
-	BeforeSearchZXY(40),
-	AfterSearchZXY(41),
-	BeforeSearchExtent(50),
-	AfterSearchExtent(51),
-	BeforeSearchLonLat(60),
-	AfterSearchLonLat(61),
-	BeforeDescribeService(70),
-	AfterDescribeService(71);
+	BeforeBrowseZXY(10, "BeforeBrowseZXY"),
+	AfterBrowseZXY(11, "AfterBrowseZXY"),
+	BeforeBrowseExtent(20, "BeforeBrowseExtent"),
+	AfterBrowseExtent(21, "AfterBrowseExtent"),
+	BeforeBrowseLonLat(30, "BeforeBrowseLonLat"),
+	AfterBrowseLonLat(31, "AfterBrowseLonLat"),
+	BeforeSearchZXY(40, "BeforeSearchZXY"),
+	AfterSearchZXY(41, "AfterSearchZXY"),
+	BeforeSearchExtent(50, "BeforeSearchExtent"),
+	AfterSearchExtent(51, "AfterSearchExtent"),
+	BeforeSearchLonLat(60, "BeforeSearchLonLat"),
+	AfterSearchLonLat(61, "AfterSearchLonLat"),
+	BeforeDescribeService(70, "BeforeDescribeService"),
+	AfterDescribeService(71, "AfterDescribeService");
 	
 	public int id;
+	public String description;
 	
-	private POIProxyEventEnum(int id) {
+	private POIProxyEventEnum(int id, String description) {
 		this.id = id;
+		this.description = description;
 	}
 }
