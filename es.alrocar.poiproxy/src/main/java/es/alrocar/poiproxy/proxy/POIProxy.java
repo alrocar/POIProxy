@@ -63,6 +63,8 @@ import es.alrocar.poiproxy.configuration.ServiceConfigurationManager;
 import es.alrocar.poiproxy.configuration.ServiceParams;
 import es.alrocar.poiproxy.exceptions.POIProxyException;
 import es.alrocar.poiproxy.geotools.GeotoolsUtils;
+import es.alrocar.poiproxy.proxy.event.POIProxyEvent;
+import es.alrocar.poiproxy.proxy.event.POIProxyEventEnum;
 import es.alrocar.poiproxy.proxy.utiles.Calculator;
 import es.alrocar.poiproxy.request.OauthRequestService;
 import es.alrocar.poiproxy.request.RequestService;
@@ -101,6 +103,8 @@ public class POIProxy {
 	private RequestServices requestServices;
 
 	private final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+
+	private List<POIProxyListener> listeners = new ArrayList<POIProxyListener>();
 
 	public static POIProxy asSingleton() {
 		if (proxy == null) {
@@ -192,8 +196,16 @@ public class POIProxy {
 				CRSFactory.getCRS(MERCATOR_SRS),
 				CRSFactory.getCRS(GEODETIC_SRS));
 
+		notifyListenersBeforeRequest(new POIProxyEvent(
+				POIProxyEventEnum.BeforeBrowseZXY, describeService, e1, z, y,
+				x, null, null, null, null, null));
+
 		String geoJSON = getResponseAsGeoJSON(id, optionalParams,
 				describeService, minXY[0], minXY[1], maxXY[0], maxXY[1], 0, 0);
+
+		notifyListenersAfterParse(new POIProxyEvent(
+				POIProxyEventEnum.AfterBrowseZXY, describeService, e1, z, y, x,
+				null, null, null, null, geoJSON));
 
 		return geoJSON;
 	}
@@ -295,8 +307,18 @@ public class POIProxy {
 		double[] bbox = Calculator.boundingCoordinates(lon, lat,
 				distanceInMeters);
 
+		notifyListenersBeforeRequest(new POIProxyEvent(
+				POIProxyEventEnum.BeforeBrowseLonLat, describeService,
+				new Extent(bbox[0], bbox[1], bbox[2], bbox[3]), null, null,
+				null, lon, lat, distanceInMeters, null, null));
+
 		String geoJSON = getResponseAsGeoJSON(id, optionalParams,
 				describeService, bbox[0], bbox[1], bbox[2], bbox[3], lon, lat);
+
+		notifyListenersBeforeRequest(new POIProxyEvent(
+				POIProxyEventEnum.AfterBrowseLonLat, describeService,
+				new Extent(bbox[0], bbox[1], bbox[2], bbox[3]), null, null,
+				null, lon, lat, distanceInMeters, null, geoJSON));
 
 		return geoJSON;
 	}
@@ -381,8 +403,18 @@ public class POIProxy {
 			double maxY, List<Param> optionalParams) throws Exception {
 		DescribeService describeService = getDescribeServiceByID(id);
 
+		notifyListenersBeforeRequest(new POIProxyEvent(
+				POIProxyEventEnum.BeforeBrowseExtent, describeService,
+				new Extent(minX, minY, maxX, maxY), null, null, null, null,
+				null, null, null, null));
+
 		String geoJSON = getResponseAsGeoJSON(id, optionalParams,
 				describeService, minX, minY, maxX, maxY, 0, 0);
+
+		notifyListenersAfterParse(new POIProxyEvent(
+				POIProxyEventEnum.AfterBrowseExtent, describeService,
+				new Extent(minX, minY, maxX, maxY), null, null, null, null,
+				null, null, null, geoJSON));
 
 		return geoJSON;
 	}
@@ -748,5 +780,39 @@ public class POIProxy {
 			throws POIProxyException {
 		serviceManager.registerServiceConfiguration(service.getId(),
 				describeService, service);
+	}
+
+	/**
+	 * Registers a {@link POIProxyListener}
+	 * 
+	 * @param listener
+	 *            A {@link POIProxyListener} to get notified on {@link POIProxy}
+	 *            events
+	 */
+	public void addPOIProxyListener(POIProxyListener listener) {
+		this.listeners.add(listener);
+	}
+
+	/**
+	 * Removes a registered {@link POIProxyListener}. After removing it, it will
+	 * not receive events anymore
+	 * 
+	 * @param listener
+	 *            The {@link POIProxyListener}
+	 */
+	public void removePOIProxyListener(POIProxyListener listener) {
+		this.listeners.remove(listener);
+	}
+
+	private void notifyListenersBeforeRequest(POIProxyEvent poiProxyEvent) {
+		for (POIProxyListener listener : listeners) {
+			listener.beforeRequest(poiProxyEvent);
+		}
+	}
+
+	private void notifyListenersAfterParse(POIProxyEvent poiProxyEvent) {
+		for (POIProxyListener listener : listeners) {
+			listener.afterParseResponse(poiProxyEvent);
+		}
 	}
 }
