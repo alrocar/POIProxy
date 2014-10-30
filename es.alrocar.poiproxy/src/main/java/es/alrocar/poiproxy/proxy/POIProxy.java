@@ -196,9 +196,13 @@ public class POIProxy {
 				CRSFactory.getCRS(MERCATOR_SRS),
 				CRSFactory.getCRS(GEODETIC_SRS));
 
-		notifyListenersBeforeRequest(new POIProxyEvent(
+		boolean makeRequest = notifyListenersBeforeRequest(new POIProxyEvent(
 				POIProxyEventEnum.BeforeBrowseZXY, describeService, e1, z, y,
 				x, null, null, null, null, null));
+
+		if (!makeRequest) {
+			// TODO load from cache
+		}
 
 		String geoJSON = getResponseAsGeoJSON(id, optionalParams,
 				describeService, minXY[0], minXY[1], maxXY[0], maxXY[1], 0, 0);
@@ -685,6 +689,10 @@ public class POIProxy {
 	 */
 	public void destroy() {
 		logger.debug("Goodbye POIProxy");
+		for (POIProxyListener listener : listeners) {
+			listener.destroy();
+		}
+		logger.debug("ZZZzzzzzZZzzZz");
 	}
 
 	/**
@@ -804,10 +812,13 @@ public class POIProxy {
 		this.listeners.remove(listener);
 	}
 
-	private void notifyListenersBeforeRequest(POIProxyEvent poiProxyEvent) {
+	private boolean notifyListenersBeforeRequest(POIProxyEvent poiProxyEvent) {
+		boolean result = true;
 		for (POIProxyListener listener : listeners) {
-			listener.beforeRequest(poiProxyEvent);
+			result = result || listener.beforeRequest(poiProxyEvent);
 		}
+
+		return result;
 	}
 
 	private void notifyListenersAfterParse(POIProxyEvent poiProxyEvent) {
