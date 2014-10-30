@@ -105,7 +105,7 @@ public class Downloader {
 		}
 	}
 
-	public void downloadFromUrl(String mapURL, String fileName,
+	public byte[] downloadFromUrl(String mapURL, String fileName,
 			String downloadPath, Cancellable cancellable) throws Exception {
 		xmldata = null;
 		InputStream in = null;
@@ -145,7 +145,7 @@ public class Downloader {
 				if (cancellable != null && cancellable.getCanceled()) {
 					logger.debug("Download cancelled");
 					file.delete();
-					return;
+					return null;
 				}
 
 				// System.gc();
@@ -167,6 +167,7 @@ public class Downloader {
 			Constants.closeStream(in);
 			Constants.closeStream(out);
 		}
+		return xmldata;
 	}
 
 	public void downloadFromUrlBigFile(String mapURL, String fileName,
