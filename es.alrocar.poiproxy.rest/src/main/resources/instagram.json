@@ -9,7 +9,7 @@
   "dateFormat": "timestamp",
   "requestTypes": {
     "browse": {
-      "url": "https://api.instagram.com/v1/media/search?lat=__LAT__&lng=__LON__&access_token=__KEY__",
+      "url": "https://api.instagram.com/v1/media/search?lat=__LAT__&lng=__LON__&distance=__DISTKM__&access_token=__KEY__",
       "params": ["MIN_TIMESTAMP=__FROMDATE__", "MAX_TIMESTAMP=__TODATE__"]
     },
     "search": {
