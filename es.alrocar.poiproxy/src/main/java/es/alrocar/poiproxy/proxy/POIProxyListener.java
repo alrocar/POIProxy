@@ -24,6 +24,12 @@ public interface POIProxyListener {
 	 * 
 	 * @param event
 	 *            The {@link POIProxyEvent}
+	 * @return if returns false, then the request is cancelled
 	 */
-	public void beforeRequest(POIProxyEvent poiProxyEvent);
+	public boolean beforeRequest(POIProxyEvent poiProxyEvent);
+
+	/**
+	 * Called when {@link POIProxy} is destroyed. Free resources please.
+	 */
+	public void destroy();
 }
