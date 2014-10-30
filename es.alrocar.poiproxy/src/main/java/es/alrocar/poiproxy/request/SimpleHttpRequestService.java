@@ -11,15 +11,11 @@ import es.alrocar.utils.Downloader;
  */
 public class SimpleHttpRequestService implements RequestService {
 
-	private Downloader d;
+	private Downloader d = new Downloader();
 
 	@Override
 	public byte[] download(String URL, String fileName, String downloadPath,
 			Auth authElem) throws Exception {
-		d = new Downloader();
-
-		d.downloadFromUrl(URL, fileName, downloadPath, null);
-
-		return d.getData();
+		return d.downloadFromUrl(URL, fileName, downloadPath, null);
 	}
 }
