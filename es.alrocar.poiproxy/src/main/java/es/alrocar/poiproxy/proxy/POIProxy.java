@@ -537,7 +537,7 @@ public class POIProxy {
 		params.putParam(ServiceParams.DIST,
 				String.valueOf((int) distanceMeters));
 		params.putParam(ServiceParams.DISTKM,
-				String.valueOf((int) distanceMeters / 1000));
+				String.valueOf(Double.valueOf(distanceMeters) / 1000));
 		params.putParam(ServiceParams.KEY, describeService.getApiKey());
 
 		if (optionalParams != null) {
