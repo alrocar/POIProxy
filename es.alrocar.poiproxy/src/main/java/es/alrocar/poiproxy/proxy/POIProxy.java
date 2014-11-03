@@ -102,7 +102,7 @@ public class POIProxy {
 
 	private RequestServices requestServices;
 
-	private final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+	public final static String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
 	private List<POIProxyListener> listeners = new ArrayList<POIProxyListener>();
 
