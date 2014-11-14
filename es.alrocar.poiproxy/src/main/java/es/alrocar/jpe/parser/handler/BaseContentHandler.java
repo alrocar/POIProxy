@@ -38,10 +38,12 @@ import java.util.ArrayList;
 import org.xml.sax.Attributes;
 
 import es.alrocar.jpe.parser.JPEParser;
+import es.alrocar.jpe.parser.handler.xml.XMLSimpleContentHandler;
 import es.alrocar.poiproxy.configuration.DescribeService;
 import es.alrocar.poiproxy.configuration.FeatureType;
 import es.alrocar.poiproxy.proxy.LocalFilter;
 import es.alrocar.utils.Utils;
+import es.prodevelop.gvsig.mini.geom.impl.jts.JTSFeature;
 
 /**
  * Base class that can be used by a json or xml content handler to throw the
@@ -76,6 +78,9 @@ public class BaseContentHandler {
 
 	private LocalFilter localFilter;
 	private boolean hasPassedLocalFilter = false;
+	private String currentObjectKey;
+	private String currentLocalName;
+	private boolean firstObject = true;
 
 	/**
 	 * A {@link LocalFilter} instance to apply filters on the features to be
@@ -156,11 +161,12 @@ public class BaseContentHandler {
 	 * @param arg0
 	 */
 	public void processValue(String arg0) {
-//		System.out.println(this.currentKey);
-//		System.out.println(arg0);
+		// System.out.println(this.currentKey);
+		// System.out.println(arg0);
 		if (arg0 == null || this.currentFeatureGeoJSON == null
 				|| arg0.trim().isEmpty())
 			return;
+		// System.out.println(this.currentKey + " : " + arg0);
 		FeatureType fType = this.currentFeatureType;
 		final int size = fType.getElements().size();
 
@@ -171,12 +177,13 @@ public class BaseContentHandler {
 		}
 
 		for (String destProp : fType.getElements().keySet()) {
-			if (fType.getElements().get(destProp).getInput()
-					.compareTo(this.currentKey.toString()) == 0) {
+			if (hasToBeParsed(fType, destProp)) {
 				checkValidAttribute(localFilter, arg0.toString());
 				if (writerContentHandler != null)
 					writerContentHandler.addElementToFeature(arg0.toString(),
 							destProp, this.currentFeatureGeoJSON);
+
+				// System.out.println(destProp + " --- " + arg0);
 				contentHandler.addElementToFeature(arg0.toString(), destProp,
 						this.currentFeature);
 				return;
@@ -257,6 +264,11 @@ public class BaseContentHandler {
 		return;
 	}
 
+	protected boolean hasToBeParsed(FeatureType fType, String destProp) {
+		return fType.getElements().get(destProp)
+				.apply(this.currentKey.toString(), this.currentObjectKey);
+	}
+
 	private boolean checkValidAttribute(LocalFilter localFilter,
 			String attribute) {
 		if (localFilter == null) {
@@ -274,6 +286,7 @@ public class BaseContentHandler {
 	 * {@link JPEContentHandler} registered
 	 */
 	public void start() {
+		firstObject = true;
 		featureCollection = null;
 		currentFeature = null;
 		currentPoint = null;
@@ -308,7 +321,7 @@ public class BaseContentHandler {
 	public void startNewElement(String localName, Attributes atts) {
 		String arg0 = localName;
 		this.currentKey = arg0;
-		if (arg0.compareTo(this.currentFeatureType.getFeature()) == 0) {
+		if (isEndElement(arg0)) {
 			endNewElement();
 			if (writerContentHandler != null) {
 				this.currentFeatureGeoJSON = writerContentHandler
@@ -320,6 +333,8 @@ public class BaseContentHandler {
 			this.currentPoint = contentHandler.startPoint();
 		}
 
+		this.currentLocalName = localName;
+
 		// FIXME improve the support for attributes
 		if (atts != null) {
 			int length = atts.getLength();
@@ -329,6 +344,19 @@ public class BaseContentHandler {
 				this.currentKey = key;
 				this.processValue(value);
 			}
+		}
+	}
+
+	protected boolean isEndElement(String arg0) {
+		if (this.firstObject) {
+			this.firstObject = false;
+			return true;
+		}
+
+		if (this.currentFeatureType.getEndFeature() != null) {
+			return arg0.compareTo(this.currentFeatureType.getEndFeature()) == 0;
+		} else {
+			return arg0.compareTo(this.currentFeatureType.getFeature()) == 0;
 		}
 	}
 
@@ -391,5 +419,12 @@ public class BaseContentHandler {
 
 		return handler.addElementToFeature(categories, JPEParser.CATEGORIES,
 				feature);
+	}
+
+	/**
+	 * FIXME ver como aplicar esto a {@link XMLSimpleContentHandler}
+	 */
+	public void onStartObject() {
+		this.currentObjectKey = this.currentLocalName;
 	}
 }

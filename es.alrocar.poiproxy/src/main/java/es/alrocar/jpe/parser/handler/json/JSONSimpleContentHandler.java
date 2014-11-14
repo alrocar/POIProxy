@@ -114,7 +114,7 @@ public class JSONSimpleContentHandler extends BaseContentHandler implements
 	 * {@inheritDoc}
 	 */
 	public boolean startObject() throws ParseException, IOException {
-		// TODO Auto-generated method stub
+		this.onStartObject();
 		return true;
 	}
 

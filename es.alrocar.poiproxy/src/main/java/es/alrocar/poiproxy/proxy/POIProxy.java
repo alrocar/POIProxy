@@ -105,6 +105,7 @@ public class POIProxy {
 	public final static String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
 	private List<POIProxyListener> listeners = new ArrayList<POIProxyListener>();
+	private CacheListener cache;
 
 	public static POIProxy asSingleton() {
 		if (proxy == null) {
@@ -196,22 +197,42 @@ public class POIProxy {
 				CRSFactory.getCRS(MERCATOR_SRS),
 				CRSFactory.getCRS(GEODETIC_SRS));
 
-		boolean makeRequest = notifyListenersBeforeRequest(new POIProxyEvent(
+		POIProxyEvent beforeEvent = new POIProxyEvent(
 				POIProxyEventEnum.BeforeBrowseZXY, describeService, e1, z, y,
-				x, null, null, null, null, null));
+				x, null, null, null, null, null, null);
+		notifyListenersBeforeRequest(beforeEvent);
 
-		if (!makeRequest) {
-			// TODO load from cache
+		String geoJSON = getCacheData(beforeEvent);
+
+		if (geoJSON == null) {
+			geoJSON = getResponseAsGeoJSON(id, optionalParams, describeService,
+					minXY[0], minXY[1], maxXY[0], maxXY[1], 0, 0);
 		}
 
-		String geoJSON = getResponseAsGeoJSON(id, optionalParams,
-				describeService, minXY[0], minXY[1], maxXY[0], maxXY[1], 0, 0);
-
-		notifyListenersAfterParse(new POIProxyEvent(
+		POIProxyEvent afterEvent = new POIProxyEvent(
 				POIProxyEventEnum.AfterBrowseZXY, describeService, e1, z, y, x,
-				null, null, null, null, geoJSON));
+				null, null, null, null, geoJSON, null);
+
+		storeData(afterEvent);
+
+		notifyListenersAfterParse(afterEvent);
 
 		return geoJSON;
+	}
+
+	private void storeData(POIProxyEvent afterEvent) {
+		if (this.cache != null) {
+			this.cache.write(afterEvent);
+		}
+	}
+
+	private String getCacheData(POIProxyEvent beforeEvent) {
+		String result = null;
+		if (this.cache != null) {
+			result = this.cache.read(beforeEvent);
+		}
+
+		return result;
 	}
 
 	/**
@@ -314,7 +335,7 @@ public class POIProxy {
 		notifyListenersBeforeRequest(new POIProxyEvent(
 				POIProxyEventEnum.BeforeBrowseLonLat, describeService,
 				new Extent(bbox[0], bbox[1], bbox[2], bbox[3]), null, null,
-				null, lon, lat, distanceInMeters, null, null));
+				null, lon, lat, distanceInMeters, null, null, null));
 
 		String geoJSON = getResponseAsGeoJSON(id, optionalParams,
 				describeService, bbox[0], bbox[1], bbox[2], bbox[3], lon, lat);
@@ -322,7 +343,7 @@ public class POIProxy {
 		notifyListenersBeforeRequest(new POIProxyEvent(
 				POIProxyEventEnum.AfterBrowseLonLat, describeService,
 				new Extent(bbox[0], bbox[1], bbox[2], bbox[3]), null, null,
-				null, lon, lat, distanceInMeters, null, geoJSON));
+				null, lon, lat, distanceInMeters, null, geoJSON, null));
 
 		return geoJSON;
 	}
@@ -410,7 +431,7 @@ public class POIProxy {
 		notifyListenersBeforeRequest(new POIProxyEvent(
 				POIProxyEventEnum.BeforeBrowseExtent, describeService,
 				new Extent(minX, minY, maxX, maxY), null, null, null, null,
-				null, null, null, null));
+				null, null, null, null, null));
 
 		String geoJSON = getResponseAsGeoJSON(id, optionalParams,
 				describeService, minX, minY, maxX, maxY, 0, 0);
@@ -418,7 +439,7 @@ public class POIProxy {
 		notifyListenersAfterParse(new POIProxyEvent(
 				POIProxyEventEnum.AfterBrowseExtent, describeService,
 				new Extent(minX, minY, maxX, maxY), null, null, null, null,
-				null, null, null, geoJSON));
+				null, null, null, geoJSON, null));
 
 		return geoJSON;
 	}
@@ -656,8 +677,16 @@ public class POIProxy {
 			LocalFilter localFilter) throws NoParserRegisteredException {
 		final JPEParser jpeParser = JPEParserManager.getInstance()
 				.getJPEParser(service.getFormat());
-		jpeParser.parse(json, service, localFilter);
+		ArrayList<JTSFeature> features = jpeParser.parse(json, service,
+				localFilter);
+
 		String geoJSON = jpeParser.getGeoJSON();
+
+		POIProxyEvent event = new POIProxyEvent(
+				POIProxyEventEnum.FeaturesParsed, service, null, null, null,
+				null, null, null, null, null, geoJSON, features);
+		notifyListenersOnNewFeatures(event);
+
 		// Escribir en cache el geoJSON
 		return geoJSON;
 	}
@@ -821,9 +850,22 @@ public class POIProxy {
 		return result;
 	}
 
+	private boolean notifyListenersOnNewFeatures(POIProxyEvent poiProxyEvent) {
+		boolean result = true;
+		for (POIProxyListener listener : listeners) {
+			listener.onNewFeatures(poiProxyEvent);
+		}
+
+		return result;
+	}
+
 	private void notifyListenersAfterParse(POIProxyEvent poiProxyEvent) {
 		for (POIProxyListener listener : listeners) {
 			listener.afterParseResponse(poiProxyEvent);
 		}
+	}
+
+	public void setCacheListener(CacheListener listener) {
+		this.cache = listener;
 	}
 }

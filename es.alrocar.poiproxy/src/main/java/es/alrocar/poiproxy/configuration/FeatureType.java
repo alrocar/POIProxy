@@ -57,6 +57,7 @@ public class FeatureType {
 	private String lat;
 	private Map<String, Element> elements = new HashMap<String, Element>();
 	private String feature;
+	private String endFeature;
 	private String combinedLonLat;
 	private String separator;
 	private Boolean reverseLonLat = false;
@@ -156,5 +157,13 @@ public class FeatureType {
 
 	public void setReverseLonLat(Boolean reverseLonLat) {
 		this.reverseLonLat = reverseLonLat;
+	}
+
+	public String getEndFeature() {
+		return endFeature;
+	}
+
+	public void setEndFeature(String endFeature) {
+		this.endFeature = endFeature;
 	}
 }

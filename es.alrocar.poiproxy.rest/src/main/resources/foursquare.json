@@ -5,34 +5,42 @@
     "social",
     "foursquare"
   ],
+  "dateFormat": "timestamp",
   "requestTypes": {
     "browse": {
-      "url": "https://api.foursquare.com/v2/venues/search?ll=__LAT__,__LON__&__KEY__&v=20131016",
+      "url": "https://api.foursquare.com/v2/venues/search?ll=__LAT__,__LON__&__KEY__&v=20131016&limit=50&radius=__DIST__",
       "params": []
     },
     "search": {
-      "url": "https://api.foursquare.com/v2/venues/search?ll=__LAT__,__LON__&__KEY__&v=20131016&query=__QUERY__",
+      "url": "https://api.foursquare.com/v2/venues/search?ll=__LAT__,__LON__&__KEY__&v=20131016&query=__QUERY__&limit=50&radius=__DIST__",
       "params": []
     }
   },
   "featureTypes": {
     "browse": {
       "feature": "id",
+      "endFeature": "referralId",
       "elements": {
         "id": {
-          "input": "id"
-        },
-        "checkinsCount": {
-          "input": "checkinsCount"
+          "input": "id",
+          "avoid": ["categories"]
         },
         "address": {
           "input": "address"
         },
+        "checkinsCount": {
+          "input": "checkinsCount"
+        },
         "name": {
-          "input": "name"
+          "input": "name",
+          "avoid": ["categories"]
+        },
+        "category": {
+          "input": "name",
+          "parent": "categories"
         },
         "country": {
-          "input": "state"
+          "input": "country"
         },
         "usersCount": {
           "input": "usersCount"
@@ -42,28 +50,42 @@
         },
         "city": {
           "input": "city"
+        },
+        "weight": {
+          "input": "count",
+          "parent": "hereNow"
+        },
+        "zip": {
+          "input": "postalCode"
         }
       },
       "lon": "lng",
       "lat": "lat"
     },
     "search": {
-      "feature": "id",
+            "feature": "id",
+      "endFeature": "referralId",
       "elements": {
         "id": {
-          "input": "id"
-        },
-        "checkinsCount": {
-          "input": "checkinsCount"
+          "input": "id",
+          "avoid": ["categories"]
         },
         "address": {
           "input": "address"
         },
+        "checkinsCount": {
+          "input": "checkinsCount"
+        },
         "name": {
-          "input": "name"
+          "input": "name",
+          "avoid": ["categories"]
+        },
+        "category": {
+          "input": "name",
+          "parent": "categories"
         },
         "country": {
-          "input": "state"
+          "input": "country"
         },
         "usersCount": {
           "input": "usersCount"
@@ -73,6 +95,13 @@
         },
         "city": {
           "input": "city"
+        },
+        "weight": {
+          "input": "count",
+          "parent": "hereNow"
+        },
+        "zip": {
+          "input": "postalCode"
         }
       },
       "lon": "lng",

@@ -1,6 +1,7 @@
 package es.alrocar.poiproxy.proxy;
 
 import es.alrocar.poiproxy.proxy.event.POIProxyEvent;
+import es.prodevelop.gvsig.mini.geom.impl.jts.JTSFeature;
 
 /**
  * An Observer interface for {@link POIProxyEvent}
@@ -32,4 +33,13 @@ public interface POIProxyListener {
 	 * Called when {@link POIProxy} is destroyed. Free resources please.
 	 */
 	public void destroy();
+
+	/**
+	 * Called when new {@link JTSFeature}s have been parsed
+	 * 
+	 * @param poiProxyEvent
+	 *            The {@link POIProxyEvent}
+	 * @return
+	 */
+	public void onNewFeatures(POIProxyEvent poiProxyEvent);
 }
