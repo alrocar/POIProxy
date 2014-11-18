@@ -82,7 +82,7 @@ public class DescribeService {
 	private Auth auth = new Auth();
 
 	private String format;
-	private String dateFormat;
+	private String dateFormat = TIMESTAMP;
 	private String csvSeparator;
 	private String encoding;
 	private String numberSeparator;
