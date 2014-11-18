@@ -33,6 +33,7 @@
 
 package es.alrocar.poiproxy.configuration;
 
+import java.util.List;
 
 /**
  * 
@@ -42,6 +43,8 @@ package es.alrocar.poiproxy.configuration;
 public class Element {
 
 	private String input;
+	private String parent;
+	private List<String> avoid;
 
 	public String getInput() {
 		return input;
@@ -51,4 +54,48 @@ public class Element {
 		this.input = input;
 	}
 
+	public String getParent() {
+		return parent;
+	}
+
+	public void setParent(String parent) {
+		this.parent = parent;
+	}
+
+	public List<String> getAvoid() {
+		return avoid;
+	}
+
+	public void setAvoid(List<String> avoid) {
+		this.avoid = avoid;
+	}
+
+	public boolean apply(String currentKey, String currentObjectKey) {
+		boolean apply = true;
+		if (this.parent != null) {
+			if (this.parent.compareTo(currentObjectKey) == 0
+					&& this.input.compareTo(currentKey) == 0) {
+				apply = true;
+			} else {
+				apply = false;	
+			}
+		} else {
+			if (getAvoid() != null && !getAvoid().isEmpty()) {
+				if (this.input.compareTo(currentKey) == 0) {
+					for (String avoidKey : getAvoid()) {
+						if (avoidKey.compareTo(currentObjectKey) == 0) {
+							apply = false;
+							break;
+						}
+					}
+				} else {
+					apply = false;
+				}
+			} else {
+				apply = this.input.compareTo(currentKey) == 0;
+			}
+		}
+
+		return apply;
+	}
 }

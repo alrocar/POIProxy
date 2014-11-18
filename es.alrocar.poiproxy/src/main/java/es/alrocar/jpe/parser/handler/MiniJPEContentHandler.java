@@ -159,7 +159,7 @@ public class MiniJPEContentHandler implements JPEContentHandler {
 		try {
 			if (feat.getGeometry().getGeometry().getCoordinate().x == 0
 					&& feat.getGeometry().getGeometry().getCoordinate().y == 0) {
-				return featureCollection;
+				//return featureCollection;
 			}
 		} catch (BaseException e) {
 			e.printStackTrace();

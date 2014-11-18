@@ -23,7 +23,8 @@ public enum POIProxyEventEnum {
 	AfterSearchLonLat(61, "AfterSearchLonLat"),
 	BeforeDescribeService(70, "BeforeDescribeService"),
 	AfterDescribeService(71, "AfterDescribeService"),
-	ReadLonLat(72, "ReadLonLat");
+	ReadLonLat(72, "ReadLonLat"),
+	FeaturesParsed(80, "FeaturesParsed");;
 	
 	public int id;
 	public String description;

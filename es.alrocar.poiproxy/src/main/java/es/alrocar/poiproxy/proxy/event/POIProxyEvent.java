@@ -1,9 +1,12 @@
 package es.alrocar.poiproxy.proxy.event;
 
+import java.util.List;
+
 import es.alrocar.poiproxy.configuration.DescribeService;
 import es.alrocar.poiproxy.proxy.POIProxy;
 import es.alrocar.poiproxy.proxy.POIProxyListener;
 import es.prodevelop.gvsig.mini.geom.Extent;
+import es.prodevelop.gvsig.mini.geom.impl.jts.JTSFeature;
 
 /**
  * An Event that {@link POIProxy} notifies to {@link POIProxyListener}
@@ -26,10 +29,12 @@ public class POIProxyEvent {
 	private DescribeService describeService;
 
 	private String parsedData;
+	private List<JTSFeature> features;
 
 	public POIProxyEvent(POIProxyEventEnum type, DescribeService service,
 			Extent extent, Integer z, Integer y, Integer x, Double lon,
-			Double lat, Double distance, String query, String parsedData) {
+			Double lat, Double distance, String query, String parsedData,
+			List<JTSFeature> features) {
 		super();
 		this.extent = extent;
 		this.describeService = service;
@@ -42,6 +47,7 @@ public class POIProxyEvent {
 		this.distance = distance;
 		this.query = query;
 		this.parsedData = parsedData;
+		this.setFeatures(features);
 	}
 
 	public DescribeService getDescribeService() {
@@ -86,5 +92,13 @@ public class POIProxyEvent {
 
 	public String getParsedData() {
 		return parsedData;
+	}
+
+	public List<JTSFeature> getFeatures() {
+		return features;
+	}
+
+	public void setFeatures(List<JTSFeature> features) {
+		this.features = features;
 	}
 }

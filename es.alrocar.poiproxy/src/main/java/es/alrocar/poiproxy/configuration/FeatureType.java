@@ -57,12 +57,10 @@ public class FeatureType {
 	private String lat;
 	private Map<String, Element> elements = new HashMap<String, Element>();
 	private String feature;
+	private String endFeature;
 	private String combinedLonLat;
 	private String separator;
-<<<<<<< HEAD
-=======
 	private Boolean reverseLonLat = false;
->>>>>>> prode/master
 
 	/**
 	 * An attribute that specify the lon lat attributes when they are on an
@@ -152,8 +150,6 @@ public class FeatureType {
 	public void setSeparator(String separator) {
 		this.separator = separator;
 	}
-<<<<<<< HEAD
-=======
 
 	public Boolean getReverseLonLat() {
 		return reverseLonLat;
@@ -162,5 +158,12 @@ public class FeatureType {
 	public void setReverseLonLat(Boolean reverseLonLat) {
 		this.reverseLonLat = reverseLonLat;
 	}
->>>>>>> prode/master
+
+	public String getEndFeature() {
+		return endFeature;
+	}
+
+	public void setEndFeature(String endFeature) {
+		this.endFeature = endFeature;
+	}
 }
