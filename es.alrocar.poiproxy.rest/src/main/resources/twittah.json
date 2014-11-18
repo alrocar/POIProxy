@@ -1,0 +1,82 @@
+{
+  "format": "json",
+  "apiKey": "",
+  "categories": [
+    "twitter"
+  ],
+  "dateFormat": "timestamp",
+  "requestTypes": {
+    "browse": {
+      "url": "http://54.76.158.96/poiproxy-rt/realtime/get?lon=__LON__&lat=__LAT__&radius=__DIST__&limit=1000",
+      "params": ["MIN_TIMESTAMP=__FROMDATE__", "MAX_TIMESTAMP=__TODATE__"]
+    },
+    "search": {
+      "url": "",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "type",
+      "elements": {
+        "name": {
+          "input": "text"
+        },
+        "user_name": {
+          "input": "user_name"
+        },
+        "date": {
+          "input": "created_date"
+        },
+        "image": {
+          "input": "image_url"
+        },
+        "web": {
+          "input": "other_ulr"
+        },
+        "weight": {
+          "input": "weight"
+        },
+        "social_network": {
+          "input": "social_network"
+        },
+        "content_type": {
+          "input": "content_type"
+        }
+      },
+      "lon": "coordinates",
+      "lat": "coordinates"
+    },
+    "search": {
+      "feature": "type",
+      "elements": {
+        "name": {
+          "input": "text"
+        },
+        "user_name": {
+          "input": "user_name"
+        },
+        "date": {
+          "input": "created_date"
+        },
+        "image": {
+          "input": "image_url"
+        },
+        "web": {
+          "input": "other_ulr"
+        },
+        "weight": {
+          "input": "weight"
+        },
+        "social_network": {
+          "input": "social_network"
+        },
+        "content_type": {
+          "input": "content_type"
+        }
+      },
+      "lon": "coordinates",
+      "lat": "coordinates"
+    }
+  }
+}

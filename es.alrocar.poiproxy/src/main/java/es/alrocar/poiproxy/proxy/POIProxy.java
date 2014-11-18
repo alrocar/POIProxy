@@ -203,8 +203,10 @@ public class POIProxy {
 		notifyListenersBeforeRequest(beforeEvent);
 
 		String geoJSON = getCacheData(beforeEvent);
+		boolean fromCache = true;
 
 		if (geoJSON == null) {
+			fromCache = false;
 			geoJSON = getResponseAsGeoJSON(id, optionalParams, describeService,
 					minXY[0], minXY[1], maxXY[0], maxXY[1], 0, 0);
 		}
@@ -213,7 +215,9 @@ public class POIProxy {
 				POIProxyEventEnum.AfterBrowseZXY, describeService, e1, z, y, x,
 				null, null, null, null, geoJSON, null);
 
-		storeData(afterEvent);
+		if (!fromCache) {
+			storeData(afterEvent);
+		}
 
 		notifyListenersAfterParse(afterEvent);
 
@@ -332,18 +336,32 @@ public class POIProxy {
 		double[] bbox = Calculator.boundingCoordinates(lon, lat,
 				distanceInMeters);
 
-		notifyListenersBeforeRequest(new POIProxyEvent(
+		POIProxyEvent beforeEvent = new POIProxyEvent(
 				POIProxyEventEnum.BeforeBrowseLonLat, describeService,
 				new Extent(bbox[0], bbox[1], bbox[2], bbox[3]), null, null,
-				null, lon, lat, distanceInMeters, null, null, null));
+				null, lon, lat, distanceInMeters, null, null, null);
 
-		String geoJSON = getResponseAsGeoJSON(id, optionalParams,
-				describeService, bbox[0], bbox[1], bbox[2], bbox[3], lon, lat);
+		notifyListenersBeforeRequest(beforeEvent);
 
-		notifyListenersBeforeRequest(new POIProxyEvent(
+		String geoJSON = getCacheData(beforeEvent);
+		boolean fromCache = true;
+
+		if (geoJSON == null) {
+			fromCache = false;
+			geoJSON = getResponseAsGeoJSON(id, optionalParams, describeService,
+					bbox[0], bbox[1], bbox[2], bbox[3], lon, lat);
+		}
+
+		POIProxyEvent afterEvent = new POIProxyEvent(
 				POIProxyEventEnum.AfterBrowseLonLat, describeService,
 				new Extent(bbox[0], bbox[1], bbox[2], bbox[3]), null, null,
-				null, lon, lat, distanceInMeters, null, geoJSON, null));
+				null, lon, lat, distanceInMeters, null, geoJSON, null);
+
+		if (!fromCache) {
+			storeData(afterEvent);
+		}
+
+		notifyListenersBeforeRequest(afterEvent);
 
 		return geoJSON;
 	}
@@ -428,18 +446,32 @@ public class POIProxy {
 			double maxY, List<Param> optionalParams) throws Exception {
 		DescribeService describeService = getDescribeServiceByID(id);
 
-		notifyListenersBeforeRequest(new POIProxyEvent(
+		POIProxyEvent beforeEvent = new POIProxyEvent(
 				POIProxyEventEnum.BeforeBrowseExtent, describeService,
 				new Extent(minX, minY, maxX, maxY), null, null, null, null,
-				null, null, null, null, null));
+				null, null, null, null, null);
 
-		String geoJSON = getResponseAsGeoJSON(id, optionalParams,
-				describeService, minX, minY, maxX, maxY, 0, 0);
+		notifyListenersBeforeRequest(beforeEvent);
 
-		notifyListenersAfterParse(new POIProxyEvent(
+		String geoJSON = this.getCacheData(beforeEvent);
+		boolean fromCache = true;
+
+		if (geoJSON == null) {
+			fromCache = false;
+			geoJSON = getResponseAsGeoJSON(id, optionalParams, describeService,
+					minX, minY, maxX, maxY, 0, 0);
+		}
+
+		POIProxyEvent afterEvent = new POIProxyEvent(
 				POIProxyEventEnum.AfterBrowseExtent, describeService,
 				new Extent(minX, minY, maxX, maxY), null, null, null, null,
-				null, null, null, geoJSON, null));
+				null, null, null, geoJSON, null);
+
+		if (!fromCache) {
+			storeData(afterEvent);	
+		}
+
+		notifyListenersAfterParse(afterEvent);
 
 		return geoJSON;
 	}
