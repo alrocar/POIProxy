@@ -7,7 +7,7 @@
   "dateFormat": "timestamp",
   "requestTypes": {
     "browse": {
-      "url": "http://54.76.158.96/poiproxy-rt/realtime/get?lon=0&lat=0&radius=1000&limit=1000",
+      "url": "http://54.76.158.96/poiproxy-rt/realtime/get?lon=__LON__&lat=__LAT__&radius=__DIST__&limit=1000",
       "params": ["from=__FROMDATE__", "to=__TODATE__"]
     },
     "search": {
