@@ -208,7 +208,7 @@ public class POIProxy {
 		if (geoJSON == null) {
 			fromCache = false;
 			geoJSON = getResponseAsGeoJSON(id, optionalParams, describeService,
-					minXY[0], minXY[1], maxXY[0], maxXY[1], 0, 0);
+					minXY[0], minXY[1], maxXY[0], maxXY[1], 0, 0, beforeEvent);
 		}
 
 		POIProxyEvent afterEvent = new POIProxyEvent(
@@ -349,7 +349,7 @@ public class POIProxy {
 		if (geoJSON == null) {
 			fromCache = false;
 			geoJSON = getResponseAsGeoJSON(id, optionalParams, describeService,
-					bbox[0], bbox[1], bbox[2], bbox[3], lon, lat);
+					bbox[0], bbox[1], bbox[2], bbox[3], lon, lat, beforeEvent);
 		}
 
 		POIProxyEvent afterEvent = new POIProxyEvent(
@@ -459,7 +459,7 @@ public class POIProxy {
 		if (geoJSON == null) {
 			fromCache = false;
 			geoJSON = getResponseAsGeoJSON(id, optionalParams, describeService,
-					minX, minY, maxX, maxY, 0, 0);
+					minX, minY, maxX, maxY, 0, 0, beforeEvent);
 		}
 
 		POIProxyEvent afterEvent = new POIProxyEvent(
@@ -468,7 +468,7 @@ public class POIProxy {
 				null, null, null, geoJSON, null);
 
 		if (!fromCache) {
-			storeData(afterEvent);	
+			storeData(afterEvent);
 		}
 
 		notifyListenersAfterParse(afterEvent);
@@ -706,7 +706,8 @@ public class POIProxy {
 	 * @throws NoParserRegisteredException
 	 */
 	public String onResponseReceived(String json, DescribeService service,
-			LocalFilter localFilter) throws NoParserRegisteredException {
+			LocalFilter localFilter, POIProxyEvent tempEvent)
+			throws NoParserRegisteredException {
 		final JPEParser jpeParser = JPEParserManager.getInstance()
 				.getJPEParser(service.getFormat());
 		ArrayList<JTSFeature> features = jpeParser.parse(json, service,
@@ -714,10 +715,21 @@ public class POIProxy {
 
 		String geoJSON = jpeParser.getGeoJSON();
 
-		POIProxyEvent event = new POIProxyEvent(
-				POIProxyEventEnum.FeaturesParsed, service, null, null, null,
-				null, null, null, null, null, geoJSON, features);
+		POIProxyEventEnum ev = POIProxyEventEnum.FeaturesParsedLonLat;
+		if (tempEvent.getLat() == null) {
+			ev = POIProxyEventEnum.FeaturesParsedZXY;
+		}
+
+		POIProxyEvent event = new POIProxyEvent(ev, service,
+				tempEvent.getExtent(), tempEvent.getZ(), tempEvent.getY(),
+				tempEvent.getX(), tempEvent.getLon(), tempEvent.getLat(),
+				tempEvent.getDistance(), tempEvent.getQuery(), geoJSON,
+				features);
 		notifyListenersOnNewFeatures(event);
+
+		if (cache != null) {
+			geoJSON = cache.onFeaturesParsed(event);
+		}
 
 		// Escribir en cache el geoJSON
 		return geoJSON;
@@ -807,15 +819,15 @@ public class POIProxy {
 
 	private String getResponseAsGeoJSON(String id, List<Param> optionalParams,
 			DescribeService describeService, double minX, double minY,
-			double maxX, double maxY, double lon, double lat) throws Exception,
-			NoParserRegisteredException {
+			double maxX, double maxY, double lon, double lat,
+			POIProxyEvent event) throws Exception, NoParserRegisteredException {
 		String url = buildRequest(describeService, minX, minY, maxX, maxY,
 				optionalParams, lon, lat);
 
 		String file = doRequest(url, describeService, id);
 
 		String geoJSON = this.onResponseReceived(file, describeService,
-				describeService.getLocalFilter(optionalParams));
+				describeService.getLocalFilter(optionalParams), event);
 		return geoJSON;
 	}
 
