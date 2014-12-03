@@ -37,6 +37,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.codehaus.jackson.JsonNode;
@@ -246,12 +247,12 @@ public class MiniJPEWriterHandler implements JPEContentHandler {
 	/**
 	 * Creates a GeoJSON from a List of {@link JTSFeature}
 	 * 
-	 * @param fc
+	 * @param list
 	 * @return
 	 */
-	public String toJSON(ArrayList<JTSFeature> fc) {
+	public String toJSON(List<JTSFeature> list) {
 		Object fcJSON = this.startFeatureCollection();
-		for (JTSFeature feature : fc) {
+		for (JTSFeature feature : list) {
 			Object f = this.startFeature();
 			Object p = this.startPoint();
 			try {

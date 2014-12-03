@@ -24,7 +24,8 @@ public enum POIProxyEventEnum {
 	BeforeDescribeService(70, "BeforeDescribeService"),
 	AfterDescribeService(71, "AfterDescribeService"),
 	ReadLonLat(72, "ReadLonLat"),
-	FeaturesParsed(80, "FeaturesParsed");;
+	FeaturesParsedZXY(80, "FeaturesParsedZXY"),
+	FeaturesParsedLonLat(81, "FeaturesParsedLonLat");
 	
 	public int id;
 	public String description;

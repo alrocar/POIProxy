@@ -20,4 +20,12 @@ public interface CacheListener extends POIProxyListener {
 	 */
 	public void write(POIProxyEvent event);
 
+	/**
+	 * Features have been parsed
+	 * 
+	 * @param event
+	 * @return
+	 * 
+	 */
+	public String onFeaturesParsed(POIProxyEvent event);
 }
