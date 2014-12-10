@@ -58,6 +58,7 @@ import es.alrocar.poiproxy.proxy.LocalFilter;
 import es.prodevelop.gvsig.mini.geom.impl.base.Point;
 import es.prodevelop.gvsig.mini.geom.impl.jts.JTSFeature;
 
+@SuppressWarnings("deprecation")
 public class KMLParser extends DefaultJPEParser {
 
 	@SuppressWarnings({ "deprecation" })

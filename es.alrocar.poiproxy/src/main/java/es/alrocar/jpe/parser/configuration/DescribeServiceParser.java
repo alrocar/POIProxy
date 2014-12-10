@@ -33,10 +33,6 @@
 
 package es.alrocar.jpe.parser.configuration;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
