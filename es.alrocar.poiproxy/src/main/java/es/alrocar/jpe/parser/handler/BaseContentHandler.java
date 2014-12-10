@@ -43,7 +43,6 @@ import es.alrocar.poiproxy.configuration.DescribeService;
 import es.alrocar.poiproxy.configuration.FeatureType;
 import es.alrocar.poiproxy.proxy.LocalFilter;
 import es.alrocar.utils.Utils;
-import es.prodevelop.gvsig.mini.geom.impl.jts.JTSFeature;
 
 /**
  * Base class that can be used by a json or xml content handler to throw the
