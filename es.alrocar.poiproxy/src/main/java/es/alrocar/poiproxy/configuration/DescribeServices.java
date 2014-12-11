@@ -46,11 +46,16 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
+import com.wordnik.swagger.annotations.ApiModel;
+import com.wordnik.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value = "DescribeServices", description = "Contains the available services to use in the browse API operations of POIProxy")
 public class DescribeServices {
 
 	private Map<String, DescribeService> services = new HashMap<String, DescribeService>();
 	private ObjectMapper mapper = new ObjectMapper();
 
+	@ApiModelProperty(value = "Services registered in POIProxy to use in the browse API operations", notes = "key-value pairs, where key is the name of the service and value its configuration. Use the name of the service as the service parameter in browse API operations")
 	public Map<String, DescribeService> getServices() {
 		return services;
 	}
@@ -83,6 +88,7 @@ public class DescribeServices {
 	 * 
 	 * @return
 	 */
+	@ApiModelProperty(value = "Categories of services registered. Not used at the moment")
 	public List<String> getCategories() {
 		Set<String> keySet = this.services.keySet();
 		Iterator<String> it = keySet.iterator();

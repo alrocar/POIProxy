@@ -72,6 +72,7 @@
 			</activation>
 			<properties>
 				<env>LOCAL</env>
+				<basepath>http://localhost:2080/poiproxy</basepath>
 			</properties>
 		</profile>
 		<profile>
@@ -81,6 +82,7 @@
 			</activation>
 			<properties>
 				<env>DEV</env>
+				<basepath>http://camerun.prodevelop.es/poiproxy</basepath>
 			</properties>
 		</profile>
 		<profile>
@@ -90,6 +92,7 @@
 			</activation>
 			<properties>
 				<env>PRE</env>
+				<basepath>http://app.prodevelop.es/poiproxy</basepath>
 			</properties>
 		</profile>
 		<profile>
@@ -99,6 +102,7 @@
 			</activation>
 			<properties>
 				<env>PRO</env>
+				<basepath>http://app.prodevelop.es/poiproxy</basepath>
 			</properties>
 		</profile>
 	</profiles>
