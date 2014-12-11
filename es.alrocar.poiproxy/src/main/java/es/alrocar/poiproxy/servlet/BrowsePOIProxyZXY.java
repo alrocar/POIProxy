@@ -58,7 +58,7 @@ public class BrowsePOIProxyZXY extends BrowseQueryServerResource {
 	public BrowsePOIProxyZXY(Context context, Request request, Response response) {
 		getVariants().add(new Variant(MediaType.TEXT_PLAIN));
 	}
-
+	
 	@Override
 	protected Representation get() throws ResourceException {
 		Request r = this.getRequest();

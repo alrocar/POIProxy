@@ -43,6 +43,9 @@ import org.codehaus.jackson.annotate.JsonProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.wordnik.swagger.annotations.ApiModel;
+import com.wordnik.swagger.annotations.ApiModelProperty;
+
 import es.alrocar.jpe.parser.JPEParser;
 import es.alrocar.jpe.parser.JPEParserFormatEnum;
 import es.alrocar.jpe.parser.configuration.DescribeServiceParser;
@@ -58,6 +61,7 @@ import es.alrocar.utils.CompressionEnum;
  * @author albertoromeu
  * 
  */
+@ApiModel(description = "The configuration of a registered POI service in POIProxy")
 public class DescribeService {
 
 	private final static Logger logger = LoggerFactory
@@ -80,7 +84,7 @@ public class DescribeService {
 
 	@JsonIgnore
 	private Auth auth = new Auth();
-
+	
 	private String format;
 	private String dateFormat = TIMESTAMP;
 	private String csvSeparator;

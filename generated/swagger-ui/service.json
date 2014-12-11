@@ -1,0 +1,17 @@
+{
+  "apiVersion" : "v2",
+  "swaggerVersion" : "1.2",
+  "apis" : [ {
+    "path" : "/browse.{format}",
+    "description" : "Operations to browse POIs"
+  } ],
+  "info" : {
+    "title" : "POIProxy API",
+    "description" : "POIProxy API endpoints for browsing and searching\n\t\t\t\t\t\t\t\t\tPOIs",
+    "termsOfServiceUrl" : "mediafi.org/?portfolio=poiproxy#tab-terms-conditions",
+    "contact" : "aromeu#prodevelop$es",
+    "license" : "Apache 2.0",
+    "licenseUrl" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+  },
+  "basePath" : "http://localhost/poiproxy"
+}

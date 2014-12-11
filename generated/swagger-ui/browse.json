@@ -1,0 +1,7 @@
+{
+  "apiVersion" : "v2",
+  "swaggerVersion" : "1.2",
+  "basePath" : "http://localhost/poiproxy",
+  "resourcePath" : "/browse",
+  "produces" : [ "application/json" ]
+}
