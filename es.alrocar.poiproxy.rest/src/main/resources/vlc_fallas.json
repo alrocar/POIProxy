@@ -1,0 +1,79 @@
+{
+  "format": "csv",
+  "apiKey": "",
+  "csvSeparator": ";",
+  "encoding": "ISO-8859-1",
+  "categories": [
+    "local_vlc_fallas"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://mapas.valencia.es/lanzadera/opendata/Monumentos_falleros/CSV",
+      "params": []
+    },
+    "search": {
+      "url": "http://mapas.valencia.es/lanzadera/opendata/Monumentos_falleros/CSV",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "",
+      "elements": {
+      	"name" : {
+      	  "input": "nombre"
+      	},
+        "id": {
+          "input": "id"
+        },
+        "seccion": {
+          "input": "seccion"
+        },
+        "faller": {
+          "input": "fallera"
+        },
+        "presidente": {
+          "input": "presidente"
+        },
+        "artista": {
+          "input": "artista"
+        },
+        "lema": {
+          "input": "lema"
+        }
+      },
+      "lon": "X",
+      "lat": "Y"
+    },
+    "search": {
+      "feature": "",
+      "elements": {
+      	"name" : {
+      	  "input": "nombre"
+      	},
+        "id": {
+          "input": "id"
+        },
+        "seccion": {
+          "input": "seccion"
+        },
+        "faller": {
+          "input": "fallera"
+        },
+        "presidente": {
+          "input": "presidente"
+        },
+        "artista": {
+          "input": "artista"
+        },
+        "lema": {
+          "input": "lema"
+        }
+      },
+      "lon": "X",
+      "lat": "Y"
+    }
+  }
+}
