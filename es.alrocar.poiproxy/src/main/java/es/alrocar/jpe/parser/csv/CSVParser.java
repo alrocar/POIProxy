@@ -85,7 +85,7 @@ public class CSVParser extends DefaultJPEParser {
 								|| filter.apply(element);
 					}
 
-					addAttribute(element, feature, destProp);
+					addAttribute(service.encode(element), feature, destProp);
 				}
 
 				try {

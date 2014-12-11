@@ -133,7 +133,8 @@ public class KMLParser extends DefaultJPEParser {
 								hasPassedFilter = hasPassedFilter
 										|| filter.apply(attribute);
 							}
-							addAttribute(attribute, feature, destProp);
+							addAttribute(service.encode(attribute), feature,
+									destProp);
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
