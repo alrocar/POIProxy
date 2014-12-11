@@ -686,7 +686,7 @@ public class POIProxy {
 					+ id + File.separator + service.getContentFile());
 		}
 
-		return new String(data);
+		return new String(data, service.getEncoding());
 	}
 
 	/**

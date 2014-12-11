@@ -33,6 +33,7 @@
 
 package es.alrocar.poiproxy.configuration;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -71,7 +72,7 @@ public class DescribeService {
 
 	public final static String SEARCH_TYPE = "search";
 	public final static String BROWSE_TYPE = "browse";
-	private static final String DEFAULT_ENCODING = "UTF-8";
+	public static final String DEFAULT_ENCODING = "UTF-8";
 	public static final String DEFAULT_SRS = "EPSG:4326";
 
 	public static final String TIMESTAMP = "timestamp";
@@ -84,7 +85,7 @@ public class DescribeService {
 
 	@JsonIgnore
 	private Auth auth = new Auth();
-	
+
 	private String format;
 	private String dateFormat = TIMESTAMP;
 	private String csvSeparator;
@@ -245,6 +246,15 @@ public class DescribeService {
 
 		String optionalUrl = processRequestParams(requestParams, params);
 		return url + optionalUrl;
+	}
+
+	public String encode(String element) {
+		try {
+			return new String(element.getBytes(this.getEncoding()),
+					DescribeService.DEFAULT_ENCODING);
+		} catch (UnsupportedEncodingException e) {
+			return element;
+		}
 	}
 
 	private String processRequestParams(ArrayList<String> requestParams,

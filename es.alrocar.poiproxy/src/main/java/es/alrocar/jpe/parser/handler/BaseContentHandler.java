@@ -179,11 +179,11 @@ public class BaseContentHandler {
 			if (hasToBeParsed(fType, destProp)) {
 				checkValidAttribute(localFilter, arg0.toString());
 				if (writerContentHandler != null)
-					writerContentHandler.addElementToFeature(arg0.toString(),
+					writerContentHandler.addElementToFeature(service.encode(arg0.toString()),
 							destProp, this.currentFeatureGeoJSON);
 
 				// System.out.println(destProp + " --- " + arg0);
-				contentHandler.addElementToFeature(arg0.toString(), destProp,
+				contentHandler.addElementToFeature(service.encode(arg0.toString()), destProp,
 						this.currentFeature);
 				return;
 			}
@@ -408,7 +408,7 @@ public class BaseContentHandler {
 
 	public Object fillService(JPEContentHandler handler, Object feature,
 			DescribeService service) {
-		return handler.addElementToFeature(service.getId(), JPEParser.SERVICE,
+		return handler.addElementToFeature(service.encode(service.getId()), JPEParser.SERVICE,
 				feature);
 	}
 
@@ -416,8 +416,8 @@ public class BaseContentHandler {
 			DescribeService service) {
 		String categories = service.getCategoriesAsString();
 
-		return handler.addElementToFeature(categories, JPEParser.CATEGORIES,
-				feature);
+		return handler.addElementToFeature(service.encode(categories),
+				JPEParser.CATEGORIES, feature);
 	}
 
 	/**

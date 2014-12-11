@@ -2,8 +2,8 @@
   "apiVersion" : "v2",
   "swaggerVersion" : "1.2",
   "apis" : [ {
-    "path" : "/browse.{format}",
-    "description" : "Operations to browse POIs"
+    "path" : "/poiproxy.{format}",
+    "description" : "Operations to browse and search POIs and list configured POI services"
   } ],
   "info" : {
     "title" : "POIProxy API",
@@ -13,5 +13,5 @@
     "license" : "Apache 2.0",
     "licenseUrl" : "http://www.apache.org/licenses/LICENSE-2.0.html"
   },
-  "basePath" : "http://localhost/poiproxy"
+  "basePath" : "http://localhost:2080/poiproxy"
 }
