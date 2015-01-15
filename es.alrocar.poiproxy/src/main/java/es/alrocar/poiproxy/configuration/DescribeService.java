@@ -250,6 +250,9 @@ public class DescribeService {
 
 	public String encode(String element) {
 		try {
+			if (this.getFormat().equals(FormatEnum.JSON.name)) {
+				return element;
+			}
 			return new String(element.getBytes(this.getEncoding()),
 					DescribeService.DEFAULT_ENCODING);
 		} catch (UnsupportedEncodingException e) {

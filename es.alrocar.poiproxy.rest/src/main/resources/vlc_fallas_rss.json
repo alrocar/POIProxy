@@ -1,0 +1,72 @@
+{
+  "format": "json",
+  "apiKey": "",
+  "encoding": "ISO-8859-1",
+  "categories": [
+    "local_vlc_fallasrss"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://158.42.188.5:8080/rssfallas?id=50",
+      "params": []
+    },
+    "search": {
+      "url": "http://158.42.188.5:8080/rssfallas?id=50",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "id",
+      "elements": {
+      	"name" : {
+      	  "input": "title"
+      	},
+        "id": {
+          "input": "id"
+        },
+        "description": {
+          "input": "description"
+        },
+        "date": {
+          "input": "datetime"
+        },
+        "url": {
+          "input": "link"
+        },
+        "img": {
+          "input": "img"
+        }
+      },
+      "lon": "x",
+      "lat": "y"
+    },
+    "search": {
+      "feature": "id",
+      "elements": {
+      	"name" : {
+      	  "input": "title"
+      	},
+        "id": {
+          "input": "id"
+        },
+        "description": {
+          "input": "description"
+        },
+        "date": {
+          "input": "datetime"
+        },
+        "url": {
+          "input": "link"
+        },
+        "img": {
+          "input": "img"
+        }
+      },
+      "lon": "x",
+      "lat": "y"
+    }
+  }
+}

@@ -1,8 +1,7 @@
 {
-  "format": "csv",
+  "format": "json",
   "apiKey": "",
   "csvSeparator": ";",
-  "encoding": "ISO-8859-1",
   "categories": [
     "local_vlc_fallas"
   ],
@@ -10,17 +9,17 @@
   "useLocalFilter": true,
   "requestTypes": {
     "browse": {
-      "url": "http://mapas.valencia.es/lanzadera/opendata/Monumentos_falleros/CSV",
+      "url": "http://mapas.valencia.es/lanzadera/opendata/Monumentos_falleros/JSON",
       "params": []
     },
     "search": {
-      "url": "http://mapas.valencia.es/lanzadera/opendata/Monumentos_falleros/CSV",
+      "url": "http://mapas.valencia.es/lanzadera/opendata/Monumentos_falleros/JSON",
       "params": []
     }
   },
   "featureTypes": {
     "browse": {
-      "feature": "",
+      "feature": "id",
       "elements": {
       	"name" : {
       	  "input": "nombre"
@@ -44,11 +43,11 @@
           "input": "lema"
         }
       },
-      "lon": "X",
-      "lat": "Y"
+      "lon": "coordinates",
+      "lat": "coordinates"
     },
     "search": {
-      "feature": "",
+      "feature": "id",
       "elements": {
       	"name" : {
       	  "input": "nombre"
@@ -72,8 +71,8 @@
           "input": "lema"
         }
       },
-      "lon": "X",
-      "lat": "Y"
+      "lon": "coordinates",
+      "lat": "coordinates"
     }
   }
 }
