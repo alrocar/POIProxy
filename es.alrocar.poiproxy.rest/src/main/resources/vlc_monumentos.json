@@ -1,5 +1,5 @@
 {
-  "format": "csv",
+  "format": "json",
   "apiKey": "",
   "csvSeparator": ";",
   "categories": [
