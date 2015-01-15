@@ -19,7 +19,7 @@
   },
   "featureTypes": {
     "browse": {
-      "feature": "id",
+      "feature": "nombre",
       "elements": {
       	"name" : {
       	  "input": "nombre"
@@ -41,35 +41,32 @@
         }
       },
       "lon": "coordinates",
-      "lat": "coordinates",
+      "lat": "coordinates"
     },
     "search": {
-      "feature": "id",
+      "feature": "nombre",
       "elements": {
       	"name" : {
       	  "input": "nombre"
       	},
         "id": {
-          "input": "id"
+          "input": "idnotes"
         },
-        "seccion": {
-          "input": "seccion"
+        "numpol": {
+          "input": "numpol"
         },
-        "faller": {
-          "input": "fallera"
+        "codvia": {
+          "input": "codvia"
         },
-        "presidente": {
-          "input": "presidente"
+        "telefono": {
+          "input": "telefono"
         },
-        "artista": {
-          "input": "artista"
-        },
-        "lema": {
-          "input": "lema"
+        "ruta": {
+          "input": "ruta"
         }
       },
       "lon": "coordinates",
-      "lat": "coordinates",
+      "lat": "coordinates"
     }
   }
 }
