@@ -1,0 +1,75 @@
+{
+  "format": "csv",
+  "apiKey": "",
+  "csvSeparator": ";",
+  "categories": [
+    "local_vlc_monumentos"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://mapas.valencia.es/lanzadera/opendata/Monumentos-turisticos/JSON",
+      "params": []
+    },
+    "search": {
+      "url": "http://mapas.valencia.es/lanzadera/opendata/Monumentos-turisticos/JSON",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "id",
+      "elements": {
+      	"name" : {
+      	  "input": "nombre"
+      	},
+        "id": {
+          "input": "idnotes"
+        },
+        "numpol": {
+          "input": "numpol"
+        },
+        "codvia": {
+          "input": "codvia"
+        },
+        "telefono": {
+          "input": "telefono"
+        },
+        "ruta": {
+          "input": "ruta"
+        }
+      },
+      "lon": "coordinates",
+      "lat": "coordinates",
+    },
+    "search": {
+      "feature": "id",
+      "elements": {
+      	"name" : {
+      	  "input": "nombre"
+      	},
+        "id": {
+          "input": "id"
+        },
+        "seccion": {
+          "input": "seccion"
+        },
+        "faller": {
+          "input": "fallera"
+        },
+        "presidente": {
+          "input": "presidente"
+        },
+        "artista": {
+          "input": "artista"
+        },
+        "lema": {
+          "input": "lema"
+        }
+      },
+      "lon": "coordinates",
+      "lat": "coordinates",
+    }
+  }
+}
