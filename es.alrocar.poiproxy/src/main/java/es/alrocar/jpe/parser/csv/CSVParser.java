@@ -1,6 +1,5 @@
 /*
- * Licensed to Prodevelop SL under one
- * or more contributor license agreements.  See the NOTICE file
+ * Licensed to Prodevelop SL under one* or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
  * regarding copyright ownership.  The Prodevelop SL licenses this file
  * to you under the Apache License, Version 2.0 (the
@@ -38,30 +37,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-
-import es.alrocar.jpe.parser.DefaultJPEParser;
-import es.alrocar.jpe.parser.JPEParser;
-=======
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import es.alrocar.csv.CsvReader;
 import es.alrocar.jpe.parser.DefaultJPEParser;
->>>>>>> prode/master
 import es.alrocar.jpe.parser.JPEParserFormatEnum;
 import es.alrocar.poiproxy.configuration.DescribeService;
 import es.alrocar.poiproxy.proxy.LocalFilter;
 import es.alrocar.utils.Utils;
-<<<<<<< HEAD
-import es.prodevelop.csv.CsvReader;
-import es.prodevelop.gvsig.mini.geom.AttributePoint.Attribute;
-=======
->>>>>>> prode/master
 import es.prodevelop.gvsig.mini.geom.impl.base.Point;
 import es.prodevelop.gvsig.mini.geom.impl.jts.JTSFeature;
 
