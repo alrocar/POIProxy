@@ -93,7 +93,15 @@ public class JPEParserManager {
 					"No parser registered for format: " + format);
 		}
 
-		return parser;
+		try {
+			return parser.getClass().newInstance();
+		} catch (InstantiationException e) {
+			throw new NoParserRegisteredException(
+					"No parser registered for format: " + format);
+		} catch (IllegalAccessException e) {
+			throw new NoParserRegisteredException(
+					"No parser registered for format: " + format);
+		}
 	}
 
 }
