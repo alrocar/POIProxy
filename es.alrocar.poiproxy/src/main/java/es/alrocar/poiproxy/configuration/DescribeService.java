@@ -34,6 +34,7 @@
 package es.alrocar.poiproxy.configuration;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -45,7 +46,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.wordnik.swagger.annotations.ApiModel;
-import com.wordnik.swagger.annotations.ApiModelProperty;
 
 import es.alrocar.jpe.parser.JPEParser;
 import es.alrocar.jpe.parser.JPEParserFormatEnum;
@@ -282,12 +282,20 @@ public class DescribeService {
 		return optionalUrl.toString();
 	}
 
+	public String encodeParam(String param) {
+		try {
+			return URLEncoder.encode(param, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return param;
+		}
+	}
+
 	protected void addOriginalParams(ServiceParams params,
 			StringBuffer optionalUrl) {
 		for (String key : params.getParams().keySet()) {
 			if (!ParamEnum.from(key) && !isSpecialParam(key)) {
 				optionalUrl.append("&" + key + "="
-						+ params.getParams().get(key));
+						+ (params.getParams().get(key)));
 			}
 		}
 	}

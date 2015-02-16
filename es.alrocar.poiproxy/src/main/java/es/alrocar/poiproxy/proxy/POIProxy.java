@@ -625,9 +625,10 @@ public class POIProxy {
 	protected String getValue(ServiceParams params, String key,
 			DescribeService describeService) throws POIProxyException {
 		if (params.isDate(key)) {
-			return getValueForDate(params, key, describeService);
+			return describeService.encodeParam(getValueForDate(params, key,
+					describeService));
 		} else {
-			return params.getValueForParam(key);
+			return describeService.encodeParam(params.getValueForParam(key));
 		}
 	}
 

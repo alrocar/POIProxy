@@ -11,11 +11,11 @@
   "requestTypes": {
     "browse": {
       "url": "http://158.42.188.5:8080/fic2/fallas/rss?z=0",
-      "params": ["fromDate=__FROMDATE__"]
+      "params": []
     },
     "search": {
       "url": "http://158.42.188.5:8080/fic2/fallas/rss?z=0",
-      "params": ["fromDate=__FROMDATE__"]
+      "params": []
     }
   },
   "featureTypes": {
