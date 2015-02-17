@@ -1,7 +1,6 @@
 {
   "format": "json",
   "apiKey": "",
-  "encoding": "ISO-8859-1",
   "categories": [
     "local_vlc_fallasrss"
   ],
