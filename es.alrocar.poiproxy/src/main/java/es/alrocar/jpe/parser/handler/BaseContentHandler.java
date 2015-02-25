@@ -142,9 +142,9 @@ public class BaseContentHandler {
 	 * {@link #setJPEWriteContentHandler(JPEContentHandler)}
 	 */
 	public void end() {
-		if (((ArrayList) this.featureCollection).size() == 0) {
+//		if (((ArrayList) this.featureCollection).size() == 0) {
 			this.endNewElement();
-		}
+//		}
 		contentHandler.endFeatureCollection(this.featureCollection);
 		if (writerContentHandler != null)
 			geoJSON = writerContentHandler.endFeatureCollection(geoJSON);
