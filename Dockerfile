@@ -1,3 +1,5 @@
-FROM jeanblanchard/busybox-tomcat
+FROM tomcat
 
-RUN curl -ksL http://github.com/tai-lab/POIProxy/releases/download/20150226/poiproxy.war -o /opt/tomcat/webapps/poiproxy.war
+ADD es.alrocar.poiproxy.rest/target/poiproxy.war /usr/local/tomcat/webapps/
+
+CMD ["catalina.sh", "run"]
