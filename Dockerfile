@@ -1,5 +1,3 @@
-FROM tomcat
+FROM jeanblanchard/busybox-tomcat
 
-ADD es.alrocar.poiproxy.rest/target/poiproxy.war /usr/local/tomcat/webapps/
-
-CMD ["catalina.sh", "run"]
+RUN curl -ksL https://github.com/Prodevelop/POIProxy/releases/download/v2.0-SNAPSHOT-23032015/poiproxy.war -o /opt/tomcat/webapps/poiproxy.war
