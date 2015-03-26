@@ -41,6 +41,7 @@ import org.restlet.Response;
 import org.restlet.data.Form;
 import org.restlet.data.MediaType;
 import org.restlet.data.Parameter;
+import org.restlet.data.Status;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.representation.Variant;
@@ -58,7 +59,7 @@ public class BrowsePOIProxyZXY extends BrowseQueryServerResource {
 	public BrowsePOIProxyZXY(Context context, Request request, Response response) {
 		getVariants().add(new Variant(MediaType.TEXT_PLAIN));
 	}
-	
+
 	@Override
 	protected Representation get() throws ResourceException {
 		Request r = this.getRequest();
@@ -79,7 +80,8 @@ public class BrowsePOIProxyZXY extends BrowseQueryServerResource {
 					this.extractParams(params));
 			// System.out.println(geoJSON);
 		} catch (Exception e) {
-			return new StringRepresentation(
+			throw new ResourceException(
+					Status.SERVER_ERROR_INTERNAL,
 					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the browse service, check that your URL is of the type '/browse?service=panoramio&z=0&x=0&y=0&callback=whatever'"
 							+ " - " + e.getMessage());
 		}
@@ -87,6 +89,7 @@ public class BrowsePOIProxyZXY extends BrowseQueryServerResource {
 		String callback = params.get(ParamEnum.CALLBACK.name);
 
 		if (callback == null) {
+
 			return new StringRepresentation(geoJSON, MediaType.APPLICATION_JSON);
 		} else if (callback.compareTo("?") == 0) {
 			return new StringRepresentation("poiproxy(" + geoJSON + ");",
