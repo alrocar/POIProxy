@@ -41,6 +41,7 @@ import org.restlet.Response;
 import org.restlet.data.Form;
 import org.restlet.data.MediaType;
 import org.restlet.data.Parameter;
+import org.restlet.data.Status;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.representation.Variant;
@@ -80,9 +81,10 @@ public class BrowsePOIProxyBBox extends BrowseQueryServerResource {
 					Double.valueOf(params.get(ParamEnum.MAXY.name)),
 					this.extractParams(params));
 		} catch (Exception e) {
-			return new StringRepresentation(
-					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the browseByExtent service, check that your URL is of the type '/browseByExtent?service=XXXXX&minX=-180&minY=-90&maxX=180&maxY=90&callback=whatever' "
-							+ e.getMessage() + " - " + e.getMessage());
+			throw new ResourceException(
+					Status.SERVER_ERROR_INTERNAL,
+					"An unexpected error ocurred, please contact the administrator \n\n. Probably the service parameter you provided is not a valid service. You are accessing the browseByExtent service, check that your URL is of the type '/browseByExtent?service=panoramio&minX=1&minY=1&maxX=1&maxY=1&callback=whatever'"
+							+ " - " + e.getMessage());
 		}
 
 		String callback = params.get(ParamEnum.CALLBACK.name);

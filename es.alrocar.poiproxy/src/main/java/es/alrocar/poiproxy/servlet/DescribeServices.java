@@ -41,6 +41,7 @@ import org.restlet.Response;
 import org.restlet.data.Form;
 import org.restlet.data.MediaType;
 import org.restlet.data.Parameter;
+import org.restlet.data.Status;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.representation.Variant;
@@ -76,7 +77,8 @@ public class DescribeServices extends ServerResource {
 		try {
 			services = proxy.getAvailableServices();
 		} catch (Exception e) {
-			return new StringRepresentation(
+			throw new ResourceException(
+					Status.SERVER_ERROR_INTERNAL,
 					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the describeServices service, check that your URL is of the type '/describeServices'"
 							+ " - " + e.getMessage());
 		}

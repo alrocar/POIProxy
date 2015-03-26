@@ -41,6 +41,7 @@ import org.restlet.Response;
 import org.restlet.data.Form;
 import org.restlet.data.MediaType;
 import org.restlet.data.Parameter;
+import org.restlet.data.Status;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.representation.Variant;
@@ -80,9 +81,10 @@ public class BrowsePOIProxyLonLat extends BrowseQueryServerResource {
 					Double.valueOf(params.get(ParamEnum.DIST.name)),
 					this.extractParams(params));
 		} catch (Exception e) {
-			return new StringRepresentation(
-					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the browseByLonLat service, check that your URL is of the type '/browseByLonLat?service=XXXXX&lon=-0.38&lat=39.6&distance=500&callback=whatever'"
-							+ ServiceConfigurationManager.CONFIGURATION_DIR + " - " + e.getMessage());
+			throw new ResourceException(
+					Status.SERVER_ERROR_INTERNAL,
+					"An unexpected error ocurred, please contact the administrator \n\n. Probably the service parameter you provided is not a valid service. You are accessing the browseByLonLat service, check that your URL is of the type '/browseByLonLat?service=panoramio&lon=1&lat=1&dist=10&callback=whatever'"
+							+ " - " + e.getMessage());
 		}
 
 		String callback = params.get(ParamEnum.CALLBACK.name);
