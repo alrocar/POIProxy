@@ -1,0 +1,419 @@
+swagger: "2.0"
+info:
+  description: POIProxy API endpoints for browsing and searching POIs
+  version: 2.0-SNAPSHOT
+  title: POIProxy API
+  termsOfService: "mediafi.org/?portfolio=poiproxy#tab-terms-conditions"
+  contact:
+    name: Alberto Romeu
+    url: "http://www.prodevelop.es"
+    email: "aromeu@prodevelop.es"
+  license:
+    name: Apache 2.0
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: app.prodevelop.es
+basePath: /poiproxy
+schemes:
+  - http
+paths:
+  /browse:
+    get:
+      tags:
+        - poiproxy
+      summary: Get POIs using a tile vector scheme
+      description: "This API operation is used to get POIs from a POIProxy service contained in a vector tile. See http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/ to understand the tilling scheme used. The accuracy of the results obtained depends on the origin service and mainly the zoom level. This API operation works well at street level"
+      operationId: zxy
+      produces:
+        - application/json
+      parameters:
+        - name: service
+          in: query
+          description: A valid POIProxy service (see /poiproxy/describeServices)
+          required: true
+          type: string
+        - name: z
+          in: query
+          description: Zoom level
+          required: true
+          type: integer
+          format: int32
+        - name: "y"
+          in: query
+          description: Y tile
+          required: true
+          type: integer
+          format: int32
+        - name: x
+          in: query
+          description: X tile
+          required: true
+          type: integer
+          format: int32
+        - name: query
+          in: query
+          description: A keyword to search. The search operation depends on the service. To know which services allow the search param see /poiproxy/describeServices
+          required: false
+          type: string
+        - name: apiKey
+          in: query
+          description: "Your apiKey to make requests to the origin service. Most services already have an apiKey configured or don't need one, but it is highly recommended to use your own apiKeys in order to avoid Rate Limits. Please refer to the origin service documentation in order to register for an apiKey"
+          required: false
+          type: string
+        - name: callback
+          in: query
+          description: Provide a callback name for JSONP purposes
+          required: false
+          type: string
+        - name: fromDate
+          in: query
+          description: "A date from which get POIs. Use this date_format: yyyy-MM-dd HH:mm:ss. This parameter has to be configured for the service you are requesting, please refer to the /poiproxy/describeServices operation for more info"
+          required: false
+          type: string
+        - name: toDate
+          in: query
+          description: "A date to which get POIs. Use this date_format: yyyy-MM-dd HH:mm:ss. This parameter has to be configured for the service you are requesting, please refer to the /poiproxy/describeServices operation for more info"
+          required: false
+          type: string
+        - name: offset
+          in: query
+          description: "The page from where to start to get results. Use it together with the limit parameter. The origin service has to support pagination, please refer to /poiproxy/describeServices for more info"
+          required: false
+          type: string
+        - name: limit
+          in: query
+          description: "The number of results. Use it together with the offset parameter. The origin service has to support pagination, please refer to /poiproxy/describeServices for more info"
+          required: false
+          type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/FeatureCollection"
+        "500":
+          description: Server error
+  /browseByExtent:
+    get:
+      tags:
+        - poiproxy
+      summary: Get POIs using a bounding box
+      description: This API operation is used to get POIs from a POIProxy service contained in a bounding box. All coordinates use a geodetic reference system. The accuracy of the results obtained depends on the origin service and the radius distance. This API operation works well at street level
+      operationId: bbox
+      produces:
+        - application/json
+      parameters:
+        - name: service
+          in: query
+          description: A valid POIProxy service (see /poiproxy/describeServices)
+          required: true
+          type: string
+        - name: minX
+          in: query
+          description: The minimum X coordinate of the bounding box
+          required: true
+          type: number
+          format: double
+        - name: minY
+          in: query
+          description: The minimum Y coordinate of the bounding box
+          required: true
+          type: number
+          format: double
+        - name: maxX
+          in: query
+          description: The maximum X coordinate of the bounding box
+          required: true
+          type: number
+          format: double
+        - name: maxY
+          in: query
+          description: The maximum Y coordinate of the bounding box
+          required: true
+          type: number
+          format: double
+        - name: query
+          in: query
+          description: A keyword to search. The search operation depends on the service. To know which services allow the search param see /poiproxy/describeServices
+          required: false
+          type: string
+        - name: apiKey
+          in: query
+          description: "Your apiKey to make requests to the origin service. Most services already have an apiKey configured or don't need one, but it is highly recommended to use your own apiKeys in order to avoid Rate Limits. Please refer to the origin service documentation in order to register for an apiKey"
+          required: false
+          type: string
+        - name: callback
+          in: query
+          description: Provide a callback name for JSONP purposes
+          required: false
+          type: string
+        - name: fromDate
+          in: query
+          description: "A date from which get POIs. Use this date_format: yyyy-MM-dd HH:mm:ss. This parameter has to be configured for the service you are requesting, please refer to the /poiproxy/describeServices operation for more info"
+          required: false
+          type: string
+        - name: toDate
+          in: query
+          description: "A date to which get POIs. Use this date_format: yyyy-MM-dd HH:mm:ss. This parameter has to be configured for the service you are requesting, please refer to the /poiproxy/describeServices operation for more info"
+          required: false
+          type: string
+        - name: offset
+          in: query
+          description: "The page from where to start to get results. Use it together with the limit parameter. The origin service has to support pagination, please refer to /poiproxy/describeServices for more info"
+          required: false
+          type: string
+        - name: limit
+          in: query
+          description: "The number of results. Use it together with the offset parameter. The origin service has to support pagination, please refer to /poiproxy/describeServices for more info"
+          required: false
+          type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/FeatureCollection"
+        "500":
+          description: Server error
+  /browseByLonLat:
+    get:
+      tags:
+        - poiproxy
+      summary: Get POIs using a point and radius
+      description: This API operation is used to get POIs from a POIProxy service at a distance of a point. All coordinates use a geodetic reference system. The accuracy of the results obtained depends on the origin service and the radius distance. This API operation works well at street level
+      operationId: lonlat
+      produces:
+        - application/json
+      parameters:
+        - name: service
+          in: query
+          description: A valid POIProxy service (see /poiproxy/describeServices)
+          required: true
+          type: string
+        - name: lon
+          in: query
+          description: Longitude
+          required: true
+          type: number
+          format: double
+        - name: lat
+          in: query
+          description: Latitude
+          required: true
+          type: number
+          format: double
+        - name: dist
+          in: query
+          description: Radius distance in meters to browse or search POIs
+          required: true
+          type: integer
+          format: int32
+        - name: query
+          in: query
+          description: A keyword to search. The search operation depends on the service. To know which services allow the search param see /poiproxy/describeServices
+          required: false
+          type: string
+        - name: apiKey
+          in: query
+          description: "Your apiKey to make requests to the origin service. Most services already have an apiKey configured or don't need one, but it is highly recommended to use your own apiKeys in order to avoid Rate Limits. Please refer to the origin service documentation in order to register for an apiKey"
+          required: false
+          type: string
+        - name: callback
+          in: query
+          description: Provide a callback name for JSONP purposes
+          required: false
+          type: string
+        - name: fromDate
+          in: query
+          description: "A date from which get POIs. Use this date_format: yyyy-MM-dd HH:mm:ss. This parameter has to be configured for the service you are requesting, please refer to the /poiproxy/describeServices operation for more info"
+          required: false
+          type: string
+        - name: toDate
+          in: query
+          description: "A date to which get POIs. Use this date_format: yyyy-MM-dd HH:mm:ss. This parameter has to be configured for the service you are requesting, please refer to the /poiproxy/describeServices operation for more info"
+          required: false
+          type: string
+        - name: offset
+          in: query
+          description: "The page from where to start to get results. Use it together with the limit parameter. The origin service has to support pagination, please refer to /poiproxy/describeServices for more info"
+          required: false
+          type: string
+        - name: limit
+          in: query
+          description: "The number of results. Use it together with the offset parameter. The origin service has to support pagination, please refer to /poiproxy/describeServices for more info"
+          required: false
+          type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/FeatureCollection"
+        "500":
+          description: Server error
+  /describeServices:
+    get:
+      tags:
+        - poiproxy
+      summary: "List the available services in POIProxy with their operations, configuration and expected output"
+      description: "Prints every single service configured in POIProxy in a key, value object, where the key that defines a service can be used to other API requests as the service parameter"
+      operationId: describeServices
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/DescribeServices"
+        "500":
+          description: Server error
+definitions:
+  Auth:
+    properties:
+      type:
+        type: string
+      apiKey:
+        type: string
+      apiSecret:
+        type: string
+      accessToken:
+        type: string
+      accessTokenSecret:
+        type: string
+  Crs:
+    properties:
+      type:
+        type: string
+      properties:
+        type: object
+        additionalProperties:
+          type: object
+  DescribeService:
+    properties:
+      apiKey:
+        type: string
+      requestTypes:
+        type: object
+        additionalProperties:
+          $ref: "#/definitions/RequestType"
+      featureTypes:
+        type: object
+        additionalProperties:
+          $ref: "#/definitions/FeatureType"
+      categories:
+        type: array
+        items:
+          type: string
+      auth:
+        $ref: "#/definitions/Auth"
+      format:
+        type: string
+      dateFormat:
+        type: string
+      csvSeparator:
+        type: string
+      encoding:
+        type: string
+      numberSeparator:
+        type: string
+      decimalSeparator:
+        type: string
+      compression:
+        type: string
+      contentFile:
+        type: string
+      useLocalFilter:
+        type: boolean
+      type:
+        type: string
+      id:
+        type: string
+      srs:
+        type: string
+      categoriesAsString:
+        type: string
+      authType:
+        type: string
+    description: The configuration of a registered POI service in POIProxy
+  DescribeServices:
+    properties:
+      services:
+        type: object
+        description: Services registered in POIProxy to use in the browse API operations
+        additionalProperties:
+          $ref: "#/definitions/DescribeService"
+      categories:
+        type: array
+        description: Categories of services registered. Not used at the moment
+        items:
+          type: string
+    description: Contains the available services to use in the browse API operations of POIProxy
+  Element:
+    properties:
+      input:
+        type: string
+      parent:
+        type: string
+      avoid:
+        type: array
+        items:
+          type: string
+  Feature:
+    properties:
+      crs:
+        $ref: "#/definitions/Crs"
+      bbox:
+        type: array
+        items:
+          type: number
+          format: double
+      properties:
+        type: object
+        additionalProperties:
+          type: object
+      id:
+        type: string
+  FeatureCollection:
+    properties:
+      crs:
+        $ref: "#/definitions/Crs"
+      bbox:
+        type: array
+        items:
+          type: number
+          format: double
+      properties:
+        type: object
+        additionalProperties:
+          type: object
+      features:
+        type: array
+        items:
+          $ref: "#/definitions/Feature"
+    discriminator: type
+  FeatureType:
+    properties:
+      lon:
+        type: string
+      lat:
+        type: string
+      elements:
+        type: object
+        additionalProperties:
+          $ref: "#/definitions/Element"
+      feature:
+        type: string
+      endFeature:
+        type: string
+      combinedLonLat:
+        type: string
+      separator:
+        type: string
+      reverseLonLat:
+        type: boolean
+      lonLatSeparator:
+        type: string
+  RequestType:
+    properties:
+      url:
+        type: string
+      params:
+        type: array
+        items:
+          type: string
