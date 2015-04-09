@@ -36,6 +36,7 @@ package es.alrocar.poiproxy.servlet;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
 import org.geojson.FeatureCollection;
 import org.restlet.Application;
@@ -51,6 +52,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiImplicitParam;
 import com.wordnik.swagger.annotations.ApiImplicitParams;
 import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiParam;
 import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
 
@@ -141,7 +143,18 @@ public class POIProxyApplication extends Application {
 	@ApiResponses(value = {
 			@ApiResponse(code = 500, message = "Server error"),
 			@ApiResponse(code = 200, message = "OK", response = FeatureCollection.class) })
-	public void zxy() {
+	public void zxy(
+			@ApiParam(value = "A valid POIProxy service (see /poiproxy/describeServices)", required = true) @QueryParam("service") String service,
+			@ApiParam(value = "Zoom level", required = true) @QueryParam("z") Integer z,
+			@ApiParam(value = "Y tile", required = true) @QueryParam("y") Integer y,
+			@ApiParam(value = "X tile", required = true) @QueryParam("x") Integer x,
+			@ApiParam(value = "A keyword to search. The search operation depends on the service. To know which services allow the search param see /poiproxy/describeServices", required = false) @QueryParam("query") String query,
+			@ApiParam(value = "Your apiKey to make requests to the origin service. Most services already have an apiKey configured or don't need one, but it is highly recommended to use your own apiKeys in order to avoid Rate Limits. Please refer to the origin service documentation in order to register for an apiKey", required = false) @QueryParam("apiKey") String apiKey,
+			@ApiParam(value = "Provide a callback name for JSONP purposes", required = false) @QueryParam("callback") String callback,
+			@ApiParam(value = "A date from which get POIs. Use this date_format: yyyy-MM-dd HH:mm:ss. This parameter has to be configured for the service you are requesting, please refer to the /poiproxy/describeServices operation for more info", required = false) @QueryParam("fromDate") String fromDate,
+			@ApiParam(value = "A date to which get POIs. Use this date_format: yyyy-MM-dd HH:mm:ss. This parameter has to be configured for the service you are requesting, please refer to the /poiproxy/describeServices operation for more info", required = false) @QueryParam("toDate") String toDate,
+			@ApiParam(value = "The page from where to start to get results. Use it together with the limit parameter. The origin service has to support pagination, please refer to /poiproxy/describeServices for more info", required = false) @QueryParam("offset") String offset,
+			@ApiParam(value = "The number of results. Use it together with the offset parameter. The origin service has to support pagination, please refer to /poiproxy/describeServices for more info", required = false) @QueryParam("limit") String limit) {
 	}
 
 	@GET
@@ -162,7 +175,18 @@ public class POIProxyApplication extends Application {
 	@ApiResponses(value = {
 			@ApiResponse(code = 500, message = "Server error"),
 			@ApiResponse(code = 200, message = "OK", response = FeatureCollection.class) })
-	public void lonlat() {
+	public void lonlat(
+			@ApiParam(value = "A valid POIProxy service (see /poiproxy/describeServices)", required = true) @QueryParam("service") String service,
+			@ApiParam(value = "Longitude", required = true) @QueryParam("lon") Double lon,
+			@ApiParam(value = "Latitude", required = true) @QueryParam("lat") Double lat,
+			@ApiParam(value = "Radius distance in meters to browse or search POIs", required = true) @QueryParam("dist") Integer dist,
+			@ApiParam(value = "A keyword to search. The search operation depends on the service. To know which services allow the search param see /poiproxy/describeServices", required = false) @QueryParam("query") String query,
+			@ApiParam(value = "Your apiKey to make requests to the origin service. Most services already have an apiKey configured or don't need one, but it is highly recommended to use your own apiKeys in order to avoid Rate Limits. Please refer to the origin service documentation in order to register for an apiKey", required = false) @QueryParam("apiKey") String apiKey,
+			@ApiParam(value = "Provide a callback name for JSONP purposes", required = false) @QueryParam("callback") String callback,
+			@ApiParam(value = "A date from which get POIs. Use this date_format: yyyy-MM-dd HH:mm:ss. This parameter has to be configured for the service you are requesting, please refer to the /poiproxy/describeServices operation for more info", required = false) @QueryParam("fromDate") String fromDate,
+			@ApiParam(value = "A date to which get POIs. Use this date_format: yyyy-MM-dd HH:mm:ss. This parameter has to be configured for the service you are requesting, please refer to the /poiproxy/describeServices operation for more info", required = false) @QueryParam("toDate") String toDate,
+			@ApiParam(value = "The page from where to start to get results. Use it together with the limit parameter. The origin service has to support pagination, please refer to /poiproxy/describeServices for more info", required = false) @QueryParam("offset") String offset,
+			@ApiParam(value = "The number of results. Use it together with the offset parameter. The origin service has to support pagination, please refer to /poiproxy/describeServices for more info", required = false) @QueryParam("limit") String limit) {
 	}
 
 	@GET
@@ -184,7 +208,19 @@ public class POIProxyApplication extends Application {
 	@ApiResponses(value = {
 			@ApiResponse(code = 500, message = "Server error"),
 			@ApiResponse(code = 200, message = "OK", response = FeatureCollection.class) })
-	public void bbox() {
+	public void bbox(
+			@ApiParam(value = "A valid POIProxy service (see /poiproxy/describeServices)", required = true) @QueryParam("service") String service,
+			@ApiParam(value = "The minimum X coordinate of the bounding box", required = true) @QueryParam("minX") Double minX,
+			@ApiParam(value = "The minimum Y coordinate of the bounding box", required = true) @QueryParam("minY") Double minY,
+			@ApiParam(value = "The maximum X coordinate of the bounding box", required = true) @QueryParam("maxX") Double maxX,
+			@ApiParam(value = "The maximum Y coordinate of the bounding box", required = true) @QueryParam("maxY") Double maxY,
+			@ApiParam(value = "A keyword to search. The search operation depends on the service. To know which services allow the search param see /poiproxy/describeServices", required = false) @QueryParam("query") String query,
+			@ApiParam(value = "Your apiKey to make requests to the origin service. Most services already have an apiKey configured or don't need one, but it is highly recommended to use your own apiKeys in order to avoid Rate Limits. Please refer to the origin service documentation in order to register for an apiKey", required = false) @QueryParam("apiKey") String apiKey,
+			@ApiParam(value = "Provide a callback name for JSONP purposes", required = false) @QueryParam("callback") String callback,
+			@ApiParam(value = "A date from which get POIs. Use this date_format: yyyy-MM-dd HH:mm:ss. This parameter has to be configured for the service you are requesting, please refer to the /poiproxy/describeServices operation for more info", required = false) @QueryParam("fromDate") String fromDate,
+			@ApiParam(value = "A date to which get POIs. Use this date_format: yyyy-MM-dd HH:mm:ss. This parameter has to be configured for the service you are requesting, please refer to the /poiproxy/describeServices operation for more info", required = false) @QueryParam("toDate") String toDate,
+			@ApiParam(value = "The page from where to start to get results. Use it together with the limit parameter. The origin service has to support pagination, please refer to /poiproxy/describeServices for more info", required = false) @QueryParam("offset") String offset,
+			@ApiParam(value = "The number of results. Use it together with the offset parameter. The origin service has to support pagination, please refer to /poiproxy/describeServices for more info", required = false) @QueryParam("limit") String limit) {
 	}
 
 }

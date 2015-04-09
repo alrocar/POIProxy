@@ -82,7 +82,7 @@ public class BrowsePOIProxyZXY extends BrowseQueryServerResource {
 		} catch (Exception e) {
 			throw new ResourceException(
 					Status.SERVER_ERROR_INTERNAL,
-					"An unexpected error ocurred, please contact the administrator \n\n. You are accessing the browse service, check that your URL is of the type '/browse?service=panoramio&z=0&x=0&y=0&callback=whatever'"
+					"An unexpected error ocurred, please contact the administrator \n\n. Probably the service parameter you provided is not a valid service. You are accessing the browse service, check that your URL is of the type '/browse?service=panoramio&z=1&x=1&y=1&callback=whatever'"
 							+ " - " + e.getMessage());
 		}
 
