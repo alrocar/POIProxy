@@ -134,9 +134,9 @@
 
 	<modules>
 		<module>es.alrocar.map.vector</module>
+		<module>es.alrocar.poiproxy.fiware.poidp</module>
 		<module>es.alrocar.poiproxy</module>
 		<module>es.alrocar.poiproxy.rest</module>
-		<module>es.alrocar.poiproxy.fiware.poidp</module>
 <!-- 		<module>es.alrocar.poiproxy.gae</module> -->
 	</modules>
 </project>
