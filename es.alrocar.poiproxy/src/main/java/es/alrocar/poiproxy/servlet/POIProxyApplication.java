@@ -57,6 +57,7 @@ import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
 
 import es.alrocar.poiproxy.configuration.ServiceConfigurationManager;
+import es.alrocar.poiproxy.fiware.poidp.schema.POISet;
 import es.alrocar.poiproxy.servlet.fiware.RadialSearch;
 
 @Api(value = "/poiproxy", description = "Operations to browse and search POIs and list configured POI services")
@@ -216,6 +217,38 @@ public class POIProxyApplication extends Application {
 			@ApiParam(value = "The minimum Y coordinate of the bounding box", required = true) @QueryParam("minY") Double minY,
 			@ApiParam(value = "The maximum X coordinate of the bounding box", required = true) @QueryParam("maxX") Double maxX,
 			@ApiParam(value = "The maximum Y coordinate of the bounding box", required = true) @QueryParam("maxY") Double maxY,
+			@ApiParam(value = "A keyword to search. The search operation depends on the service. To know which services allow the search param see /poiproxy/describeServices", required = false) @QueryParam("query") String query,
+			@ApiParam(value = "Your apiKey to make requests to the origin service. Most services already have an apiKey configured or don't need one, but it is highly recommended to use your own apiKeys in order to avoid Rate Limits. Please refer to the origin service documentation in order to register for an apiKey", required = false) @QueryParam("apiKey") String apiKey,
+			@ApiParam(value = "Provide a callback name for JSONP purposes", required = false) @QueryParam("callback") String callback,
+			@ApiParam(value = "A date from which get POIs. Use this date_format: yyyy-MM-dd HH:mm:ss. This parameter has to be configured for the service you are requesting, please refer to the /poiproxy/describeServices operation for more info", required = false) @QueryParam("fromDate") String fromDate,
+			@ApiParam(value = "A date to which get POIs. Use this date_format: yyyy-MM-dd HH:mm:ss. This parameter has to be configured for the service you are requesting, please refer to the /poiproxy/describeServices operation for more info", required = false) @QueryParam("toDate") String toDate,
+			@ApiParam(value = "The page from where to start to get results. Use it together with the limit parameter. The origin service has to support pagination, please refer to /poiproxy/describeServices for more info", required = false) @QueryParam("offset") String offset,
+			@ApiParam(value = "The number of results. Use it together with the offset parameter. The origin service has to support pagination, please refer to /poiproxy/describeServices for more info", required = false) @QueryParam("limit") String limit) {
+	}
+
+	@GET
+	@Path("/radial_search")
+	@ApiOperation(value = "Implementation of the POI Data Provider API. Get POIs using a point and radius", notes = "This API operation is used to get POIs from a POIProxy service at a distance of a point. See http://forge.fiware.org/plugins/mediawiki/wiki/fiware/index.php/POI_Data_Provider_-_User_and_Programmers_Guide for the API description and http://dev.cie.fi/FI-WARE/poi_dp/poi_schema_3.3.json for the response JSON schema", response = POISet.class)
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "service", value = "A valid POIProxy service (see /poiproxy/describeServices)", required = true, dataType = "string", paramType = "query"),
+			@ApiImplicitParam(name = "lon", value = "Longitude", required = true, dataType = "double", paramType = "query"),
+			@ApiImplicitParam(name = "lat", value = "Latitude", required = true, dataType = "double", paramType = "query"),
+			@ApiImplicitParam(name = "radius", value = "Radius distance in meters to browse or search POIs", required = true, dataType = "integer", paramType = "query"),
+			@ApiImplicitParam(name = "query", value = "A keyword to search. The search operation depends on the service. To know which services allow the search param see /poiproxy/describeServices", required = false, dataType = "string", paramType = "query"),
+			@ApiImplicitParam(name = "apiKey", value = "Your apiKey to make requests to the origin service. Most services already have an apiKey configured or don't need one, but it is highly recommended to use your own apiKeys in order to avoid Rate Limits. Please refer to the origin service documentation in order to register for an apiKey", required = false, dataType = "string", paramType = "query"),
+			@ApiImplicitParam(name = "callback", value = "Provide a callback name for JSONP purposes", required = false, dataType = "string", paramType = "query"),
+			@ApiImplicitParam(name = "fromDate", value = "A date from which get POIs. Use this date_format: yyyy-MM-dd HH:mm:ss. This parameter has to be configured for the service you are requesting, please refer to the /poiproxy/describeServices operation for more info", required = false, dataType = "string", paramType = "query"),
+			@ApiImplicitParam(name = "toDate", value = "A date to which get POIs. Use this date_format: yyyy-MM-dd HH:mm:ss. This parameter has to be configured for the service you are requesting, please refer to the /poiproxy/describeServices operation for more info", required = false, dataType = "string", paramType = "query"),
+			@ApiImplicitParam(name = "offset", value = "The page from where to start to get results. Use it together with the limit parameter. The origin service has to support pagination, please refer to /poiproxy/describeServices for more info", required = false, dataType = "integer", paramType = "query"),
+			@ApiImplicitParam(name = "limit", value = "The number of results. Use it together with the offset parameter. The origin service has to support pagination, please refer to /poiproxy/describeServices for more info", required = false, dataType = "integer", paramType = "query") })
+	@ApiResponses(value = {
+			@ApiResponse(code = 500, message = "Server error"),
+			@ApiResponse(code = 200, message = "OK", response = FeatureCollection.class) })
+	public void radial_search(
+			@ApiParam(value = "A valid POIProxy service (see /poiproxy/describeServices)", required = true) @QueryParam("service") String service,
+			@ApiParam(value = "Longitude", required = true) @QueryParam("lon") Double lon,
+			@ApiParam(value = "Latitude", required = true) @QueryParam("lat") Double lat,
+			@ApiParam(value = "Radius distance in meters to browse or search POIs", required = true) @QueryParam("radius") Integer dist,
 			@ApiParam(value = "A keyword to search. The search operation depends on the service. To know which services allow the search param see /poiproxy/describeServices", required = false) @QueryParam("query") String query,
 			@ApiParam(value = "Your apiKey to make requests to the origin service. Most services already have an apiKey configured or don't need one, but it is highly recommended to use your own apiKeys in order to avoid Rate Limits. Please refer to the origin service documentation in order to register for an apiKey", required = false) @QueryParam("apiKey") String apiKey,
 			@ApiParam(value = "Provide a callback name for JSONP purposes", required = false) @QueryParam("callback") String callback,

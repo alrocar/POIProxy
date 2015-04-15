@@ -30,27 +30,27 @@
           "name" : "service",
           "in" : "query",
           "description" : "A valid POIProxy service (see /poiproxy/describeServices)",
-          "required" : true,
+          "required" : false,
           "type" : "string"
         }, {
           "name" : "z",
           "in" : "query",
           "description" : "Zoom level",
-          "required" : true,
+          "required" : false,
           "type" : "integer",
           "format" : "int32"
         }, {
           "name" : "y",
           "in" : "query",
           "description" : "Y tile",
-          "required" : true,
+          "required" : false,
           "type" : "integer",
           "format" : "int32"
         }, {
           "name" : "x",
           "in" : "query",
           "description" : "X tile",
-          "required" : true,
+          "required" : false,
           "type" : "integer",
           "format" : "int32"
         }, {
@@ -120,34 +120,34 @@
           "name" : "service",
           "in" : "query",
           "description" : "A valid POIProxy service (see /poiproxy/describeServices)",
-          "required" : true,
+          "required" : false,
           "type" : "string"
         }, {
           "name" : "minX",
           "in" : "query",
           "description" : "The minimum X coordinate of the bounding box",
-          "required" : true,
+          "required" : false,
           "type" : "number",
           "format" : "double"
         }, {
           "name" : "minY",
           "in" : "query",
           "description" : "The minimum Y coordinate of the bounding box",
-          "required" : true,
+          "required" : false,
           "type" : "number",
           "format" : "double"
         }, {
           "name" : "maxX",
           "in" : "query",
           "description" : "The maximum X coordinate of the bounding box",
-          "required" : true,
+          "required" : false,
           "type" : "number",
           "format" : "double"
         }, {
           "name" : "maxY",
           "in" : "query",
           "description" : "The maximum Y coordinate of the bounding box",
-          "required" : true,
+          "required" : false,
           "type" : "number",
           "format" : "double"
         }, {
@@ -217,27 +217,27 @@
           "name" : "service",
           "in" : "query",
           "description" : "A valid POIProxy service (see /poiproxy/describeServices)",
-          "required" : true,
+          "required" : false,
           "type" : "string"
         }, {
           "name" : "lon",
           "in" : "query",
           "description" : "Longitude",
-          "required" : true,
+          "required" : false,
           "type" : "number",
           "format" : "double"
         }, {
           "name" : "lat",
           "in" : "query",
           "description" : "Latitude",
-          "required" : true,
+          "required" : false,
           "type" : "number",
           "format" : "double"
         }, {
           "name" : "dist",
           "in" : "query",
           "description" : "Radius distance in meters to browse or search POIs",
-          "required" : true,
+          "required" : false,
           "type" : "integer",
           "format" : "int32"
         }, {
@@ -308,6 +308,96 @@
             "description" : "OK",
             "schema" : {
               "$ref" : "#/definitions/DescribeServices"
+            }
+          },
+          "500" : {
+            "description" : "Server error"
+          }
+        }
+      }
+    },
+    "/radial_search" : {
+      "get" : {
+        "tags" : [ "poiproxy" ],
+        "summary" : "Implementation of the POI Data Provider API. Get POIs using a point and radius",
+        "description" : "This API operation is used to get POIs from a POIProxy service at a distance of a point. See http://forge.fiware.org/plugins/mediawiki/wiki/fiware/index.php/POI_Data_Provider_-_User_and_Programmers_Guide for the API description and http://dev.cie.fi/FI-WARE/poi_dp/poi_schema_3.3.json for the response JSON schema",
+        "operationId" : "radial_search",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "service",
+          "in" : "query",
+          "description" : "A valid POIProxy service (see /poiproxy/describeServices)",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "lon",
+          "in" : "query",
+          "description" : "Longitude",
+          "required" : false,
+          "type" : "number",
+          "format" : "double"
+        }, {
+          "name" : "lat",
+          "in" : "query",
+          "description" : "Latitude",
+          "required" : false,
+          "type" : "number",
+          "format" : "double"
+        }, {
+          "name" : "radius",
+          "in" : "query",
+          "description" : "Radius distance in meters to browse or search POIs",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "description" : "A keyword to search. The search operation depends on the service. To know which services allow the search param see /poiproxy/describeServices",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "apiKey",
+          "in" : "query",
+          "description" : "Your apiKey to make requests to the origin service. Most services already have an apiKey configured or don't need one, but it is highly recommended to use your own apiKeys in order to avoid Rate Limits. Please refer to the origin service documentation in order to register for an apiKey",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "callback",
+          "in" : "query",
+          "description" : "Provide a callback name for JSONP purposes",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fromDate",
+          "in" : "query",
+          "description" : "A date from which get POIs. Use this date_format: yyyy-MM-dd HH:mm:ss. This parameter has to be configured for the service you are requesting, please refer to the /poiproxy/describeServices operation for more info",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "toDate",
+          "in" : "query",
+          "description" : "A date to which get POIs. Use this date_format: yyyy-MM-dd HH:mm:ss. This parameter has to be configured for the service you are requesting, please refer to the /poiproxy/describeServices operation for more info",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "The page from where to start to get results. Use it together with the limit parameter. The origin service has to support pagination, please refer to /poiproxy/describeServices for more info",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "The number of results. Use it together with the offset parameter. The origin service has to support pagination, please refer to /poiproxy/describeServices for more info",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/POISet"
             }
           },
           "500" : {
@@ -540,6 +630,86 @@
         }
       }
     },
+    "GeoJsonObject" : {
+      "properties" : {
+        "crs" : {
+          "$ref" : "#/definitions/Crs"
+        },
+        "bbox" : {
+          "type" : "array",
+          "items" : {
+            "type" : "number",
+            "format" : "double"
+          }
+        },
+        "properties" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "object"
+          }
+        }
+      },
+      "discriminator" : "type"
+    },
+    "List" : {
+      "properties" : {
+        "empty" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "LngLatAlt" : {
+      "properties" : {
+        "longitude" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "latitude" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "altitude" : {
+          "type" : "number",
+          "format" : "double"
+        }
+      }
+    },
+    "POI" : {
+      "properties" : {
+        "fw_core" : {
+          "$ref" : "#/definitions/fw_core_class"
+        },
+        "fw_contact" : {
+          "$ref" : "#/definitions/fw_contact_class"
+        },
+        "fw_marker" : {
+          "$ref" : "#/definitions/fw_marker_class"
+        },
+        "fw_media" : {
+          "$ref" : "#/definitions/fw_media_class"
+        },
+        "fw_relationships" : {
+          "$ref" : "#/definitions/fw_relationships_class"
+        },
+        "fw_time" : {
+          "$ref" : "#/definitions/fw_time_class"
+        },
+        "fw_xml3d" : {
+          "$ref" : "#/definitions/fw_xml3d_class"
+        }
+      }
+    },
+    "POISet" : {
+      "properties" : {
+        "pois" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "$ref" : "#/definitions/POI"
+          }
+        }
+      }
+    },
+    "Relationship" : { },
     "RequestType" : {
       "properties" : {
         "url" : {
@@ -550,6 +720,200 @@
           "items" : {
             "type" : "string"
           }
+        }
+      }
+    },
+    "Schedule" : { },
+    "UpdateStamp" : {
+      "properties" : {
+        "timestamp" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "responsible" : {
+          "type" : "string"
+        }
+      }
+    },
+    "fw_contact_class" : {
+      "properties" : {
+        "visit" : {
+          "type" : "string"
+        },
+        "postal" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "mailto" : {
+          "type" : "string"
+        },
+        "phone" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "source" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "last_update" : {
+          "$ref" : "#/definitions/UpdateStamp"
+        }
+      }
+    },
+    "fw_core_class" : {
+      "properties" : {
+        "category" : {
+          "type" : "string"
+        },
+        "geometry" : {
+          "type" : "string"
+        },
+        "short_name" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "label" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "description" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "thumbnail" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "source" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "last_update" : {
+          "$ref" : "#/definitions/UpdateStamp"
+        },
+        "properties" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "fw_marker_class" : {
+      "properties" : {
+        "source" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "last_update" : {
+          "$ref" : "#/definitions/UpdateStamp"
+        }
+      }
+    },
+    "fw_media_class" : {
+      "properties" : {
+        "entities" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/fw_media_entity"
+          }
+        },
+        "last_update" : {
+          "$ref" : "#/definitions/UpdateStamp"
+        }
+      }
+    },
+    "fw_media_entity" : {
+      "properties" : {
+        "short_label" : {
+          "type" : "string"
+        },
+        "caption" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "copyright" : {
+          "type" : "string"
+        },
+        "thumbnail" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      }
+    },
+    "fw_relationships_class" : {
+      "properties" : {
+        "relationships" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Relationship"
+          }
+        }
+      }
+    },
+    "fw_time_class" : {
+      "properties" : {
+        "type" : {
+          "type" : "string"
+        },
+        "time_zone" : {
+          "type" : "string"
+        },
+        "schedule" : {
+          "$ref" : "#/definitions/Schedule"
+        },
+        "source" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "last_update" : {
+          "$ref" : "#/definitions/UpdateStamp"
+        }
+      }
+    },
+    "fw_xml3d_class" : {
+      "properties" : {
+        "model_id" : {
+          "type" : "string"
+        },
+        "model" : {
+          "type" : "string"
+        },
+        "source" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "last_update" : {
+          "$ref" : "#/definitions/UpdateStamp"
         }
       }
     }
