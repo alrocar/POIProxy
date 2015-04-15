@@ -33,6 +33,9 @@
 
 package es.alrocar.poiproxy.fiware.poidp.schema;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import es.alrocar.poiproxy.fiware.poidp.schema.utils.IntString;
 import es.alrocar.poiproxy.fiware.poidp.schema.utils.IntUri;
 import es.alrocar.poiproxy.fiware.poidp.schema.utils.Location;
@@ -56,6 +59,8 @@ public class fw_core_class {
 
 	private Source source = null;
 	private UpdateStamp last_update = null;
+
+	public Map<String, String> properties = new HashMap<String, String>();
 
 	public String getCategory() {
 		return category;
