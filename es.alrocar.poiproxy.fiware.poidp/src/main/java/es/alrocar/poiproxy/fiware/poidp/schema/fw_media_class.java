@@ -51,4 +51,11 @@ public class fw_media_class {
 		this.last_update = last_update;
 	}
 
+	public List<fw_media_entity> getEntities() {
+		return entities;
+	}
+
+	public void setEntities(List<fw_media_entity> entities) {
+		this.entities = entities;
+	}
 }

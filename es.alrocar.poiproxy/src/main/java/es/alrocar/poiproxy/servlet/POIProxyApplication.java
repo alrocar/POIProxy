@@ -57,6 +57,7 @@ import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
 
 import es.alrocar.poiproxy.configuration.ServiceConfigurationManager;
+import es.alrocar.poiproxy.servlet.fiware.RadialSearch;
 
 @Api(value = "/poiproxy", description = "Operations to browse and search POIs and list configured POI services")
 @Produces({ "application/json" })
@@ -79,6 +80,7 @@ public class POIProxyApplication extends Application {
 		router.attach("/browseByLonLat", BrowsePOIProxyLonLat.class);
 		router.attach("/describeServices", DescribeServices.class);
 		router.attach("/registerService", RegisterService.class);
+		router.attach("/radial_search", RadialSearch.class);
 
 		Restlet mainpage = new Restlet() {
 			@Override

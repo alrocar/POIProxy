@@ -872,7 +872,9 @@ public class POIProxy {
 	 *            events
 	 */
 	public void addPOIProxyListener(POIProxyListener listener) {
-		this.listeners.add(listener);
+		if (!listeners.contains(listener)) {
+			this.listeners.add(listener);	
+		}
 	}
 
 	/**

@@ -41,10 +41,27 @@ package es.alrocar.poiproxy.configuration;
  */
 public enum ParamEnum {
 
-	QUERY("query"), APIKEY("apiKey"), SERVICE("service"), X("x"), Y("y"), Z("z"), MINX(
-			"minX"), MINY("minY"), MAXX("maxX"), MAXY("maxY"), LON("lon"), LAT(
-			"lat"), DIST("dist"), CALLBACK("callback"), FROMDATE("fromDate"), TODATE(
-			"toDate"), LIMIT("limit"), OFFSET("offset"), SEARCH("search");
+	QUERY("query"),
+	APIKEY("apiKey"),
+	SERVICE("service"),
+	X("x"),
+	Y("y"),
+	Z("z"),
+	MINX("minX"),
+	MINY("minY"),
+	MAXX("maxX"),
+	MAXY("maxY"),
+	LON("lon"),
+	LAT("lat"),
+	DIST("dist"),
+	RADIUS("radius"),
+	COMPONENT("component"),
+	CALLBACK("callback"),
+	FROMDATE("fromDate"),
+	TODATE("toDate"),
+	LIMIT("limit"),
+	OFFSET("offset"),
+	SEARCH("search");
 
 	public String name;
 
