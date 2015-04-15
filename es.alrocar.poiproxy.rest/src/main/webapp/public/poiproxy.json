@@ -223,6 +223,104 @@
       } ]
     } ]
   }, {
+    "path" : "/radial_search",
+    "operations" : [ {
+      "method" : "GET",
+      "summary" : "Implementation of the POI Data Provider API. Get POIs using a point and radius",
+      "notes" : "This API operation is used to get POIs from a POIProxy service at a distance of a point. See http://forge.fiware.org/plugins/mediawiki/wiki/fiware/index.php/POI_Data_Provider_-_User_and_Programmers_Guide for the API description and http://dev.cie.fi/FI-WARE/poi_dp/poi_schema_3.3.json for the response JSON schema",
+      "nickname" : "lonlat",
+      "parameters" : [ {
+        "name" : "service",
+        "description" : "A valid POIProxy service (see /poiproxy/describeServices)",
+        "required" : true,
+        "type" : "string",
+        "paramType" : "query",
+        "allowMultiple" : false
+      }, {
+        "name" : "lon",
+        "description" : "Longitude",
+        "required" : true,
+        "type" : "number",
+        "format" : "double",
+        "paramType" : "query",
+        "allowMultiple" : false
+      }, {
+        "name" : "lat",
+        "description" : "Latitude",
+        "required" : true,
+        "type" : "number",
+        "format" : "double",
+        "paramType" : "query",
+        "allowMultiple" : false
+      }, {
+        "name" : "radius",
+        "description" : "Radius distance in meters to browse or search POIs",
+        "required" : true,
+        "type" : "integer",
+        "format" : "int32",
+        "paramType" : "query",
+        "allowMultiple" : false
+      }, {
+        "name" : "query",
+        "description" : "A keyword to search. The search operation depends on the service. To know which services allow the search param see /poiproxy/describeServices",
+        "required" : false,
+        "type" : "string",
+        "paramType" : "query",
+        "allowMultiple" : false
+      }, {
+        "name" : "apiKey",
+        "description" : "Your apiKey to make requests to the origin service. Most services already have an apiKey configured or don't need one, but it is highly recommended to use your own apiKeys in order to avoid Rate Limits. Please refer to the origin service documentation in order to register for an apiKey",
+        "required" : false,
+        "type" : "string",
+        "paramType" : "query",
+        "allowMultiple" : false
+      }, {
+        "name" : "callback",
+        "description" : "Provide a callback name for JSONP purposes",
+        "required" : false,
+        "type" : "string",
+        "paramType" : "query",
+        "allowMultiple" : false
+      }, {
+        "name" : "fromDate",
+        "description" : "A date from which get POIs. Use this date_format: yyyy-MM-dd HH:mm:ss. This parameter has to be configured for the service you are requesting, please refer to the /poiproxy/describeServices operation for more info",
+        "required" : false,
+        "type" : "string",
+        "paramType" : "query",
+        "allowMultiple" : false
+      }, {
+        "name" : "toDate",
+        "description" : "A date to which get POIs. Use this date_format: yyyy-MM-dd HH:mm:ss. This parameter has to be configured for the service you are requesting, please refer to the /poiproxy/describeServices operation for more info",
+        "required" : false,
+        "type" : "string",
+        "paramType" : "query",
+        "allowMultiple" : false
+      }, {
+        "name" : "offset",
+        "description" : "The page from where to start to get results. Use it together with the limit parameter. The origin service has to support pagination, please refer to /poiproxy/describeServices for more info",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32",
+        "paramType" : "query",
+        "allowMultiple" : false
+      }, {
+        "name" : "limit",
+        "description" : "The number of results. Use it together with the offset parameter. The origin service has to support pagination, please refer to /poiproxy/describeServices for more info",
+        "required" : false,
+        "type" : "integer",
+        "format" : "int32",
+        "paramType" : "query",
+        "allowMultiple" : false
+      } ],
+      "responseMessages" : [ {
+        "code" : 500,
+        "message" : "Server error"
+      }, {
+        "code" : 200,
+        "message" : "OK"
+      } ]
+    } ]
+  }, {
     "path" : "/browseByExtent",
     "operations" : [ {
       "method" : "GET",
