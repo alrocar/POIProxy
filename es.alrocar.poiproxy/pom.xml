@@ -24,7 +24,7 @@
 		<developer>
 			<id>alrocar</id>
 			<name>Alberto Romeu</name>
-			<email>alberto@alrocar.es</email>
+			<email>aromeu@prodevelop.es</email>
 		</developer>
 	</developers>
 
@@ -149,7 +149,19 @@
 		<dependency>
 			<groupId>com.github.kongchen</groupId>
 			<artifactId>swagger-maven-plugin</artifactId>
-			<version>2.3.1</version>
+			<version>3.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.wordnik</groupId>
+			<artifactId>swagger-core</artifactId>
+			<scope>compile</scope>
+			<version>1.5.0-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.ws.rs</groupId>
+					<artifactId>jsr311-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>de.grundid.opendatalab</groupId>
@@ -157,6 +169,18 @@
 			<version>1.2</version>
 		</dependency>
 	</dependencies>
+	<pluginRepositories>
+        <pluginRepository>
+            <id>sonatype-snapshot</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 	<repositories>
 		<repository>
 			<id>scribe-java-mvn-repo</id>
@@ -212,23 +236,31 @@
 			<plugin>
 				<groupId>com.github.kongchen</groupId>
 				<artifactId>swagger-maven-plugin</artifactId>
-				<version>2.3</version>
+				<version>3.0-SNAPSHOT</version>
 				<configuration>
 					<apiSources>
 						<apiSource>
 							<locations>es.alrocar</locations>
-							<apiVersion>v2</apiVersion>
-							<basePath>${basepath}</basePath>
+							<schemes>http</schemes>
+							<host>app.prodevelop.es</host>
+							<basePath>/poiproxy</basePath>
 							<swaggerDirectory>generated/swagger-ui</swaggerDirectory>
-							<apiInfo>
+							<info>
 								<title>POIProxy API</title>
+								<version>2.0-SNAPSHOT</version>
 								<description>POIProxy API endpoints for browsing and searching
 									POIs</description>
-								<termsOfServiceUrl>mediafi.org/?portfolio=poiproxy#tab-terms-conditions</termsOfServiceUrl>
-								<contact>aromeu#prodevelop$es</contact>
-								<license>Apache 2.0</license>
-								<licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.html</licenseUrl>
-							</apiInfo>
+								<termsOfService>mediafi.org/?portfolio=poiproxy#tab-terms-conditions</termsOfService>
+								<contact>
+									<email>aromeu@prodevelop.es</email>
+									<name>Alberto Romeu</name>
+									<url>http://www.prodevelop.es</url>
+								</contact>
+								<license>
+									<name>Apache 2.0</name>
+									<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+								</license>
+							</info>
 						</apiSource>
 					</apiSources>
 				</configuration>
