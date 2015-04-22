@@ -1,17 +1,17 @@
 {
   "format": "json",
-  "apiKey": "client_id=S5MN2YCYHT5EQS31KC1I10L4ELT43IGXO0FWE0IDTMSO5J2F&client_secret=QUIBVAC2Q0IIYVKVLJEMMABXEUEMTR3KJC3Z12UG5MCKFTSR",
+  "apiKey": "client_id=TS3QC30ESQZ4PNWHMIDTLNAVKUILCJYSWZVCSFWGZXZGNQUV&client_secret=4L12VBG1FGE2VR3R53FI0KHWSNQ11WNDRXNOH2QQJOPKD4E1",
   "categories": [
     "social",
     "foursquare"
   ],
   "requestTypes": {
     "browse": {
-      "url": "https://api.foursquare.com/v2/venues/explore?ll=__LAT__,__LON__&__KEY__&v=20131016",
+      "url": "https://api.foursquare.com/v2/venues/explore?ll=__LAT__,__LON__&__KEY__&v=20140806",
       "params": []
     },
     "search": {
-      "url": "https://api.foursquare.com/v2/venues/explore?ll=__LAT__,__LON__&__KEY__&query=__QUERY__&v=20131016",
+      "url": "https://api.foursquare.com/v2/venues/explore?ll=__LAT__,__LON__&__KEY__&query=__QUERY__&v=20140806",
       "params": []
     }
   },

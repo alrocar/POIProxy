@@ -283,11 +283,12 @@ public class DescribeService {
 	}
 
 	public String encodeParam(String param) {
-		try {
-			return URLEncoder.encode(param, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			return param;
-		}
+		return param;
+//		try {
+//			return URLEncoder.encode(param, "UTF-8");
+//		} catch (UnsupportedEncodingException e) {
+//			return param;
+//		}
 	}
 
 	protected void addOriginalParams(ServiceParams params,
