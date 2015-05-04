@@ -1,0 +1,61 @@
+{
+  "format": "csv",
+  "apiKey": "",
+  "csvSeparator": ",",
+  "encoding": "UTF-8",
+  "categories": [
+    "local_tnf_instseguridad"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://www.santacruzdetenerife.es/opendata/dataset/2bc65894-de04-4c21-a514-69f8426ebed6/resource/d94e282a-137c-4781-b545-51f1d3ecb1f3/download/instseguridad.csv",
+      "params": []
+    },
+    "search": {
+      "url": "http://www.santacruzdetenerife.es/opendata/dataset/2bc65894-de04-4c21-a514-69f8426ebed6/resource/d94e282a-137c-4781-b545-51f1d3ecb1f3/download/instseguridad.csv",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "",
+      "elements": {
+      	"name" : {
+      	  "input": "NOMBRE"
+      	},
+        "tipo": {
+          "input": "TIPO"
+        },
+        "id": {
+          "input": "GEOCODIGO"
+        },
+        "address": {
+          "input": "DIRECCION"
+        }
+      },
+      "lon": "GRAD_X",
+      "lat": "GRAD_Y"
+    },
+    "search": {
+      "feature": "",
+      "elements": {
+      	"name" : {
+      	  "input": "NOMBRE"
+      	},
+        "tipo": {
+          "input": "TIPO"
+        },
+        "id": {
+          "input": "GEOCODIGO"
+        },
+        "address": {
+          "input": "DIRECCION"
+        }
+      },
+      "lon": "GRAD_X",
+      "lat": "GRAD_Y"
+    }
+  }
+}

@@ -630,50 +630,6 @@
         }
       }
     },
-    "GeoJsonObject" : {
-      "properties" : {
-        "crs" : {
-          "$ref" : "#/definitions/Crs"
-        },
-        "bbox" : {
-          "type" : "array",
-          "items" : {
-            "type" : "number",
-            "format" : "double"
-          }
-        },
-        "properties" : {
-          "type" : "object",
-          "additionalProperties" : {
-            "type" : "object"
-          }
-        }
-      },
-      "discriminator" : "type"
-    },
-    "List" : {
-      "properties" : {
-        "empty" : {
-          "type" : "boolean"
-        }
-      }
-    },
-    "LngLatAlt" : {
-      "properties" : {
-        "longitude" : {
-          "type" : "number",
-          "format" : "double"
-        },
-        "latitude" : {
-          "type" : "number",
-          "format" : "double"
-        },
-        "altitude" : {
-          "type" : "number",
-          "format" : "double"
-        }
-      }
-    },
     "POI" : {
       "properties" : {
         "fw_core" : {

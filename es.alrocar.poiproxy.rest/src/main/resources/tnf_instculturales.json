@@ -1,0 +1,61 @@
+{
+  "format": "csv",
+  "apiKey": "",
+  "csvSeparator": ",",
+  "encoding": "UTF-8",
+  "categories": [
+    "local_tnf_instculturales"
+  ],
+  "SRS": "EPSG:4326",
+  "useLocalFilter": true,
+  "requestTypes": {
+    "browse": {
+      "url": "http://www.santacruzdetenerife.es/opendata/dataset/092cbeab-ca12-4840-95a1-78980b2a1741/resource/eda26163-f138-45ae-aae3-5245c748d422/download/instculturales.csv",
+      "params": []
+    },
+    "search": {
+      "url": "http://www.santacruzdetenerife.es/opendata/dataset/092cbeab-ca12-4840-95a1-78980b2a1741/resource/eda26163-f138-45ae-aae3-5245c748d422/download/instculturales.csv",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "",
+      "elements": {
+      	"name" : {
+      	  "input": "NOMBRE"
+      	},
+        "tipo": {
+          "input": "TIPO"
+        },
+        "id": {
+          "input": "GEOCODIGO"
+        },
+        "address": {
+          "input": "DIRECCION"
+        }
+      },
+      "lon": "GRAD_X",
+      "lat": "GRAD_Y"
+    },
+    "search": {
+      "feature": "",
+      "elements": {
+      	"name" : {
+      	  "input": "NOMBRE"
+      	},
+        "tipo": {
+          "input": "TIPO"
+        },
+        "id": {
+          "input": "GEOCODIGO"
+        },
+        "address": {
+          "input": "DIRECCION"
+        }
+      },
+      "lon": "GRAD_X",
+      "lat": "GRAD_Y"
+    }
+  }
+}
