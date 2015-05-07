@@ -250,7 +250,8 @@ public class DescribeService {
 
 	public String encode(String element) {
 		try {
-			if (this.getFormat().equals(FormatEnum.JSON.name)) {
+			if (this.getFormat().equals(FormatEnum.JSON.name)
+					|| this.getFormat().equals(FormatEnum.CSV.name)) {
 				return element;
 			}
 			return new String(element.getBytes(this.getEncoding()),
@@ -284,11 +285,11 @@ public class DescribeService {
 
 	public String encodeParam(String param) {
 		return param;
-//		try {
-//			return URLEncoder.encode(param, "UTF-8");
-//		} catch (UnsupportedEncodingException e) {
-//			return param;
-//		}
+		// try {
+		// return URLEncoder.encode(param, "UTF-8");
+		// } catch (UnsupportedEncodingException e) {
+		// return param;
+		// }
 	}
 
 	protected void addOriginalParams(ServiceParams params,
