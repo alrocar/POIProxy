@@ -189,7 +189,7 @@ public class BaseContentHandler {
 			}
 		}
 
-		if (fType.getLon() != null
+		if (hasToParsePosition(fType) && fType.getLon() != null
 				&& currentKey.toString().compareTo(fType.getLon()) == 0
 				&& !processedLon) {
 			double lon = Utils
@@ -206,7 +206,7 @@ public class BaseContentHandler {
 			return;
 		}
 
-		if (fType.getLat() != null
+		if (hasToParsePosition(fType) && fType.getLat() != null
 				&& currentKey.toString().compareTo(fType.getLat()) == 0
 				&& !processedLat) {
 			double lat = Utils
@@ -261,6 +261,14 @@ public class BaseContentHandler {
 		}
 
 		return;
+	}
+
+	private boolean hasToParsePosition(FeatureType fType) {
+		if (fType.getParent() == null) {
+			return true;
+		}
+		
+		return fType.getParent().equals(this.currentObjectKey);
 	}
 
 	protected boolean hasToBeParsed(FeatureType fType, String destProp) {

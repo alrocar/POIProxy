@@ -35,6 +35,8 @@ package es.alrocar.poiproxy.proxy;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -594,13 +596,32 @@ public class POIProxy {
 		params.putParam(ServiceParams.KEY, describeService.getApiKey());
 
 		if (optionalParams != null) {
+			
 			String p;
 			for (Param optParam : optionalParams) {
 				p = params.getServiceParamFromURLParam(optParam.getType());
 				if (p == null) {
+					if(describeService.isEncodeUrl()){
+						try {
+							params.putParam(p, URLEncoder.encode(optParam.getValue(), "UTF-8"));
+						} catch (UnsupportedEncodingException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}		
+					}else{
 					params.putParam(optParam.getType(), optParam.getValue());
+					}
 				} else {
+					if(describeService.isEncodeUrl()){
+						try {
+							params.putParam(p, URLEncoder.encode(optParam.getValue(), "UTF-8"));
+						} catch (UnsupportedEncodingException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}			
+					}else{
 					params.putParam(p, optParam.getValue());
+					}
 				}
 			}
 		}

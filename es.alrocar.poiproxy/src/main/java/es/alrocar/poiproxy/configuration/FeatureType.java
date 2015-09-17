@@ -61,6 +61,7 @@ public class FeatureType {
 	private String combinedLonLat;
 	private String separator;
 	private Boolean reverseLonLat = false;
+	private String parent;
 
 	/**
 	 * An attribute that specify the lon lat attributes when they are on an
@@ -165,5 +166,13 @@ public class FeatureType {
 
 	public void setEndFeature(String endFeature) {
 		this.endFeature = endFeature;
+	}
+
+	public String getParent() {
+		return parent;
+	}
+
+	public void setParent(String parent) {
+		this.parent = parent;
 	}
 }

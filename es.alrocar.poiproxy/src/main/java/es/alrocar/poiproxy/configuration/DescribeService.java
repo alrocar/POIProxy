@@ -95,6 +95,7 @@ public class DescribeService {
 	private String compression;
 	private String contentFile;
 	private boolean useLocalFilter = false;
+	private boolean encodeUrl = false;
 	private String SRS = DEFAULT_SRS;
 
 	private String type = BROWSE_TYPE;
@@ -598,5 +599,13 @@ public class DescribeService {
 	@JsonProperty
 	public void setAuth(Auth auth) {
 		this.auth = auth;
+	}
+
+	public boolean isEncodeUrl() {
+		return encodeUrl;
+	}
+
+	public void setEncodeUrl(boolean encodeUrl) {
+		this.encodeUrl = encodeUrl;
 	}
 }

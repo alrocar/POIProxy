@@ -7,11 +7,11 @@
   ],
   "requestTypes": {
     "browse": {
-      "url": "http://www.mapquestapi.com/geocoding/v1/reverse?key=Fmjtd|luu22h62nl%2Cr0%3Do5-h07n5&lat=__LAT__&lng=__LON__",
+      "url": "http://www.open.mapquestapi.com/geocoding/v1/reverse?key=Fmjtd|luu22h62nl%2Cr0%3Do5-h07n5&lat=__LAT__&lng=__LON__",
       "params": []
     },
     "search": {
-      "url": "http://www.mapquestapi.com/geocoding/v1/address?key=Fmjtd|luu22h62nl%2Cr0%3Do5-h07n5&inFormat=kvp&outFormat=json&location=__QUERY__",
+      "url": "https://open.mapquestapi.com/geocoding/v1/address?key=Fmjtd|luu22h62nl%2Cr0%3Do5-h07n5&location=__QUERY__",
       "params": []
     }
   },
@@ -36,15 +36,15 @@
       "lat": "lat"
     },
     "search": {
-      "feature": "latLng",
+      "feature": "locations",
       "elements": {
         "code": {
           "input": "postalCode"
         },
-        "adminArea5Type": {
+        "municipality_type": {
           "input": "adminArea5Type"
         },
-        "adminArea5": {
+        "municipality": {
           "input": "adminArea5"
         },
         "street": {
