@@ -211,6 +211,7 @@ public class CsvReader {
 	 */
 	public CsvReader(InputStream inputStream, char delimiter, Charset charset) {
 		this(new InputStreamReader(inputStream, charset), delimiter);
+		this.charset = charset;
 	}
 
 	/**

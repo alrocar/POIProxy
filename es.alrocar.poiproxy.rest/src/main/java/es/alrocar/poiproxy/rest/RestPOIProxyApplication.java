@@ -33,6 +33,7 @@
 
 package es.alrocar.poiproxy.rest;
 
+import java.io.File;
 import java.net.URL;
 
 import org.restlet.Context;
@@ -55,18 +56,20 @@ public class RestPOIProxyApplication extends POIProxyApplication {
 	public Restlet createRoot() {
 		Router router = (Router) super.createRoot();
 
-		URL servicesPath = RestPOIProxyApplication.class
-				.getResource("RestPOIProxyApplication.class");
+		URL servicesPath = RestPOIProxyApplication.class.getResource("RestPOIProxyApplication.class");
 
-		ServiceConfigurationManager.CONFIGURATION_DIR = servicesPath
-				.getPath()
-				.substring(
-						0,
-						servicesPath
-								.getPath()
-								.indexOf(
-										"es/alrocar/poiproxy/rest/RestPOIProxyApplication.class"));
+		ServiceConfigurationManager.CONFIGURATION_DIR = preparePathServices(servicesPath);
 
 		return router;
+	}
+
+	private String preparePathServices(URL servicesPath) {
+		String path = servicesPath.getPath();
+		if (System.getProperty("os.name").toLowerCase().indexOf("windows") != -1) {
+			if (path.startsWith("/")) {
+				path = path.substring(1);
+			}
+		}
+		return path.substring(0, path.indexOf("es/alrocar/poiproxy/rest/RestPOIProxyApplication.class"));
 	}
 }

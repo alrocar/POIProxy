@@ -95,6 +95,7 @@ public class DescribeService {
 	private String compression;
 	private String contentFile;
 	private boolean useLocalFilter = false;
+	private boolean encodeUrl = false;
 	private String SRS = DEFAULT_SRS;
 
 	private String type = BROWSE_TYPE;
@@ -250,7 +251,8 @@ public class DescribeService {
 
 	public String encode(String element) {
 		try {
-			if (this.getFormat().equals(FormatEnum.JSON.name)) {
+			if (this.getFormat().equals(FormatEnum.JSON.name)
+					|| this.getFormat().equals(FormatEnum.CSV.name)) {
 				return element;
 			}
 			return new String(element.getBytes(this.getEncoding()),
@@ -284,11 +286,11 @@ public class DescribeService {
 
 	public String encodeParam(String param) {
 		return param;
-//		try {
-//			return URLEncoder.encode(param, "UTF-8");
-//		} catch (UnsupportedEncodingException e) {
-//			return param;
-//		}
+		// try {
+		// return URLEncoder.encode(param, "UTF-8");
+		// } catch (UnsupportedEncodingException e) {
+		// return param;
+		// }
 	}
 
 	protected void addOriginalParams(ServiceParams params,
@@ -597,5 +599,13 @@ public class DescribeService {
 	@JsonProperty
 	public void setAuth(Auth auth) {
 		this.auth = auth;
+	}
+
+	public boolean isEncodeUrl() {
+		return encodeUrl;
+	}
+
+	public void setEncodeUrl(boolean encodeUrl) {
+		this.encodeUrl = encodeUrl;
 	}
 }

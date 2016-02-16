@@ -69,7 +69,7 @@ public class JSONSimpleContentHandler extends BaseContentHandler implements
 	 * {@inheritDoc}
 	 */
 	public boolean endObject() throws ParseException, IOException {
-		// TODO Auto-generated method stub
+	    	this.onEndObject();
 		return true;
 	}
 
