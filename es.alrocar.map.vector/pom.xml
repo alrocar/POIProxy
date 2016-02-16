@@ -3,7 +3,7 @@
 	<groupId>es.prodevelop</groupId>
 	<artifactId>es.alrocar.map.vector</artifactId>
 	<packaging>jar</packaging>
-	<version>0.2.5</version>
+	<version>3.0.0-SNAPSHOT</version>
 	<url>http://www.mapps.es</url>
 	<description>Tile provider</description>
 	<parent>
