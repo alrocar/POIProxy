@@ -4,7 +4,7 @@
 *.settings/
 */target
 */bin
-
+target
 .mtj.tmp/
 
 # Package Files #
