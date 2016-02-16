@@ -14,9 +14,9 @@
 	</licenses>
 
 	<scm>
-		<url>git:git@github.com:Prodevelop/POIProxy.git</url>
-		<connection>scm:git:git@github.com:Prodevelop/POIProxy.git</connection>
-		<developerConnection>scm:git:git@github.com:Prodevelop/POIProxy.git</developerConnection>
+		<url>git:ssh://github.com/Prodevelop/POIProxy.git</url>
+		<connection>scm:git:ssh://github.com/Prodevelop/POIProxy.git</connection>
+		<developerConnection>scm:git:ssh://github.com/Prodevelop/POIProxy.git</developerConnection>
 	</scm>
 
 	<developers>
