@@ -440,10 +440,19 @@ public class BaseContentHandler {
      */
     public void onStartObject() {
 	this.currentObjectKey = this.currentLocalName;
-	if (this.firstObjectKey == null) {
+	if (this.firstObjectKey == null && this.currentLocalName != null) {
 	    this.firstObjectKey = this.currentObjectKey;
 	}
-	stackObjectKey.push(this.currentObjectKey);
+
+	if (this.currentObjectKey != null) {
+	    stackObjectKey.push(this.currentObjectKey);
+	} else {
+	    if (!stackObjectKey.isEmpty()) {
+		this.currentObjectKey = stackObjectKey.peek();
+	    } else {
+		this.currentObjectKey = "";
+	    }
+	}
     }
 
     public void onEndObject() {
@@ -453,8 +462,12 @@ public class BaseContentHandler {
     private String getPrevCurrentName() {
 	try {
 	    this.stackObjectKey.pop();
+	    if (this.stackObjectKey.size() == 1) {
+		this.currentLocalName = null;
+	    }
 	    return this.stackObjectKey.peek();
 	} catch (EmptyStackException e) {
+	    this.currentLocalName = null;
 	    return this.firstObjectKey;
 	}
     }
