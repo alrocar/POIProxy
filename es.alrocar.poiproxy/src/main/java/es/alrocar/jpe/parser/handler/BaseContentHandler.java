@@ -450,7 +450,7 @@ public class BaseContentHandler {
 	    if (!stackObjectKey.isEmpty()) {
 		this.currentObjectKey = stackObjectKey.peek();
 	    } else {
-		this.currentObjectKey = "";
+		this.currentObjectKey = this.firstObjectKey;
 	    }
 	}
     }
