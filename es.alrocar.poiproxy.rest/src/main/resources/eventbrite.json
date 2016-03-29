@@ -1,6 +1,9 @@
 {
   "format": "json",
   "apiKey": "NPCDNQIQDPZ5DSENY2CZ",
+  "auth" : {
+  	"type": "forceJson"
+  },
   "requestTypes": {
     "browse": {
       "url": "https://www.eventbriteapi.com/v3/events/search/?location.within=__DIST__&location.latitude=__LAT__&location.longitude=__LON__&token=__KEY__",

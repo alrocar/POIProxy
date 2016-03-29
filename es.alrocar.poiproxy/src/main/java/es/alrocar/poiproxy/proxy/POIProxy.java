@@ -68,7 +68,6 @@ import es.alrocar.poiproxy.geotools.GeotoolsUtils;
 import es.alrocar.poiproxy.proxy.event.POIProxyEvent;
 import es.alrocar.poiproxy.proxy.event.POIProxyEventEnum;
 import es.alrocar.poiproxy.proxy.utiles.Calculator;
-import es.alrocar.poiproxy.request.OauthRequestService;
 import es.alrocar.poiproxy.request.RequestService;
 import es.alrocar.poiproxy.request.RequestServices;
 import es.alrocar.poiproxy.request.SimpleHttpRequestService;
@@ -146,12 +145,16 @@ public class POIProxy {
 		requestServices = RequestServices.getInstance();
 
 		for (AuthTypeEnum authType : AuthTypeEnum.values()) {
-			if (authType.isOauth()) {
-				requestServices.addRequestService(authType,
-						new OauthRequestService());
+			if (authType._downloader != null) {
+				try {
+					requestServices.addRequestService(authType, authType._downloader.newInstance());
+				} catch (InstantiationException e) {
+					logger.error(e.getMessage(), e);
+				} catch (IllegalAccessException e) {
+					logger.error(e.getMessage(), e);
+				}
 			} else {
-				requestServices.addRequestService(authType,
-						new SimpleHttpRequestService());
+				requestServices.addRequestService(authType, new SimpleHttpRequestService());
 			}
 		}
 	}
@@ -165,8 +168,7 @@ public class POIProxy {
 	 * @throws JsonMappingException
 	 * @throws JsonGenerationException
 	 */
-	public String getAvailableServices() throws JsonGenerationException,
-			JsonMappingException, IOException {
+	public String getAvailableServices() throws JsonGenerationException, JsonMappingException, IOException {
 		DescribeServices services = serviceManager.getAvailableServices();
 
 		return services.asJSON();
@@ -186,22 +188,18 @@ public class POIProxy {
 	 *            The y tile
 	 * @return The GeoJSON response from the original service response
 	 */
-	public String getPOIs(String id, int z, int x, int y,
-			List<Param> optionalParams) throws Exception {
+	public String getPOIs(String id, int z, int x, int y, List<Param> optionalParams) throws Exception {
 		DescribeService describeService = getDescribeServiceByID(id);
 
 		Extent e1 = TileConversor.tileOSMMercatorBounds(x, y, z);
 
-		double[] minXY = ConversionCoords.reproject(e1.getMinX(), e1.getMinY(),
-				CRSFactory.getCRS(MERCATOR_SRS),
+		double[] minXY = ConversionCoords.reproject(e1.getMinX(), e1.getMinY(), CRSFactory.getCRS(MERCATOR_SRS),
 				CRSFactory.getCRS(GEODETIC_SRS));
-		double[] maxXY = ConversionCoords.reproject(e1.getMaxX(), e1.getMaxY(),
-				CRSFactory.getCRS(MERCATOR_SRS),
+		double[] maxXY = ConversionCoords.reproject(e1.getMaxX(), e1.getMaxY(), CRSFactory.getCRS(MERCATOR_SRS),
 				CRSFactory.getCRS(GEODETIC_SRS));
 
-		POIProxyEvent beforeEvent = new POIProxyEvent(
-				POIProxyEventEnum.BeforeBrowseZXY, describeService, e1, z, y,
-				x, null, null, null, null, null, null);
+		POIProxyEvent beforeEvent = new POIProxyEvent(POIProxyEventEnum.BeforeBrowseZXY, describeService, e1, z, y, x,
+				null, null, null, null, null, null);
 		notifyListenersBeforeRequest(beforeEvent);
 
 		String geoJSON = getCacheData(beforeEvent);
@@ -209,12 +207,11 @@ public class POIProxy {
 
 		if (geoJSON == null) {
 			fromCache = false;
-			geoJSON = getResponseAsGeoJSON(id, optionalParams, describeService,
-					minXY[0], minXY[1], maxXY[0], maxXY[1], 0, 0, beforeEvent);
+			geoJSON = getResponseAsGeoJSON(id, optionalParams, describeService, minXY[0], minXY[1], maxXY[0], maxXY[1],
+					0, 0, beforeEvent);
 		}
 
-		POIProxyEvent afterEvent = new POIProxyEvent(
-				POIProxyEventEnum.AfterBrowseZXY, describeService, e1, z, y, x,
+		POIProxyEvent afterEvent = new POIProxyEvent(POIProxyEventEnum.AfterBrowseZXY, describeService, e1, z, y, x,
 				null, null, null, null, geoJSON, null);
 
 		if (!fromCache) {
@@ -255,21 +252,18 @@ public class POIProxy {
 	 *            The y tile
 	 * @return a list of {@link JTSFeature}
 	 */
-	public ArrayList<JTSFeature> getFeatures(String id, int z, int x, int y,
-			List<Param> optionalParams) throws Exception {
+	public ArrayList<JTSFeature> getFeatures(String id, int z, int x, int y, List<Param> optionalParams)
+			throws Exception {
 		DescribeService describeService = getDescribeServiceByID(id);
 
 		Extent e1 = TileConversor.tileOSMMercatorBounds(x, y, z);
 
-		double[] minXY = ConversionCoords.reproject(e1.getMinX(), e1.getMinY(),
-				CRSFactory.getCRS(MERCATOR_SRS),
+		double[] minXY = ConversionCoords.reproject(e1.getMinX(), e1.getMinY(), CRSFactory.getCRS(MERCATOR_SRS),
 				CRSFactory.getCRS(GEODETIC_SRS));
-		double[] maxXY = ConversionCoords.reproject(e1.getMaxX(), e1.getMaxY(),
-				CRSFactory.getCRS(MERCATOR_SRS),
+		double[] maxXY = ConversionCoords.reproject(e1.getMaxX(), e1.getMaxY(), CRSFactory.getCRS(MERCATOR_SRS),
 				CRSFactory.getCRS(GEODETIC_SRS));
 
-		return getFeatures(id, optionalParams, describeService, minXY[0],
-				minXY[1], maxXY[0], maxXY[1], 0, 0);
+		return getFeatures(id, optionalParams, describeService, minXY[0], minXY[1], maxXY[0], maxXY[1], 0, 0);
 	}
 
 	/**
@@ -287,10 +281,9 @@ public class POIProxy {
 	 *            The y tile
 	 * @return a list of {@link JTSFeature}
 	 */
-	public ArrayList<JTSFeature> getFeaturesByCategory(String category, int z,
-			int x, int y, List<Param> optionalParams) throws Exception {
-		List<String> ids = serviceManager.getAvailableServices()
-				.getServicesIDByCategory(category);
+	public ArrayList<JTSFeature> getFeaturesByCategory(String category, int z, int x, int y, List<Param> optionalParams)
+			throws Exception {
+		List<String> ids = serviceManager.getAvailableServices().getServicesIDByCategory(category);
 		ArrayList<JTSFeature> features = new ArrayList<JTSFeature>();
 		for (String id : ids) {
 			try {
@@ -330,18 +323,15 @@ public class POIProxy {
 	 *            The distance in meters from the lon, lat
 	 * @return The GeoJSON response from the original service response
 	 */
-	public String getPOIs(String id, double lon, double lat,
-			double distanceInMeters, List<Param> optionalParams)
+	public String getPOIs(String id, double lon, double lat, double distanceInMeters, List<Param> optionalParams)
 			throws Exception {
 		DescribeService describeService = getDescribeServiceByID(id);
 
-		double[] bbox = Calculator.boundingCoordinates(lon, lat,
-				distanceInMeters);
+		double[] bbox = Calculator.boundingCoordinates(lon, lat, distanceInMeters);
 
-		POIProxyEvent beforeEvent = new POIProxyEvent(
-				POIProxyEventEnum.BeforeBrowseLonLat, describeService,
-				new Extent(bbox[0], bbox[1], bbox[2], bbox[3]), null, null,
-				null, lon, lat, distanceInMeters, null, null, null);
+		POIProxyEvent beforeEvent = new POIProxyEvent(POIProxyEventEnum.BeforeBrowseLonLat, describeService,
+				new Extent(bbox[0], bbox[1], bbox[2], bbox[3]), null, null, null, lon, lat, distanceInMeters, null,
+				null, null);
 
 		notifyListenersBeforeRequest(beforeEvent);
 
@@ -350,14 +340,13 @@ public class POIProxy {
 
 		if (geoJSON == null) {
 			fromCache = false;
-			geoJSON = getResponseAsGeoJSON(id, optionalParams, describeService,
-					bbox[0], bbox[1], bbox[2], bbox[3], lon, lat, beforeEvent);
+			geoJSON = getResponseAsGeoJSON(id, optionalParams, describeService, bbox[0], bbox[1], bbox[2], bbox[3], lon,
+					lat, beforeEvent);
 		}
 
-		POIProxyEvent afterEvent = new POIProxyEvent(
-				POIProxyEventEnum.AfterBrowseLonLat, describeService,
-				new Extent(bbox[0], bbox[1], bbox[2], bbox[3]), null, null,
-				null, lon, lat, distanceInMeters, null, geoJSON, null);
+		POIProxyEvent afterEvent = new POIProxyEvent(POIProxyEventEnum.AfterBrowseLonLat, describeService,
+				new Extent(bbox[0], bbox[1], bbox[2], bbox[3]), null, null, null, lon, lat, distanceInMeters, null,
+				geoJSON, null);
 
 		if (!fromCache) {
 			storeData(afterEvent);
@@ -383,16 +372,13 @@ public class POIProxy {
 	 *            The distance in meters from the lon, lat
 	 * @return A list of {@link JTSFeature}
 	 */
-	public ArrayList<JTSFeature> getFeatures(String id, double lon, double lat,
-			double distanceInMeters, List<Param> optionalParams)
-			throws Exception {
+	public ArrayList<JTSFeature> getFeatures(String id, double lon, double lat, double distanceInMeters,
+			List<Param> optionalParams) throws Exception {
 		DescribeService describeService = getDescribeServiceByID(id);
 
-		double[] bbox = Calculator.boundingCoordinates(lon, lat,
-				distanceInMeters);
+		double[] bbox = Calculator.boundingCoordinates(lon, lat, distanceInMeters);
 
-		return getFeatures(id, optionalParams, describeService, bbox[0],
-				bbox[1], bbox[2], bbox[3], lon, lat);
+		return getFeatures(id, optionalParams, describeService, bbox[0], bbox[1], bbox[2], bbox[3], lon, lat);
 	}
 
 	/**
@@ -410,16 +396,13 @@ public class POIProxy {
 	 *            The distance in meters from the lon, lat
 	 * @return A list of {@link JTSFeature}
 	 */
-	public ArrayList<JTSFeature> getFeaturesByCategory(String category,
-			double lon, double lat, double distanceInMeters,
+	public ArrayList<JTSFeature> getFeaturesByCategory(String category, double lon, double lat, double distanceInMeters,
 			List<Param> optionalParams) throws Exception {
-		List<String> ids = serviceManager.getAvailableServices()
-				.getServicesIDByCategory(category);
+		List<String> ids = serviceManager.getAvailableServices().getServicesIDByCategory(category);
 		ArrayList<JTSFeature> features = new ArrayList<JTSFeature>();
 		for (String id : ids) {
 			try {
-				features.addAll(this.getFeatures(id, lon, lat,
-						distanceInMeters, optionalParams));
+				features.addAll(this.getFeatures(id, lon, lat, distanceInMeters, optionalParams));
 			} catch (Exception e) {
 				logger.error("POIProxy", e);
 			}
@@ -444,14 +427,12 @@ public class POIProxy {
 	 * @param maxY
 	 * @return The GeoJSON response from the original service response
 	 */
-	public String getPOIs(String id, double minX, double minY, double maxX,
-			double maxY, List<Param> optionalParams) throws Exception {
+	public String getPOIs(String id, double minX, double minY, double maxX, double maxY, List<Param> optionalParams)
+			throws Exception {
 		DescribeService describeService = getDescribeServiceByID(id);
 
-		POIProxyEvent beforeEvent = new POIProxyEvent(
-				POIProxyEventEnum.BeforeBrowseExtent, describeService,
-				new Extent(minX, minY, maxX, maxY), null, null, null, null,
-				null, null, null, null, null);
+		POIProxyEvent beforeEvent = new POIProxyEvent(POIProxyEventEnum.BeforeBrowseExtent, describeService,
+				new Extent(minX, minY, maxX, maxY), null, null, null, null, null, null, null, null, null);
 
 		notifyListenersBeforeRequest(beforeEvent);
 
@@ -460,14 +441,12 @@ public class POIProxy {
 
 		if (geoJSON == null) {
 			fromCache = false;
-			geoJSON = getResponseAsGeoJSON(id, optionalParams, describeService,
-					minX, minY, maxX, maxY, 0, 0, beforeEvent);
+			geoJSON = getResponseAsGeoJSON(id, optionalParams, describeService, minX, minY, maxX, maxY, 0, 0,
+					beforeEvent);
 		}
 
-		POIProxyEvent afterEvent = new POIProxyEvent(
-				POIProxyEventEnum.AfterBrowseExtent, describeService,
-				new Extent(minX, minY, maxX, maxY), null, null, null, null,
-				null, null, null, geoJSON, null);
+		POIProxyEvent afterEvent = new POIProxyEvent(POIProxyEventEnum.AfterBrowseExtent, describeService,
+				new Extent(minX, minY, maxX, maxY), null, null, null, null, null, null, null, geoJSON, null);
 
 		if (!fromCache) {
 			storeData(afterEvent);
@@ -494,13 +473,11 @@ public class POIProxy {
 	 * @param maxY
 	 * @return A list of {@link JTSFeature}
 	 */
-	public ArrayList<JTSFeature> getFeatures(String id, double minX,
-			double minY, double maxX, double maxY, List<Param> optionalParams)
-			throws Exception {
+	public ArrayList<JTSFeature> getFeatures(String id, double minX, double minY, double maxX, double maxY,
+			List<Param> optionalParams) throws Exception {
 		DescribeService describeService = getDescribeServiceByID(id);
 
-		return getFeatures(id, optionalParams, describeService, minX, minY,
-				maxX, maxY, 0, 0);
+		return getFeatures(id, optionalParams, describeService, minX, minY, maxX, maxY, 0, 0);
 	}
 
 	/**
@@ -519,16 +496,13 @@ public class POIProxy {
 	 * @param maxY
 	 * @return A list of {@link JTSFeature}
 	 */
-	public ArrayList<JTSFeature> getFeaturesByCategory(String category,
-			double minX, double minY, double maxX, double maxY,
-			List<Param> optionalParams) throws Exception {
-		List<String> ids = serviceManager.getAvailableServices()
-				.getServicesIDByCategory(category);
+	public ArrayList<JTSFeature> getFeaturesByCategory(String category, double minX, double minY, double maxX,
+			double maxY, List<Param> optionalParams) throws Exception {
+		List<String> ids = serviceManager.getAvailableServices().getServicesIDByCategory(category);
 		ArrayList<JTSFeature> features = new ArrayList<JTSFeature>();
 		for (String id : ids) {
 			try {
-				features.addAll(getFeatures(id, minX, minY, maxX, maxY,
-						optionalParams));
+				features.addAll(getFeatures(id, minX, minY, maxX, maxY, optionalParams));
 			} catch (Exception e) {
 				logger.error("POIProxy", e);
 			}
@@ -554,19 +528,16 @@ public class POIProxy {
 	 * @return The url string to request to
 	 * @throws POIProxyException
 	 */
-	public String buildRequest(DescribeService describeService, double minX,
-			double minY, double maxX, double maxY, List<Param> optionalParams,
-			double lon, double lat) throws POIProxyException {
+	public String buildRequest(DescribeService describeService, double minX, double minY, double maxX, double maxY,
+			List<Param> optionalParams, double lon, double lat) throws POIProxyException {
 		ServiceParams params = new ServiceParams();
 
 		Extent e1 = new Extent(minX, minY, maxX, maxY);
 
-		double[] minXY = GeotoolsUtils.transform(GEODETIC_SRS,
-				describeService.getSRS(),
+		double[] minXY = GeotoolsUtils.transform(GEODETIC_SRS, describeService.getSRS(),
 				new double[] { e1.getMinX(), e1.getMinY() });
 
-		double[] maxXY = GeotoolsUtils.transform(GEODETIC_SRS,
-				describeService.getSRS(),
+		double[] maxXY = GeotoolsUtils.transform(GEODETIC_SRS, describeService.getSRS(),
 				new double[] { e1.getMaxX(), e1.getMaxY() });
 
 		int distanceMeters = this.getDistanceMeters(e1);
@@ -589,38 +560,36 @@ public class POIProxy {
 
 		params.putParam(ServiceParams.FORMAT, "json");
 
-		params.putParam(ServiceParams.DIST,
-				String.valueOf((int) distanceMeters));
-		params.putParam(ServiceParams.DISTKM,
-				String.valueOf(Double.valueOf(distanceMeters) / 1000));
+		params.putParam(ServiceParams.DIST, String.valueOf((int) distanceMeters));
+		params.putParam(ServiceParams.DISTKM, String.valueOf(Double.valueOf(distanceMeters) / 1000));
 		params.putParam(ServiceParams.KEY, describeService.getApiKey());
 
 		if (optionalParams != null) {
-			
+
 			String p;
 			for (Param optParam : optionalParams) {
 				p = params.getServiceParamFromURLParam(optParam.getType());
 				if (p == null) {
-					if(describeService.isEncodeUrl()){
+					if (describeService.isEncodeUrl()) {
 						try {
 							params.putParam(p, URLEncoder.encode(optParam.getValue(), "UTF-8"));
 						} catch (UnsupportedEncodingException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
-						}		
-					}else{
-					params.putParam(optParam.getType(), optParam.getValue());
+						}
+					} else {
+						params.putParam(optParam.getType(), optParam.getValue());
 					}
 				} else {
-					if(describeService.isEncodeUrl()){
+					if (describeService.isEncodeUrl()) {
 						try {
 							params.putParam(p, URLEncoder.encode(optParam.getValue(), "UTF-8"));
 						} catch (UnsupportedEncodingException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
-						}			
-					}else{
-					params.putParam(p, optParam.getValue());
+						}
+					} else {
+						params.putParam(p, optParam.getValue());
 					}
 				}
 			}
@@ -635,34 +604,30 @@ public class POIProxy {
 		while (it.hasNext()) {
 			key = it.next();
 			if (describeService.isSpecialParam(key)) {
-				url = url.replaceAll(key,
-						getValue(params, key, describeService));
+				url = url.replaceAll(key, getValue(params, key, describeService));
 			}
 		}
 
 		return url;
 	}
 
-	protected String getValue(ServiceParams params, String key,
-			DescribeService describeService) throws POIProxyException {
+	protected String getValue(ServiceParams params, String key, DescribeService describeService)
+			throws POIProxyException {
 		if (params.isDate(key)) {
-			return describeService.encodeParam(getValueForDate(params, key,
-					describeService));
+			return describeService.encodeParam(getValueForDate(params, key, describeService));
 		} else {
 			return describeService.encodeParam(params.getValueForParam(key));
 		}
 	}
 
-	protected String getValueForDate(ServiceParams params, String key,
-			DescribeService describeService) throws POIProxyException {
+	protected String getValueForDate(ServiceParams params, String key, DescribeService describeService)
+			throws POIProxyException {
 		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
 		try {
-			if (describeService.getDateFormat().compareTo(
-					DescribeService.TIMESTAMP) == 0) {
+			if (describeService.getDateFormat().compareTo(DescribeService.TIMESTAMP) == 0) {
 				return sdf.parse(params.getValueForParam(key)).getTime() + "";
 			} else {
-				SimpleDateFormat outsdf = new SimpleDateFormat(
-						describeService.getDateFormat());
+				SimpleDateFormat outsdf = new SimpleDateFormat(describeService.getDateFormat());
 
 				Date date = sdf.parse(params.getValueForParam(key));
 				return outsdf.format(date);
@@ -686,26 +651,21 @@ public class POIProxy {
 	 * @return The data downloaded
 	 * @throws Exception
 	 */
-	public String doRequest(String url, DescribeService service, String id)
-			throws Exception {
-		RequestService request = requestServices.getRequestService(service
-				.getAuthType());
-		byte[] data = request.download(url, id,
-				PropertyLocator.getInstance().tempFolder + id + File.separator,
+	public String doRequest(String url, DescribeService service, String id) throws Exception {
+		RequestService request = requestServices.getRequestService(service.getAuthType());
+		byte[] data = request.download(url, id, PropertyLocator.getInstance().tempFolder + id + File.separator,
 				service.getAuth());
 
 		System.out.println(url);
 
-		if (service.getCompression() != null
-				&& service.getCompression().equals(CompressionEnum.ZIP.format)) {
+		if (service.getCompression() != null && service.getCompression().equals(CompressionEnum.ZIP.format)) {
 			Unzip unzip = new Unzip();
-			unzip.unzip(PropertyLocator.getInstance().tempFolder + id
-					+ File.separator, PropertyLocator.getInstance().tempFolder
-					+ id + File.separator + id, true);
+			unzip.unzip(PropertyLocator.getInstance().tempFolder + id + File.separator,
+					PropertyLocator.getInstance().tempFolder + id + File.separator + id, true);
 
 			Downloader opener = new Downloader();
-			return opener.openFile(PropertyLocator.getInstance().tempFolder
-					+ id + File.separator + service.getContentFile());
+			return opener.openFile(
+					PropertyLocator.getInstance().tempFolder + id + File.separator + service.getContentFile());
 		}
 
 		return new String(data, service.getEncoding());
@@ -727,13 +687,10 @@ public class POIProxy {
 	 * @return A GeoJSON
 	 * @throws NoParserRegisteredException
 	 */
-	public String onResponseReceived(String json, DescribeService service,
-			LocalFilter localFilter, POIProxyEvent tempEvent)
-			throws NoParserRegisteredException {
-		final JPEParser jpeParser = JPEParserManager.getInstance()
-				.getJPEParser(service.getFormat());
-		ArrayList<JTSFeature> features = jpeParser.parse(json, service,
-				localFilter);
+	public String onResponseReceived(String json, DescribeService service, LocalFilter localFilter,
+			POIProxyEvent tempEvent) throws NoParserRegisteredException {
+		final JPEParser jpeParser = JPEParserManager.getInstance().getJPEParser(service.getFormat());
+		ArrayList<JTSFeature> features = jpeParser.parse(json, service, localFilter);
 
 		String geoJSON = jpeParser.getGeoJSON();
 
@@ -742,11 +699,9 @@ public class POIProxy {
 			ev = POIProxyEventEnum.FeaturesParsedZXY;
 		}
 
-		POIProxyEvent event = new POIProxyEvent(ev, service,
-				tempEvent.getExtent(), tempEvent.getZ(), tempEvent.getY(),
-				tempEvent.getX(), tempEvent.getLon(), tempEvent.getLat(),
-				tempEvent.getDistance(), tempEvent.getQuery(), geoJSON,
-				features);
+		POIProxyEvent event = new POIProxyEvent(ev, service, tempEvent.getExtent(), tempEvent.getZ(), tempEvent.getY(),
+				tempEvent.getX(), tempEvent.getLon(), tempEvent.getLat(), tempEvent.getDistance(), tempEvent.getQuery(),
+				geoJSON, features);
 		notifyListenersOnNewFeatures(event);
 
 		if (cache != null) {
@@ -757,11 +712,9 @@ public class POIProxy {
 		return geoJSON;
 	}
 
-	private ArrayList<JTSFeature> parseFeatures(String json,
-			DescribeService service, LocalFilter localFilter)
+	private ArrayList<JTSFeature> parseFeatures(String json, DescribeService service, LocalFilter localFilter)
 			throws NoParserRegisteredException {
-		final JPEParser jpeParser = JPEParserManager.getInstance()
-				.getJPEParser(service.getFormat());
+		final JPEParser jpeParser = JPEParserManager.getInstance().getJPEParser(service.getFormat());
 		return jpeParser.parse(json, service, localFilter);
 	}
 
@@ -774,8 +727,7 @@ public class POIProxy {
 	 * @return The distance in meters
 	 */
 	public int getDistanceMeters(Extent boundingBox) {
-		return new Double(Math.floor(Calculator.latLonDist(
-				boundingBox.getMinX(), boundingBox.getMinY(),
+		return new Double(Math.floor(Calculator.latLonDist(boundingBox.getMinX(), boundingBox.getMinY(),
 				boundingBox.getMaxX(), boundingBox.getMaxY()))).intValue();
 	}
 
@@ -801,8 +753,7 @@ public class POIProxy {
 		return services.getCategories();
 	}
 
-	private DescribeService getDescribeServiceByID(String id)
-			throws POIProxyException {
+	private DescribeService getDescribeServiceByID(String id) throws POIProxyException {
 		DescribeService describeService = this.getServiceFromID(id);
 
 		if (describeService == null) {
@@ -821,14 +772,12 @@ public class POIProxy {
 	 */
 	private String getErrorForUnknownService(String id) {
 		StringBuffer error = new StringBuffer();
-		error.append("Services path: "
-				+ ServiceConfigurationManager.CONFIGURATION_DIR);
+		error.append("Services path: " + ServiceConfigurationManager.CONFIGURATION_DIR);
 		error.append("The service with id: " + id + " is not registered");
 
 		error.append("\n Available services are: ");
 
-		Set<String> keys = serviceManager.getRegisteredConfigurations()
-				.keySet();
+		Set<String> keys = serviceManager.getRegisteredConfigurations().keySet();
 
 		Iterator<String> it = keys.iterator();
 
@@ -839,32 +788,27 @@ public class POIProxy {
 		return error.toString();
 	}
 
-	private String getResponseAsGeoJSON(String id, List<Param> optionalParams,
-			DescribeService describeService, double minX, double minY,
-			double maxX, double maxY, double lon, double lat,
-			POIProxyEvent event) throws Exception, NoParserRegisteredException {
-		String url = buildRequest(describeService, minX, minY, maxX, maxY,
-				optionalParams, lon, lat);
+	private String getResponseAsGeoJSON(String id, List<Param> optionalParams, DescribeService describeService,
+			double minX, double minY, double maxX, double maxY, double lon, double lat, POIProxyEvent event)
+					throws Exception, NoParserRegisteredException {
+		String url = buildRequest(describeService, minX, minY, maxX, maxY, optionalParams, lon, lat);
 
 		String file = doRequest(url, describeService, id);
 
-		String geoJSON = this.onResponseReceived(file, describeService,
-				describeService.getLocalFilter(optionalParams), event);
+		String geoJSON = this.onResponseReceived(file, describeService, describeService.getLocalFilter(optionalParams),
+				event);
 		return geoJSON;
 	}
 
-	private ArrayList<JTSFeature> getFeatures(String id,
-			List<Param> optionalParams, DescribeService describeService,
-			double minX, double minY, double maxX, double maxY, double lon,
-			double lat) throws Exception, NoParserRegisteredException {
-		String url = buildRequest(describeService, minX, minY, maxX, maxY,
-				optionalParams, lon, lat);
+	private ArrayList<JTSFeature> getFeatures(String id, List<Param> optionalParams, DescribeService describeService,
+			double minX, double minY, double maxX, double maxY, double lon, double lat)
+					throws Exception, NoParserRegisteredException {
+		String url = buildRequest(describeService, minX, minY, maxX, maxY, optionalParams, lon, lat);
 
 		String file = doRequest(url, describeService, id);
 
-		ArrayList<JTSFeature> features = this
-				.parseFeatures(file, describeService,
-						LocalFilter.fromOptionalParams(optionalParams));
+		ArrayList<JTSFeature> features = this.parseFeatures(file, describeService,
+				LocalFilter.fromOptionalParams(optionalParams));
 
 		return features;
 	}
@@ -879,10 +823,8 @@ public class POIProxy {
 	 *            registering
 	 * @throws POIProxyException
 	 */
-	public void register(DescribeService service, String describeService)
-			throws POIProxyException {
-		serviceManager.registerServiceConfiguration(service.getId(),
-				describeService, service);
+	public void register(DescribeService service, String describeService) throws POIProxyException {
+		serviceManager.registerServiceConfiguration(service.getId(), describeService, service);
 	}
 
 	/**
@@ -894,7 +836,7 @@ public class POIProxy {
 	 */
 	public void addPOIProxyListener(POIProxyListener listener) {
 		if (!listeners.contains(listener)) {
-			this.listeners.add(listener);	
+			this.listeners.add(listener);
 		}
 	}
 

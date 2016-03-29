@@ -31,34 +31,33 @@
  * @author Alberto Romeu Carrasco http://www.albertoromeu.com
  */
 
-package es.alrocar.poiproxy.configuration;
+package es.alrocar.poiproxy.request;
 
 import org.scribe.builder.api.Api;
-import org.scribe.builder.api.TwitterApi;
+import org.scribe.model.OAuthConfig;
+import org.scribe.oauth.OAuthService;
 
-import es.alrocar.poiproxy.request.OauthRequestService;
-import es.alrocar.poiproxy.request.RequestService;
-import es.alrocar.poiproxy.request.SimpleHttpRequestServiceForceJson;
+import es.alrocar.poiproxy.configuration.Auth;
+import es.alrocar.utils.DownloaderJson;
 
-public enum AuthTypeEnum {
+/**
+ * Makes plain Http request
+ * 
+ * @author aromeu
+ * 
+ */
+public class SimpleHttpRequestServiceForceJson implements RequestService, Api {
 
-	none("simple", null, null),
+	private DownloaderJson d = new DownloaderJson();
 
-	twitter_oauth("twitter_oauth", TwitterApi.class, OauthRequestService.class),
-
-	forceJson("forceJson", SimpleHttpRequestServiceForceJson.class, SimpleHttpRequestServiceForceJson.class);
-
-	public String type;
-	public Class<? extends Api> _class;
-	public Class<? extends RequestService> _downloader;
-
-	private AuthTypeEnum(String type, Class<? extends Api> _class, Class<? extends RequestService> _downloader) {
-		this.type = type;
-		this._class = _class;
-		this._downloader = _downloader;
+	@Override
+	public byte[] download(String URL, String fileName, String downloadPath, Auth authElem) throws Exception {
+		return d.downloadFromUrl(URL, fileName, downloadPath, null);
 	}
 
-	public boolean isOauth() {
-		return type.indexOf("oauth") != -1;
+	@Override
+	public OAuthService createService(OAuthConfig config) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
