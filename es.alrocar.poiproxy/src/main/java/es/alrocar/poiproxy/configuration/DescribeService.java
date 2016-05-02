@@ -39,6 +39,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonProperty;
@@ -65,9 +66,9 @@ import es.alrocar.utils.CompressionEnum;
 @ApiModel(description = "The configuration of a registered POI service in POIProxy")
 public class DescribeService {
 
-	private final static Logger logger = LoggerFactory
-			.getLogger(DescribeService.class);
+	private final static Logger logger = LoggerFactory.getLogger(DescribeService.class);
 
+	public static final String UNICODE = "unicode";
 	public static final String CATEGORY_SEPARATOR = ",";
 
 	public final static String SEARCH_TYPE = "search";
@@ -90,6 +91,7 @@ public class DescribeService {
 	private String dateFormat = TIMESTAMP;
 	private String csvSeparator;
 	private String encoding;
+	private String outputEncoding = DescribeService.DEFAULT_ENCODING;
 	private String numberSeparator;
 	private String decimalSeparator;
 	private String compression;
@@ -215,8 +217,7 @@ public class DescribeService {
 	 *            A {@link ServiceParams} instance
 	 * @return The url to request
 	 */
-	public String getRequestForParam(List<Param> optionalParam,
-			ServiceParams params) {
+	public String getRequestForParam(List<Param> optionalParam, ServiceParams params) {
 		String url;
 		ArrayList<String> requestParams;
 		RequestType requestType;
@@ -237,8 +238,7 @@ public class DescribeService {
 		for (Param optParam : optionalParam) {
 			if (optParam.getType() == ParamEnum.QUERY.name) {
 				this.setType(DescribeService.SEARCH_TYPE);
-				requestType = getRequestTypes()
-						.get(DescribeService.SEARCH_TYPE);
+				requestType = getRequestTypes().get(DescribeService.SEARCH_TYPE);
 			}
 		}
 
@@ -251,19 +251,21 @@ public class DescribeService {
 
 	public String encode(String element) {
 		try {
-			if (this.getFormat().equals(FormatEnum.JSON.name)
-					|| this.getFormat().equals(FormatEnum.CSV.name)) {
+			if (this.getOutputEncoding() != null && this.getOutputEncoding().equals(UNICODE)) {
+				return StringEscapeUtils.escapeJava(element);
+			}
+
+			if (this.getFormat().equals(FormatEnum.JSON.name) || this.getFormat().equals(FormatEnum.CSV.name)) {
 				return element;
 			}
-			return new String(element.getBytes(this.getEncoding()),
-					DescribeService.DEFAULT_ENCODING);
+
+			return new String(element.getBytes(this.getEncoding()), this.getOutputEncoding());
 		} catch (UnsupportedEncodingException e) {
 			return element;
 		}
 	}
 
-	private String processRequestParams(ArrayList<String> requestParams,
-			ServiceParams params) {
+	private String processRequestParams(ArrayList<String> requestParams, ServiceParams params) {
 		String p;
 		String value;
 		StringBuffer optionalUrl = new StringBuffer();
@@ -293,12 +295,10 @@ public class DescribeService {
 		// }
 	}
 
-	protected void addOriginalParams(ServiceParams params,
-			StringBuffer optionalUrl) {
+	protected void addOriginalParams(ServiceParams params, StringBuffer optionalUrl) {
 		for (String key : params.getParams().keySet()) {
 			if (!ParamEnum.from(key) && !isSpecialParam(key)) {
-				optionalUrl.append("&" + key + "="
-						+ (params.getParams().get(key)));
+				optionalUrl.append("&" + key + "=" + (params.getParams().get(key)));
 			}
 		}
 	}
@@ -496,8 +496,7 @@ public class DescribeService {
 		List<String> categories = getCategories();
 		String categoriesStr = "";
 		if (categories != null && !categories.isEmpty()) {
-			categoriesStr = StringUtils.join(categories.toArray(),
-					CATEGORY_SEPARATOR);
+			categoriesStr = StringUtils.join(categories.toArray(), CATEGORY_SEPARATOR);
 		}
 
 		return categoriesStr;
@@ -531,8 +530,7 @@ public class DescribeService {
 		List<String> result = new ArrayList<String>();
 		try {
 			if (categoriesList != null) {
-				String[] categories = categoriesList
-						.split(DescribeService.CATEGORY_SEPARATOR);
+				String[] categories = categoriesList.split(DescribeService.CATEGORY_SEPARATOR);
 				if (categories != null && categories.length != 0) {
 					for (String cat : categories) {
 						result.add(cat);
@@ -607,5 +605,13 @@ public class DescribeService {
 
 	public void setEncodeUrl(boolean encodeUrl) {
 		this.encodeUrl = encodeUrl;
+	}
+
+	public String getOutputEncoding() {
+		return outputEncoding;
+	}
+
+	public void setOutputEncoding(String outputEncoding) {
+		this.outputEncoding = outputEncoding;
 	}
 }

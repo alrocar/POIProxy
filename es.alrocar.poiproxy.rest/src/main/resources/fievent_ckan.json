@@ -1,0 +1,56 @@
+{
+  "format": "json",
+  "categories": [
+    "accommodation"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "http://130.0.0.85/ckan/api/action/datastore_search_sql?sql=SELECT * from \"__QUERY__\" WHERE longitude >__MINX__ AND longitude <__MAXX__ AND latitude > __MINY__ AND latitude <__MAXY__",
+      "params": []
+    },
+    "search": {
+      "url": "http://130.0.0.85/ckan/api/action/datastore_search_sql?sql=SELECT * from \"__QUERY__\" WHERE longitude >__MINX__ AND longitude <__MAXX__ AND latitude > __MINY__ AND latitude <__MAXY__",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "category",
+      "elements": {
+        "name": {
+          "input": "name"
+        },
+		"category": {
+          "input": "category"
+        },
+		"address": {
+          "input": "address"
+        },
+		"web": {
+          "input": "web"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+    },
+    "search": {
+      "feature": "category",
+      "elements": {
+        "name": {
+          "input": "name"
+        },
+		"category": {
+          "input": "category"
+        },
+		"address": {
+          "input": "address"
+        },
+		"web": {
+          "input": "web"
+        }
+      },
+      "lon": "longitude",
+      "lat": "latitude"
+	}
+}
+}

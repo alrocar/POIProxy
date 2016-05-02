@@ -1,0 +1,58 @@
+{
+  "format": "json",
+  "categories": [
+    "transport"
+  ],
+  "requestTypes": {
+    "browse": {
+      "url": "http://localhost:8081/poi-api/osm/pois/json/search?category=transport&coords=__LAT__,__LON__,5000&limit=9999&city=__QUERY__",
+      "params": []
+    },
+    "search": {
+      "url": "http://localhost:8081/poi-api/osm/pois/json/search?category=transport&coords=__LAT__,__LON__,5000&limit=9999&city=__QUERY__",
+      "params": []
+    }
+  },
+  "featureTypes": {
+    "browse": {
+      "feature": "properties",
+      "elements": {
+        "name": {
+          "input": "name"
+        },
+		"category": {
+          "input": "category"
+        },
+		"address": {
+          "input": "address"
+        },
+		"web": {
+          "input": "web"
+        }
+      },
+      "lon": "coordinates",
+      "lat": "coordinates",
+      "combinedLonLat": "true"
+    },
+    "search": {
+      "feature": "properties",
+      "elements": {
+        "name": {
+          "input": "name"
+        },
+		"category": {
+          "input": "category"
+        },
+		"address": {
+          "input": "address"
+        },
+		"web": {
+          "input": "web"
+        }
+      },
+      "lon": "coordinates",
+      "lat": "coordinates",
+      "combinedLonLat": "true"
+	}
+}
+}
