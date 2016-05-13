@@ -39,6 +39,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Stack;
 
+import org.apache.commons.lang3.StringUtils;
 import org.xml.sax.Attributes;
 
 import es.alrocar.jpe.parser.JPEParser;
@@ -255,7 +256,8 @@ public class BaseContentHandler {
 	}
 
 	private String normalizeValue(String arg0) {
-		arg0 = arg0.replaceAll("\"", "").replace("'", "");
+		// arg0 = arg0.replaceAll("\"", "").replace("'", "");
+		// arg0 = StringUtils.stripAccents(arg0);
 		return arg0;
 
 	}
@@ -376,7 +378,7 @@ public class BaseContentHandler {
 						service);
 				this.currentFeatureGeoJSON = this.fillService(writerContentHandler, this.currentFeatureGeoJSON,
 						service);
-				
+
 				this.fillEmptyAttributes(writerContentHandler, this.currentFeatureGeoJSON, service);
 
 				this.currentFeatureGeoJSON = writerContentHandler.addPointToFeature(this.currentFeatureGeoJSON,
@@ -401,12 +403,14 @@ public class BaseContentHandler {
 	}
 
 	public void fillEmptyAttributes(JPEContentHandler handler, Object feature, DescribeService service) {
-		LinkedHashMap feat = (LinkedHashMap) feature;
-		FeatureType type = service.getFeatureTypes().get(service.getType());
-		for (String key : type.getElements().keySet()) {
-			Object attr = ((Map) feat.get("properties")).get(key);
-			if (attr == null || attr.toString() == null) {
-				handler.addElementToFeature("", key, feature);
+		if (service.getFillEmptyAttributes() != null) {
+			LinkedHashMap feat = (LinkedHashMap) feature;
+			FeatureType type = service.getFeatureTypes().get(service.getType());
+			for (String key : type.getElements().keySet()) {
+				Object attr = ((Map) feat.get("properties")).get(key);
+				if (attr == null || attr.toString() == null) {
+					handler.addElementToFeature(service.getFillEmptyAttributes(), key, feature);
+				}
 			}
 		}
 	}

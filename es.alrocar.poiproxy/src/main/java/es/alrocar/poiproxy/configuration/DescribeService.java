@@ -69,6 +69,7 @@ public class DescribeService {
 	private final static Logger logger = LoggerFactory.getLogger(DescribeService.class);
 
 	public static final String UNICODE = "unicode";
+	public static final String STRIP_ACCENTS = "stripaccents";
 	public static final String CATEGORY_SEPARATOR = ",";
 
 	public final static String SEARCH_TYPE = "search";
@@ -103,6 +104,8 @@ public class DescribeService {
 	private String type = BROWSE_TYPE;
 
 	private String id;
+
+	private String fillEmptyAttributes;
 
 	/**
 	 * 
@@ -251,6 +254,10 @@ public class DescribeService {
 
 	public String encode(String element) {
 		try {
+			if (this.getOutputEncoding() != null && this.getOutputEncoding().equals(STRIP_ACCENTS)) {
+				return StringUtils.stripAccents(element);
+			}
+
 			if (this.getOutputEncoding() != null && this.getOutputEncoding().equals(UNICODE)) {
 				return StringEscapeUtils.escapeJava(element);
 			}
@@ -613,5 +620,13 @@ public class DescribeService {
 
 	public void setOutputEncoding(String outputEncoding) {
 		this.outputEncoding = outputEncoding;
+	}
+
+	public String getFillEmptyAttributes() {
+		return this.fillEmptyAttributes;
+	}
+
+	public void setFillEmptyAttributes(String a) {
+		this.fillEmptyAttributes = a;
 	}
 }
