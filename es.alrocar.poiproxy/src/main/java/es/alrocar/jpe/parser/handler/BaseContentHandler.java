@@ -39,6 +39,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Stack;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.xml.sax.Attributes;
 
@@ -186,6 +187,7 @@ public class BaseContentHandler {
 		for (String destProp : fType.getElements().keySet()) {
 			if (hasToBeParsed(fType, destProp)) {
 				checkValidAttribute(localFilter, arg0.toString());
+				fType.getElements().get(destProp).encode(arg0.toString());
 				if (writerContentHandler != null)
 					writerContentHandler.addElementToFeature(service.encode(arg0.toString()), destProp,
 							this.currentFeatureGeoJSON);
@@ -256,8 +258,9 @@ public class BaseContentHandler {
 	}
 
 	private String normalizeValue(String arg0) {
-		// arg0 = arg0.replaceAll("\"", "").replace("'", "");
-		// arg0 = StringUtils.stripAccents(arg0);
+		 arg0 = StringUtils.stripAccents(arg0);
+		 arg0 = StringEscapeUtils.escapeJava(arg0);
+		 arg0 = arg0.replaceAll("\"", "").replace("'", "");
 		return arg0;
 
 	}

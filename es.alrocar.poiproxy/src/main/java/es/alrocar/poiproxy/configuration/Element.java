@@ -33,6 +33,9 @@
 
 package es.alrocar.poiproxy.configuration;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.List;
 
 /**
@@ -45,6 +48,7 @@ public class Element {
 	private String input;
 	private String parent;
 	private List<String> avoid;
+	private boolean encodeUrl;
 
 	public String getInput() {
 		return input;
@@ -52,6 +56,10 @@ public class Element {
 
 	public void setInput(String input) {
 		this.input = input;
+	}
+
+	public void setEncodeUrl(boolean encodeUrl) {
+		this.encodeUrl = encodeUrl;
 	}
 
 	public String getParent() {
@@ -97,5 +105,23 @@ public class Element {
 		}
 
 		return apply;
+	}
+
+	public String encode(String val) {
+		if (this.encodeUrl){
+			 try {
+				return URLEncoder.encode(val, java.nio.charset.StandardCharsets.UTF_8.toString());
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		}
+		return val;
+	}
+
+	public boolean isEncodeUrl() {
+		return encodeUrl;
+	}
+	public boolean getEncodeUrl() {
+		return encodeUrl;
 	}
 }
