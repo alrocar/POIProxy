@@ -273,8 +273,8 @@ public class Downloader {
 	public static InputStream openConnection(String query) throws IOException {
 		final URL url = new URL(query.replace(" ", "%20"));
 		URLConnection urlconnec = url.openConnection();
-		urlconnec.setConnectTimeout(15000);
-		urlconnec.setReadTimeout(15000);
+		urlconnec.setConnectTimeout(60000);
+		urlconnec.setReadTimeout(60000);
 		return urlconnec.getInputStream();
 	}
 
