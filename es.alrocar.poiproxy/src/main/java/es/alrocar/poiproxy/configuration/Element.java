@@ -118,9 +118,6 @@ public class Element {
 		return val;
 	}
 
-	public boolean isEncodeUrl() {
-		return encodeUrl;
-	}
 	public boolean getEncodeUrl() {
 		return encodeUrl;
 	}
