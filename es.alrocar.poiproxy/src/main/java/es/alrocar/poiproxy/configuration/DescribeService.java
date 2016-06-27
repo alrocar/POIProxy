@@ -239,6 +239,10 @@ public class DescribeService {
 		}
 
 		for (Param optParam : optionalParam) {
+			if (optParam == null) {
+				continue;
+			}
+			
 			if (optParam.getType() == ParamEnum.QUERY.name) {
 				this.setType(DescribeService.SEARCH_TYPE);
 				requestType = getRequestTypes().get(DescribeService.SEARCH_TYPE);
