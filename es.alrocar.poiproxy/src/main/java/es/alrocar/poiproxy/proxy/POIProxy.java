@@ -579,8 +579,7 @@ public class POIProxy {
 						try {
 							params.putParam(p, URLEncoder.encode(optParam.getValue(), "UTF-8"));
 						} catch (UnsupportedEncodingException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+							logger.warn(e);
 						}
 					} else {
 						params.putParam(optParam.getType(), optParam.getValue());
@@ -590,8 +589,7 @@ public class POIProxy {
 						try {
 							params.putParam(p, URLEncoder.encode(optParam.getValue(), "UTF-8"));
 						} catch (UnsupportedEncodingException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+							logger.warn(e);
 						}
 					} else {
 						params.putParam(p, optParam.getValue());
