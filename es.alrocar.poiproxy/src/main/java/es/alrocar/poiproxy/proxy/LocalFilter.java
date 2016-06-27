@@ -78,6 +78,10 @@ public class LocalFilter {
 	// FIXME Extract the ArrayList to a Class
 	private Param getQueryParam(List<Param> optionalParams) {
 		for (Param p : optionalParams) {
+			if (p == null) {
+				continue;
+			}
+			
 			if (p.getType().equals(ParamEnum.QUERY.name)) {
 				return p;
 			}
