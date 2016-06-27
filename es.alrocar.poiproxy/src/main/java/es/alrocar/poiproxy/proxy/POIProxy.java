@@ -568,6 +568,11 @@ public class POIProxy {
 
 			String p;
 			for (Param optParam : optionalParams) {
+				//NO IDEA HOW CAN THIS BE NULL BUT IT IS HAPPENING
+				if (optParam == null) {
+					continue;
+				}
+				
 				p = params.getServiceParamFromURLParam(optParam.getType());
 				if (p == null) {
 					if (describeService.isEncodeUrl()) {
