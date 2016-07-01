@@ -53,6 +53,7 @@ public enum AttributeEnum {
 	WEB("web"),
 	URL("url"),
 	ADDRESS("address"),
+	WEIGHT("weight"),
 	CATEGORY("category"),
 	COUNTRY("country"),
 	CITY("city"),
