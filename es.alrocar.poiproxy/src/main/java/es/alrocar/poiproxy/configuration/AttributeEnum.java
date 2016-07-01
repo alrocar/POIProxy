@@ -59,7 +59,7 @@ public enum AttributeEnum {
 	ZIP("zip"),
 	STREET("street"),
 	LON("lon"),
-	LAT("lat"); 
+	LAT("lat");
       
 	public String name;
 
