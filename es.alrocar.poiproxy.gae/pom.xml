@@ -217,7 +217,7 @@
 					<dependency>
 						<groupId>org.datanucleus</groupId>
 						<artifactId>datanucleus-enhancer</artifactId>
-						<version>1.1.4</version>
+						<version>3.1.1</version>
 					</dependency>
 					<dependency>
 						<groupId>javax.jdo</groupId>
