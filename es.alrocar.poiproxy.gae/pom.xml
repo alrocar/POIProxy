@@ -299,7 +299,7 @@
 		<!-- Upload to http://test.latest.<applicationName>.appspot.com by default -->
 		<gae.application.version>test</gae.application.version>
 
-		<datanucleus.version>1.1.5</datanucleus.version>
+		<datanucleus.version>5.2.3</datanucleus.version>
 	</properties>
 
 	<profiles>
