@@ -52,7 +52,7 @@
 		<dependency>
 			<groupId>es.prodevelop</groupId>
 			<artifactId>es.prodevelop.tilerastercache</artifactId>
-			<version>0.6.0</version>
+			<version>0.6.3</version>
 		</dependency>
 
 		<dependency>
