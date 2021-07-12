@@ -250,7 +250,7 @@
 			<plugin>
 				<groupId>net.kindleit</groupId>
 				<artifactId>maven-gae-plugin</artifactId>
-				<version>0.9.0</version>
+				<version>0.9.6</version>
 				<dependencies>
 					<dependency>
 						<groupId>net.kindleit</groupId>
